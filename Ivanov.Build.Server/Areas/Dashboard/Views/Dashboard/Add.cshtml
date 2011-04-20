@@ -1,0 +1,22 @@
+﻿@model Ivanov.Build.Server.Areas.Dashboard.Models.Job
+@{
+    Layout = null;
+}
+
+<div class="grey-container">
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary();
+            
+    <fieldset>
+        <div id="job-name-label">
+            @Html.LabelFor(m => m.Name)
+        </div>
+        <div id="job-name-input">
+            @Html.TextBoxFor(m => m.Name)
+        </div>
+    </fieldset>
+        
+    <button type="submit" class="minimal">Add job</button>
+} 
+</div>

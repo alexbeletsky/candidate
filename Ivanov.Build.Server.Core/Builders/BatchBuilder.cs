@@ -1,0 +1,25 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Ivanov.Build.Server.Core.System;
+
+namespace Ivanov.Build.Server.Core.Builders
+{
+    public class BatchBuilder : IBuilder
+    {
+        private IProcessRunner _runner;
+        private string _pathToBatch;
+
+        public BatchBuilder(IProcessRunner runner, string pathToBatch)
+        {
+            _runner = runner;
+            _pathToBatch = pathToBatch;
+        }
+
+        public void Build()
+        {
+            _runner.Run(_pathToBatch);
+        }
+    }
+}
