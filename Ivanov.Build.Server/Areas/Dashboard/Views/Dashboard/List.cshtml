@@ -11,9 +11,6 @@ else
 {
     <table id="team-members-table">
     <thead>
-        <th class="narrow">
-            Id
-        </th>
         <th>
             Job Name
         </th>
@@ -39,9 +36,6 @@ else
         {
             <tr>
                 <td>
-                    @job.Id
-                </td>
-                <td>
                     @job.Name
                 </td>
                 <td>
@@ -51,7 +45,7 @@ else
                     @job.Status
                 </td>
                 <td class="center">
-                    <a href="#">Configure</a>
+                    <a href="@Url.Action("Configure", new { jobName = @job.Name })">Configure</a>
                 </td>
                 <td class="center">
                     <a href="#">Run</a>

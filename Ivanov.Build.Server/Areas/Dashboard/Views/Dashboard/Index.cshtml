@@ -1,53 +1,30 @@
 ﻿@{
     ViewBag.Title = "Build Server | Dashboard";
-}
-@section Styles {
+    Layout = "~/Areas/Dashboard/Views/Shared/_Layout.cshtml";
 }
 
-<header class="clearfix">
-    <div class="container_24">
-        <div id="logo">
-            Build Server
-        </div>
-        <nav class="header-menu">
-            <ul>
-                <li><a href="#">Faq</a></li>
-                <li><a href="#">Account</a></li>
-                <li><a href="#">Support</a></li>
-                <li><a href="#">Blog</a></li>
-                <li><a href="#">Sign out</a></li>
-            </ul>
-        </nav>
-    </div>
-</header>
-<div id="content" class="container_24">
-    <div id="internal-nagivation">
-        <h2>Build > Jobs</h2>
-    </div>
-    <div id="actions">
-        <div class="content-menu right">
-            <button class="cupid-green" id="add-job">Add job</button>
-        </div>
-    </div>
-    <div class="clearfix">
-            <div class="loader"></div>
-    </div>
-    <div id="action-content">
-    </div>
-
-    <div id="jobs">
-        @Html.Action("List")
-    </div>
-    <div id="buttons" class="right cleanfix">
-        <button type="button" class="minimal">Export jobs</button>
-        <button type="button" class="minimal">Delete jobs</button>
+<div id="internal-nagivation">
+    <h2>Build > Jobs</h2>
+</div>
+<div id="actions">
+    <div class="content-menu right">
+        <button class="cupid-green" id="add-job" method=@Url.Action("Add")>Add job</button>
     </div>
 </div>
-<footer>
-    <div class="container_24">
-    Sources of this application is available on <a href="#">github</a>
-    </div>
-</footer>
+<div class="clearfix">
+        <div class="loader"></div>
+</div>
+<div id="action-content">
+</div>
+
+<div id="jobs">
+    @Html.Action("List")
+</div>
+<div id="buttons" class="right cleanfix">
+    <button type="button" class="minimal">Export jobs</button>
+    <button type="button" class="minimal">Delete jobs</button>
+</div>
+
 @section Scripts {
     <script src="@Url.Content("~/Scripts/Controllers/controller.dashboard.js")" type="text/javascript"></script>
 }

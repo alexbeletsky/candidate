@@ -1,4 +1,6 @@
-﻿$(function () {
+﻿/// <reference path="../jquery-1.4.4-vsdoc.js" />
+
+$(function () {
 
     var Dashboard = function () {
 
@@ -8,7 +10,8 @@
             $('html, body').css('cursor', 'progress');
             $('.loader').show();
 
-            $('#action-content').slideUp().load('/dashboard/add', function () {
+            var method = $(this).attr('method');
+            $('#action-content').slideUp().load(method, function () {
                 $(this).slideDown(function () {
                     $('html, body').animate({ scrollTop: $('#action-content').offset().top }, 700);
                     $(this).find('#FirstName').focus();
@@ -16,8 +19,18 @@
                     $('.loader').hide();
                 });
             });
+
+            return false;
         });
 
+
+        $('#close-button').live('click', function () {
+            $('#action-content').slideUp(function () {
+                $(this).empty();
+            });
+
+            return false;
+        });
 
 
     } ();

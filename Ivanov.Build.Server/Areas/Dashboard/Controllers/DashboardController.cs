@@ -46,5 +46,30 @@ namespace Ivanov.Build.Server.Areas.Dashboard.Controllers
             return RedirectToAction("index");
         }
 
+        [HttpGet]
+        public ActionResult Configure(string jobName)
+        {
+            var batch = _settings.Batches.Where(b => b.JobName == jobName).SingleOrDefault();
+
+            return View(batch);
+        }
+
+        [HttpPost]
+        public ActionResult Configure(Batch batch)
+        {
+            var existingBatch = _settings.Batches.Where(b => b.JobName == batch.JobName).SingleOrDefault();
+            if (existingBatch == null)
+            {
+                _settings.Batches.Add(batch);
+            }
+            else
+            {
+                existingBatch.BatchName = batch.BatchName;
+            }
+
+            _settingsManager.SaveSettings(_settings);
+
+            return RedirectToAction("index");
+        }
     }
 }

@@ -10,7 +10,7 @@ namespace Ivanov.Build.Server.Core.Settings
     public class SettingsManager : ISettingsManager
     {
         private JsonSerializer _serializer = new JsonSerializer();
-        private static readonly string SettingsFolder = "Settings";
+        private static readonly string SettingsFolder = "Ivanov.Build.Server\\Settings";
 
         public SettingsManager()
         {

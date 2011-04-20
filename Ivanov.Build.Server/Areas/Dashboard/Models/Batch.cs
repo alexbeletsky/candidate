@@ -5,10 +5,9 @@ using System.Web;
 
 namespace Ivanov.Build.Server.Areas.Dashboard.Models
 {
-    public class Job
+    public class Batch
     {
-        public string Name { get; set; }
-        public DateTime? LastBuildDate { get; set; }
-        public int Status { get; set; }
+        public string JobName { get; set; }
+        public string BatchName { get; set; }
     }
 }

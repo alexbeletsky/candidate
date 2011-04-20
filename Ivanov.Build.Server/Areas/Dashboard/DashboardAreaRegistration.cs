@@ -15,9 +15,15 @@ namespace Ivanov.Build.Server.Areas.Dashboard
         public override void RegisterArea(AreaRegistrationContext context)
         {
             context.MapRoute(
+                "Dashboard_Configure",
+                "Dashboard/Configure/{jobName}",
+                new { action = "Configure", Controller = "Dashboard" }
+            );
+
+            context.MapRoute(
                 "Dashboard_default",
                 "Dashboard/{action}",
-                new { action = "Index", Controller="Dashboard", id = UrlParameter.Optional }
+                new { action = "Index", Controller = "Dashboard" }
             );
         }
     }
