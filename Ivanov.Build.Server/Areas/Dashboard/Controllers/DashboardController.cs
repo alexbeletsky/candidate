@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Xml.Linq;
 using Ivanov.Build.Server.Core.Settings;
 using Ivanov.Build.Server.Areas.Dashboard.Models;
+using Ivanov.Build.Server.Core.System;
 
 namespace Ivanov.Build.Server.Areas.Dashboard.Controllers
 {
@@ -70,6 +71,27 @@ namespace Ivanov.Build.Server.Areas.Dashboard.Controllers
             _settingsManager.SaveSettings(_settings);
 
             return RedirectToAction("index");
+        }
+
+        [HttpGet]
+        public ActionResult Run(string jobName)
+        {
+            ViewBag.JobName = jobName;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult RunBatch(string jobName)
+        {
+            //using (var logger = new Logger("output.log"))
+            //{
+            //    var runner = new ProcessRunner(logger);
+            //    var batch = _settings.Batches.Where(b => b.JobName == jobName).Single();
+
+            //    runner.Run("Ivanov.Build.Server\\Jobs\\" + jobName + "\\" + batch.BatchName);
+            //}
+
+            return Json(new { success = true });
         }
     }
 }

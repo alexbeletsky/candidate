@@ -84,6 +84,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="index.htm" />
     <Content Include="Scripts\Controllers\controller.dashboard.js" />
+    <Content Include="Scripts\Controllers\controller.run.js.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -146,6 +147,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Dashboard\Views\Shared\_Layout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Dashboard\Views\Dashboard\Run.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

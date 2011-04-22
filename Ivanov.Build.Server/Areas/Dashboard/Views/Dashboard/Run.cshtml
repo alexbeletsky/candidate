@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "Run";
+    Layout = "~/Areas/Dashboard/Views/Shared/_Layout.cshtml";
+}
+
+<div id="internal-nagivation">
+    <h2>Build > Jobs > Running</h2>
+    <div class="right">@Html.ActionLink("Back to dashboard", "Index")</div>
+    <div class="clear"></div>
+</div>
+<input id="job-name" type="hidden" value="@ViewBag.JobName" />
+<input id="run-batch" type="hidden" method="@Url.Action("RunBatch")" />
+
+<div class="run-console">
+    <p>Started build #122...</p>
+    <pre id="run-console-log">
+    </pre>
+</div>
+
+@section Scripts {
+    <script src="@Url.Content("~/Scripts/Controllers/controller.run.js.js")" type="text/javascript"></script>
+}

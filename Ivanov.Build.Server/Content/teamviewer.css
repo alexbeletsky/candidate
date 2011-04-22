@@ -199,3 +199,24 @@ footer
     height: 11px;
     background: url(Images/ajax-loader.gif) no-repeat;
 }
+
+.run-console
+{
+    position: relative;
+    display: block;
+    top: 12px;
+    
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;    
+    border-radius: 15px;    
+    border: 1px solid #CCCCCC;
+    background: #EEEEEE;
+    
+    min-height: 540px;
+    padding: 16px 12px;
+}
+
+.run-console p
+{
+    margin-bottom: 2px !important; 
+}

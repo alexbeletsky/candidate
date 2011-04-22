@@ -14,10 +14,26 @@ namespace Ivanov.Build.Server.Tests.System
         public void Smoke()
         {
             // arrange
-            var processRunner = new ProcessRunner();
+            using (var logger = new Logger("output.log"))
+            {
+                var processRunner = new ProcessRunner(logger, @".\..\..\TestData\simplebat");
 
-            // act
-            processRunner.Run(@".\..\..\TestData\run.bat");
+                // act
+                processRunner.Run(@".\..\..\TestData\simplebat\run.bat");
+            }
+        }
+
+        [Test]
+        public void Smoke2()
+        {
+            // arrange
+            using (var logger = new Logger("output.log"))
+            {
+                var processRunner = new ProcessRunner(logger, @"D:\Development\Projects\ivanov.build.server\Ivanov.Build.Server.Tests\TestData\simpleproj\");
+
+                // act
+                processRunner.Run(@"build.bat");
+            }
         }
     }
 }
