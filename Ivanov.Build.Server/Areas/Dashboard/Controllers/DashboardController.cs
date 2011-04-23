@@ -7,6 +7,7 @@ using System.Xml.Linq;
 using Ivanov.Build.Server.Core.Settings;
 using Ivanov.Build.Server.Areas.Dashboard.Models;
 using Ivanov.Build.Server.Core.System;
+using System.IO;
 
 namespace Ivanov.Build.Server.Areas.Dashboard.Controllers
 {
@@ -80,18 +81,26 @@ namespace Ivanov.Build.Server.Areas.Dashboard.Controllers
             return View();
         }
 
-        [HttpPost]
-        public ActionResult RunBatch(string jobName)
-        {
-            //using (var logger = new Logger("output.log"))
-            //{
-            //    var runner = new ProcessRunner(logger);
-            //    var batch = _settings.Batches.Where(b => b.JobName == jobName).Single();
+        //[HttpPost]
+        //public ActionResult RunBatch(string jobName)
+        //{
+        //    var currentDirectory = Directory.GetCurrentDirectory();
+        //    var workingDirectory = currentDirectory + "\\Ivanov.Build.Server\\Jobs\\" + jobName + "\\";
+        //    var logId = workingDirectory + "Logs\\output.log";
+        //    using (var logger = new Logger(logId))
+        //    {
+        //        var runner = new ProcessRunner(logger, workingDirectory);
+        //        var batch = _settings.Batches.Where(b => b.JobName == jobName).Single();
+        //        runner.Run(batch.BatchName);
+        //    }
 
-            //    runner.Run("Ivanov.Build.Server\\Jobs\\" + jobName + "\\" + batch.BatchName);
-            //}
+        //    return Json(new { success = true, log = logId });
+        //}
 
-            return Json(new { success = true });
-        }
+        //[HttpGet]
+        //public ActionResult ReadLog(string logId)
+        //{
+        //    return Json(new { success = true, eof = true, line = "hey hey, test line!" });
+        //}
     }
 }

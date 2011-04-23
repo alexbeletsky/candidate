@@ -15,15 +15,21 @@ namespace Ivanov.Build.Server.Areas.Dashboard
         public override void RegisterArea(AreaRegistrationContext context)
         {
             context.MapRoute(
-                "Dashboard_JobHandler",
-                "Dashboard/{action}/{jobName}",
-                new { Controller = "Dashboard" }
+                "Dashboard_Log",
+                "Dashboard/Log/{action}/{jobName}",
+                new { controller = "Log" }
+            );
+
+            context.MapRoute(
+                "Dashboard_Batch",
+                "Dashboard/Batch/{action}/{jobName}",
+                new { controller = "Batch",  }
             );
 
             context.MapRoute(
                 "Dashboard_default",
-                "Dashboard/{action}",
-                new { action = "Index", Controller = "Dashboard" }
+                "Dashboard/{action}/{jobName}",
+                new { action = "Index", controller = "Dashboard", jobName = UrlParameter.Optional }
             );
         }
     }

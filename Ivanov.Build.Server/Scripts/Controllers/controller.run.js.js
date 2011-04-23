@@ -4,24 +4,52 @@ $(function () {
 
     var Run = function () {
 
-        var method = $('#run-batch').attr('method');
-        var callback = function (r) {
-            alert(r.success);
-        };
+        var runBuild = $('#run-batch');
+        var runBuildMethod = runBuild.data('run-build');
 
-        var data = { jobName: $('#job-name').val() };
         $.ajax({
-            url: method,
+            url: runBuildMethod,
             type: 'POST',
             processData: false,
             cache: false,
             contentType: 'application/json; charset=utf-8',
-            data: JSON.stringify(data),
-            dataType: 'json',
-            success: function (result) {
-                callback(result);
+            success: function (r) {
+                if (r.success) {
+                    jobStarted(r.log)
+                }
             }
         });
+
+        function jobStarted(logId) {
+
+            var readLogMethod = runBuild.data('read-log');
+            var readLog = function (offset) {
+
+                $.ajax({
+                    url: readLogMethod,
+                    type: 'GET',
+                    data: { logId: logId, offset: offset },
+                    contentType: 'application/json; charset=utf-8',
+                    success: function (r) {
+                        if (r.success) {
+                            updateConsole(r.line);
+                            if (!r.eof) {
+                                var updatedOffset = offset + r.count;
+                                readLog(updatedOffset);
+                            }
+                        }
+                    }
+                });
+            }
+
+            readLog(0);
+        }
+
+        function updateConsole(line) {
+            var currentConsoleContent = $('#run-console-log').html();
+            currentConsoleContent += line;
+            $('#run-console-log').html(currentConsoleContent);
+        }
 
     } ();
 
