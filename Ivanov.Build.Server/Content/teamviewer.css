@@ -28,6 +28,9 @@ div#login-box
     margin: 0 auto;
     padding: 14px;
     -moz-box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    
     background: none repeat scroll 0 0 #FFFFFF;
     border: 1px solid #A7A7A7;
     clear: both;
@@ -188,6 +191,7 @@ footer
     background: #eeeeee;
     border: 1px solid #CCCCCC;
     -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;    
     border-radius: 15px;    
     padding: 16px;
 }
