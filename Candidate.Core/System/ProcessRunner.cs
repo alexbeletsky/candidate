@@ -65,7 +65,6 @@ namespace Candidate.Core.System
                 process.WaitForExit();
 
                 _logger.Log(string.Format("{0} has been finished. Error code: {1}", batch, process.ExitCode));
-
             }
         }
     }

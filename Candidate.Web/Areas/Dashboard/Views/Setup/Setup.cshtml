@@ -11,6 +11,7 @@
 <input id="job-name" type="hidden" value="@ViewBag.JobName" />
 <input id="setup" type="hidden" 
     data-start-setup="@Url.Action("StartSetup", new { area = "Dashboard" , controller = "Setup", jobName = ViewBag.JobName })" 
+    data-clone-repo="@Url.Action("CloneRepository", new { area = "Dashboard" , controller = "Setup", jobName = ViewBag.JobName })" 
     />
 
 <div class="run-console">

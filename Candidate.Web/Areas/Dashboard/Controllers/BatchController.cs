@@ -8,6 +8,8 @@ using Candidate.Core.System;
 
 namespace Candidate.Areas.Dashboard.Controllers
 {
+
+
     public class BatchController : Controller
     {
         private ISettingsManager _settingsManager;
@@ -25,7 +27,7 @@ namespace Candidate.Areas.Dashboard.Controllers
 
             if (currentSettings == null)
             {
-                throw new Exception(string.Format(@"Job ""{0}"" has not been configured", jobName));
+                throw new Exception(string.Format(@"Job ""{0}"" has not been configured", jobName));                
             }
 
             var workingDirectory = currentDirectory + "\\Candidate\\Jobs\\" + jobName + "\\";
