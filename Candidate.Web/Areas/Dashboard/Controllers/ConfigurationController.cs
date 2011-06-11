@@ -55,7 +55,7 @@ namespace Candidate.Areas.Dashboard.Controllers
         private static void UpdateCurrentConfiguration(JobConfigurationModel config, JobConfigurationModel jobConfiguration)
         {
             jobConfiguration.JobName = config.JobName;
-            jobConfiguration.Batch = new BatchModel { BatchName = config.Batch.BatchName };
+            //jobConfiguration.Batch = new BatchModel { BuildBatchName = config.Batch.BuildBatchName };
             jobConfiguration.Github = new GithubModel { Url = config.Github.Url };
         }
 
@@ -63,7 +63,7 @@ namespace Candidate.Areas.Dashboard.Controllers
         {
             return new JobConfigurationModel {
                 JobName = config.JobName,
-                Batch = new BatchModel { BatchName = config.Batch.BatchName },
+                //Batch = new BatchModel { BuildBatchName = config.Batch.BuildBatchName },
                 Github = new GithubModel { Url = config.Github.Url }
             };
         }

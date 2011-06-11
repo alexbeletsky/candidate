@@ -7,7 +7,8 @@ using Candidate.Core.Settings;
 using Candidate.Areas.Dashboard.Models;
 using System.IO;
 using Candidate.Core.System;
-using Candidate.Core.Git.Commands;
+using Candidate.Core.Commands.Git;
+using Candidate.Core.Commands.Batch;
 
 namespace Candidate.Areas.Dashboard.Controllers
 {
@@ -53,19 +54,91 @@ namespace Candidate.Areas.Dashboard.Controllers
                 throw new Exception(string.Format(@"Job ""{0}"" has not been configured", jobName));
             }
 
-            var githubUrl = currentSettings.Github.Url;
-
             var workingDirectory = currentDirectory + "\\Candidate\\Jobs\\" + jobName + "\\";
-            var logId = workingDirectory + "Logs\\clone-repo.log";
+            var logId = workingDirectory + "logs\\clone-repo.log";
 
             using (var logger = new Logger(logId))
             {
                 var runner = new ProcessRunner(logger, workingDirectory);
-                var gitCloneCommand = new CloneCommand(githubUrl);
-                runner.Run(gitCloneCommand.Batch);
+                var githubUrl = currentSettings.Github.Url;
+                var gitCloneCommand = new CloneCommand(githubUrl, "src");
+                runner.RunCommandSync(gitCloneCommand);
             }
 
-            return Json(new { success = true, log = logId });
+            return Json(new { success = true, logId = logId });
         }
+
+        [HttpPost]
+        public JsonResult RunBuild(string jobName)
+        {
+            var currentDirectory = Directory.GetCurrentDirectory();
+            var currentSettings = _settingsManager.ReadSettings<JobsConfigurationSettingsModel>().Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
+
+            if (currentSettings == null)
+            {
+                throw new Exception(string.Format(@"Job ""{0}"" has not been configured", jobName));
+            }
+
+            var workingDirectory = currentDirectory + "\\Candidate\\Jobs\\" + jobName + "\\src\\";
+            var logId = workingDirectory + "..\\logs\\run-build.log";
+
+            using (var logger = new Logger(logId))
+            {
+                var runner = new ProcessRunner(logger, workingDirectory);
+                var batchCommand = new BatchCommand("build.bat", workingDirectory);
+                runner.RunCommandSync(batchCommand);
+            }
+
+            return Json(new { success = true, logId = logId });            
+        }
+
+        [HttpPost]
+        public JsonResult RunTest(string jobName)
+        {
+            var currentDirectory = Directory.GetCurrentDirectory();
+            var currentSettings = _settingsManager.ReadSettings<JobsConfigurationSettingsModel>().Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
+
+            if (currentSettings == null)
+            {
+                throw new Exception(string.Format(@"Job ""{0}"" has not been configured", jobName));
+            }
+
+            var workingDirectory = currentDirectory + "\\Candidate\\Jobs\\" + jobName + "\\src\\";
+            var logId = workingDirectory + "..\\logs\\test-build.log";
+
+            using (var logger = new Logger(logId))
+            {
+                var runner = new ProcessRunner(logger, workingDirectory);
+                var batchCommand = new BatchCommand("test.bat", workingDirectory);
+                runner.RunCommandSync(batchCommand);
+            }
+
+            return Json(new { success = true, logId = logId });
+        }
+
+        [HttpPost]
+        public JsonResult RunDeploy(string jobName)
+        {
+            var currentDirectory = Directory.GetCurrentDirectory();
+            var currentSettings = _settingsManager.ReadSettings<JobsConfigurationSettingsModel>().Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
+
+            if (currentSettings == null)
+            {
+                throw new Exception(string.Format(@"Job ""{0}"" has not been configured", jobName));
+            }
+
+            var workingDirectory = currentDirectory + "\\Candidate\\Jobs\\" + jobName + "\\src\\";
+            var logId = workingDirectory + "..\\logs\\test-build.log";
+
+            using (var logger = new Logger(logId))
+            {
+                var runner = new ProcessRunner(logger, workingDirectory);
+                var batchCommand = new BatchCommand("deploy.bat", workingDirectory);
+                runner.RunCommandSync(batchCommand);
+            }
+
+            return Json(new { success = true, logId = logId });
+        }
+
     }
 }

@@ -12,16 +12,21 @@
 <input id="setup" type="hidden" 
     data-start-setup="@Url.Action("StartSetup", new { area = "Dashboard" , controller = "Setup", jobName = ViewBag.JobName })" 
     data-clone-repo="@Url.Action("CloneRepository", new { area = "Dashboard" , controller = "Setup", jobName = ViewBag.JobName })" 
+    data-run-build="@Url.Action("RunBuild", new { area = "Dashboard", controller = "Setup", jobName = ViewBag.JobName })"
+    data-run-test="@Url.Action("RunTest", new { area = "Dashboard", controller = "Setup", jobName = ViewBag.JobName })"
+    data-run-deploy="@Url.Action("RunDeploy", new { area = "Dashboard", controller = "Setup", jobName = ViewBag.JobName })"
+
     />
 
-<div class="run-console">
-    <h2>Setting up your application, please stand by...</h2>
- 
-    <pre id="run-console-log">
-    </pre>
+<div class="grey-container">
+    <div class="setup-progress">
+        <div id="current-step"></div>
+        <div class="preloader"></div>    
+    </div>
 </div>
 
 @section Scripts {
+    <script src="@Url.Content("~/Scripts/jquery.blockUI.js")" type="text/javascript"></script>    
     <script src="@Url.Content("~/Scripts/Controllers/controller.setup.js")" type="text/javascript"></script>
 }
 

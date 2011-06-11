@@ -3,14 +3,22 @@
 $(function () {
 
     var Run = function () {
+        // Global config
+        $.blockUI.defaults.message = null;
 
         var setup = $('#setup');
         var startSetupMethod = setup.data('start-setup');
         var cloneRepositoryMethod = setup.data('clone-repo');
+        var runBuildMethod = setup.data('run-build');
+        var runTestMethod = setup.data('run-test');
+        var runDeployMethod = setup.data('run-deploy');
+
+        //var readLogMethod = setup.data('read-log');
 
         startSetup();
 
         function startSetup() {
+            $.blockUI();
 
             $.ajax({
                 url: startSetupMethod,
@@ -34,8 +42,7 @@ $(function () {
         }
 
         function startRepositoryClone() {
-            updateConsole('Cloning repository...');
-
+            $('#current-step').html('Cloning repository...');
             cloneRepository();
         }
 
@@ -48,37 +55,93 @@ $(function () {
                 contentType: 'application/json; charset=utf-8',
                 success: function (r) {
                     if (r.success) {
-                        readLogAndUpdateConsole(r.logId)
+                        cloneRepositoryDone();
                     }
                 }
             });
         }
 
-        function readLogAndUpdateConsole(logId) {
-
-            var readLogMethod = runBuild.data('read-log');
-            var readLog = function (offset) {
-
-                $.ajax({
-                    url: readLogMethod,
-                    type: 'GET',
-                    data: { logId: logId, offset: offset },
-                    contentType: 'application/json; charset=utf-8',
-                    success: function (r) {
-                        if (r.success) {
-                            updateConsole(r.line);
-                            if (!r.eof) {
-                                var updatedOffset = offset + r.count;
-                                readLog(updatedOffset);
-                            }
-                        }
-                    }
-                });
-            }
-
-            readLog(0);
+        function cloneRepositoryDone() {
+            startBuild();
         }
 
+        function startBuild() {
+            $('#current-step').html('Running application build...');
+
+            runBuild();
+        }
+
+        function runBuild() {
+            $.ajax({
+                url: runBuildMethod,
+                type: 'POST',
+                processData: false,
+                cache: false,
+                contentType: 'application/json; charset=utf-8',
+                success: function (r) {
+                    if (r.success) {
+                        runBuildDone();
+                    }
+                }
+            });
+
+        }
+
+        function runBuildDone() {
+            startTests();
+        }
+
+        function startTests() {
+            $('#current-step').html('Testing up application...');
+
+            runTest();
+        }
+
+        function runTest() {
+            $.ajax({
+                url: runTestMethod,
+                type: 'POST',
+                processData: false,
+                cache: false,
+                contentType: 'application/json; charset=utf-8',
+                success: function (r) {
+                    if (r.success) {
+                        runTestDone();
+                    }
+                }
+            });
+        }
+
+        function runTestDone() {
+            startDeployment();
+        }
+
+        function startDeployment() {
+            $('#current-step').html('And now deploy application...');
+
+            runDeploy();
+        }
+
+        function runDeploy() {
+            $.ajax({
+                url: runDeployMethod,
+                type: 'POST',
+                processData: false,
+                cache: false,
+                contentType: 'application/json; charset=utf-8',
+                success: function (r) {
+                    if (r.success) {
+                        runDeployDone();
+                    }
+                }
+            });
+        }
+
+        function runDeployDone() {
+            $('#current-step').html('Application succesfully launched!');
+            $('.preloader').hide();
+            $.unblockUI();
+        }
 
         function updateConsole(line) {
             var currentConsoleContent = $('#run-console-log').html();

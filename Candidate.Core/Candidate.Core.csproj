@@ -45,8 +45,9 @@
   <ItemGroup>
     <Compile Include="Builders\BatchBuilder.cs" />
     <Compile Include="Builders\IBuilder.cs" />
-    <Compile Include="Git\Commands\CloneCommand.cs" />
-    <Compile Include="Git\ICommand.cs" />
+    <Compile Include="Commands\Batch\BatchCommand.cs" />
+    <Compile Include="Commands\Git\CloneCommand.cs" />
+    <Compile Include="Commands\ICommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings\ISettingsManager.cs" />
     <Compile Include="Settings\SettingsManager.cs" />

@@ -1,16 +1,31 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using Candidate.Core.Commands;
 
 namespace Candidate.Core.System
 {
     public class Logger : ILogger, IDisposable
     {
         private StreamWriter _writter;
+        private FileStream _log;
 
         public Logger(string pathToLog)
         {
-            _writter = new StreamWriter(pathToLog);
+            var folder = Path.GetDirectoryName(pathToLog);
+
+            if (!Directory.Exists(folder))
+            {
+                Directory.CreateDirectory(folder);
+            }
+
+            if (File.Exists(pathToLog))
+            {
+                File.Delete(pathToLog);
+            }
+
+            _log = new FileStream(pathToLog, FileMode.OpenOrCreate);
+            _writter = new StreamWriter(_log);
         }
 
         public void Dispose()
@@ -35,7 +50,7 @@ namespace Candidate.Core.System
             _workingFolder = workingFolder;
         }
 
-        public void Run(string batch)
+        public void RunCommandSync(ICommand command)
         {
             var processInfo = new ProcessStartInfo
             {
@@ -44,28 +59,50 @@ namespace Candidate.Core.System
                 CreateNoWindow = true,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
-                FileName = _workingFolder + batch,
+                FileName = command.Executable,
                 WorkingDirectory = _workingFolder
             };
 
+            if (command.Arguments != null)
+            {
+                processInfo.Arguments = command.Arguments;
+            }
+
+            RunProcessWithLoggingSync(processInfo);
+        }
+
+        private void RunProcessWithLoggingAsync(ProcessStartInfo processInfo)
+        {
+            using (var process = Process.Start(processInfo))
+            {
+                process.OutputDataReceived += delegate(object s, DataReceivedEventArgs args)
+                {
+                    _logger.Log(args.Data);
+                };
+                process.ErrorDataReceived += delegate(object s, DataReceivedEventArgs args)
+                {
+                    _logger.Log(args.Data);
+                };
+
+                process.BeginOutputReadLine();
+                process.BeginErrorReadLine();
+                process.WaitForExit();
+            }
+        }
+
+        private void RunProcessWithLoggingSync(ProcessStartInfo processInfo)
+        {
             using (var process = Process.Start(processInfo))
             {
                 var standardStreamReader = process.StandardOutput;
                 var errorStreamReader = process.StandardError;
 
-                while (!standardStreamReader.EndOfStream)
-                {
-                    var line = standardStreamReader.ReadLine();
-                    _logger.Log(line);
-                }
-
-                var error = errorStreamReader.ReadToEnd();
-                _logger.Log(error);
+                _logger.Log(standardStreamReader.ReadToEnd());
+                _logger.Log(errorStreamReader.ReadToEnd());
 
                 process.WaitForExit();
-
-                _logger.Log(string.Format("{0} has been finished. Error code: {1}", batch, process.ExitCode));
             }
         }
+
     }
 }

@@ -1,4 +1,6 @@
 ﻿
+using Candidate.Core.Commands;
+
 namespace Candidate.Core.System
 {
     public interface ILogger
@@ -8,6 +10,7 @@ namespace Candidate.Core.System
 
     public interface IProcessRunner
     {
-        void Run(string pathToExecutable);
+        //void RunBatch(string pathToExecutable);
+        void RunCommandSync(ICommand command);
     }
 }

@@ -230,3 +230,26 @@ footer
 {
     margin-bottom: 2px !important; 
 }
+
+.setup-progress
+{
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#current-step
+{
+    font-weight: bold;
+    font-size: 26px;
+}
+
+.preloader
+{
+    display: block;
+    width: 220px;
+    height: 27px;    
+    margin: 18px auto;
+ 
+    background: url(Images/preloader.gif) no-repeat;
+}

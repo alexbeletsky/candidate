@@ -13,7 +13,7 @@ namespace Candidate.Areas.Dashboard.Models
         //}
 
         public string JobName { get; set; }
-        public BatchModel Batch { get; set; }
+        //public BatchModel Batch { get; set; }
         public GithubModel Github { get; set; }
     }
 }
