@@ -13,12 +13,11 @@ namespace Ivanov.Build.Server.Areas.Dashboard.Controllers
 {
     public class DashboardController : Controller
     {
-        private ISettingsManager _settingsManager = new SettingsManager();
-        private DashboardSettings _settings;
+        private ISettingsManager _settingsManager;
 
-        public DashboardController()
+        public DashboardController(ISettingsManager settingsManager)
         {
-            _settings = _settingsManager.ReadSettings<DashboardSettings>();
+            _settingsManager = settingsManager;
         }
 
         [HttpGet]
@@ -30,7 +29,9 @@ namespace Ivanov.Build.Server.Areas.Dashboard.Controllers
         [HttpGet]
         public ActionResult List()
         {
-            return View(_settings.Jobs);
+            var currentSettings = _settingsManager.ReadSettings<JobsSettingsModel>();
+
+            return View(currentSettings.Jobs);
         }
 
         [HttpGet]
@@ -40,36 +41,29 @@ namespace Ivanov.Build.Server.Areas.Dashboard.Controllers
         }
 
         [HttpPost]
-        public ActionResult Add(Job job)
+        public ActionResult Add(NewJobModel newJob)
         {
-            _settings.Jobs.Add(job);
-            _settingsManager.SaveSettings(_settings);
+            var currentSettings = _settingsManager.ReadSettings<JobsSettingsModel>();
+            var currentJobs = currentSettings.Jobs;
+
+            currentJobs.Add(new JobModel { Name = newJob.Name, Status = 0 });
+            _settingsManager.SaveSettings(currentSettings);
 
             return RedirectToAction("index");
         }
 
         [HttpGet]
-        public ActionResult Configure(string jobName)
+        public ActionResult Delete(string jobName)
         {
-            var batch = _settings.Batches.Where(b => b.JobName == jobName).SingleOrDefault();
-
-            return View(batch);
+            return View(new DeleteJobModel { JobName = jobName });
         }
 
         [HttpPost]
-        public ActionResult Configure(Batch batch)
+        public ActionResult Delete(DeleteJobModel deleteJob)
         {
-            var existingBatch = _settings.Batches.Where(b => b.JobName == batch.JobName).SingleOrDefault();
-            if (existingBatch == null)
-            {
-                _settings.Batches.Add(batch);
-            }
-            else
-            {
-                existingBatch.BatchName = batch.BatchName;
-            }
-
-            _settingsManager.SaveSettings(_settings);
+            var currentSettings = _settingsManager.ReadSettings<JobsSettingsModel>();
+            var currentJobs = currentSettings.Jobs.Remove(currentSettings.Jobs.Where(j => j.Name == deleteJob.JobName).SingleOrDefault());
+            _settingsManager.SaveSettings(currentSettings);
 
             return RedirectToAction("index");
         }
@@ -80,27 +74,5 @@ namespace Ivanov.Build.Server.Areas.Dashboard.Controllers
             ViewBag.JobName = jobName;
             return View();
         }
-
-        //[HttpPost]
-        //public ActionResult RunBatch(string jobName)
-        //{
-        //    var currentDirectory = Directory.GetCurrentDirectory();
-        //    var workingDirectory = currentDirectory + "\\Ivanov.Build.Server\\Jobs\\" + jobName + "\\";
-        //    var logId = workingDirectory + "Logs\\output.log";
-        //    using (var logger = new Logger(logId))
-        //    {
-        //        var runner = new ProcessRunner(logger, workingDirectory);
-        //        var batch = _settings.Batches.Where(b => b.JobName == jobName).Single();
-        //        runner.Run(batch.BatchName);
-        //    }
-
-        //    return Json(new { success = true, log = logId });
-        //}
-
-        //[HttpGet]
-        //public ActionResult ReadLog(string logId)
-        //{
-        //    return Json(new { success = true, eof = true, line = "hey hey, test line!" });
-        //}
     }
 }

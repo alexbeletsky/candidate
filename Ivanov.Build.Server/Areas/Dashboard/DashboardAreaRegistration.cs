@@ -27,6 +27,12 @@ namespace Ivanov.Build.Server.Areas.Dashboard
             );
 
             context.MapRoute(
+                "Dashboard_Configuration",
+                "Dashboard/Configuration/{action}/{jobName}",
+                new { controller = "Configuration", }
+            );
+
+            context.MapRoute(
                 "Dashboard_default",
                 "Dashboard/{action}/{jobName}",
                 new { action = "Index", controller = "Dashboard", jobName = UrlParameter.Optional }

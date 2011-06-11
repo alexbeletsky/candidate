@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Ninject.Modules;
+using Ivanov.Build.Server.Core.Settings;
 
 namespace Ivanov.Build.Server.Infrustructure
 {
@@ -10,7 +11,7 @@ namespace Ivanov.Build.Server.Infrustructure
     {
         public override void Load()
         {
-
+            Bind<ISettingsManager>().To<SettingsManager>();
         }
     }
 }

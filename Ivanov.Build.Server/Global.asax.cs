@@ -37,7 +37,7 @@ namespace Ivanov.Build.Server
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
 
-            //// Dependency injection
+            // Dependency injection setup
             ControllerBuilder.Current.SetControllerFactory(new ControllerFactory());
         }
     }

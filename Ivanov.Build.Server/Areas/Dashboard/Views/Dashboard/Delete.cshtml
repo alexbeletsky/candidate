@@ -1,0 +1,26 @@
+﻿@model Ivanov.Build.Server.Areas.Dashboard.Models.DeleteJobModel
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Dashboard/Views/Shared/_Layout.cshtml";    
+}
+
+<div id="internal-nagivation">
+    <h2>Build > Jobs > Delete</h2>
+    <div class="right">@Html.ActionLink("Back to dashboard", "Index", new { area = "Dashboard", controller = "Dashboard" } )</div>
+    <div class="clear"></div>
+</div>
+
+<div class="grey-container">
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary();
+    @Html.HiddenFor(m => m.JobName);
+    
+    <p>
+        Are you sure to delete <strong>@Model.JobName</strong> job?
+    </p>
+                                        
+    <button type="submit" class="minimal">Delete</button>
+} 
+</div>

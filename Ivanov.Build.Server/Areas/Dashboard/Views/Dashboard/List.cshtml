@@ -1,4 +1,4 @@
-﻿@model IList<Ivanov.Build.Server.Areas.Dashboard.Models.Job>
+﻿@model IList<Ivanov.Build.Server.Areas.Dashboard.Models.JobModel>
 @{
     ViewBag.Title = "List";
 }
@@ -39,19 +39,19 @@ else
                     @job.Name
                 </td>
                 <td>
-                    @job.LastBuildDate
+                    @job.LastRunTime
                 </td>
                 <td>
                     @job.Status
                 </td>
                 <td class="center">
-                    <a href="@Url.Action("Configure", new { jobName = @job.Name })">Configure</a>
+                    <a href="@Url.Action("Configure", new { area = "Dashboard", controller = "Configuration", jobName = @job.Name })">Configure</a>
                 </td>
                 <td class="center">
                     <a href="@Url.Action("Run", new { jobName = @job.Name })">Run</a>
                 </td>
                 <td class="center">
-                    <a class="delete-teammember" href="#">X</a> 
+                    <a href="@Url.Action("Delete", new { jobName = @job.Name })">X</a> 
                 </td>
             </tr>
         }

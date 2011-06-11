@@ -33,6 +33,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Ncqrs, Version=0.8.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\Ncqrs.Debug\Ncqrs.dll</HintPath>
+    </Reference>
     <Reference Include="Ninject">
       <HintPath>..\lib\Ninject\Ninject.dll</HintPath>
     </Reference>
@@ -61,16 +65,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Areas\Dashboard\Controllers\BatchController.cs" />
+    <Compile Include="Areas\Dashboard\Controllers\ConfigurationController.cs" />
     <Compile Include="Areas\Dashboard\Controllers\DashboardController.cs" />
+    <Compile Include="Areas\Dashboard\Models\ConfigurationModel.cs" />
+    <Compile Include="Areas\Dashboard\Models\DeleteJobModel.cs" />
+    <Compile Include="Areas\Dashboard\Models\JobConfigurationModel.cs" />
+    <Compile Include="Areas\Dashboard\Models\JobsConfigurationSettingsModel.cs" />
     <Compile Include="Areas\Dashboard\Controllers\LogController.cs" />
     <Compile Include="Areas\Dashboard\DashboardAreaRegistration.cs" />
-    <Compile Include="Areas\Dashboard\Models\Batch.cs" />
-    <Compile Include="Areas\Dashboard\Models\DashboardSettings.cs" />
-    <Compile Include="Areas\Dashboard\Models\Job.cs" />
+    <Compile Include="Areas\Dashboard\Models\BatchModel.cs" />
+    <Compile Include="Areas\Dashboard\Models\JobsSettingsModel.cs" />
+    <Compile Include="Areas\Dashboard\Models\JobModel.cs" />
+    <Compile Include="Areas\Dashboard\Models\NewJobModel.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrustructure\Bootstrap.cs" />
     <Compile Include="Infrustructure\ControllerFactory.cs" />
     <Compile Include="Infrustructure\Services.cs" />
     <Compile Include="Models\LoginModel.cs" />
@@ -145,7 +156,7 @@
     <Content Include="Areas\Dashboard\Views\Dashboard\Add.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Dashboard\Views\Dashboard\Configure.cshtml" />
+    <Content Include="Areas\Dashboard\Views\Configuration\Configure.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Dashboard\Views\Shared\_Layout.cshtml" />
@@ -155,6 +166,9 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Dashboard\Views\Dashboard\Delete.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

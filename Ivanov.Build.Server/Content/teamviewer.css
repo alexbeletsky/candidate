@@ -102,6 +102,12 @@ header div#logo
     filter: dropshadow(color=#a3a3a3, offx=0, offy=4);
 }
 
+header div#logo a
+{
+    color: #333333;
+    text-decoration:none;
+}
+
 header nav.header-menu
 {
     display: block;
