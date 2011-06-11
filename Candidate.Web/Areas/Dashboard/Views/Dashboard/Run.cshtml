@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "Run";
+    Layout = "~/Areas/Dashboard/Views/Shared/_Layout.cshtml";
+}
+
+<div id="internal-nagivation">
+    <h2>Build > Jobs > Running</h2>
+    <div class="clear"></div>
+</div>
+<input id="job-name" type="hidden" value="@ViewBag.JobName" />
+<input id="run-batch" type="hidden" data-run-build="@Url.Action("RunBatch", new { area = "Dashboard" , controller = "Batch", jobName = ViewBag.JobName })" data-read-log="@Url.Action("ReadLog", new { area = "Dashboard", controller = "Log", jobName = ViewBag.JobName })" />
+
+<div class="run-console">
+    <p>Started build #122...</p>
+    <pre id="run-console-log">
+    </pre>
+</div>
+
+@section Scripts {
+    <script src="@Url.Content("~/Scripts/Controllers/controller.run.js.js")" type="text/javascript"></script>
+}

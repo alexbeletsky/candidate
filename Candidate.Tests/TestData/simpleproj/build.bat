@@ -1,0 +1,1 @@
+msbuild TddDemand.sln /property:Configuration=Debug

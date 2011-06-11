@@ -1,0 +1,38 @@
+﻿@model Candidate.Areas.Dashboard.Models.JobConfigurationModel
+
+@{
+    ViewBag.Title = "Configure";
+    Layout = "~/Areas/Dashboard/Views/Shared/_Layout.cshtml";    
+}
+
+<div id="internal-nagivation">
+    <h2>Build > Jobs > Configure</h2>
+    <div class="right">@Html.ActionLink("Back to dashboard", "Index", new { area = "Dashboard", controller = "Dashboard" } )</div>
+    <div class="clear"></div>
+</div>
+
+<div class="grey-container">
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary();
+    @Html.HiddenFor(m => m.JobName);
+    
+    <fieldset>
+        <div id="github-url-label">
+            @Html.Label("Github URL")
+        </div>
+        <div id="github-url-input">
+            @Html.TextBoxFor(m => m.Github.Url)
+        </div>
+        <div id="batch-name-label">
+            @Html.Label("Batch name")
+        </div>
+        <div id="batch-name-input">
+            @Html.TextBoxFor(m => m.Batch.BatchName)
+        </div>
+    </fieldset>
+        
+    <button type="submit" class="minimal">Save config</button>
+    <button type="reset" class="minimal">Discard</button>    
+} 
+</div>

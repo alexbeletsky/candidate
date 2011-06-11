@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "Configure";
+    Layout = "~/Areas/Dashboard/Views/Shared/_Layout.cshtml";    
+}
+
+<div id="internal-nagivation">
+    <h2>Build > Jobs > Setup</h2>
+    <div class="clear"></div>
+</div>
+
+<input id="job-name" type="hidden" value="@ViewBag.JobName" />
+<input id="setup" type="hidden" 
+    data-start-setup="@Url.Action("StartSetup", new { area = "Dashboard" , controller = "Setup", jobName = ViewBag.JobName })" 
+    />
+
+<div class="run-console">
+    <h2>Setting up your application, please stand by...</h2>
+ 
+    <pre id="run-console-log">
+    </pre>
+</div>
+
+@section Scripts {
+    <script src="@Url.Content("~/Scripts/Controllers/controller.setup.js")" type="text/javascript"></script>
+}
+
+
+
