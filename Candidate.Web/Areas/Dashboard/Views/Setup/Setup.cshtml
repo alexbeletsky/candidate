@@ -12,10 +12,12 @@
 <input id="setup" type="hidden" 
     data-start-setup="@Url.Action("StartSetup", new { area = "Dashboard" , controller = "Setup", jobName = ViewBag.JobName })" 
     data-clone-repo="@Url.Action("CloneRepository", new { area = "Dashboard" , controller = "Setup", jobName = ViewBag.JobName })" 
+    data-pull-repo="@Url.Action("PullRepository", new { area = "Dashboard" , controller = "Setup", jobName = ViewBag.JobName })" 
     data-run-build="@Url.Action("RunBuild", new { area = "Dashboard", controller = "Setup", jobName = ViewBag.JobName })"
     data-run-test="@Url.Action("RunTest", new { area = "Dashboard", controller = "Setup", jobName = ViewBag.JobName })"
     data-run-deploy="@Url.Action("RunDeploy", new { area = "Dashboard", controller = "Setup", jobName = ViewBag.JobName })"
-
+    data-site-start="@Url.Action("StartWebSite", new { area = "Dashboard", controller = "Setup", jobName = ViewBag.JobName })"
+    data-site-stop="@Url.Action("StopWebSite", new { area = "Dashboard", controller = "Setup", jobName = ViewBag.JobName })"
     />
 
 <div class="grey-container">

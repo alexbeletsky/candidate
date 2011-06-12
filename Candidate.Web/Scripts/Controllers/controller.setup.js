@@ -9,17 +9,38 @@ $(function () {
         var setup = $('#setup');
         var startSetupMethod = setup.data('start-setup');
         var cloneRepositoryMethod = setup.data('clone-repo');
+        var pullRepositoryMethod = setup.data('pull-repo');
         var runBuildMethod = setup.data('run-build');
         var runTestMethod = setup.data('run-test');
         var runDeployMethod = setup.data('run-deploy');
+        var stopWebSiteMethod = setup.data('site-stop');
+        var startWebSiteMethod = setup.data('site-start');
 
-        //var readLogMethod = setup.data('read-log');
+        start();
 
-        startSetup();
-
-        function startSetup() {
+        function start() {
             $.blockUI();
 
+            $('#current-step').html('Stopping web site...');
+            stopWebSite();
+        }
+
+        function stopWebSite() {
+
+            $.ajax({
+                url: stopWebSiteMethod,
+                type: 'POST',
+                processData: false,
+                cache: false,
+                contentType: 'application/json; charset=utf-8',
+                success: function (r) {
+                    startSetup();
+                }
+            });
+
+        }
+
+        function startSetup() {
             $.ajax({
                 url: startSetupMethod,
                 type: 'GET',
@@ -32,13 +53,35 @@ $(function () {
                     }
                 }
             });
+
         }
 
         function setupStarted(setupInitInfo) {
             if (!setupInitInfo.isRepoCloned) {
-
                 startRepositoryClone();
+            } else {
+                startPullRepository();
             }
+        }
+
+        function startPullRepository() {
+            $('#current-step').html('Pulling changes from origin repository...');
+            pullRepository();
+        }
+
+        function pullRepository() {
+            $.ajax({
+                url: pullRepositoryMethod,
+                type: 'POST',
+                processData: false,
+                cache: false,
+                contentType: 'application/json; charset=utf-8',
+                success: function (r) {
+                    if (r.success) {
+                        cloneRepositoryDone();
+                    }
+                }
+            });
         }
 
         function startRepositoryClone() {
@@ -138,7 +181,29 @@ $(function () {
         }
 
         function runDeployDone() {
-            $('#current-step').html('Application succesfully launched!');
+
+            startWebSite();
+        }
+
+
+        function startWebSite() {
+            $('#current-step').html('Starting web site...');
+
+            $.ajax({
+                url: startWebSiteMethod,
+                type: 'POST',
+                processData: false,
+                cache: false,
+                contentType: 'application/json; charset=utf-8',
+                success: function (r) {
+                    finish();
+                }
+            });
+
+        }
+
+        function finish() {
+            $('#current-step').html('Application successfully launched!');
             $('.preloader').hide();
             $.unblockUI();
         }
@@ -148,8 +213,5 @@ $(function () {
             currentConsoleContent += line;
             $('#run-console-log').html(currentConsoleContent);
         }
-
-
     } ();
-
 });

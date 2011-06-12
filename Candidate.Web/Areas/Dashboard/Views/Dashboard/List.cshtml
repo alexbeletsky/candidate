@@ -18,13 +18,7 @@ else
             Last Build
         </th>
         <th>
-            Status
-        </th>
-        <th>
             Configure
-        </th>
-        <th class="narrow">
-            Run
         </th>
         <th class="narrow">
             Delete
@@ -41,14 +35,8 @@ else
                 <td>
                     @job.LastRunTime
                 </td>
-                <td>
-                    @job.Status
-                </td>
                 <td class="center">
                     <a href="@Url.Action("Configure", new { area = "Dashboard", controller = "Configuration", jobName = @job.Name })">Configure</a>
-                </td>
-                <td class="center">
-                    <a href="@Url.Action("Run", new { jobName = @job.Name })">Run</a>
                 </td>
                 <td class="center">
                     <a href="@Url.Action("Delete", new { jobName = @job.Name })">X</a> 

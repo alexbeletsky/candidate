@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using Candidate.Areas.Dashboard.Models;
 using Candidate.Core.Settings;
+using System.IO;
 
 namespace Candidate.Areas.Dashboard.Controllers
 {
@@ -56,7 +57,8 @@ namespace Candidate.Areas.Dashboard.Controllers
         public ActionResult Delete(DeleteJobModel deleteJob)
         {
             var currentSettings = _settingsManager.ReadSettings<JobsSettingsModel>();
-            var currentJobs = currentSettings.Jobs.Remove(currentSettings.Jobs.Where(j => j.Name == deleteJob.JobName).SingleOrDefault());
+            var jobToDelete = currentSettings.Jobs.Where(j => j.Name == deleteJob.JobName).SingleOrDefault();
+            var currentJobs = currentSettings.Jobs.Remove(jobToDelete);
 
             //TODO: corresponding record should be removed from JobsConfigurationSettingsModel.json 
             _settingsManager.SaveSettings(currentSettings);

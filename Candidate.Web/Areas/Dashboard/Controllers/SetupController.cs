@@ -9,6 +9,7 @@ using System.IO;
 using Candidate.Core.System;
 using Candidate.Core.Commands.Git;
 using Candidate.Core.Commands.Batch;
+using Candidate.Core.Commands.AppCmd;
 
 namespace Candidate.Areas.Dashboard.Controllers
 {
@@ -31,16 +32,18 @@ namespace Candidate.Areas.Dashboard.Controllers
         [HttpGet]
         public JsonResult StartSetup(string jobName)
         {
-            var currentSettings = _settingsManager.ReadSettings<SetupStatesModel>();
-            var curentState = currentSettings.States.Where(s => s.JobName == jobName).SingleOrDefault();
+            var currentDirectory = Directory.GetCurrentDirectory();
+            var currentSettings = _settingsManager.ReadSettings<JobsConfigurationSettingsModel>().Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
 
-            if (curentState == null)
+            var workingDirectory = currentDirectory + "\\Candidate\\Jobs\\" + jobName + "\\src\\";
+            
+            var repoCloned = false;
+            if (Directory.Exists(workingDirectory))
             {
-                curentState = new SetupStateModel();
-                currentSettings.States.Add(curentState);
+                repoCloned = true;
             }
 
-            return Json(new { success = true, setupInitInfo = new { isRepoCloned = curentState.IsRepoCloned } }, JsonRequestBehavior.AllowGet);
+            return Json(new { success = true, setupInitInfo = new { isRepoCloned = repoCloned } }, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
@@ -62,6 +65,31 @@ namespace Candidate.Areas.Dashboard.Controllers
                 var runner = new ProcessRunner(logger, workingDirectory);
                 var githubUrl = currentSettings.Github.Url;
                 var gitCloneCommand = new CloneCommand(githubUrl, "src");
+                runner.RunCommandSync(gitCloneCommand);
+            }
+
+            return Json(new { success = true, logId = logId });
+        }
+
+        [HttpPost]
+        public JsonResult PullRepository(string jobName)
+        {
+            var currentDirectory = Directory.GetCurrentDirectory();
+            var currentSettings = _settingsManager.ReadSettings<JobsConfigurationSettingsModel>().Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
+
+            if (currentSettings == null)
+            {
+                throw new Exception(string.Format(@"Job ""{0}"" has not been configured", jobName));
+            }
+
+            var workingDirectory = currentDirectory + "\\Candidate\\Jobs\\" + jobName + "\\src\\";
+            var logId = workingDirectory + "..\\logs\\pull-build.log";
+
+            using (var logger = new Logger(logId))
+            {
+                var runner = new ProcessRunner(logger, workingDirectory);
+                var githubUrl = currentSettings.Github.Url;
+                var gitCloneCommand = new PullCommand("origin");
                 runner.RunCommandSync(gitCloneCommand);
             }
 
@@ -135,6 +163,70 @@ namespace Candidate.Areas.Dashboard.Controllers
                 var runner = new ProcessRunner(logger, workingDirectory);
                 var batchCommand = new BatchCommand("deploy.bat", workingDirectory);
                 runner.RunCommandSync(batchCommand);
+            }
+
+            return Json(new { success = true, logId = logId });
+        }
+
+        [HttpPost]
+        public JsonResult StartWebSite(string jobName)
+        {
+            var currentDirectory = Directory.GetCurrentDirectory();
+            var currentSettings = _settingsManager.ReadSettings<JobsConfigurationSettingsModel>().Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
+
+            if (currentSettings == null)
+            {
+                throw new Exception(string.Format(@"Job ""{0}"" has not been configured", jobName));
+            }
+
+            var workingDirectory = currentDirectory + "\\Candidate\\Jobs\\" + jobName + "\\src\\";
+            var logId = workingDirectory + "..\\logs\\start-site-build.log";
+
+            try
+            {
+                using (var logger = new Logger(logId))
+                {
+                    var runner = new ProcessRunner(logger, workingDirectory);
+                    var startSite = new StartSite(jobName);
+                    runner.RunCommandSync(startSite);
+                }
+
+            }
+            catch (System.Exception ex)
+            {
+            	
+            }
+
+            return Json(new { success = true, logId = logId });
+
+        }
+
+        [HttpPost]
+        public JsonResult StopWebSite(string jobName)
+        {
+            var currentDirectory = Directory.GetCurrentDirectory();
+            var currentSettings = _settingsManager.ReadSettings<JobsConfigurationSettingsModel>().Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
+
+            if (currentSettings == null)
+            {
+                throw new Exception(string.Format(@"Job ""{0}"" has not been configured", jobName));
+            }
+
+            var workingDirectory = currentDirectory + "\\Candidate\\Jobs\\" + jobName + "\\src\\";
+            var logId = workingDirectory + "..\\logs\\start-site-build.log";
+
+            try
+            {
+                using (var logger = new Logger(logId))
+                {
+                    var runner = new ProcessRunner(logger, workingDirectory);
+                    var startSite = new StopSite(jobName);
+                    runner.RunCommandSync(startSite);
+                }
+            }
+            catch (System.Exception ex)
+            {
+            	
             }
 
             return Json(new { success = true, logId = logId });
