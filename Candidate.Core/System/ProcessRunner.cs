@@ -103,6 +103,5 @@ namespace Candidate.Core.System
                 process.WaitForExit();
             }
         }
-
     }
 }

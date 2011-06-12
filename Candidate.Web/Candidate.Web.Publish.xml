@@ -13,7 +13,7 @@
     <file relUrl="Areas/Dashboard/Views/Dashboard/Run.cshtml" publishTime="06/11/2011 22:53:26" />
     <file relUrl="Scripts/MicrosoftMvcValidation.debug.js" publishTime="06/11/2011 19:47:41" />
     <file relUrl="Scripts/MicrosoftMvcAjax.debug.js" publishTime="06/11/2011 19:47:41" />
-    <file relUrl="bin/Candidate.Core.dll" publishTime="06/12/2011 07:55:57" />
+    <file relUrl="bin/Candidate.Core.dll" publishTime="06/12/2011 09:18:35" />
     <file relUrl="Scripts/MicrosoftAjax.debug.js" publishTime="06/11/2011 19:47:41" />
     <file relUrl="Areas/Dashboard/Views/Dashboard/Delete.cshtml" publishTime="06/11/2011 19:47:41" />
     <file relUrl="Scripts/jquery.validate.min.js" publishTime="06/11/2011 19:47:41" />
@@ -44,7 +44,7 @@
     <file relUrl="Views/Login/Index.cshtml" publishTime="06/12/2011 07:42:48" />
     <file relUrl="Web.config" publishTime="06/12/2011 08:17:42" />
     <file relUrl="Scripts/jquery-ui.min.js" publishTime="06/11/2011 19:47:41" />
-    <file relUrl="bin/Candidate.Web.dll" publishTime="06/12/2011 08:16:43" />
+    <file relUrl="bin/Candidate.Web.dll" publishTime="06/12/2011 09:19:45" />
     <file relUrl="Content/Site.css" publishTime="06/11/2011 19:47:41" />
     <file relUrl="bin/Ninject.dll" publishTime="12/17/2010 20:03:58" />
     <file relUrl="index.htm" publishTime="06/11/2011 19:47:41" />
