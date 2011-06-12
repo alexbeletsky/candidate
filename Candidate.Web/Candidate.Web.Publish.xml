@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<publishData>
+  <publishProfile publishUrl="D:\Development\Temp\candidate.net.web" deleteExistingFiles="False" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="False" profileName="Profile1" publishMethod="FileSystem" replaceMatchingFiles="True" userName="seekeyftp" savePWD="False" userPWD="" SelectedForPublish="True">
+    <file relUrl="Content/teamviewer.css" publishTime="06/12/2011 00:14:34" />
+    <file relUrl="Scripts/jquery.validate.unobtrusive.js" publishTime="06/11/2011 19:47:41" />
+    <file relUrl="Scripts/Controllers/controller.run.js.js" publishTime="06/11/2011 19:47:41" />
+    <file relUrl="bin/Newtonsoft.Json.dll" publishTime="02/21/2011 17:50:55" />
+    <file relUrl="Scripts/jquery-1.4.4-vsdoc.js" publishTime="06/11/2011 19:47:41" />
+    <file relUrl="Global.asax" publishTime="06/11/2011 19:47:41" />
+    <file relUrl="Views/_ViewStart.cshtml" publishTime="06/11/2011 19:47:41" />
+    <file relUrl="Scripts/jquery.validate-vsdoc.js" publishTime="06/11/2011 19:47:41" />
+    <file relUrl="Scripts/MicrosoftAjax.js" publishTime="06/11/2011 19:47:41" />
+    <file relUrl="Areas/Dashboard/Views/Dashboard/Run.cshtml" publishTime="06/11/2011 22:53:26" />
+    <file relUrl="Scripts/MicrosoftMvcValidation.debug.js" publishTime="06/11/2011 19:47:41" />
+    <file relUrl="Scripts/MicrosoftMvcAjax.debug.js" publishTime="06/11/2011 19:47:41" />
+    <file relUrl="bin/Candidate.Core.dll" publishTime="06/12/2011 07:55:57" />
+    <file relUrl="Scripts/MicrosoftAjax.debug.js" publishTime="06/11/2011 19:47:41" />
+    <file relUrl="Areas/Dashboard/Views/Dashboard/Delete.cshtml" publishTime="06/11/2011 19:47:41" />
+    <file relUrl="Scripts/jquery.validate.min.js" publishTime="06/11/2011 19:47:41" />
+    <file relUrl="Content/buttons.css" publishTime="06/11/2011 19:47:41" />
+    <file relUrl="Scripts/jquery-1.4.4.js" publishTime="06/11/2011 19:47:41" />
+    <file relUrl="bin/Newtonsoft.Json.xml" publishTime="02/21/2011 17:50:55" />
+    <file relUrl="Areas/Dashboard/Views/Web.config" publishTime="06/11/2011 19:47:41" />
+    <file relUrl="Areas/Dashboard/Views/Configuration/Configure.cshtml" publishTime="06/12/2011 02:04:11" />
+    <file relUrl="Areas/Dashboard/Views/Dashboard/List.cshtml" publishTime="06/12/2011 07:31:10" />
+    <file relUrl="Scripts/jquery.validate.js" publishTime="06/11/2011 19:47:41" />
+    <file relUrl="Scripts/jquery-1.4.4.min.js" publishTime="06/11/2011 19:47:41" />
+    <file relUrl="Scripts/jquery.unobtrusive-ajax.min.js" publishTime="06/11/2011 19:47:41" />
+    <file relUrl="Scripts/Controllers/controller.dashboard.js" publishTime="06/11/2011 19:47:41" />
+    <file relUrl="Scripts/MicrosoftMvcValidation.js" publishTime="06/11/2011 19:47:41" />
+    <file relUrl="Content/Images/ajax-loader.gif" publishTime="06/11/2011 19:47:41" />
+    <file relUrl="Scripts/MicrosoftMvcAjax.js" publishTime="06/11/2011 19:47:41" />
+    <file relUrl="Views/Shared/Error.cshtml" publishTime="06/11/2011 19:47:41" />
+    <file relUrl="Areas/Dashboard/Views/Setup/Setup.cshtml" publishTime="06/12/2011 07:20:26" />
+    <file relUrl="Content/960.css" publishTime="06/11/2011 19:47:41" />
+    <file relUrl="Views/Shared/_Layout.cshtml" publishTime="06/11/2011 19:47:41" />
+    <file relUrl="Areas/Dashboard/Views/Shared/_Layout.cshtml" publishTime="06/12/2011 07:34:04" />
+    <file relUrl="Scripts/jquery.blockUI.js" publishTime="12/17/2010 20:03:59" />
+    <file relUrl="Scripts/jquery.unobtrusive-ajax.js" publishTime="06/11/2011 19:47:41" />
+    <file relUrl="Areas/Dashboard/Views/Dashboard/Add.cshtml" publishTime="06/11/2011 19:47:41" />
+    <file relUrl="bin/Ninject.xml" publishTime="12/17/2010 20:03:58" />
+    <file relUrl="Content/960_24_col.css" publishTime="06/11/2011 19:47:41" />
+    <file relUrl="Content/Images/preloader.gif" publishTime="06/12/2011 00:03:20" />
+    <file relUrl="Views/Login/Index.cshtml" publishTime="06/12/2011 07:42:48" />
+    <file relUrl="Web.config" publishTime="06/12/2011 08:17:42" />
+    <file relUrl="Scripts/jquery-ui.min.js" publishTime="06/11/2011 19:47:41" />
+    <file relUrl="bin/Candidate.Web.dll" publishTime="06/12/2011 08:16:43" />
+    <file relUrl="Content/Site.css" publishTime="06/11/2011 19:47:41" />
+    <file relUrl="bin/Ninject.dll" publishTime="12/17/2010 20:03:58" />
+    <file relUrl="index.htm" publishTime="06/11/2011 19:47:41" />
+    <file relUrl="Areas/Dashboard/Views/_ViewStart.cshtml" publishTime="06/11/2011 19:47:41" />
+    <file relUrl="Scripts/Controllers/controller.setup.js" publishTime="06/12/2011 07:22:21" />
+    <file relUrl="Scripts/jquery-ui.js" publishTime="06/11/2011 19:47:41" />
+    <file relUrl="Scripts/jquery.validate.unobtrusive.min.js" publishTime="06/11/2011 19:47:41" />
+    <file relUrl="Areas/Dashboard/Views/Dashboard/Index.cshtml" publishTime="06/11/2011 19:47:41" />
+    <file relUrl="Views/Web.config" publishTime="06/11/2011 19:47:41" />
+  </publishProfile>
+</publishData>

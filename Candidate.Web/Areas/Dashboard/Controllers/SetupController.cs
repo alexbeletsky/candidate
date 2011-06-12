@@ -10,6 +10,7 @@ using Candidate.Core.System;
 using Candidate.Core.Commands.Git;
 using Candidate.Core.Commands.Batch;
 using Candidate.Core.Commands.AppCmd;
+using Candidate.Core.Utils;
 
 namespace Candidate.Areas.Dashboard.Controllers
 {
@@ -32,10 +33,10 @@ namespace Candidate.Areas.Dashboard.Controllers
         [HttpGet]
         public JsonResult StartSetup(string jobName)
         {
-            var currentDirectory = Directory.GetCurrentDirectory();
+            var currentDirectory = LocalAppDataFolder.Folder;
             var currentSettings = _settingsManager.ReadSettings<JobsConfigurationSettingsModel>().Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
 
-            var workingDirectory = currentDirectory + "\\Candidate\\Jobs\\" + jobName + "\\src\\";
+            var workingDirectory = currentDirectory + "\\Jobs\\" + jobName + "\\src\\";
             
             var repoCloned = false;
             if (Directory.Exists(workingDirectory))
@@ -49,7 +50,7 @@ namespace Candidate.Areas.Dashboard.Controllers
         [HttpPost]
         public JsonResult CloneRepository(string jobName)
         {
-            var currentDirectory = Directory.GetCurrentDirectory();
+            var currentDirectory = LocalAppDataFolder.Folder;
             var currentSettings = _settingsManager.ReadSettings<JobsConfigurationSettingsModel>().Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
 
             if (currentSettings == null)
@@ -57,7 +58,7 @@ namespace Candidate.Areas.Dashboard.Controllers
                 throw new Exception(string.Format(@"Job ""{0}"" has not been configured", jobName));
             }
 
-            var workingDirectory = currentDirectory + "\\Candidate\\Jobs\\" + jobName + "\\";
+            var workingDirectory = currentDirectory + "\\Jobs\\" + jobName + "\\";
             var logId = workingDirectory + "logs\\clone-repo.log";
 
             using (var logger = new Logger(logId))
@@ -74,7 +75,7 @@ namespace Candidate.Areas.Dashboard.Controllers
         [HttpPost]
         public JsonResult PullRepository(string jobName)
         {
-            var currentDirectory = Directory.GetCurrentDirectory();
+            var currentDirectory = LocalAppDataFolder.Folder;
             var currentSettings = _settingsManager.ReadSettings<JobsConfigurationSettingsModel>().Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
 
             if (currentSettings == null)
@@ -82,7 +83,7 @@ namespace Candidate.Areas.Dashboard.Controllers
                 throw new Exception(string.Format(@"Job ""{0}"" has not been configured", jobName));
             }
 
-            var workingDirectory = currentDirectory + "\\Candidate\\Jobs\\" + jobName + "\\src\\";
+            var workingDirectory = currentDirectory + "\\Jobs\\" + jobName + "\\src\\";
             var logId = workingDirectory + "..\\logs\\pull-build.log";
 
             using (var logger = new Logger(logId))
@@ -99,7 +100,7 @@ namespace Candidate.Areas.Dashboard.Controllers
         [HttpPost]
         public JsonResult RunBuild(string jobName)
         {
-            var currentDirectory = Directory.GetCurrentDirectory();
+            var currentDirectory = LocalAppDataFolder.Folder;
             var currentSettings = _settingsManager.ReadSettings<JobsConfigurationSettingsModel>().Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
 
             if (currentSettings == null)
@@ -107,7 +108,7 @@ namespace Candidate.Areas.Dashboard.Controllers
                 throw new Exception(string.Format(@"Job ""{0}"" has not been configured", jobName));
             }
 
-            var workingDirectory = currentDirectory + "\\Candidate\\Jobs\\" + jobName + "\\src\\";
+            var workingDirectory = currentDirectory + "\\Jobs\\" + jobName + "\\src\\";
             var logId = workingDirectory + "..\\logs\\run-build.log";
 
             using (var logger = new Logger(logId))
@@ -123,7 +124,7 @@ namespace Candidate.Areas.Dashboard.Controllers
         [HttpPost]
         public JsonResult RunTest(string jobName)
         {
-            var currentDirectory = Directory.GetCurrentDirectory();
+            var currentDirectory = LocalAppDataFolder.Folder;
             var currentSettings = _settingsManager.ReadSettings<JobsConfigurationSettingsModel>().Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
 
             if (currentSettings == null)
@@ -131,7 +132,7 @@ namespace Candidate.Areas.Dashboard.Controllers
                 throw new Exception(string.Format(@"Job ""{0}"" has not been configured", jobName));
             }
 
-            var workingDirectory = currentDirectory + "\\Candidate\\Jobs\\" + jobName + "\\src\\";
+            var workingDirectory = currentDirectory + "\\Jobs\\" + jobName + "\\src\\";
             var logId = workingDirectory + "..\\logs\\test-build.log";
 
             using (var logger = new Logger(logId))
@@ -147,7 +148,7 @@ namespace Candidate.Areas.Dashboard.Controllers
         [HttpPost]
         public JsonResult RunDeploy(string jobName)
         {
-            var currentDirectory = Directory.GetCurrentDirectory();
+            var currentDirectory = LocalAppDataFolder.Folder;
             var currentSettings = _settingsManager.ReadSettings<JobsConfigurationSettingsModel>().Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
 
             if (currentSettings == null)
@@ -155,7 +156,7 @@ namespace Candidate.Areas.Dashboard.Controllers
                 throw new Exception(string.Format(@"Job ""{0}"" has not been configured", jobName));
             }
 
-            var workingDirectory = currentDirectory + "\\Candidate\\Jobs\\" + jobName + "\\src\\";
+            var workingDirectory = currentDirectory + "\\Jobs\\" + jobName + "\\src\\";
             var logId = workingDirectory + "..\\logs\\test-build.log";
 
             using (var logger = new Logger(logId))
@@ -171,7 +172,7 @@ namespace Candidate.Areas.Dashboard.Controllers
         [HttpPost]
         public JsonResult StartWebSite(string jobName)
         {
-            var currentDirectory = Directory.GetCurrentDirectory();
+            var currentDirectory = LocalAppDataFolder.Folder;
             var currentSettings = _settingsManager.ReadSettings<JobsConfigurationSettingsModel>().Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
 
             if (currentSettings == null)
@@ -179,7 +180,7 @@ namespace Candidate.Areas.Dashboard.Controllers
                 throw new Exception(string.Format(@"Job ""{0}"" has not been configured", jobName));
             }
 
-            var workingDirectory = currentDirectory + "\\Candidate\\Jobs\\" + jobName + "\\src\\";
+            var workingDirectory = currentDirectory + "\\Jobs\\" + jobName + "\\src\\";
             var logId = workingDirectory + "..\\logs\\start-site-build.log";
 
             try
@@ -204,7 +205,7 @@ namespace Candidate.Areas.Dashboard.Controllers
         [HttpPost]
         public JsonResult StopWebSite(string jobName)
         {
-            var currentDirectory = Directory.GetCurrentDirectory();
+            var currentDirectory = LocalAppDataFolder.Folder;
             var currentSettings = _settingsManager.ReadSettings<JobsConfigurationSettingsModel>().Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
 
             if (currentSettings == null)
@@ -212,7 +213,7 @@ namespace Candidate.Areas.Dashboard.Controllers
                 throw new Exception(string.Format(@"Job ""{0}"" has not been configured", jobName));
             }
 
-            var workingDirectory = currentDirectory + "\\Candidate\\Jobs\\" + jobName + "\\src\\";
+            var workingDirectory = currentDirectory + "\\Jobs\\" + jobName + "\\src\\";
             var logId = workingDirectory + "..\\logs\\start-site-build.log";
 
             try

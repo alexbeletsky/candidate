@@ -23,6 +23,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <ExcludeGeneratedDebugSymbol>true</ExcludeGeneratedDebugSymbol>
+    <PackageAsSingleFile>false</PackageAsSingleFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -31,6 +33,8 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <ExcludeGeneratedDebugSymbol>true</ExcludeGeneratedDebugSymbol>
+    <PackageAsSingleFile>true</PackageAsSingleFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Ninject">
@@ -91,6 +95,7 @@
     <Content Include="Content\960_24_col.css" />
     <Content Include="Content\buttons.css" />
     <Content Include="Content\Images\ajax-loader.gif" />
+    <Content Include="Content\Images\preloader.gif" />
     <Content Include="Content\teamviewer.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -98,6 +103,7 @@
     <Content Include="Scripts\Controllers\controller.dashboard.js" />
     <Content Include="Scripts\Controllers\controller.run.js.js" />
     <Content Include="Scripts\Controllers\controller.setup.js" />
+    <Content Include="Scripts\jquery.blockUI.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

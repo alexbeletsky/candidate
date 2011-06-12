@@ -1,12 +1,13 @@
 ﻿using System.IO;
 using Newtonsoft.Json;
+using Candidate.Core.Utils;
 
 namespace Candidate.Core.Settings
 {
     public class SettingsManager : ISettingsManager
     {
         private JsonSerializer _serializer = new JsonSerializer();
-        private static readonly string SettingsFolder = "Candidate\\Settings";
+        //private static readonly string SettingsFolder = "Candidate\\Settings";
 
         public SettingsManager()
         {
@@ -52,6 +53,14 @@ namespace Candidate.Core.Settings
         private static string GetSettingsFilename<T>()
         {
             return SettingsFolder + "/" + typeof(T).Name + ".json";
+        }
+
+        private static string SettingsFolder
+        {
+            get
+            {
+                return LocalAppDataFolder.Folder + "\\Settings";
+            }
         }
     }
 }
