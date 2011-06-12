@@ -233,5 +233,18 @@ namespace Candidate.Areas.Dashboard.Controllers
             return Json(new { success = true, logId = logId });
         }
 
+        [HttpPost]
+        public JsonResult Hook(string jobName)
+        {
+            StopWebSite(jobName);
+            PullRepository(jobName);
+            RunBuild(jobName);
+            RunTest(jobName);
+            RunDeploy(jobName);
+            StartWebSite(jobName);
+
+            return Json(new { success = true, logId = "" });
+        }
+
     }
 }
