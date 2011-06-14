@@ -7,7 +7,6 @@ namespace Candidate.Core.Settings
     public class SettingsManager : ISettingsManager
     {
         private JsonSerializer _serializer = new JsonSerializer();
-        //private static readonly string SettingsFolder = "Candidate\\Settings";
 
         public SettingsManager()
         {
@@ -24,17 +23,24 @@ namespace Candidate.Core.Settings
 
         public T ReadSettings<T>() where T : new()
         {
+            T settings = new T();
+
             try
             {
                 using (var reader = new JsonTextReader(new StreamReader(GetSettingsFilename<T>())))
                 {
-                    return _serializer.Deserialize<T>(reader);
+                    settings = _serializer.Deserialize<T>(reader);
                 }
             }
-            catch (FileNotFoundException)
+            finally
             {
-                return new T();
+                if (OnSettingsRead != null)
+                {
+                    OnSettingsRead(settings);
+                }
             }
+
+            return settings;
         }
 
         public void SaveSettings(object settings)
@@ -62,5 +68,8 @@ namespace Candidate.Core.Settings
                 return LocalAppDataFolder.Folder + "\\Settings";
             }
         }
+
+
+        public event SettingsReadHandler OnSettingsRead;
     }
 }

@@ -4,6 +4,8 @@ using NUnit.Framework;
 using System.IO;
 using Newtonsoft.Json;
 using Candidate.Core.Settings;
+using SharpTestsEx;
+using KellermanSoftware.CompareNetObjects;
 
 namespace Candidate.Tests.Settings
 {
@@ -27,85 +29,60 @@ namespace Candidate.Tests.Settings
         {
             public IList<Job> Jobs { get; set; }
             public User User { get; set; }
-            public DateTime LastAccess { get; set; }
-        }
-
-        [Test]
-        public void SaveJobToFile()
-        {
-            var jobsList = new List<Job> { 
-                new Job { Id = 0, Configuration = "Git", Name = "xxx" },
-                new Job { Id = 1, Configuration = "Git", Name = "aaa" }
-            };
-
-            using (var stream = new FileStream("jobs.json", FileMode.OpenOrCreate))
-            {
-                var serializer = new JsonSerializer();
-                var writer = new StreamWriter(stream);
-                serializer.Serialize(writer, jobsList);
-                writer.Close();
-            }
-        }
-
-        [Test]
-        public void AddNewJobObject()
-        {
-            using (var stream = new FileStream("jobs.json", FileMode.OpenOrCreate))
-            {
-                var serializer = new JsonSerializer();
-                var streamReader = new StreamReader(stream);
-                var reader = new JsonTextReader(streamReader);
-                var jobsList = serializer.Deserialize<IList<Job>>(reader);
-            }
-        }
-
-        [Test]
-        public void StoreSettings()
-        {
-            using (var writer = new JsonTextWriter(new StreamWriter("dashboard.settings.json")))
-            {
-                var serializer = new JsonSerializer();
-                var settings = new BuildServerSettings
-                {
-                    User = new User { FirstName = "Alexander", LastName = "Beletsky" },
-                    Jobs = new List<Job> { new Job { Id = 0, Configuration = "Git", Name = "proj" } },
-                    LastAccess = DateTime.Now
-                };
-
-                serializer.Serialize(writer, settings);
-            }
         }
 
         [Test]
         public void SettingsManager_SaveSettings()
         {
+            // arrange
             var settingsManager = new SettingsManager();
             var settings = new BuildServerSettings
             {
                 User = new User { FirstName = "Alexander", LastName = "Beletsky" },
                 Jobs = new List<Job> { new Job { Id = 0, Configuration = "Git", Name = "proj" } },
-                LastAccess = DateTime.Now
             };
 
+            // act
             settingsManager.SaveSettings(settings);
+
+            // post
+            var restoredSettings = settingsManager.ReadSettings<BuildServerSettings>();
+            Assert.That(Comparer.Compare(settings, restoredSettings), Is.True);
         }
 
         [Test]
-        public void SettingsManager_ReadSettings()
+        public void SettingManager_With_TrackableObjects()
         {
+            // arrange
             var settingsManager = new SettingsManager();
             var settings = new BuildServerSettings
             {
                 User = new User { FirstName = "Alexander", LastName = "Beletsky" },
                 Jobs = new List<Job> { new Job { Id = 0, Configuration = "Git", Name = "proj" } },
-                LastAccess = DateTime.Now
             };
 
             settingsManager.SaveSettings(settings);
 
-            var readSettings = settingsManager.ReadSettings<BuildServerSettings>();
+            // act
+            using (var settingsTracker = new SettingsTracker(settingsManager))
+            {
+                var restoredSettings = settingsManager.ReadSettings<BuildServerSettings>();
+                restoredSettings.User.FirstName = "John";
+                restoredSettings.User.LastName = "Doe";
+            }
 
-            Assert.That(readSettings.User.FirstName, Is.EqualTo("Alexander"));
+            // post
+            var changedSettings = settingsManager.ReadSettings<BuildServerSettings>();
+            Assert.That(changedSettings.User.FirstName, Is.EqualTo("John"));
+            Assert.That(changedSettings.User.LastName, Is.EqualTo("Doe"));
+        }
+
+        private CompareObjects Comparer
+        {
+            get
+            {
+                return new CompareObjects();
+            }
         }
     }
 }
