@@ -23,7 +23,6 @@ $(function () {
             return false;
         });
 
-
         $('#close-button').live('click', function () {
             $('#action-content').slideUp(function () {
                 $(this).empty();
@@ -31,8 +30,5 @@ $(function () {
 
             return false;
         });
-
-
     } ();
-
 });

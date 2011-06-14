@@ -23,24 +23,19 @@ namespace Candidate.Core.Settings
 
         public T ReadSettings<T>() where T : new()
         {
-            T settings = new T();
-
             try
             {
                 using (var reader = new JsonTextReader(new StreamReader(GetSettingsFilename<T>())))
                 {
-                    settings = _serializer.Deserialize<T>(reader);
-                }
-            }
-            finally
-            {
-                if (OnSettingsRead != null)
-                {
-                    OnSettingsRead(settings);
-                }
-            }
+                    var settings = _serializer.Deserialize<T>(reader);
 
-            return settings;
+                    return settings;
+                }
+            }
+            catch (FileNotFoundException)
+            {
+                return new T();
+            }
         }
 
         public void SaveSettings(object settings)
@@ -70,6 +65,6 @@ namespace Candidate.Core.Settings
         }
 
 
-        public event SettingsReadHandler OnSettingsRead;
+        //public event SettingsReadHandler OnSettingsRead;
     }
 }

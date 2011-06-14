@@ -6,24 +6,32 @@ using Candidate.Core.Settings;
 
 namespace Candidate.Core.Settings
 {
-    public class SettingsTracker : IDisposable
+    public class TrackableSettingsManager : IDisposable, ISettingsManager
     {
         private ISettingsManager _settingsManager;
         private List<object> _trackableObjects = new List<object>();
 
-        public SettingsTracker(ISettingsManager settingsManager)
+        public TrackableSettingsManager(ISettingsManager settingsManager)
         {
             _settingsManager = settingsManager;
-
-            _settingsManager.OnSettingsRead += (o) =>
-                {
-                    _trackableObjects.Add(o);
-                };
         }
 
         public void Dispose()
         {
             _trackableObjects.ForEach((o) => { _settingsManager.SaveSettings(o); });
+        }
+
+        public T ReadSettings<T>() where T : new()
+        {
+            var readSettings = _settingsManager.ReadSettings<T>();
+            _trackableObjects.Add(readSettings);
+
+            return readSettings;
+        }
+
+        public void SaveSettings(object settings)
+        {
+            _settingsManager.SaveSettings(settings);
         }
     }
 }

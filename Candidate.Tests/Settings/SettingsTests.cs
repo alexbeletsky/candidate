@@ -64,9 +64,9 @@ namespace Candidate.Tests.Settings
             settingsManager.SaveSettings(settings);
 
             // act
-            using (var settingsTracker = new SettingsTracker(settingsManager))
+            using (var trackableSettingsManager = new TrackableSettingsManager(settingsManager))
             {
-                var restoredSettings = settingsManager.ReadSettings<BuildServerSettings>();
+                var restoredSettings = trackableSettingsManager.ReadSettings<BuildServerSettings>();
                 restoredSettings.User.FirstName = "John";
                 restoredSettings.User.LastName = "Doe";
             }

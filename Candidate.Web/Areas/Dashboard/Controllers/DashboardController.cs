@@ -38,13 +38,15 @@ namespace Candidate.Areas.Dashboard.Controllers
         [HttpPost]
         public ActionResult Add(NewJobModel newJob)
         {
-            var currentSettings = _settingsManager.ReadSettings<JobsSettingsModel>();
-            var currentJobs = currentSettings.Jobs;
+            using (var settingsManager = new TrackableSettingsManager(_settingsManager))
+            {
+                var currentSettings = settingsManager.ReadSettings<JobsSettingsModel>();
+                var currentJobs = currentSettings.Jobs;
 
-            currentJobs.Add(new JobModel { Name = newJob.Name, Status = 0 });
-            _settingsManager.SaveSettings(currentSettings);
+                currentJobs.Add(new JobModel { Name = newJob.Name, Status = 0 });
 
-            return RedirectToAction("index");
+                return RedirectToAction("index");
+            }
         }
 
         [HttpGet]
@@ -56,14 +58,17 @@ namespace Candidate.Areas.Dashboard.Controllers
         [HttpPost]
         public ActionResult Delete(DeleteJobModel deleteJob)
         {
-            var currentSettings = _settingsManager.ReadSettings<JobsSettingsModel>();
-            var jobToDelete = currentSettings.Jobs.Where(j => j.Name == deleteJob.JobName).SingleOrDefault();
-            var currentJobs = currentSettings.Jobs.Remove(jobToDelete);
+            using (var settingsManager = new TrackableSettingsManager(_settingsManager))
+            {
+                var currentSettings = settingsManager.ReadSettings<JobsSettingsModel>();
+                var jobToDelete = currentSettings.Jobs.Where(j => j.Name == deleteJob.JobName).SingleOrDefault();
+                var currentJobs = currentSettings.Jobs.Remove(jobToDelete);
 
-            //TODO: corresponding record should be removed from JobsConfigurationSettingsModel.json 
-            _settingsManager.SaveSettings(currentSettings);
+                //TODO: corresponding record should be removed from JobsConfigurationSettingsModel.json 
+                //_settingsManager.SaveSettings(currentSettings);
 
-            return RedirectToAction("index");
+                return RedirectToAction("index");
+            }
         }
 
         [HttpGet]

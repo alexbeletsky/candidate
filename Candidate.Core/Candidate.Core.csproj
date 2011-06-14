@@ -54,7 +54,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings\ISettingsManager.cs" />
     <Compile Include="Settings\SettingsManager.cs" />
-    <Compile Include="Settings\SettingsTracker.cs" />
+    <Compile Include="Settings\TrackableSettingsManager.cs" />
     <Compile Include="System\IProcessRunner.cs" />
     <Compile Include="System\ProcessRunner.cs" />
     <Compile Include="Utils\LocalAppDataFolder.cs" />

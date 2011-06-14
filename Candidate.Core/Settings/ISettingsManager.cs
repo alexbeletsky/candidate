@@ -1,7 +1,7 @@
 ﻿
 namespace Candidate.Core.Settings
 {
-    public delegate void SettingsReadHandler(object readObject); 
+    //public delegate void SettingsReadHandler(object readObject); 
 
     public interface ISettingsManager
     {
@@ -9,6 +9,6 @@ namespace Candidate.Core.Settings
         void SaveSettings(object settings);
 
         // Event's
-        event SettingsReadHandler OnSettingsRead;
+        //event SettingsReadHandler OnSettingsRead;
     }
 }
