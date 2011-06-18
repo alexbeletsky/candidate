@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using Candidate.Areas.Dashboard.Models;
 using Candidate.Core.Settings;
+using System;
 
 namespace Candidate.Areas.Dashboard.Controllers
 {
@@ -16,56 +17,64 @@ namespace Candidate.Areas.Dashboard.Controllers
 
         public ActionResult Configure(string jobName)
         {
+            ViewBag.JobName = jobName;
+
+            //var currentSettings = _settingsManager.ReadSettings<JobsConfigurationSettingsModel>();
+            //var jobConfiguration = currentSettings.Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
+
+            //return View(jobConfiguration);
+
+            return View();
+        }
+
+        public ActionResult ConfigureGithub(string jobName)
+        {
             var currentSettings = _settingsManager.ReadSettings<JobsConfigurationSettingsModel>();
             var jobConfiguration = currentSettings.Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
 
-            return View(jobConfiguration);
+            return View(jobConfiguration.Github);
         }
 
         [HttpPost]
-        public ActionResult Configure(JobConfigurationModel config)
+        public ActionResult ConfigureGithub(string jobName, GithubModel config)
         {
-            ChangeSettings(config);
-
-            return RedirectToAction("Setup", new { area = "Dashboard", controller = "Setup", jobName = config.JobName });
-        }
-
-        private void ChangeSettings(JobConfigurationModel config)
-        {
-            var currentSettings = _settingsManager.ReadSettings<JobsConfigurationSettingsModel>();
-            var jobConfiguration = currentSettings.Configurations.Where(c => c.JobName == config.JobName).SingleOrDefault();
-
-            if (jobConfiguration == null)
+            using (var settingsManager = new TrackableSettingsManager(_settingsManager))
             {
-                CreateNewConfiguration(config, currentSettings);
+                var currentSettings = settingsManager.ReadSettings<JobsConfigurationSettingsModel>();
+                var jobConfiguration = currentSettings.Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
+
+                if (jobConfiguration == null)
+                {
+                    currentSettings.Configurations.Add(new JobConfigurationModel { JobName = jobName, Github = config });
+                }
+                else
+                {
+                    jobConfiguration.Github = config;
+                }
+
+                return Json(new { success = true, settings = config });
             }
-            else
-            {
-                UpdateCurrentConfiguration(config, jobConfiguration);
-            }
-
-            _settingsManager.SaveSettings(currentSettings);
         }
 
-        private static void CreateNewConfiguration(JobConfigurationModel config, JobsConfigurationSettingsModel currentSettings)
-        {
-            currentSettings.Configurations.Add(CreateNewConfigurationModel(config));
-        }
+        //[HttpPost]
+        //public ActionResult Configure(JobConfigurationModel config)
+        //{
+        //    using (var settingsManager = new TrackableSettingsManager(_settingsManager))
+        //    {
+        //        var currentSettings = settingsManager.ReadSettings<JobsConfigurationSettingsModel>();
+        //        var jobConfiguration = currentSettings.Configurations.Where(c => c.JobName == config.JobName).SingleOrDefault();
 
-        private static void UpdateCurrentConfiguration(JobConfigurationModel config, JobConfigurationModel jobConfiguration)
-        {
-            jobConfiguration.JobName = config.JobName;
-            //jobConfiguration.Batch = new BatchModel { BuildBatchName = config.Batch.BuildBatchName };
-            jobConfiguration.Github = new GithubModel { Url = config.Github.Url };
-        }
+        //        if (jobConfiguration == null)
+        //        {
+        //            currentSettings.Configurations.Add(new JobConfigurationModel { JobName = config.JobName, Github = config.Github } );
+        //        }
+        //        else
+        //        {
+        //            jobConfiguration.Github = config.Github;
+        //        }
 
-        private static JobConfigurationModel CreateNewConfigurationModel(JobConfigurationModel config)
-        {
-            return new JobConfigurationModel {
-                JobName = config.JobName,
-                //Batch = new BatchModel { BuildBatchName = config.Batch.BuildBatchName },
-                Github = new GithubModel { Url = config.Github.Url }
-            };
-        }
+        //        return Json(new { success = true, settings = config });
+        //    }
+        //}
     }
 }

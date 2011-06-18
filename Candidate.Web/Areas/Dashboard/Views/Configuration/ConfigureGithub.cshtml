@@ -1,0 +1,24 @@
+﻿@model Candidate.Areas.Dashboard.Models.GithubModel
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary();
+                                   
+    <fieldset>
+        <div id="github-url-label">
+            @Html.Label("Repository:")
+        </div>
+        <div id="github-url-input">
+            @Html.TextBoxFor(m => m.Url)
+        </div>
+        <div id="github-branch-label">
+            @Html.Label("Branch:")
+        </div>
+        <div id="github-branch-input">
+            @Html.TextBoxFor(m => m.Branch)
+        </div>
+
+        <button type="submit" class="minimal">Save config</button>
+        <button type="reset" class="minimal">Close</button>    
+    </fieldset>
+}

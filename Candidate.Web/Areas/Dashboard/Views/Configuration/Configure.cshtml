@@ -12,7 +12,7 @@
 </div>
 
 <div class="grey-container">
-@using (Html.BeginForm())
+@*@using (Html.BeginForm())
 {
     @Html.ValidationSummary();
     @Html.HiddenFor(m => m.JobName);
@@ -29,4 +29,50 @@
     <button type="submit" class="minimal">Save config</button>
     <button type="reset" class="minimal">Discard</button>    
 } 
+*@
+
+<div class="configuration">
+
+    <div class="configuration-line">
+        <div id="scm-configuration" class="configuration-box" data-source="@Url.Action("ConfigureGithub", new { area = "Dashboard", controller = "Configuration", jobName = ViewBag.JobName })">
+            SCM
+        </div>
+
+        <div id="iis-configuration" class="configuration-box">
+            IIS
+        </div>
+    </div>
 </div>
+<div class="dialog"></div>
+
+
+@*<div id="scm-dialog" data-source="">
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary();
+                                   
+    <fieldset>
+        <div id="github-url-label">
+            @Html.Label("Repository:")
+        </div>
+        <div id="github-url-input">
+            @Html.TextBoxFor(m => m.Github.Url)
+        </div>
+        <div id="github-branch-label">
+            @Html.Label("Branch:")
+        </div>
+        <div id="github-branch-input">
+            @Html.TextBoxFor(m => m.Github.Branch)
+        </div>
+
+        <button type="submit" class="minimal">Save config</button>
+        <button type="reset" class="minimal">Close</button>    
+    </fieldset>
+}
+ </div>*@
+
+@section Scripts {
+    <script src="@Url.Content("~/Scripts/jquery.blockUI.js")" type="text/javascript"></script>    
+    <script src="@Url.Content("~/Scripts/jquery.form.js")" type="text/javascript"></script>    
+    <script src="@Url.Content("~/Scripts/Controllers/controller.configure.js")" type="text/javascript"></script>
+}
