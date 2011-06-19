@@ -178,7 +178,7 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Dashboard\Views\Dashboard\Delete.cshtml" />
+    <Content Include="Areas\Dashboard\Views\Configuration\DeleteConfiguration.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Dashboard\Views\Setup\Setup.cshtml" />

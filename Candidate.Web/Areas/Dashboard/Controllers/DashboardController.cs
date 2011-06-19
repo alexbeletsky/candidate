@@ -48,33 +48,5 @@ namespace Candidate.Areas.Dashboard.Controllers
             }
         }
 
-        [HttpGet]
-        public ActionResult Delete(string jobName)
-        {
-            return View(new DeleteJobModel { JobName = jobName });
-        }
-
-        [HttpPost]
-        public ActionResult Delete(DeleteJobModel deleteJob)
-        {
-            using (var settingsManager = new TrackableSettingsManager(_settingsManager))
-            {
-                var currentSettings = settingsManager.ReadSettings<JobsSettingsModel>();
-                var jobToDelete = currentSettings.Jobs.Where(j => j.Name == deleteJob.JobName).SingleOrDefault();
-                var currentJobs = currentSettings.Jobs.Remove(jobToDelete);
-
-                //TODO: corresponding record should be removed from JobsConfigurationSettingsModel.json 
-                //_settingsManager.SaveSettings(currentSettings);
-
-                return RedirectToAction("index");
-            }
-        }
-
-        [HttpGet]
-        public ActionResult Run(string jobName)
-        {
-            ViewBag.JobName = jobName;
-            return View();
-        }
     }
 }

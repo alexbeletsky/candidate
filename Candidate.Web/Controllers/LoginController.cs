@@ -1,7 +1,7 @@
 ﻿using System.Web.Mvc;
-using TeamViewer.Economic.Demo.Models;
+using Candidate.Models;
 
-namespace TeamViewer.Economic.Demo.Controllers
+namespace Candidate.Controllers
 {
     public class LoginController : Controller
     {
@@ -16,11 +16,11 @@ namespace TeamViewer.Economic.Demo.Controllers
         {
             if (model.Login == "alexander.beletsky" && model.Password == "111111")
             {
-                return RedirectToAction("index", new { area = "Dashboard", controller = "Dashboard" });
+                return RedirectToAction("Index", new { area = "Dashboard", controller = "Dashboard" });
             }
 
             ModelState.AddModelError("", "Login or password is incorrect.");
-            return View("index", model);
+            return View("Index", model);
         }
     }
 }

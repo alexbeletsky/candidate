@@ -79,5 +79,24 @@ namespace Candidate.Areas.Dashboard.Controllers
                 return Json(new { success = true, settings = config });
             }
         }
+
+        [HttpGet]
+        public ActionResult DeleteConfiguration(string jobName)
+        {
+            return View(new DeleteJobModel { JobName = jobName });
+        }
+
+        [HttpPost]
+        public ActionResult DeleteConfiguration(DeleteJobModel deleteJob)
+        {
+            using (var settingsManager = new TrackableSettingsManager(_settingsManager))
+            {
+                var currentSettings = settingsManager.ReadSettings<JobsSettingsModel>();
+                var jobToDelete = currentSettings.Jobs.Where(j => j.Name == deleteJob.JobName).SingleOrDefault();
+                var currentJobs = currentSettings.Jobs.Remove(jobToDelete);
+
+                return RedirectToAction("Index", "Dashboard");
+            }
+        }
     }
 }

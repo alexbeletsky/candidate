@@ -17,47 +17,10 @@ else
          
             <div id="buttons" class="right cleanfix">
                 <button type="button" class="minimal">@Html.ActionLink("Configure", "Configure", new { area = "Dashboard", controller = "Configuration", jobName = @job.Name })</button>
-                <button type="button" class="minimal">Deploy</button>
+                <button type="button" class="minimal">@Html.ActionLink("Setup", "Setup", new { area = "Dashboard", controller = "Setup", jobName = @job.Name })</button>
+                <button type="button" class="minimal">@Html.ActionLink("Delete", "DeleteConfiguration", new { area = "Dashboard", controller = "Configuration", jobName = @job.Name })</button>
             </div>          
         </div>
          
     }
 }
-
-@*    <table id="team-members-table">
-    <thead>
-        <th>
-            Job Name
-        </th>
-        <th>
-            Last Build
-        </th>
-        <th>
-            Configure
-        </th>
-        <th class="narrow">
-            Delete
-        </th>
-    </thead>
-    <tbody>
-
-        @foreach (var job in Model)
-        {
-            <tr>
-                <td>
-                    @job.Name
-                </td>
-                <td>
-                    @job.LastRunTime
-                </td>
-                <td class="center">
-                    <a href="@Url.Action("Configure", new { area = "Dashboard", controller = "Configuration", jobName = @job.Name })">Configure</a>
-                </td>
-                <td class="center">
-                    <a href="@Url.Action("Delete", new { jobName = @job.Name })">X</a> 
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
-*@
