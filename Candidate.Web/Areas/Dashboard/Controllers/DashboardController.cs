@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using Candidate.Areas.Dashboard.Models;
 using Candidate.Core.Settings;
 
@@ -47,6 +46,5 @@ namespace Candidate.Areas.Dashboard.Controllers
                 return RedirectToAction("index");
             }
         }
-
     }
 }

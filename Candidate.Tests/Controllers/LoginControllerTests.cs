@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NUnit.Framework;
-using SharpTestsEx;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using Candidate.Controllers;
 using Candidate.Models;
+using NUnit.Framework;
+using SharpTestsEx;
 
 namespace Candidate.Tests.Controllers
 {
