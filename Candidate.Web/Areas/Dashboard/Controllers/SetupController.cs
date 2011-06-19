@@ -1,15 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using Candidate.Core.Settings;
-using Candidate.Areas.Dashboard.Models;
 using System.IO;
-using Candidate.Core.System;
-using Candidate.Core.Commands.Git;
-using Candidate.Core.Commands.Batch;
+using System.Linq;
+using System.Web.Mvc;
+using Candidate.Areas.Dashboard.Models;
 using Candidate.Core.Commands.AppCmd;
+using Candidate.Core.Commands.Batch;
+using Candidate.Core.Commands.Git;
+using Candidate.Core.Settings;
+using Candidate.Core.System;
 using Candidate.Core.Utils;
 
 namespace Candidate.Areas.Dashboard.Controllers

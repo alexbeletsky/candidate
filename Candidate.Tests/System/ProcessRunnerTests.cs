@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NUnit.Framework;
-using Candidate.Core.System;
+﻿using NUnit.Framework;
 
 namespace Candidate.Tests.System
 {

@@ -2,7 +2,6 @@
 using System.Web.Mvc;
 using Candidate.Areas.Dashboard.Models;
 using Candidate.Core.Settings;
-using System;
 
 namespace Candidate.Areas.Dashboard.Controllers
 {
@@ -18,11 +17,6 @@ namespace Candidate.Areas.Dashboard.Controllers
         public ActionResult Configure(string jobName)
         {
             ViewBag.JobName = jobName;
-
-            //var currentSettings = _settingsManager.ReadSettings<JobsConfigurationSettingsModel>();
-            //var jobConfiguration = currentSettings.Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
-
-            //return View(jobConfiguration);
 
             return View();
         }
@@ -56,25 +50,34 @@ namespace Candidate.Areas.Dashboard.Controllers
             }
         }
 
-        //[HttpPost]
-        //public ActionResult Configure(JobConfigurationModel config)
-        //{
-        //    using (var settingsManager = new TrackableSettingsManager(_settingsManager))
-        //    {
-        //        var currentSettings = settingsManager.ReadSettings<JobsConfigurationSettingsModel>();
-        //        var jobConfiguration = currentSettings.Configurations.Where(c => c.JobName == config.JobName).SingleOrDefault();
 
-        //        if (jobConfiguration == null)
-        //        {
-        //            currentSettings.Configurations.Add(new JobConfigurationModel { JobName = config.JobName, Github = config.Github } );
-        //        }
-        //        else
-        //        {
-        //            jobConfiguration.Github = config.Github;
-        //        }
+        public ActionResult ConfigureIis(string jobName)
+        {
+            var currentSettings = _settingsManager.ReadSettings<JobsConfigurationSettingsModel>();
+            var jobConfiguration = currentSettings.Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
 
-        //        return Json(new { success = true, settings = config });
-        //    }
-        //}
+            return View(jobConfiguration.Iis);
+        }
+
+        [HttpPost]
+        public ActionResult ConfigureIis(string jobName, IisModel config)
+        {
+            using (var settingsManager = new TrackableSettingsManager(_settingsManager))
+            {
+                var currentSettings = settingsManager.ReadSettings<JobsConfigurationSettingsModel>();
+                var jobConfiguration = currentSettings.Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
+
+                if (jobConfiguration == null)
+                {
+                    currentSettings.Configurations.Add(new JobConfigurationModel { JobName = jobName, Iis = config });
+                }
+                else
+                {
+                    jobConfiguration.Iis = config;
+                }
+
+                return Json(new { success = true, settings = config });
+            }
+        }
     }
 }

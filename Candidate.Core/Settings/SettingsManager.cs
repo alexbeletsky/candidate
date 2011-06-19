@@ -1,6 +1,6 @@
 ﻿using System.IO;
-using Newtonsoft.Json;
 using Candidate.Core.Utils;
+using Newtonsoft.Json;
 
 namespace Candidate.Core.Settings
 {

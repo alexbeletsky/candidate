@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using NUnit.Framework;
-using System.IO;
-using Newtonsoft.Json;
+﻿using System.Collections.Generic;
 using Candidate.Core.Settings;
-using SharpTestsEx;
 using KellermanSoftware.CompareNetObjects;
+using NUnit.Framework;
 
 namespace Candidate.Tests.Settings
 {

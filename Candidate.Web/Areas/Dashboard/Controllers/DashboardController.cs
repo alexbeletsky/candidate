@@ -2,7 +2,6 @@
 using System.Web.Mvc;
 using Candidate.Areas.Dashboard.Models;
 using Candidate.Core.Settings;
-using System.IO;
 
 namespace Candidate.Areas.Dashboard.Controllers
 {

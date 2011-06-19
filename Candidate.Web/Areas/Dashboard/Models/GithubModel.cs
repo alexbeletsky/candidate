@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.ComponentModel;
 
 namespace Candidate.Areas.Dashboard.Models
 {
     public class GithubModel
     {
+        [DisplayName("Repository URL")]
         public string Url { get; set; }
+
+        [DisplayName("Branch")]
         public string Branch { get; set; }
     }
 }

@@ -1,10 +1,6 @@
 ﻿using System;
-using System.IO;
-using System.Linq;
 using System.Web.Mvc;
-using Candidate.Areas.Dashboard.Models;
 using Candidate.Core.Settings;
-using Candidate.Core.System;
 
 namespace Candidate.Areas.Dashboard.Controllers
 {

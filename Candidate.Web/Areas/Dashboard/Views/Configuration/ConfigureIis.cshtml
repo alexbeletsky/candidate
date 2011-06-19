@@ -1,0 +1,19 @@
+﻿@model Candidate.Areas.Dashboard.Models.IisModel
+
+<h2>IIS web site configuration</h2>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary();
+                                   
+    <fieldset>
+        <div id="iis-name-label">
+            @Html.LabelFor(m => m.SiteName)
+        </div>
+        <div id="iis-name--input">
+            @Html.TextBoxFor(m => m.SiteName)
+        </div>
+
+        <button type="submit" class="minimal">Save config</button>
+        <button type="reset" class="minimal">Reset</button>    
+    </fieldset>
+}

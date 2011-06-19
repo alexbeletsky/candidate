@@ -10,7 +10,7 @@ $(function () {
         var dialogShown = false;
         $('.dialog').hide();
 
-        $('#scm-configuration').live('click', function () {
+        $('#scm-configuration, #iis-configuration').live('click', function () {
 
             var source = $(this).data('source');
             $('.dialog').load(source, function () {
