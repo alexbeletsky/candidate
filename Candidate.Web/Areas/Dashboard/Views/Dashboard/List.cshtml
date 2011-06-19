@@ -9,7 +9,22 @@
 }
 else
 {
-    <table id="team-members-table">
+    foreach (var job in Model)
+    {
+        <div class="job clearfix">
+            <span class="job-name">@job.Name</span>
+            <span class="job-status"></span>
+         
+            <div id="buttons" class="right cleanfix">
+                <button type="button" class="minimal">@Html.ActionLink("Configure", "Configure", new { area = "Dashboard", controller = "Configuration", jobName = @job.Name })</button>
+                <button type="button" class="minimal">Deploy</button>
+            </div>          
+        </div>
+         
+    }
+}
+
+@*    <table id="team-members-table">
     <thead>
         <th>
             Job Name
@@ -45,4 +60,4 @@ else
         }
     </tbody>
 </table>
-}
+*@

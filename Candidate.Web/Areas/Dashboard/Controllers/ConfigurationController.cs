@@ -26,7 +26,7 @@ namespace Candidate.Areas.Dashboard.Controllers
             var currentSettings = _settingsManager.ReadSettings<JobsConfigurationSettingsModel>();
             var jobConfiguration = currentSettings.Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
 
-            return View(jobConfiguration.Github);
+            return View(jobConfiguration == null ? null : jobConfiguration.Github);
         }
 
         [HttpPost]
@@ -56,7 +56,7 @@ namespace Candidate.Areas.Dashboard.Controllers
             var currentSettings = _settingsManager.ReadSettings<JobsConfigurationSettingsModel>();
             var jobConfiguration = currentSettings.Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
 
-            return View(jobConfiguration.Iis);
+            return View(jobConfiguration == null ? null : jobConfiguration.Iis);
         }
 
         [HttpPost]
