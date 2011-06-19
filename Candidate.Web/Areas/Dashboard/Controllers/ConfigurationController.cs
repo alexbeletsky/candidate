@@ -14,7 +14,8 @@ namespace Candidate.Areas.Dashboard.Controllers
             _settingsManager = settingsManager;
         }
 
-        public ActionResult Configure(string jobName)
+        [HttpGet]
+        public ActionResult Index(string jobName)
         {
             ViewBag.JobName = jobName;
 

@@ -166,7 +166,7 @@
     <Content Include="Areas\Dashboard\Views\Dashboard\Add.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Dashboard\Views\Configuration\Configure.cshtml" />
+    <Content Include="Areas\Dashboard\Views\Configuration\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Dashboard\Views\Shared\_Layout.cshtml" />
