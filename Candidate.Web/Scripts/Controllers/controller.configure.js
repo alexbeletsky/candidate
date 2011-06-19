@@ -26,7 +26,7 @@ $(function () {
         // helpers
         function showDialog(d) {
             dialogShown = true;
-            $.blockUI({ message: $(d) });
+            $.blockUI({ message: $(d), css: { width: '640px', padding: '0 0 8px 0' } });
         }
 
         function closeDialog() {

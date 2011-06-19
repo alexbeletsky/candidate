@@ -6,20 +6,16 @@
     @Html.ValidationSummary();
                                    
     <fieldset>
-        <div id="github-url-label">
+        <div id="github-url">
             @Html.LabelFor(m => m.Url)
-        </div>
-        <div id="github-url-input">
             @Html.TextBoxFor(m => m.Url)
         </div>
-        <div id="github-branch-label">
+        <div id="github-branch">
             @Html.LabelFor(m => m.Branch)
-        </div>
-        <div id="github-branch-input">
             @Html.TextBoxFor(m => m.Branch)
         </div>
-
-        <button type="submit" class="minimal">Save config</button>
-        <button type="reset" class="minimal">Reset</button>    
     </fieldset>
+    <div class="clear"></div>
+    <button type="submit" class="minimal">Save config</button>
+    <button type="reset" class="minimal">Reset</button>    
 }

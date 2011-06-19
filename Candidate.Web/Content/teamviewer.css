@@ -276,7 +276,15 @@ footer
     -moz-border-radius: 15px;
     border-radius: 15px;
     
-    background: #b7deed; /* Old browsers */
+    
+    background: rgb(235,241,246); /* Old browsers */
+    background: -moz-linear-gradient(top, rgba(235,241,246,1) 0%, rgba(171,211,238,1) 50%, rgba(137,195,235,1) 51%, rgba(213,235,251,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(235,241,246,1)), color-stop(50%,rgba(171,211,238,1)), color-stop(51%,rgba(137,195,235,1)), color-stop(100%,rgba(213,235,251,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, rgba(235,241,246,1) 0%,rgba(171,211,238,1) 50%,rgba(137,195,235,1) 51%,rgba(213,235,251,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, rgba(235,241,246,1) 0%,rgba(171,211,238,1) 50%,rgba(137,195,235,1) 51%,rgba(213,235,251,1) 100%); /* Opera11.10+ */
+    background: -ms-linear-gradient(top, rgba(235,241,246,1) 0%,rgba(171,211,238,1) 50%,rgba(137,195,235,1) 51%,rgba(213,235,251,1) 100%); /* IE10+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ebf1f6', endColorstr='#d5ebfb',GradientType=0 ); /* IE6-9 */
+    background: linear-gradient(top, rgba(235,241,246,1) 0%,rgba(171,211,238,1) 50%,rgba(137,195,235,1) 51%,rgba(213,235,251,1) 100%); /* W3C */
     
     -webkit-box-shadow: 0px 0px 10px 1px #a3a3a3;
     -moz-box-shadow: 0px 0px 10px 1px #a3a3a3;
@@ -290,7 +298,56 @@ footer
     cursor: pointer;
 }
 
+.configuration-box p
+{
+    margin-top: 44px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #e6e6e6;
+    text-shadow: 1px 1px 5px #000000;
+    filter: dropshadow(color=#000000, offx=1, offy=1);
+}
+
 .configuration-box:hover
 {
-    background: #96d4eb;
+    background: #a4ceeb;
 }
+
+.dialog
+{
+    width: 640px;
+    margin: 0 auto;
+}
+
+.dialog form
+{
+}
+
+.dialog fieldset
+{
+    display:block;
+    border-style:none;
+    padding: 0 4px 0 4px;
+}
+
+.dialog label
+{
+    text-align: left;
+    display: inline-block;
+    width: 120px !important;    
+}
+
+.dialog input
+{
+    display: inline-block;
+    width: 430px !important;        
+}
+
+.dialog fieldset div
+{
+    display: block;
+    float: left;
+    margin: 5px;
+}
+
+
