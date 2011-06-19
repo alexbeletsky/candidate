@@ -44,5 +44,59 @@ namespace Candidate.Tests.Controllers
             var model = result.Model as IList<JobModel>;
             model.Should().Not.Be.Null();
         }
+
+        [Test]
+        public void Add_Get_ReturnsView()
+        {
+            // arrange 
+            var settingsManager = new Mock<ISettingsManager>();
+            var controller = new DashboardController(settingsManager.Object);
+
+            // act
+            var result = controller.Add() as ViewResult;
+
+            // assert
+            result.Should().Not.Be.Null();
+        }
+
+        [Test]
+        public void Add_Post_NewJobConfigurationAdded()
+        {
+            // arrange 
+            var settingsManager = new Mock<ISettingsManager>();
+            var controller = new DashboardController(settingsManager.Object);
+            var config = new NewJobModel { Name = "testApp" };
+
+            object savedSettings = null;
+            settingsManager.Setup(s => s.ReadSettings<JobsSettingsModel>()).Returns(new JobsSettingsModel());
+            settingsManager.Setup(s => s.SaveSettings(It.IsAny<object>())).Callback<object>((o) => savedSettings = o);
+
+            // act
+            var result = controller.Add(config);
+
+            // assert
+            var jobSettings = savedSettings as JobsSettingsModel;
+            jobSettings.Jobs.Count.Should().Be(1);
+        }
+
+        [Test]
+        public void Add_Post_RedirectedToDashboardIndex()
+        {
+            // arrange 
+            var settingsManager = new Mock<ISettingsManager>();
+            var controller = new DashboardController(settingsManager.Object);
+            var config = new NewJobModel { Name = "testApp" };
+
+            object savedSettings = null;
+            settingsManager.Setup(s => s.ReadSettings<JobsSettingsModel>()).Returns(new JobsSettingsModel());
+            settingsManager.Setup(s => s.SaveSettings(It.IsAny<object>())).Callback<object>((o) => savedSettings = o);
+
+            // act
+            var result = controller.Add(config) as RedirectToRouteResult;
+
+            // assert
+            result.RouteValues["controller"].Should().Be("Dashboard");
+            result.RouteValues["action"].Should().Be("Index");
+        }
     }
 }

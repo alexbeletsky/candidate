@@ -43,7 +43,7 @@ namespace Candidate.Areas.Dashboard.Controllers
 
                 currentJobs.Add(new JobModel { Name = newJob.Name, Status = 0 });
 
-                return RedirectToAction("index");
+                return RedirectToAction("Index", new { area = "Dashboard", controller = "Dashboard" });
             }
         }
     }
