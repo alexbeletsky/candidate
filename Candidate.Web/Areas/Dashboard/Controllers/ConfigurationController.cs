@@ -22,7 +22,7 @@ namespace Candidate.Areas.Dashboard.Controllers
             return View();
         }
 
-        public ActionResult ConfigureGithub(string jobName)
+        public ActionResult Github(string jobName)
         {
             var currentSettings = _settingsManager.ReadSettings<JobsConfigurationSettingsModel>();
             var jobConfiguration = currentSettings.Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
@@ -31,7 +31,7 @@ namespace Candidate.Areas.Dashboard.Controllers
         }
 
         [HttpPost]
-        public ActionResult ConfigureGithub(string jobName, GithubModel config)
+        public ActionResult Github(string jobName, GithubModel config)
         {
             using (var settingsManager = new TrackableSettingsManager(_settingsManager))
             {
@@ -52,7 +52,7 @@ namespace Candidate.Areas.Dashboard.Controllers
         }
 
 
-        public ActionResult ConfigureIis(string jobName)
+        public ActionResult Iis(string jobName)
         {
             var currentSettings = _settingsManager.ReadSettings<JobsConfigurationSettingsModel>();
             var jobConfiguration = currentSettings.Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
@@ -61,7 +61,7 @@ namespace Candidate.Areas.Dashboard.Controllers
         }
 
         [HttpPost]
-        public ActionResult ConfigureIis(string jobName, IisModel config)
+        public ActionResult Iis(string jobName, IisModel config)
         {
             using (var settingsManager = new TrackableSettingsManager(_settingsManager))
             {
@@ -82,13 +82,13 @@ namespace Candidate.Areas.Dashboard.Controllers
         }
 
         [HttpGet]
-        public ActionResult DeleteConfiguration(string jobName)
+        public ActionResult Delete(string jobName)
         {
             return View(new DeleteJobModel { JobName = jobName });
         }
 
         [HttpPost]
-        public ActionResult DeleteConfiguration(DeleteJobModel deleteJob)
+        public ActionResult Delete(DeleteJobModel deleteJob)
         {
             using (var settingsManager = new TrackableSettingsManager(_settingsManager))
             {

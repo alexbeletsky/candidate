@@ -18,7 +18,7 @@ else
             <div id="buttons" class="right cleanfix">
                 <button type="button" class="minimal">@Html.ActionLink("Configure", "Index", new { area = "Dashboard", controller = "Configuration", jobName = @job.Name })</button>
                 <button type="button" class="minimal">@Html.ActionLink("Setup", "Setup", new { area = "Dashboard", controller = "Setup", jobName = @job.Name })</button>
-                <button type="button" class="minimal">@Html.ActionLink("Delete", "DeleteConfiguration", new { area = "Dashboard", controller = "Configuration", jobName = @job.Name })</button>
+                <button type="button" class="minimal">@Html.ActionLink("Delete", "Delete", new { area = "Dashboard", controller = "Configuration", jobName = @job.Name })</button>
             </div>          
         </div>
          

@@ -172,22 +172,19 @@
     <Content Include="Areas\Dashboard\Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Dashboard\Views\Dashboard\Run.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Dashboard\Views\Configuration\DeleteConfiguration.cshtml" />
+    <Content Include="Areas\Dashboard\Views\Configuration\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Dashboard\Views\Setup\Setup.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Dashboard\Views\Configuration\ConfigureGithub.cshtml" />
+    <Content Include="Areas\Dashboard\Views\Configuration\Github.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Dashboard\Views\Configuration\ConfigureIis.cshtml" />
+    <Content Include="Areas\Dashboard\Views\Configuration\Iis.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

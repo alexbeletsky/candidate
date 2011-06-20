@@ -16,11 +16,11 @@
 <div class="configuration">
 
     <div class="configuration-line">
-        <div id="scm-configuration" class="configuration-box" data-source="@Url.Action("ConfigureGithub", new { area = "Dashboard", controller = "Configuration", jobName = ViewBag.JobName })">
+        <div id="scm-configuration" class="configuration-box" data-source="@Url.Action("Github", new { area = "Dashboard", controller = "Configuration", jobName = ViewBag.JobName })">
             <p>GITHUB</p>
         </div>
 
-        <div id="iis-configuration" class="configuration-box" data-source="@Url.Action("ConfigureIis", new { area = "Dashboard", controller = "Configuration", jobName = ViewBag.JobName })">
+        <div id="iis-configuration" class="configuration-box" data-source="@Url.Action("Iis", new { area = "Dashboard", controller = "Configuration", jobName = ViewBag.JobName })">
             <p>IIS</p>
         </div>
     </div>
