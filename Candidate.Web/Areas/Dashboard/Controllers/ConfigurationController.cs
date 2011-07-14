@@ -1,29 +1,24 @@
-﻿using System.Linq;
-using System.Web.Mvc;
-using Candidate.Areas.Dashboard.Models;
-using Candidate.Core.Settings;
+﻿namespace Candidate.Areas.Dashboard.Controllers {
+    using System.Linq;
+    using System.Web.Mvc;
+    using Candidate.Areas.Dashboard.Models;
+    using Candidate.Core.Settings;
 
-namespace Candidate.Areas.Dashboard.Controllers
-{
-    public class ConfigurationController : Controller
-    {
+    public class ConfigurationController : Controller {
         private ISettingsManager _settingsManager;
 
-        public ConfigurationController(ISettingsManager settingsManager)
-        {
+        public ConfigurationController(ISettingsManager settingsManager) {
             _settingsManager = settingsManager;
         }
 
         [HttpGet]
-        public ActionResult Index(string jobName)
-        {
+        public ActionResult Index(string jobName) {
             ViewBag.JobName = jobName;
 
             return View();
         }
 
-        public ActionResult Github(string jobName)
-        {
+        public ActionResult Github(string jobName) {
             var currentSettings = _settingsManager.ReadSettings<JobsConfigurationSettingsModel>();
             var jobConfiguration = currentSettings.Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
 
@@ -31,19 +26,15 @@ namespace Candidate.Areas.Dashboard.Controllers
         }
 
         [HttpPost]
-        public ActionResult Github(string jobName, GithubModel config)
-        {
-            using (var settingsManager = new TrackableSettingsManager(_settingsManager))
-            {
+        public ActionResult Github(string jobName, GithubModel config) {
+            using (var settingsManager = new TrackableSettingsManager(_settingsManager)) {
                 var currentSettings = settingsManager.ReadSettings<JobsConfigurationSettingsModel>();
                 var jobConfiguration = currentSettings.Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
 
-                if (jobConfiguration == null)
-                {
+                if (jobConfiguration == null) {
                     currentSettings.Configurations.Add(new JobConfigurationModel { JobName = jobName, Github = config });
                 }
-                else
-                {
+                else {
                     jobConfiguration.Github = config;
                 }
 
@@ -52,8 +43,7 @@ namespace Candidate.Areas.Dashboard.Controllers
         }
 
 
-        public ActionResult Iis(string jobName)
-        {
+        public ActionResult Iis(string jobName) {
             var currentSettings = _settingsManager.ReadSettings<JobsConfigurationSettingsModel>();
             var jobConfiguration = currentSettings.Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
 
@@ -61,19 +51,15 @@ namespace Candidate.Areas.Dashboard.Controllers
         }
 
         [HttpPost]
-        public ActionResult Iis(string jobName, IisModel config)
-        {
-            using (var settingsManager = new TrackableSettingsManager(_settingsManager))
-            {
+        public ActionResult Iis(string jobName, IisModel config) {
+            using (var settingsManager = new TrackableSettingsManager(_settingsManager)) {
                 var currentSettings = settingsManager.ReadSettings<JobsConfigurationSettingsModel>();
                 var jobConfiguration = currentSettings.Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
 
-                if (jobConfiguration == null)
-                {
+                if (jobConfiguration == null) {
                     currentSettings.Configurations.Add(new JobConfigurationModel { JobName = jobName, Iis = config });
                 }
-                else
-                {
+                else {
                     jobConfiguration.Iis = config;
                 }
 
@@ -82,16 +68,13 @@ namespace Candidate.Areas.Dashboard.Controllers
         }
 
         [HttpGet]
-        public ActionResult Delete(string jobName)
-        {
+        public ActionResult Delete(string jobName) {
             return View(new DeleteJobModel { JobName = jobName });
         }
 
         [HttpPost]
-        public ActionResult Delete(DeleteJobModel deleteJob)
-        {
-            using (var settingsManager = new TrackableSettingsManager(_settingsManager))
-            {
+        public ActionResult Delete(DeleteJobModel deleteJob) {
+            using (var settingsManager = new TrackableSettingsManager(_settingsManager)) {
                 var currentSettings = settingsManager.ReadSettings<JobsSettingsModel>();
                 var jobToDelete = currentSettings.Jobs.Where(j => j.Name == deleteJob.JobName).SingleOrDefault();
                 var currentJobs = currentSettings.Jobs.Remove(jobToDelete);

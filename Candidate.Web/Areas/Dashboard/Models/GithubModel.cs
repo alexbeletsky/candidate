@@ -1,9 +1,7 @@
 ﻿using System.ComponentModel;
 
-namespace Candidate.Areas.Dashboard.Models
-{
-    public class GithubModel
-    {
+namespace Candidate.Areas.Dashboard.Models {
+    public class GithubModel {
         [DisplayName("Repository URL")]
         public string Url { get; set; }
 
