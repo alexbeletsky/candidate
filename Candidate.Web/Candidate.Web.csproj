@@ -71,10 +71,6 @@
     <Compile Include="Areas\Dashboard\Controllers\SetupController.cs" />
     <Compile Include="Areas\Dashboard\Models\ConfigurationModel.cs" />
     <Compile Include="Areas\Dashboard\Models\DeleteJobModel.cs" />
-    <Compile Include="Areas\Dashboard\Models\GithubModel.cs" />
-    <Compile Include="Areas\Dashboard\Models\IisModel.cs" />
-    <Compile Include="Areas\Dashboard\Models\JobConfigurationModel.cs" />
-    <Compile Include="Areas\Dashboard\Models\JobsConfigurationSettingsModel.cs" />
     <Compile Include="Areas\Dashboard\Controllers\LogController.cs" />
     <Compile Include="Areas\Dashboard\DashboardAreaRegistration.cs" />
     <Compile Include="Areas\Dashboard\Models\BatchModel.cs" />

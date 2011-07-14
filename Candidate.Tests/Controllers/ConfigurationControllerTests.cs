@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using NUnit.Framework;
-using Candidate.Core.Settings;
-using Moq;
-using Candidate.Areas.Dashboard.Controllers;
 using System.Web.Mvc;
-using SharpTestsEx;
+using Candidate.Areas.Dashboard.Controllers;
 using Candidate.Areas.Dashboard.Models;
+using Candidate.Core.Settings;
+using Candidate.Core.Settings.Model;
+using Moq;
+using NUnit.Framework;
+using SharpTestsEx;
 
 namespace Candidate.Tests.Controllers
 {

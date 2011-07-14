@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Bounce.Framework, Version=0.4.4212.36023, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bounce\Bounce\Bounce.Framework.dll</HintPath>
+    </Reference>
     <Reference Include="KellermanSoftware.Compare-NET-Objects">
       <HintPath>..\packages\Compare-NET-Objects.1.0.2.0\lib\NET20\KellermanSoftware.Compare-NET-Objects.dll</HintPath>
     </Reference>
@@ -69,6 +73,10 @@
     <Compile Include="Controllers\LoginControllerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings\SettingsTests.cs" />
+    <Compile Include="Setup\BounceTargetsBuilderTests.cs" />
+    <Compile Include="Setup\ConfigObjectBuilderTests.cs" />
+    <Compile Include="Setup\SetupManagerTests.cs" />
+    <Compile Include="Setup\SetupTests.cs" />
     <Compile Include="System\ProcessRunnerTests.cs" />
   </ItemGroup>
   <ItemGroup>

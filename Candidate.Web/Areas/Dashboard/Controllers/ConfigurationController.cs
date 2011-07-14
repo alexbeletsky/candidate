@@ -3,6 +3,7 @@
     using System.Web.Mvc;
     using Candidate.Areas.Dashboard.Models;
     using Candidate.Core.Settings;
+    using Candidate.Core.Settings.Model;
 
     public class ConfigurationController : Controller {
         private ISettingsManager _settingsManager;
