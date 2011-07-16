@@ -1,14 +1,13 @@
-﻿@model Candidate.Core.Settings.Model.IisModel
-
-<h2>IIS web site configuration</h2>
-@using (Html.BeginForm())
-{
+﻿@model Candidate.Core.Settings.Model.SolutionModel
+           
+<h2>Solution configuration</h2>
+@using (Html.BeginForm()) {
     @Html.ValidationSummary();
                                    
     <fieldset>
-        <div id="iis-name">
-            @Html.LabelFor(m => m.SiteName)
-            @Html.TextBoxFor(m => m.SiteName)
+        <div id="solution-name">
+            @Html.LabelFor(m => m.Name)
+            @Html.TextBoxFor(m => m.Name)
         </div>
     </fieldset>
 

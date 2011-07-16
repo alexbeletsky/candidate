@@ -60,12 +60,14 @@
     <Compile Include="Settings\Model\IisModel.cs" />
     <Compile Include="Settings\Model\JobConfigurationModel.cs" />
     <Compile Include="Settings\Model\JobsConfigurationSettingsModel.cs" />
+    <Compile Include="Settings\Model\SolutionModel.cs" />
     <Compile Include="Settings\SettingsManager.cs" />
     <Compile Include="Settings\TrackableSettingsManager.cs" />
+    <Compile Include="Setup\ConfigObject.cs" />
     <Compile Include="Setup\ConfigObjectBuilder.cs" />
-    <Compile Include="Setup\DefaultBounceTargetsBuilder.cs" />
+    <Compile Include="Setup\DefaultTargetsObjectBuilder.cs" />
     <Compile Include="Setup\DefaultSetup.cs" />
-    <Compile Include="Setup\IBounceTargetsBuilder.cs" />
+    <Compile Include="Setup\ITargetsObjectBuilder.cs" />
     <Compile Include="Setup\IConfigObjectBuilder.cs" />
     <Compile Include="Setup\ISetup.cs" />
     <Compile Include="Setup\ISetupManager.cs" />

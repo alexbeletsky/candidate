@@ -1,12 +1,17 @@
-﻿namespace Candidate.Areas.Dashboard.Controllers {
-    using System.Web.Mvc;
-    using Candidate.Core.Settings;
+﻿using System.Web.Mvc;
+using Candidate.Core.Settings;
+using Candidate.Core.Setup;
+using Candidate.Core.System;
+
+namespace Candidate.Areas.Dashboard.Controllers {
 
     public class SetupController : Controller {
         private ISettingsManager _settingsManager;
+        private ISetupManager _setupManager;
 
-        public SetupController(ISettingsManager settingsManager) {
+        public SetupController(ISettingsManager settingsManager, ISetupManager setupManager) {
             _settingsManager = settingsManager;
+            _setupManager = setupManager;
         }
 
         [HttpGet]
@@ -17,9 +22,14 @@
 
         [HttpPost]
         public ActionResult StartSetup(string jobName) {
-            
-            
-            return Json(null);
+            var logId = "logId";
+
+            using (var logger = new Logger(logId)) {
+                var setup = _setupManager.CreateSetup(_settingsManager, jobName);
+                setup.Execute(logger);
+            }
+
+            return Json(new { success = true, logId = logId });
         }
 
         //[HttpGet]

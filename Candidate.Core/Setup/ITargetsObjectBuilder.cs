@@ -6,7 +6,7 @@ using Candidate.Core.Settings.Model;
 using Bounce.Framework;
 
 namespace Candidate.Core.Setup {
-    public interface IBounceTargetsBuilder {
+    public interface ITargetsObjectBuilder {
         IEnumerable<Target> BuildTargetsFromConfig(JobConfigurationModel config); 
     }
 }

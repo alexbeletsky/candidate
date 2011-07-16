@@ -73,10 +73,10 @@
     <Compile Include="Controllers\LoginControllerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings\SettingsTests.cs" />
-    <Compile Include="Setup\BounceTargetsBuilderTests.cs" />
+    <Compile Include="Setup\DefaultTargetsObjectBuilderTests.cs" />
     <Compile Include="Setup\ConfigObjectBuilderTests.cs" />
     <Compile Include="Setup\SetupManagerTests.cs" />
-    <Compile Include="Setup\SetupTests.cs" />
+    <Compile Include="Setup\DefaultSetupTests.cs" />
     <Compile Include="System\ProcessRunnerTests.cs" />
   </ItemGroup>
   <ItemGroup>

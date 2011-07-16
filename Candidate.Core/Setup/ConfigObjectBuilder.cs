@@ -8,8 +8,8 @@ using System.Dynamic;
 
 namespace Candidate.Core.Setup {
     public class ConfigObjectBuilder : IConfigObjectBuilder{
-        public dynamic CreateConfigObject(JobConfigurationModel config) {
-            dynamic configObject = new ExpandoObject();
+        public ConfigObject CreateConfigObject(JobConfigurationModel config) {
+            var configObject = new ConfigObject();
 
             if (config != null) {
                 if (config.Github != null) {

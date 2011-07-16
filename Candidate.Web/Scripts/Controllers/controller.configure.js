@@ -10,7 +10,7 @@ $(function () {
         var dialogShown = false;
         $('.dialog').hide();
 
-        $('#scm-configuration, #iis-configuration').live('click', function () {
+        $('.configuration-box').live('click', function () {
 
             var source = $(this).data('source');
             $('.dialog').load(source, function () {
@@ -41,9 +41,6 @@ $(function () {
             if (e.keyCode == 27) {
                 closeDialog();
             }
-
         });
-
     } ();
-
 });

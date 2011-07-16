@@ -6,6 +6,6 @@ using Candidate.Core.Settings.Model;
 
 namespace Candidate.Core.Setup {
     public interface IConfigObjectBuilder {
-        dynamic CreateConfigObject(JobConfigurationModel config);
+        ConfigObject CreateConfigObject(JobConfigurationModel config);
     }
 }
