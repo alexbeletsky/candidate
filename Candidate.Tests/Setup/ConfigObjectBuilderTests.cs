@@ -10,15 +10,13 @@ namespace Candidate.Tests.Setup {
     [TestFixture]
     public class ConfigObjectBuilderTests {
         [Test]
-        public void CreateConfigObject_ForNull_CreateEmptyObject() {
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void CreateConfigObject_ForNull_Exception() {
             // arrange
             var configObjectBuilder = new ConfigObjectBuilder();
 
             // act
             var configObject = configObjectBuilder.CreateConfigObject(null);
-
-            // assert
-            Assert.That(configObject, Is.Not.Null);
         }
 
         [Test]
@@ -32,6 +30,21 @@ namespace Candidate.Tests.Setup {
 
             // assert
             Assert.That(configObject.Git, Is.Not.Null);
+            Assert.That(configObject.Git.Repository.Value, Is.EqualTo("git://myhost/repo.git"));
+        }
+
+        [Test]
+        public void CreateConfigObject_ForSolution_CreateObjectWithSolution() {
+            // arrange
+            var configObjectBuilder = new ConfigObjectBuilder();
+            var config = new JobConfigurationModel { Github = new GithubModel { Url = "git://myhost/repo.git", Branch = "master" }, Solution = new SolutionModel { Name = "Test.sln" } };
+
+            // act
+            var configObject = configObjectBuilder.CreateConfigObject(config);
+
+            // assert
+            Assert.That(configObject.Solution, Is.Not.Null);
+            Assert.That(configObject.Solution.SolutionPath.Value, Is.EqualTo("Test.sln"));
         }
     }
 }

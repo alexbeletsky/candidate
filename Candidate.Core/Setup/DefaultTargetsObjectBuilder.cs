@@ -18,7 +18,7 @@ namespace Candidate.Core.Setup {
         public IEnumerable<Target> BuildTargetsFromConfig(JobConfigurationModel config) {
             var configObject = _configObjectBuilder.CreateConfigObject(config);
 
-            return _targetsRetriever.GetTargetsFromObject(config).ToTargets();
+            return _targetsRetriever.GetTargetsFromObject(configObject).ToTargets();
         }
     }
 }

@@ -75,6 +75,8 @@
     <Compile Include="System\ILogger.cs" />
     <Compile Include="System\IProcessRunner.cs" />
     <Compile Include="System\ProcessRunner.cs" />
+    <Compile Include="Utils\DirectoryProvider.cs" />
+    <Compile Include="Utils\IDirectoryProvider.cs" />
     <Compile Include="Utils\LocalAppDataFolder.cs" />
   </ItemGroup>
   <ItemGroup />
