@@ -26,9 +26,8 @@ namespace Candidate.Tests.Integration {
 
         [TearDown]
         public void Teardown() {
-            DeleteTestSolution();
+            DeleteTestFolder();
         }
-
 
         [Test]
         public void SetupWithOutGitHub_ShouldBuild() {
@@ -47,11 +46,10 @@ namespace Candidate.Tests.Integration {
             var targetsBuilder = new TargetsBuilder();
 
             var bounce = new BounceFactory().GetBounce();
-            var logger = new DummyLogger();
 
             // act
             var defaultSetup = new DefaultSetup(targetsObjectBuilder, targetsBuilder, bounce, config);
-            defaultSetup.Execute(logger);
+            defaultSetup.Execute();
 
             // assert
             Assert.That(Directory.Exists(DirectoryProvider.Source + "TestSolution\\Test\\bin"));
@@ -73,23 +71,28 @@ namespace Candidate.Tests.Integration {
 
             var targetsBuilder = new TargetsBuilder();
 
-            var bounce = new BounceFactory().GetBounce(new FileTaskLogFactory(), new LogOptions());
-            var logger = new DummyLogger();
-
             // act
-            var defaultSetup = new DefaultSetup(targetsObjectBuilder, targetsBuilder, bounce, config);
-            defaultSetup.Execute(logger);
+            var loggerFactory = new LoggerFactory();
+            using (var logger = loggerFactory.CreateLogger(DirectoryProvider.Logs)) {
+                var logOptions = new FileLogOptionsFactory().CreateLogOptions(logger, LogLevel.Debug);
+                var bounce = new BounceFactory().GetBounce(logOptions);
 
+                var defaultSetup = new DefaultSetup(targetsObjectBuilder, targetsBuilder, bounce, config);
+                defaultSetup.Execute();
+
+                // assert
+                Assert.That(File.Exists(logger.Id), Is.True);
+            }
         }
 
         private void UnzipTestSolution() {
-            DeleteTestSolution();
+            DeleteTestFolder();
             new FastZip().ExtractZip("TestSolution.zip", DirectoryProvider.Source, null);
         }
 
-        private void DeleteTestSolution() {
-            if (Directory.Exists(DirectoryProvider.Source)) {
-                Directory.Delete(DirectoryProvider.Source, true);
+        private void DeleteTestFolder() {
+            if (Directory.Exists(DirectoryProvider.Job)) {
+                Directory.Delete(DirectoryProvider.Job, true);
             }
         }
 

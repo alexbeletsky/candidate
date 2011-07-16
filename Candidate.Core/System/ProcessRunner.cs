@@ -2,43 +2,10 @@
 using System.Diagnostics;
 using System.IO;
 using Candidate.Core.Commands;
+using Candidate.Core.Log;
 
 namespace Candidate.Core.System
 {
-    public class Logger : ILogger, IDisposable
-    {
-        private StreamWriter _writter;
-        private FileStream _log;
-
-        public Logger(string pathToLog)
-        {
-            var folder = Path.GetDirectoryName(pathToLog);
-
-            if (!Directory.Exists(folder))
-            {
-                Directory.CreateDirectory(folder);
-            }
-
-            if (File.Exists(pathToLog))
-            {
-                File.Delete(pathToLog);
-            }
-
-            _log = new FileStream(pathToLog, FileMode.OpenOrCreate);
-            _writter = new StreamWriter(_log);
-        }
-
-        public void Dispose()
-        {
-            _writter.Close();
-        }
-
-        public void Log(string line)
-        {
-            _writter.WriteLine(line);
-        }
-    }
-
     public class ProcessRunner : IProcessRunner
     {
         private ILogger _logger;

@@ -24,10 +24,10 @@ namespace Candidate.Areas.Dashboard.Controllers {
         public ActionResult StartSetup(string jobName) {
             var logId = "logId";
 
-            using (var logger = new Logger(logId)) {
-                var setup = _setupManager.CreateSetup(_settingsManager, jobName);
-                setup.Execute(logger);
-            }
+            //using (var logger = new Logger(logId)) {
+            //    var setup = _setupManager.CreateSetup(_settingsManager, jobName);
+            //    setup.Execute(logger);
+            //}
 
             return Json(new { success = true, logId = logId });
         }

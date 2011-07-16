@@ -19,7 +19,7 @@ namespace Candidate.Core.Setup {
             _config = config;
         }
 
-        public void Execute(System.ILogger logger) {
+        public void Execute() {
             var targets = _targetsObjectBuilder.BuildTargetsFromConfig(_config);
             
             // TODO: inject command

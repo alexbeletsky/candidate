@@ -30,13 +30,12 @@ namespace Candidate.Tests.Setup {
             var targetsObjectBuilderMock = new Mock<ITargetsObjectBuilder>();
             var targetsBuilderMock = new Mock<ITargetsBuilder>();
             var bounceMock = new Mock<ITargetBuilderBounce>();
-            var loggerMock = new Mock<ILogger>();
             var config = new JobConfigurationModel();
             
             var setup = new DefaultSetup(targetsObjectBuilderMock.Object, targetsBuilderMock.Object, bounceMock.Object, config);
 
             // act 
-            setup.Execute(loggerMock.Object);
+            setup.Execute();
 
             // assert
             targetsObjectBuilderMock.Verify(_ => _.BuildTargetsFromConfig(config));
@@ -48,7 +47,6 @@ namespace Candidate.Tests.Setup {
             var targetsObjectBuilderMock = new Mock<ITargetsObjectBuilder>();
             var targetsBuilderMock = new Mock<ITargetsBuilder>();
             var bounceMock = new Mock<ITargetBuilderBounce>();
-            var loggerMock = new Mock<ILogger>();
             var config = new JobConfigurationModel();
 
             var targetsList = new List<Target>();
@@ -57,7 +55,7 @@ namespace Candidate.Tests.Setup {
             var setup = new DefaultSetup(targetsObjectBuilderMock.Object, targetsBuilderMock.Object, bounceMock.Object, config);
 
             // act 
-            setup.Execute(loggerMock.Object);
+            setup.Execute();
 
             // assert
             targetsBuilderMock.Verify(_ => _.BuildTargets(bounceMock.Object, targetsList, It.IsAny<IBounceCommand>()));
