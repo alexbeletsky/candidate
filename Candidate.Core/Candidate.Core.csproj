@@ -54,6 +54,8 @@
     <Compile Include="Commands\Git\CloneCommand.cs" />
     <Compile Include="Commands\Git\PullCommand.cs" />
     <Compile Include="Commands\ICommand.cs" />
+    <Compile Include="Log\FileLog.cs" />
+    <Compile Include="Log\FileTaskLogFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings\ISettingsManager.cs" />
     <Compile Include="Settings\Model\GithubModel.cs" />

@@ -12,6 +12,7 @@ namespace Candidate.Core.Utils {
         }
 
         public DirectoryProvider(string jobName, string root) {
+            JobName = jobName;
             Root = root;
         }
 
@@ -27,15 +28,14 @@ namespace Candidate.Core.Utils {
         }
 
         public string Source {
-            get { return Job + "\\" + "src"; }
+            get { return Job + "\\" + "src" + "\\"; }
         }
 
 
         public string Logs {
-            get { return Job + "\\" + "logs"; }
+            get { return Job + "\\" + "logs" + "\\"; }
         }
 
         public string JobName { get; set; }
-
     }
 }
