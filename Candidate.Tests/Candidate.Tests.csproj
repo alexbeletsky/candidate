@@ -75,6 +75,7 @@
     <Compile Include="Controllers\ConfigurationControllerTests.cs" />
     <Compile Include="Controllers\DashboardControllerTests.cs" />
     <Compile Include="Controllers\LoginControllerTests.cs" />
+    <Compile Include="Integration\DummyLogger.cs" />
     <Compile Include="Integration\RunSetupTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings\SettingsTests.cs" />

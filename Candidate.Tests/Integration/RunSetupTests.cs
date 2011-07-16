@@ -45,11 +45,11 @@ namespace Candidate.Tests.Integration {
 
             var targetsBuilder = new TargetsBuilder();
 
-            var bounce = new BounceFactory().GetBounce();
+            var bounceFactory = new BounceFactory();
 
             // act
-            var defaultSetup = new DefaultSetup(targetsObjectBuilder, targetsBuilder, bounce, config);
-            defaultSetup.Execute();
+            var defaultSetup = new DefaultSetup(targetsObjectBuilder, targetsBuilder, bounceFactory);
+            defaultSetup.RunForConfig(new DummyLogger(), config);
 
             // assert
             Assert.That(Directory.Exists(DirectoryProvider.Source + "TestSolution\\Test\\bin"));
@@ -70,19 +70,21 @@ namespace Candidate.Tests.Integration {
             var targetsObjectBuilder = new DefaultTargetsObjectBuilder(targetsRetriever, configObjectBuilder);
 
             var targetsBuilder = new TargetsBuilder();
+            var bounceFactory = new BounceFactory();
 
             // act
             var loggerFactory = new LoggerFactory();
+            var loggerId = "";
             using (var logger = loggerFactory.CreateLogger(DirectoryProvider.Logs)) {
-                var logOptions = new FileLogOptionsFactory().CreateLogOptions(logger, LogLevel.Debug);
-                var bounce = new BounceFactory().GetBounce(logOptions);
+                loggerId = logger.Id;
 
-                var defaultSetup = new DefaultSetup(targetsObjectBuilder, targetsBuilder, bounce, config);
-                defaultSetup.Execute();
-
-                // assert
-                Assert.That(File.Exists(logger.Id), Is.True);
+                var defaultSetup = new DefaultSetup(targetsObjectBuilder, targetsBuilder, bounceFactory);
+                defaultSetup.RunForConfig(logger, config);
             }
+
+            // assert
+            Assert.That(File.Exists(loggerId), Is.True);
+            Assert.That(File.ReadAllText(loggerId), Is.Not.Empty);
         }
 
         private void UnzipTestSolution() {

@@ -75,8 +75,8 @@
     <Compile Include="Setup\ITargetsObjectBuilder.cs" />
     <Compile Include="Setup\IConfigObjectBuilder.cs" />
     <Compile Include="Setup\ISetup.cs" />
-    <Compile Include="Setup\ISetupManager.cs" />
-    <Compile Include="Setup\SetupManager.cs" />
+    <Compile Include="Setup\ISetupFactory.cs" />
+    <Compile Include="Setup\SetupFactory.cs" />
     <Compile Include="Log\ILogger.cs" />
     <Compile Include="System\IProcessRunner.cs" />
     <Compile Include="System\ProcessRunner.cs" />

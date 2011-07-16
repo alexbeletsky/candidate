@@ -1,17 +1,26 @@
 ﻿using System.Web.Mvc;
+using System.Linq;
 using Candidate.Core.Settings;
 using Candidate.Core.Setup;
 using Candidate.Core.System;
+using Candidate.Core.Settings.Model;
+using System;
+using Candidate.Core.Log;
+using Candidate.Core.Utils;
 
 namespace Candidate.Areas.Dashboard.Controllers {
 
     public class SetupController : Controller {
         private ISettingsManager _settingsManager;
-        private ISetupManager _setupManager;
+        private ISetupFactory _setupFactory;
+        private ILoggerFactory _loggerFactory;
+        private IDirectoryProvider _directoryProvider;
 
-        public SetupController(ISettingsManager settingsManager, ISetupManager setupManager) {
+        public SetupController(ISettingsManager settingsManager, ISetupFactory setupFactory, ILoggerFactory loggerFactory, IDirectoryProvider directoryProvider) {
             _settingsManager = settingsManager;
-            _setupManager = setupManager;
+            _setupFactory = setupFactory;
+            _loggerFactory = loggerFactory;
+            _directoryProvider = directoryProvider;
         }
 
         [HttpGet]
@@ -22,14 +31,18 @@ namespace Candidate.Areas.Dashboard.Controllers {
 
         [HttpPost]
         public ActionResult StartSetup(string jobName) {
-            var logId = "logId";
 
-            //using (var logger = new Logger(logId)) {
-            //    var setup = _setupManager.CreateSetup(_settingsManager, jobName);
-            //    setup.Execute(logger);
-            //}
+            var currentSettings = _settingsManager.ReadSettings<JobsConfigurationSettingsModel>().Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
+            if (currentSettings == null) {
+                throw new Exception(string.Format("Can't create setup for non-existing job: {0}", jobName));
+            }
 
-            return Json(new { success = true, logId = logId });
+            using (var logger = _loggerFactory.CreateLogger(_directoryProvider.Logs)) {
+                var setup = _setupFactory.CreateSetup();
+                setup.RunForConfig(logger, currentSettings);
+
+                return Json(new { success = true, logId = logger.Id });
+            }
         }
 
         //[HttpGet]

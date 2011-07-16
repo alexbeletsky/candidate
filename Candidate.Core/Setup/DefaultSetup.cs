@@ -4,28 +4,29 @@ using System.Linq;
 using System.Text;
 using Candidate.Core.Settings.Model;
 using Bounce.Framework;
+using Candidate.Core.Log;
 
 namespace Candidate.Core.Setup {
     public class DefaultSetup : ISetup {
         private ITargetsObjectBuilder _targetsObjectBuilder;
         private ITargetsBuilder _targetsBuilder;
-        private ITargetBuilderBounce _bounce;
-        private JobConfigurationModel _config;
+        private IBounceFactory _bounceFactory;
+        private ILogOptionsFactory _logOptionsFactory;
 
-        public DefaultSetup(ITargetsObjectBuilder targetsObjectBuilder, ITargetsBuilder targetsBuilder, ITargetBuilderBounce bounce, JobConfigurationModel config) {
+        public DefaultSetup(ITargetsObjectBuilder targetsObjectBuilder, ITargetsBuilder targetsBuilder, IBounceFactory bounceFactory) {
             _targetsObjectBuilder = targetsObjectBuilder;
             _targetsBuilder = targetsBuilder;
-            _bounce = bounce;
-            _config = config;
+            _bounceFactory = bounceFactory;
+            _logOptionsFactory = new FileLogOptionsFactory();
         }
 
-        public void Execute() {
-            var targets = _targetsObjectBuilder.BuildTargetsFromConfig(_config);
-            
-            // TODO: inject command
+        public void RunForConfig(ILogger logger, JobConfigurationModel config) {
+            var targets = _targetsObjectBuilder.BuildTargetsFromConfig(config);
+            var logOptions = _logOptionsFactory.CreateLogOptions(logger, LogLevel.Debug);
+            var bounce = _bounceFactory.GetBounce(logOptions);
             var command = BounceCommandFactory.GetCommandByName("build");
 
-            _targetsBuilder.BuildTargets(_bounce, targets, command);
+            _targetsBuilder.BuildTargets(bounce, targets, command);
         }
     }
 }
