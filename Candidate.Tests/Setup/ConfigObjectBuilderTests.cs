@@ -153,6 +153,20 @@ namespace Candidate.Tests.Setup {
             Assert.That(configObject.WebSite.Port.Value, Is.EqualTo(8081));
         }
 
+        [Test]
+        public void CreateConfigObject_ForIisDefinedAndPortSet_SetPort() {
+            // arrange
+            var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
+            var config = new JobConfigurationModel { Solution = new SolutionModel { Name = "TestSolution\\Test.sln", WebProject = "Test" }, Iis = new IisModel { SiteName = "TestSite", Port = 9000 } };
+
+            // act
+            var configObject = configObjectBuilder.CreateConfigObject(config);
+
+            // assert
+            Assert.That(configObject.WebSite, Is.Not.Null);
+            Assert.That(configObject.WebSite.Port.Value, Is.EqualTo(9000));
+        }
+
         private void UnzipTestSolution() {
             DeleteTestFolder();
             new FastZip().ExtractZip("TestData\\TestSolution.zip", DirectoryProvider.Source, null);

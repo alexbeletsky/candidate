@@ -35,11 +35,15 @@ namespace Candidate.Core.Setup {
                 configObject.WebSite = new Iis7WebSite {
                     Directory = GetSiteDirectory(config, configObject),
                     Name = config.Iis.SiteName,
-                    Port = 8081
+                    Port = GetSitePort(config, configObject)
                 };
             }
 
             return configObject;
+        }
+
+        private Task<int> GetSitePort(JobConfigurationModel config, ConfigObject configObject) {
+            return config.Iis.Port != 0 ? config.Iis.Port : 8081; 
         }
 
         private Task<string> GetSiteDirectory(JobConfigurationModel config, ConfigObject configObject) {
