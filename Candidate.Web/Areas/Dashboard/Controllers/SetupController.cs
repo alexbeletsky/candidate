@@ -31,17 +31,19 @@ namespace Candidate.Areas.Dashboard.Controllers {
         [HttpPost]
         public ActionResult StartSetup(string jobName) {
 
-            var currentSettings = _settingsManager.ReadSettings<JobsConfigurationSettingsModel>().Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
-            if (currentSettings == null) {
-                throw new Exception(string.Format("Can't create setup for non-existing job: {0}", jobName));
-            }
+            //var currentSettings = _settingsManager.ReadSettings<JobsConfigurationSettingsModel>().Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
+            //if (currentSettings == null) {
+            //    throw new Exception(string.Format("Can't create setup for non-existing job: {0}", jobName));
+            //}
 
-            using (var logger = _loggerFactory.CreateLogger(_directoryProvider.Logs)) {
-                var setup = _setupFactory.CreateSetup();
-                setup.RunForConfig(logger, currentSettings);
+            //using (var logger = _loggerFactory.CreateLogger(_directoryProvider.Logs)) {
+            //    var setup = _setupFactory.CreateSetup();
+            //    setup.RunForConfig(logger, currentSettings);
 
-                return Json(new { success = true, logId = logger.Id });
-            }
+            //    return Json(new { success = true, logId = logger.Id });
+            //}
+
+            throw new NotImplementedException();
         }
 
         //[HttpGet]

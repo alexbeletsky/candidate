@@ -88,6 +88,7 @@
     <Compile Include="Setup\SetupManagerTests.cs" />
     <Compile Include="Setup\DefaultSetupTests.cs" />
     <Compile Include="System\ProcessRunnerTests.cs" />
+    <Compile Include="Utils\DirectoryProviderTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

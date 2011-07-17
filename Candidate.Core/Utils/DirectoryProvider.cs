@@ -1,16 +1,37 @@
 ﻿
+using System;
 namespace Candidate.Core.Utils {
     public class DirectoryProvider : IDirectoryProvider {
+        private string _jobName;
+
+        public DirectoryProvider() {
+            Root = LocalAppDataFolder.Folder;
+        }
 
         public DirectoryProvider(string jobName) {
-            JobName = jobName;
+            _jobName = jobName;
             Root = LocalAppDataFolder.Folder;
         }
 
         public DirectoryProvider(string jobName, string root) {
-            JobName = jobName;
+            _jobName = jobName;
             Root = root;
         }
+
+        public string JobName { 
+            get {
+                if (_jobName == null) {
+                    throw new Exception("Job name has not been set");
+                }
+
+                return _jobName;
+            }
+
+            set {
+                _jobName = value;
+            }
+        }
+
 
         public string Root {
             get;
@@ -40,7 +61,5 @@ namespace Candidate.Core.Utils {
                 return Root + "\\" + "settings" + "\\";
             }
         }
-
-        public string JobName { get; set; }
     }
 }

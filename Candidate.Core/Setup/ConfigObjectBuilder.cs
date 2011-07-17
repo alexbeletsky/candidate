@@ -18,7 +18,7 @@ namespace Candidate.Core.Setup {
 
             var configObject = new ConfigObject();
 
-            if (config.Github != null) {
+            if (config.Github != null && !string.IsNullOrEmpty(config.Github.Url)) {
                 configObject.Git = new GitCheckout {
                     Repository = config.Github.Url,
                     Directory = _directoryProvider.Source

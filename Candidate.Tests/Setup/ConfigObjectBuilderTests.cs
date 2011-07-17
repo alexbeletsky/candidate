@@ -61,6 +61,19 @@ namespace Candidate.Tests.Setup {
         }
 
         [Test]
+        public void CreateConfigObject_ForGitWithOutUrl_ConfigObjectNotCreated() {
+            // arrange
+            var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
+            var config = new JobConfigurationModel { Github = new GithubModel { Branch = "master" } };
+
+            // act
+            var configObject = configObjectBuilder.CreateConfigObject(config);
+
+            // assert
+            Assert.That(configObject.Git, Is.Null);
+        }
+
+        [Test]
         public void CreateConfigObject_ForSolutionIfGitIsDefined_CreateObjectWithSolution() {
             // arrange
             var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
