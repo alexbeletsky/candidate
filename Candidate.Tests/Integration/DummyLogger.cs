@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Candidate.Core.Log;
+﻿using Candidate.Core.Log;
 
 namespace Candidate.Tests.Integration {
     public class DummyLogger : ILogger {

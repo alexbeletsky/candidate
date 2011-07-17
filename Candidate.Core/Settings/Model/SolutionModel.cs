@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 
 namespace Candidate.Core.Settings.Model {
     public class SolutionModel {
-        [DisplayName("Solution Name")]
+        [DisplayName("Solution name")]
         public string Name { get; set; }
+        [DisplayName("Web project")]
+        public string WebProject { get; set; }
     }
 }

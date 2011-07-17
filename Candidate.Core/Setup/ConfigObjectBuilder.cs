@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Candidate.Core.Settings.Model;
 using Bounce.Framework;
-using System.Dynamic;
+using Candidate.Core.Settings.Model;
 using Candidate.Core.Utils;
 
 namespace Candidate.Core.Setup {
@@ -35,7 +31,27 @@ namespace Candidate.Core.Setup {
                 };
             }
 
+            if (config.Iis != null) {
+                configObject.WebSite = new Iis7WebSite {
+                    Directory = GetSiteDirectory(config, configObject),
+                    Name = config.Iis.SiteName,
+                    Port = 8081
+                };
+            }
+
             return configObject;
+        }
+
+        private Task<string> GetSiteDirectory(JobConfigurationModel config, ConfigObject configObject) {
+            if (config.Solution == null || configObject.Solution == null) {
+                throw new Exception("Couldn't create configuration for IIS without solution file");
+            }
+
+            if (config.Solution.WebProject == null) {
+                throw new Exception("Couldn't create configuration for IIS without web project name");
+            }
+                        
+            return configObject.Solution.Projects[config.Solution.WebProject].ProjectDirectory;
         }
 
         private Task<string> GetSolutionPath(JobConfigurationModel config, ConfigObject configObject) {

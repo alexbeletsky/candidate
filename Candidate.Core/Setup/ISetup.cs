@@ -1,7 +1,6 @@
 ﻿
-using Candidate.Core.System;
-using Candidate.Core.Settings.Model;
 using Candidate.Core.Log;
+using Candidate.Core.Settings.Model;
 
 namespace Candidate.Core.Setup {
     public interface ISetup {

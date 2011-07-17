@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using Candidate.Core.Utils;
+﻿using System.IO;
 
 namespace Candidate.Core.Log {
     // TODO: refactor

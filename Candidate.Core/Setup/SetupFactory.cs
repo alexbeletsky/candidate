@@ -1,8 +1,4 @@
-﻿using System;
-using System.Linq;
-using Candidate.Core.Settings;
-using Candidate.Core.Settings.Model;
-using Bounce.Framework;
+﻿using Bounce.Framework;
 
 namespace Candidate.Core.Setup {
     public class SetupFactory : ISetupFactory {

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Diagnostics;
-using System.IO;
+﻿using System.Diagnostics;
 using Candidate.Core.Commands;
 using Candidate.Core.Log;
 

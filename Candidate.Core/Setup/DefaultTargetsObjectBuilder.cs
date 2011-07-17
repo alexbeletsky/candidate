@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Candidate.Core.Settings.Model;
+﻿using System.Collections.Generic;
 using Bounce.Framework;
+using Candidate.Core.Settings.Model;
 
 namespace Candidate.Core.Setup {
     public class DefaultTargetsObjectBuilder : ITargetsObjectBuilder {

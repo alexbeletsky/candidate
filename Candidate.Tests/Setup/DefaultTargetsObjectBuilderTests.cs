@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NUnit.Framework;
+﻿using System.Collections.Generic;
+using Bounce.Framework;
 using Candidate.Core.Settings.Model;
 using Candidate.Core.Setup;
 using Moq;
-using Bounce.Framework;
+using NUnit.Framework;
 
 namespace Candidate.Tests.Setup {
     [TestFixture]

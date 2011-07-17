@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Candidate.Core.Settings.Model;
-using Bounce.Framework;
+﻿using Bounce.Framework;
 using Candidate.Core.Log;
+using Candidate.Core.Settings.Model;
 
 namespace Candidate.Core.Setup {
     public class DefaultSetup : ISetup {

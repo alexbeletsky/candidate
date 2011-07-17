@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using Candidate.Core.Settings;
+using Candidate.Core.Utils;
 using KellermanSoftware.CompareNetObjects;
 using NUnit.Framework;
-using System.IO;
-using Candidate.Core.Utils;
 
 namespace Candidate.Tests.Settings {
     [TestFixture]
