@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 
 namespace Candidate.Core.Utils {
-    public class DirectoryProvider : IDirectoryProvider{
+    public class DirectoryProvider : IDirectoryProvider {
 
         public DirectoryProvider(string jobName) {
             JobName = jobName;
@@ -28,12 +28,21 @@ namespace Candidate.Core.Utils {
         }
 
         public string Source {
-            get { return Job + "\\" + "src" + "\\"; }
+            get {
+                return Job + "\\" + "src" + "\\";
+            }
         }
 
-
         public string Logs {
-            get { return Job + "\\" + "logs" + "\\"; }
+            get {
+                return Job + "\\" + "logs" + "\\";
+            }
+        }
+
+        public string Settings {
+            get {
+                return Root + "\\" + "settings" + "\\";
+            }
         }
 
         public string JobName { get; set; }

@@ -9,5 +9,6 @@ namespace Candidate.Core.Utils {
         string Job { get; }
         string Source { get; }
         string Logs { get; }
+        string Settings { get; }
     }
 }
