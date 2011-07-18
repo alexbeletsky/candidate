@@ -38,6 +38,10 @@
     <PackageAsSingleFile>true</PackageAsSingleFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Bounce.Framework, Version=0.4.4214.35000, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bounce\Bounce\Bounce.Framework.dll</HintPath>
+    </Reference>
     <Reference Include="Ninject">
       <HintPath>..\lib\Ninject\Ninject.dll</HintPath>
     </Reference>
@@ -84,6 +88,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrustructure\ControllerFactory.cs" />
+    <Compile Include="Infrustructure\Error\HandleJsonError.cs" />
     <Compile Include="Infrustructure\Services.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -78,6 +78,7 @@
     <Compile Include="Setup\ISetupFactory.cs" />
     <Compile Include="Setup\SetupFactory.cs" />
     <Compile Include="Log\ILogger.cs" />
+    <Compile Include="Setup\SetupResult.cs" />
     <Compile Include="System\IProcessRunner.cs" />
     <Compile Include="System\ProcessRunner.cs" />
     <Compile Include="Utils\DirectoryProvider.cs" />

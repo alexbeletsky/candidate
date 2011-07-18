@@ -244,6 +244,11 @@ footer
     font-size: 26px;
 }
 
+span.error 
+{
+    color: #ce1b30;
+}
+
 .preloader
 {
     display: block;

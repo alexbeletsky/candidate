@@ -18,21 +18,6 @@ namespace Candidate.Core.Utils {
             Root = root;
         }
 
-        public string JobName { 
-            get {
-                if (_jobName == null) {
-                    throw new Exception("Job name has not been set");
-                }
-
-                return _jobName;
-            }
-
-            set {
-                _jobName = value;
-            }
-        }
-
-
         public string Root {
             get;
             private set;
@@ -59,6 +44,20 @@ namespace Candidate.Core.Utils {
         public string Settings {
             get {
                 return Root + "\\" + "settings" + "\\";
+            }
+        }
+
+        public string JobName {
+            get {
+                if (_jobName == null) {
+                    throw new Exception("Job name has not been set");
+                }
+
+                return _jobName;
+            }
+
+            set {
+                _jobName = value;
             }
         }
     }

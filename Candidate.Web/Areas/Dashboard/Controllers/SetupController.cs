@@ -6,6 +6,7 @@ using Candidate.Core.Settings;
 using Candidate.Core.Settings.Model;
 using Candidate.Core.Setup;
 using Candidate.Core.Utils;
+using Candidate.Infrustructure.Error;
 
 namespace Candidate.Areas.Dashboard.Controllers {
 
@@ -29,21 +30,22 @@ namespace Candidate.Areas.Dashboard.Controllers {
         }
 
         [HttpPost]
+        [HandleJsonError]
         public ActionResult StartSetup(string jobName) {
 
-            //var currentSettings = _settingsManager.ReadSettings<JobsConfigurationSettingsModel>().Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
-            //if (currentSettings == null) {
-            //    throw new Exception(string.Format("Can't create setup for non-existing job: {0}", jobName));
-            //}
+            var currentSettings = _settingsManager.ReadSettings<JobsConfigurationSettingsModel>().Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
+            if (currentSettings == null) {
+                throw new Exception(string.Format("Can't create setup for non-existing job: {0}", jobName));
+            }
 
-            //using (var logger = _loggerFactory.CreateLogger(_directoryProvider.Logs)) {
-            //    var setup = _setupFactory.CreateSetup();
-            //    setup.RunForConfig(logger, currentSettings);
+            _directoryProvider.JobName = jobName;
 
-            //    return Json(new { success = true, logId = logger.Id });
-            //}
+            using (var logger = _loggerFactory.CreateLogger(_directoryProvider.Logs)) {
+                var setup = _setupFactory.CreateSetup();
+                setup.RunForConfig(logger, currentSettings);
 
-            throw new NotImplementedException();
+                return Json(new { success = true, logId = logger.Id });
+            }
         }
 
         //[HttpGet]

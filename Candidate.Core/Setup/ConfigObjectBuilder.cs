@@ -54,8 +54,10 @@ namespace Candidate.Core.Setup {
             if (config.Solution.WebProject == null) {
                 throw new Exception("Couldn't create configuration for IIS without web project name");
             }
-                        
-            return configObject.Solution.Projects[config.Solution.WebProject].ProjectDirectory;
+
+            return new Copy() { 
+                FromPath = configObject.Solution.Projects[config.Solution.WebProject].ProjectDirectory, 
+                ToPath = @"c:\sites\" + config.Iis.SiteName }.ToPath;
         }
 
         private Task<string> GetSolutionPath(JobConfigurationModel config, ConfigObject configObject) {
