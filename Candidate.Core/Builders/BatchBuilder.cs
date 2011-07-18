@@ -1,5 +1,4 @@
-﻿using Candidate.Core.System;
-
+﻿
 namespace Candidate.Core.Builders
 {
     //public class BatchBuilder : IBuilder

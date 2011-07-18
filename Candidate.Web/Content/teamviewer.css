@@ -244,6 +244,11 @@ footer
     font-size: 26px;
 }
 
+span.error 
+{
+    color: #ce1b30;
+}
+
 .preloader
 {
     display: block;
@@ -261,7 +266,7 @@ footer
 .configuration-line
 {
     margin: 0 auto;
-    width: 500px;    
+    width: 760px;
 }
 
 .configuration-box 

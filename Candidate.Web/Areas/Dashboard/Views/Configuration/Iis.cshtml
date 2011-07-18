@@ -1,4 +1,4 @@
-﻿@model Candidate.Areas.Dashboard.Models.IisModel
+﻿@model Candidate.Core.Settings.Model.IisModel
 
 <h2>IIS web site configuration</h2>
 @using (Html.BeginForm())
@@ -10,10 +10,13 @@
             @Html.LabelFor(m => m.SiteName)
             @Html.TextBoxFor(m => m.SiteName)
         </div>
+        <div id="port-number">
+            @Html.LabelFor(m => m.Port)
+            @Html.TextBoxFor(m => m.Port)
+        </div>
     </fieldset>
 
     <div class="clear"></div>    
     <button type="submit" class="minimal">Save config</button>
     <button type="reset" class="minimal">Reset</button>    
-    
 }

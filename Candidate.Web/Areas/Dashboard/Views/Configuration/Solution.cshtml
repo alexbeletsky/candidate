@@ -1,0 +1,21 @@
+﻿@model Candidate.Core.Settings.Model.SolutionModel
+           
+<h2>Solution configuration</h2>
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary();
+                                   
+    <fieldset>
+        <div id="solution-name">
+            @Html.LabelFor(m => m.Name)
+            @Html.TextBoxFor(m => m.Name)
+        </div>
+        <div id="webproject-name">
+            @Html.LabelFor(m => m.WebProject)
+            @Html.TextBoxFor(m => m.WebProject)
+        </div>
+    </fieldset>
+
+    <div class="clear"></div>    
+    <button type="submit" class="minimal">Save config</button>
+    <button type="reset" class="minimal">Reset</button>    
+}

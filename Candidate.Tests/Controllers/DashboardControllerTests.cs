@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
+using System.Web.Mvc;
+using Candidate.Areas.Dashboard.Controllers;
+using Candidate.Areas.Dashboard.Models;
+using Candidate.Core.Settings;
+using Moq;
 using NUnit.Framework;
 using SharpTestsEx;
-using Candidate.Areas.Dashboard.Controllers;
-using Moq;
-using Candidate.Core.Settings;
-using System.Web.Mvc;
-using Candidate.Areas.Dashboard.Models;
 namespace Candidate.Tests.Controllers
 {
     [TestFixture]

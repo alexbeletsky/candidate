@@ -1,34 +1,37 @@
-﻿@model Candidate.Areas.Dashboard.Models.JobConfigurationModel
-
+﻿@model Candidate.Core.Settings.Model.JobConfigurationModel
 @{
     ViewBag.Title = "Configure";
     Layout = "~/Areas/Dashboard/Views/Shared/_Layout.cshtml";    
 }
-
 <div id="internal-nagivation">
-    <h2>Build > Jobs > Configure</h2>
-    <div class="right">@Html.ActionLink("Back to dashboard", "Index", new { area = "Dashboard", controller = "Dashboard" } )</div>
-    <div class="clear"></div>
+    <h2>
+        Build > Jobs > Configure</h2>
+    <div class="right">@Html.ActionLink("Back to dashboard", "Index", new { area = "Dashboard", controller = "Dashboard" })</div>
+    <div class="clear">
+    </div>
 </div>
-
 <div class="grey-container">
-
-<div class="configuration">
-
-    <div class="configuration-line">
-        <div id="scm-configuration" class="configuration-box" data-source="@Url.Action("Github", new { area = "Dashboard", controller = "Configuration", jobName = ViewBag.JobName })">
-            <p>GITHUB</p>
-        </div>
-
-        <div id="iis-configuration" class="configuration-box" data-source="@Url.Action("Iis", new { area = "Dashboard", controller = "Configuration", jobName = ViewBag.JobName })">
-            <p>IIS</p>
+    <div class="configuration">
+        <div class="configuration-line">
+            <div id="scm-configuration" class="configuration-box" data-source="@Url.Action("Github", new { area = "Dashboard", controller = "Configuration", jobName = ViewBag.JobName })">
+                <p>
+                    GITHUB</p>
+            </div>
+            <div id="vs-configuration" class="configuration-box" data-source="@Url.Action("Solution", new { area = "Dashboard", controller = "Configuration", jobName = ViewBag.JobName })">
+                <p>
+                    VS</p>
+            </div>
+            <div id="iis-configuration" class="configuration-box" data-source="@Url.Action("Iis", new { area = "Dashboard", controller = "Configuration", jobName = ViewBag.JobName })">
+                <p>
+                    IIS</p>
+            </div>
         </div>
     </div>
 </div>
-<div class="dialog"></div>
-
+<div class="dialog">
+</div>
 @section Scripts {
-    <script src="@Url.Content("~/Scripts/jquery.blockUI.js")" type="text/javascript"></script>    
-    <script src="@Url.Content("~/Scripts/jquery.form.js")" type="text/javascript"></script>    
+    <script src="@Url.Content("~/Scripts/jquery.blockUI.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.form.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/Controllers/controller.configure.js")" type="text/javascript"></script>
 }

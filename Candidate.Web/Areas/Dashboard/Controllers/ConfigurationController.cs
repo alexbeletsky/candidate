@@ -3,6 +3,7 @@
     using System.Web.Mvc;
     using Candidate.Areas.Dashboard.Models;
     using Candidate.Core.Settings;
+    using Candidate.Core.Settings.Model;
 
     public class ConfigurationController : Controller {
         private ISettingsManager _settingsManager;
@@ -18,6 +19,7 @@
             return View();
         }
 
+        [HttpGet]
         public ActionResult Github(string jobName) {
             var currentSettings = _settingsManager.ReadSettings<JobsConfigurationSettingsModel>();
             var jobConfiguration = currentSettings.Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
@@ -42,7 +44,7 @@
             }
         }
 
-
+        [HttpGet]
         public ActionResult Iis(string jobName) {
             var currentSettings = _settingsManager.ReadSettings<JobsConfigurationSettingsModel>();
             var jobConfiguration = currentSettings.Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
@@ -61,6 +63,31 @@
                 }
                 else {
                     jobConfiguration.Iis = config;
+                }
+
+                return Json(new { success = true, settings = config });
+            }
+        }
+
+        [HttpGet]
+        public ActionResult Solution(string jobName) {
+            var currentSettings = _settingsManager.ReadSettings<JobsConfigurationSettingsModel>();
+            var jobConfiguration = currentSettings.Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
+
+            return View(jobConfiguration == null ? null : jobConfiguration.Solution);
+        }
+
+        [HttpPost]
+        public ActionResult Solution(string jobName, SolutionModel config) {
+            using (var settingsManager = new TrackableSettingsManager(_settingsManager)) {
+                var currentSettings = settingsManager.ReadSettings<JobsConfigurationSettingsModel>();
+                var jobConfiguration = currentSettings.Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
+
+                if (jobConfiguration == null) {
+                    currentSettings.Configurations.Add(new JobConfigurationModel { JobName = jobName, Solution = config });
+                }
+                else {
+                    jobConfiguration.Solution = config;
                 }
 
                 return Json(new { success = true, settings = config });
