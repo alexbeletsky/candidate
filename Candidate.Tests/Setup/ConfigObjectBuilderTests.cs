@@ -74,6 +74,33 @@ namespace Candidate.Tests.Setup {
         }
 
         [Test]
+        public void CreateConfinObject_ForGitWithBranch_ConfigObjectCreated() {
+            // arrange
+            var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
+            var config = new JobConfigurationModel { Github = new GithubModel { Url = "git://myhost/repo.git", Branch = "master" } };
+
+            // act
+            var configObject = configObjectBuilder.CreateConfigObject(config);
+
+            // assert
+            Assert.That(configObject.Git.Branch.Value, Is.Not.Null);
+            Assert.That(configObject.Git.Branch.Value, Is.EqualTo("master"));
+        }
+
+        [Test]
+        public void CreateConfinObject_ForGitWithBranchIfBranchNotSet_ConfigObjectBranchIsNull() {
+            // arrange
+            var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
+            var config = new JobConfigurationModel { Github = new GithubModel { Url = "git://myhost/repo.git" } };
+
+            // act
+            var configObject = configObjectBuilder.CreateConfigObject(config);
+
+            // assert
+            Assert.That(configObject.Git.Branch.Value, Is.Null);
+        }
+
+        [Test]
         public void CreateConfigObject_ForSolutionIfGitIsDefined_CreateObjectWithSolution() {
             // arrange
             var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
