@@ -1,26 +1,29 @@
 ﻿using System.IO;
+using Candidate.Core.Utils;
+using System;
 
 namespace Candidate.Core.Log {
     // TODO: refactor
     public class Logger : ILogger {
         private StreamWriter _writter;
         private FileStream _log;
-        private string _pathToLog;
 
-        public Logger(string pathToLog) {
-            _pathToLog = pathToLog;
+        public Logger(IDirectoryProvider directoryProvider) {
 
-            var folder = Path.GetDirectoryName(_pathToLog);
+            LogFilename = GetUniqueLogFilename();
+            LogFullPath = directoryProvider.Logs + "\\" + LogFilename;
+
+            var folder = Path.GetDirectoryName(LogFullPath);
 
             if (!Directory.Exists(folder)) {
                 Directory.CreateDirectory(folder);
             }
 
-            if (File.Exists(_pathToLog)) {
-                File.Delete(_pathToLog);
+            if (File.Exists(LogFullPath)) {
+                File.Delete(LogFullPath);
             }
 
-            _log = new FileStream(_pathToLog, FileMode.OpenOrCreate);
+            _log = new FileStream(LogFullPath, FileMode.OpenOrCreate);
             _writter = new StreamWriter(_log);
         }
 
@@ -38,10 +41,19 @@ namespace Candidate.Core.Log {
             }
         }
 
-        public string Id {
-            get {
-                return _pathToLog;
-            }
+
+        public string LogFilename {
+            get;
+            private set;
+        }
+
+        public string LogFullPath {
+            get;
+            private set;
+        }
+
+        private string GetUniqueLogFilename() {
+            return Guid.NewGuid().ToString() + ".log";
         }
     }
 }

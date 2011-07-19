@@ -48,7 +48,7 @@ namespace Candidate.Tests.Integration {
             defaultSetup.RunForConfig(new DummyLogger(), config);
 
             // assert
-            Assert.That(Directory.Exists(DirectoryProvider.Source + "TestSolution\\Test\\bin"));
+            Assert.That(Directory.Exists(DirectoryProvider.Source + "\\TestSolution\\Test\\bin"));
         }
 
         [Test]
@@ -69,18 +69,18 @@ namespace Candidate.Tests.Integration {
             var bounceFactory = new BounceFactory();
 
             // act
-            var loggerFactory = new LoggerFactory();
-            var loggerId = "";
-            using (var logger = loggerFactory.CreateLogger(DirectoryProvider.Logs)) {
-                loggerId = logger.Id;
+            var loggerFactory = new LoggerFactory(DirectoryProvider);
+            var loggerPath = "";
+            using (var logger = loggerFactory.CreateLogger()) {
+                loggerPath = logger.LogFullPath;
 
                 var defaultSetup = new DefaultSetup(targetsObjectBuilder, targetsBuilder, bounceFactory);
                 defaultSetup.RunForConfig(logger, config);
             }
 
             // assert
-            Assert.That(File.Exists(loggerId), Is.True);
-            Assert.That(File.ReadAllText(loggerId), Is.Not.Empty);
+            Assert.That(File.Exists(loggerPath), Is.True);
+            Assert.That(File.ReadAllText(loggerPath), Is.Not.Empty);
         }
 
         [Test]

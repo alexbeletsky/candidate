@@ -2,6 +2,7 @@
 using Bounce.Framework;
 using Candidate.Core.Settings.Model;
 using Candidate.Core.Utils;
+using System.IO;
 
 namespace Candidate.Core.Setup {
     public class ConfigObjectBuilder : IConfigObjectBuilder {
@@ -55,6 +56,7 @@ namespace Candidate.Core.Setup {
                 throw new Exception("Couldn't create configuration for IIS without web project name");
             }
 
+            // TODO: put C:\sites\ to configuration
             return new Copy() { 
                 FromPath = configObject.Solution.Projects[config.Solution.WebProject].ProjectDirectory, 
                 ToPath = @"c:\sites\" + config.Iis.SiteName }.ToPath;
@@ -65,7 +67,7 @@ namespace Candidate.Core.Setup {
         }
 
         private string GetSolutionPathFromDirectoryProvider(JobConfigurationModel config) {
-            return _directoryProvider.Source + config.Solution.Name;
+            return _directoryProvider.Source + "\\" + config.Solution.Name;
         }
 
         private static Task<string> GetSolutionPathFromGit(JobConfigurationModel config, ConfigObject configObject) {

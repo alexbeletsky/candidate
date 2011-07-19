@@ -1,17 +1,24 @@
 ﻿using System;
+using Candidate.Core.Utils;
 
 namespace Candidate.Core.Log {
     public class LoggerFactory : ILoggerFactory{
-        public ILogger CreateLogger(string pathToLogsFolder) {
-            return new Logger(GetPathToLog(pathToLogsFolder));
+        private IDirectoryProvider _directoryProvider;
+
+        public LoggerFactory(IDirectoryProvider directoryProvider) {
+            _directoryProvider = directoryProvider;
+        }
+        
+        public ILogger CreateLogger() {
+            return new Logger(_directoryProvider);
         }
 
-        private string GetPathToLog(string pathToLogsFolder) {
-            return pathToLogsFolder + GetUniqueLogFilename();
-        }
+        //private string GetPathToLog() {
+        //    return _directoryProvider.Logs + "\\" + GetUniqueLogFilename();
+        //}
 
-        private string GetUniqueLogFilename() {
-            return Guid.NewGuid().ToString() + ".log";
-        }
+        //private string GetUniqueLogFilename() {
+        //    return Guid.NewGuid().ToString() + ".log";
+        //}
     }
 }

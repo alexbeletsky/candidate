@@ -6,6 +6,7 @@ namespace Candidate.Core.Log {
         void Log(string line);
 
         TextWriter Writer { get; }
-        string Id { get; }
+        string LogFilename { get; }
+        string LogFullPath { get; }
     }
 }

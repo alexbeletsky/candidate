@@ -12,13 +12,16 @@ namespace Candidate.Tests.Integration {
             }
         }
 
-        public string Id {
-            get {
-                return "loggerId";
-            }
+        public string LogFilename {
+            get { throw new global::System.NotImplementedException(); }
+        }
+
+        public string LogFullPath {
+            get { throw new global::System.NotImplementedException(); }
         }
 
         public void Dispose() {
+            throw new global::System.NotImplementedException();
         }
     }
 }

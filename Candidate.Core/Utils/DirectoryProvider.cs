@@ -31,19 +31,19 @@ namespace Candidate.Core.Utils {
 
         public string Source {
             get {
-                return Job + "\\" + "src" + "\\";
+                return Job + "\\src";
             }
         }
 
         public string Logs {
             get {
-                return Job + "\\" + "logs" + "\\";
+                return Job + "\\logs";
             }
         }
 
         public string Settings {
             get {
-                return Root + "\\" + "settings" + "\\";
+                return Root + "\\settings";
             }
         }
 

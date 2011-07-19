@@ -84,7 +84,7 @@ namespace Candidate.Tests.Setup {
 
             // assert
             Assert.That(configObject.Solution, Is.Not.Null);
-            Assert.That(configObject.Solution.SolutionPath.Value, Is.EqualTo(DirectoryProvider.Source + "TestSolution\\Test.sln"));
+            Assert.That(configObject.Solution.SolutionPath.Value, Is.EqualTo(DirectoryProvider.Source + "\\TestSolution\\Test.sln"));
         }
 
         [Test]
@@ -98,7 +98,7 @@ namespace Candidate.Tests.Setup {
 
             // assert
             Assert.That(configObject.Solution, Is.Not.Null);
-            Assert.That(configObject.Solution.SolutionPath.Value, Is.EqualTo(DirectoryProvider.Source + "TestSolution\\Test.sln"));
+            Assert.That(configObject.Solution.SolutionPath.Value, Is.EqualTo(DirectoryProvider.Source + "\\TestSolution\\Test.sln"));
         }  
 
         [Test]
@@ -149,7 +149,7 @@ namespace Candidate.Tests.Setup {
             // assert
             Assert.That(configObject.WebSite, Is.Not.Null);
             Assert.That(configObject.WebSite.Name.Value, Is.EqualTo("TestSite"));
-            Assert.That(configObject.WebSite.Directory.Value, Is.EqualTo(DirectoryProvider.Source + "TestSolution\\Test"));
+            Assert.That(configObject.WebSite.Directory.Value, Is.EqualTo("c:\\sites\\TestSite"));
         }
 
         [Test]

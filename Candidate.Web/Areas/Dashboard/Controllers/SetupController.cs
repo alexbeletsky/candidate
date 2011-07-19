@@ -40,11 +40,11 @@ namespace Candidate.Areas.Dashboard.Controllers {
 
             _directoryProvider.JobName = jobName;
 
-            using (var logger = _loggerFactory.CreateLogger(_directoryProvider.Logs)) {
+            using (var logger = _loggerFactory.CreateLogger()) {
                 var setup = _setupFactory.CreateSetup();
                 setup.RunForConfig(logger, currentSettings);
 
-                return Json(new { success = true, logId = logger.Id });
+                return Json(new { success = true, logId = logger.LogFullPath });
             }
         }
 
