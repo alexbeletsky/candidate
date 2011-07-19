@@ -3,9 +3,7 @@ using System.IO;
 
 namespace Candidate.Core.Log {
     public interface ILogger : IDisposable {
-        void Log(string line);
-
-        TextWriter Writer { get; }
+        TextWriter LogWriter { get; }
         string LogFilename { get; }
         string LogFullPath { get; }
     }

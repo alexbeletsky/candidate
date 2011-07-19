@@ -12,7 +12,7 @@ namespace Candidate.Core.Setup {
             _directoryProvider = directoryProvider;
         }
 
-        public ConfigObject CreateConfigObject(JobConfigurationModel config) {
+        public ConfigObject CreateConfigObject(SiteConfiguration config) {
             if (config == null) {
                 throw new ArgumentNullException("config");
             }
@@ -44,11 +44,11 @@ namespace Candidate.Core.Setup {
             return configObject;
         }
 
-        private Task<int> GetSitePort(JobConfigurationModel config, ConfigObject configObject) {
+        private Task<int> GetSitePort(SiteConfiguration config, ConfigObject configObject) {
             return config.Iis.Port != 0 ? config.Iis.Port : 8081; 
         }
 
-        private Task<string> GetSiteDirectory(JobConfigurationModel config, ConfigObject configObject) {
+        private Task<string> GetSiteDirectory(SiteConfiguration config, ConfigObject configObject) {
             if (config.Solution == null || configObject.Solution == null) {
                 throw new Exception("Couldn't create configuration for IIS without solution file");
             }
@@ -63,15 +63,15 @@ namespace Candidate.Core.Setup {
                 ToPath = @"c:\sites\" + config.Iis.SiteName }.ToPath;
         }
 
-        private Task<string> GetSolutionPath(JobConfigurationModel config, ConfigObject configObject) {
+        private Task<string> GetSolutionPath(SiteConfiguration config, ConfigObject configObject) {
             return configObject.Git != null ? GetSolutionPathFromGit(config, configObject) : GetSolutionPathFromDirectoryProvider(config);
         }
 
-        private string GetSolutionPathFromDirectoryProvider(JobConfigurationModel config) {
+        private string GetSolutionPathFromDirectoryProvider(SiteConfiguration config) {
             return _directoryProvider.Source + "\\" + config.Solution.Name;
         }
 
-        private static Task<string> GetSolutionPathFromGit(JobConfigurationModel config, ConfigObject configObject) {
+        private static Task<string> GetSolutionPathFromGit(SiteConfiguration config, ConfigObject configObject) {
             return configObject.Git.Files[config.Solution.Name];
         }
     }

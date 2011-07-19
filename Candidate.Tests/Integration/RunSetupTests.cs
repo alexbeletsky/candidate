@@ -28,8 +28,8 @@ namespace Candidate.Tests.Integration {
         [Test]
         public void SetupWithOutGitHub_ShouldBuild() {
             // arrange
-            var config = new JobConfigurationModel() {
-                Solution = new SolutionModel {
+            var config = new SiteConfiguration() {
+                Solution = new Solution {
                     Name = "TestSolution\\Test.sln"
                 },
             };
@@ -54,8 +54,8 @@ namespace Candidate.Tests.Integration {
         [Test]
         public void OutputShouldGoToLogger() {
             // arrange
-            var config = new JobConfigurationModel() {
-                Solution = new SolutionModel {
+            var config = new SiteConfiguration() {
+                Solution = new Solution {
                     Name = "TestSolution\\Test.sln"
                 },
             };
@@ -86,12 +86,12 @@ namespace Candidate.Tests.Integration {
         [Test]
         public void ShouldBeAbleToDeployIisSite() {
             // arrange
-            var config = new JobConfigurationModel() {
-                Solution = new SolutionModel {
+            var config = new SiteConfiguration() {
+                Solution = new Solution {
                     Name = "TestSolution\\Test.sln",
                     WebProject = "Test"
                 },
-                Iis = new IisModel {
+                Iis = new Iis {
                     SiteName = "TestSite"
                 }
             };

@@ -46,14 +46,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Builders\BatchBuilder.cs" />
-    <Compile Include="Builders\IBuilder.cs" />
-    <Compile Include="Commands\AppCmd\StartSite.cs" />
-    <Compile Include="Commands\AppCmd\StopSite.cs" />
-    <Compile Include="Commands\Batch\BatchCommand.cs" />
-    <Compile Include="Commands\Git\CloneCommand.cs" />
-    <Compile Include="Commands\Git\PullCommand.cs" />
-    <Compile Include="Commands\ICommand.cs" />
     <Compile Include="Log\ILoggerFactory.cs" />
     <Compile Include="Log\ILogOptionsFactory.cs" />
     <Compile Include="Log\Logger.cs" />
@@ -61,11 +53,11 @@
     <Compile Include="Log\LoggerFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings\ISettingsManager.cs" />
-    <Compile Include="Settings\Model\GithubModel.cs" />
-    <Compile Include="Settings\Model\IisModel.cs" />
-    <Compile Include="Settings\Model\JobConfigurationModel.cs" />
-    <Compile Include="Settings\Model\JobsConfigurationSettingsModel.cs" />
-    <Compile Include="Settings\Model\SolutionModel.cs" />
+    <Compile Include="Settings\Model\Github.cs" />
+    <Compile Include="Settings\Model\Iis.cs" />
+    <Compile Include="Settings\Model\SiteConfiguration.cs" />
+    <Compile Include="Settings\Model\SitesConfigurationList.cs" />
+    <Compile Include="Settings\Model\Solution.cs" />
     <Compile Include="Settings\SettingsManager.cs" />
     <Compile Include="Settings\TrackableSettingsManager.cs" />
     <Compile Include="Setup\ConfigObject.cs" />
@@ -79,8 +71,6 @@
     <Compile Include="Setup\SetupFactory.cs" />
     <Compile Include="Log\ILogger.cs" />
     <Compile Include="Setup\SetupResult.cs" />
-    <Compile Include="System\IProcessRunner.cs" />
-    <Compile Include="System\ProcessRunner.cs" />
     <Compile Include="Utils\DirectoryProvider.cs" />
     <Compile Include="Utils\IDirectoryProvider.cs" />
     <Compile Include="Utils\LocalAppDataFolder.cs" />

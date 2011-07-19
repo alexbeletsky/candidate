@@ -2,6 +2,6 @@
 
 namespace Candidate.Core.Setup {
     public interface IConfigObjectBuilder {
-        ConfigObject CreateConfigObject(JobConfigurationModel config);
+        ConfigObject CreateConfigObject(SiteConfiguration config);
     }
 }

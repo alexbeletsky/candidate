@@ -13,7 +13,7 @@ namespace Candidate.Tests.Setup {
             // arrange
             var targetsRetrieverMock = new Mock<ITargetsRetriever>();
             var configObjectBuilderMock = new Mock<IConfigObjectBuilder>();
-            var config = new JobConfigurationModel();
+            var config = new SiteConfiguration();
 
             //act
             var targetsBuilder = new DefaultTargetsObjectBuilder(targetsRetrieverMock.Object, configObjectBuilderMock.Object);
@@ -22,7 +22,7 @@ namespace Candidate.Tests.Setup {
         [Test]
         public void BuildTargetsFromConfig_ConfigObjectCreated_TargetsCreated() {
             // arrange
-            var config = new JobConfigurationModel { Github = new GithubModel { Url = "git://myhost/repo.git", Branch = "master" } };
+            var config = new SiteConfiguration { Github = new GitHub { Url = "git://myhost/repo.git", Branch = "master" } };
             var targetsRetrieverMock = new Mock<ITargetsRetriever>();
             var configObjectBuilderMock = new Mock<IConfigObjectBuilder>();
             var targetsBuilder = new DefaultTargetsObjectBuilder(targetsRetrieverMock.Object, configObjectBuilderMock.Object);

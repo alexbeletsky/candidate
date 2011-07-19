@@ -15,7 +15,7 @@ namespace Candidate.Tests.Setup {
             var targetsObjectBuilderMock = new Mock<ITargetsObjectBuilder>();
             var targetsBuilderMock = new Mock<ITargetsBuilder>();
             var bounceFactoryMock = new Mock<IBounceFactory>();
-            var config = new JobConfigurationModel();            
+            var config = new SiteConfiguration();            
             var setup = new DefaultSetup(targetsObjectBuilderMock.Object, targetsBuilderMock.Object, bounceFactoryMock.Object);
 
             // act 
@@ -31,7 +31,7 @@ namespace Candidate.Tests.Setup {
             var targetsObjectBuilderMock = new Mock<ITargetsObjectBuilder>();
             var targetsBuilderMock = new Mock<ITargetsBuilder>();
             var bounceFactoryMock = new Mock<IBounceFactory>();
-            var config = new JobConfigurationModel();
+            var config = new SiteConfiguration();
             var setup = new DefaultSetup(targetsObjectBuilderMock.Object, targetsBuilderMock.Object, bounceFactoryMock.Object);
 
             var targetsList = new List<Target>();
@@ -50,7 +50,7 @@ namespace Candidate.Tests.Setup {
             var targetsObjectBuilderMock = new Mock<ITargetsObjectBuilder>();
             var targetsBuilderMock = new Mock<ITargetsBuilder>();
             var bounceFactoryMock = new Mock<IBounceFactory>();
-            var config = new JobConfigurationModel();
+            var config = new SiteConfiguration();
             var setup = new DefaultSetup(targetsObjectBuilderMock.Object, targetsBuilderMock.Object, bounceFactoryMock.Object);
 
             var targetsList = new List<Target>();

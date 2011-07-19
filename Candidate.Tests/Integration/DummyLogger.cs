@@ -3,10 +3,10 @@
 namespace Candidate.Tests.Integration {
     public class DummyLogger : ILogger {
         public void Log(string line) {
-            Writer.WriteLine(line);
+            LogWriter.WriteLine(line);
         }
 
-        public global::System.IO.TextWriter Writer {
+        public global::System.IO.TextWriter LogWriter {
             get {
                 return global::System.Console.Out;
             }

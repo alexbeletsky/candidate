@@ -33,7 +33,7 @@ namespace Candidate.Areas.Dashboard.Controllers {
         [HandleJsonError]
         public ActionResult StartSetup(string jobName) {
 
-            var currentSettings = _settingsManager.ReadSettings<JobsConfigurationSettingsModel>().Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
+            var currentSettings = _settingsManager.ReadSettings<SitesConfigurationList>().Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
             if (currentSettings == null) {
                 throw new Exception(string.Format("Can't create setup for non-existing job: {0}", jobName));
             }

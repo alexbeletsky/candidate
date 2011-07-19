@@ -34,8 +34,8 @@ namespace Candidate.Areas.Dashboard
 
             context.MapRoute(
                 "Dashboard_Configuration",
-                "Dashboard/Configuration/{action}/{jobName}",
-                new { controller = "Configuration", }
+                "Dashboard/SiteConfiguration/{action}/{jobName}",
+                new { controller = "SiteConfiguration", }
             );
 
             context.MapRoute(

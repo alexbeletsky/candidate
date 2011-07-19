@@ -21,20 +21,20 @@
 
         [HttpGet]
         public ActionResult Github(string jobName) {
-            var currentSettings = _settingsManager.ReadSettings<JobsConfigurationSettingsModel>();
+            var currentSettings = _settingsManager.ReadSettings<SitesConfigurationList>();
             var jobConfiguration = currentSettings.Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
 
             return View(jobConfiguration == null ? null : jobConfiguration.Github);
         }
 
         [HttpPost]
-        public ActionResult Github(string jobName, GithubModel config) {
+        public ActionResult Github(string jobName, GitHub config) {
             using (var settingsManager = new TrackableSettingsManager(_settingsManager)) {
-                var currentSettings = settingsManager.ReadSettings<JobsConfigurationSettingsModel>();
+                var currentSettings = settingsManager.ReadSettings<SitesConfigurationList>();
                 var jobConfiguration = currentSettings.Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
 
                 if (jobConfiguration == null) {
-                    currentSettings.Configurations.Add(new JobConfigurationModel { JobName = jobName, Github = config });
+                    currentSettings.Configurations.Add(new SiteConfiguration { JobName = jobName, Github = config });
                 }
                 else {
                     jobConfiguration.Github = config;
@@ -46,20 +46,20 @@
 
         [HttpGet]
         public ActionResult Iis(string jobName) {
-            var currentSettings = _settingsManager.ReadSettings<JobsConfigurationSettingsModel>();
+            var currentSettings = _settingsManager.ReadSettings<SitesConfigurationList>();
             var jobConfiguration = currentSettings.Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
 
             return View(jobConfiguration == null ? null : jobConfiguration.Iis);
         }
 
         [HttpPost]
-        public ActionResult Iis(string jobName, IisModel config) {
+        public ActionResult Iis(string jobName, Iis config) {
             using (var settingsManager = new TrackableSettingsManager(_settingsManager)) {
-                var currentSettings = settingsManager.ReadSettings<JobsConfigurationSettingsModel>();
+                var currentSettings = settingsManager.ReadSettings<SitesConfigurationList>();
                 var jobConfiguration = currentSettings.Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
 
                 if (jobConfiguration == null) {
-                    currentSettings.Configurations.Add(new JobConfigurationModel { JobName = jobName, Iis = config });
+                    currentSettings.Configurations.Add(new SiteConfiguration { JobName = jobName, Iis = config });
                 }
                 else {
                     jobConfiguration.Iis = config;
@@ -71,20 +71,20 @@
 
         [HttpGet]
         public ActionResult Solution(string jobName) {
-            var currentSettings = _settingsManager.ReadSettings<JobsConfigurationSettingsModel>();
+            var currentSettings = _settingsManager.ReadSettings<SitesConfigurationList>();
             var jobConfiguration = currentSettings.Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
 
             return View(jobConfiguration == null ? null : jobConfiguration.Solution);
         }
 
         [HttpPost]
-        public ActionResult Solution(string jobName, SolutionModel config) {
+        public ActionResult Solution(string jobName, Solution config) {
             using (var settingsManager = new TrackableSettingsManager(_settingsManager)) {
-                var currentSettings = settingsManager.ReadSettings<JobsConfigurationSettingsModel>();
+                var currentSettings = settingsManager.ReadSettings<SitesConfigurationList>();
                 var jobConfiguration = currentSettings.Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
 
                 if (jobConfiguration == null) {
-                    currentSettings.Configurations.Add(new JobConfigurationModel { JobName = jobName, Solution = config });
+                    currentSettings.Configurations.Add(new SiteConfiguration { JobName = jobName, Solution = config });
                 }
                 else {
                     jobConfiguration.Solution = config;

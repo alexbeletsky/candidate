@@ -16,7 +16,7 @@ namespace Candidate.Core.Setup {
             _logOptionsFactory = new FileLogOptionsFactory();
         }
 
-        public SetupResult RunForConfig(ILogger logger, JobConfigurationModel config) {
+        public SetupResult RunForConfig(ILogger logger, SiteConfiguration config) {
             var targets = _targetsObjectBuilder.BuildTargetsFromConfig(config);
             var logOptions = _logOptionsFactory.CreateLogOptions(logger, LogLevel.Debug);
             var bounce = _bounceFactory.GetBounce(logOptions);

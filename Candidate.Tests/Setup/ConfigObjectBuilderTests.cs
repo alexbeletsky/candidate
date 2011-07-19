@@ -36,7 +36,7 @@ namespace Candidate.Tests.Setup {
         public void CreateConfigObject_ForGit_CreateObjectWithGit() {
             // arrange
             var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
-            var config = new JobConfigurationModel { Github = new GithubModel { Url = "git://myhost/repo.git", Branch = "master" } };
+            var config = new SiteConfiguration { Github = new GitHub { Url = "git://myhost/repo.git", Branch = "master" } };
             
             // act
             var configObject = configObjectBuilder.CreateConfigObject(config);
@@ -50,7 +50,7 @@ namespace Candidate.Tests.Setup {
         public void CreateConfigObject_ForGit_DirectoryIsInited() {
             // arrange
             var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
-            var config = new JobConfigurationModel { Github = new GithubModel { Url = "git://myhost/repo.git", Branch = "master" } };
+            var config = new SiteConfiguration { Github = new GitHub { Url = "git://myhost/repo.git", Branch = "master" } };
 
             // act
             var configObject = configObjectBuilder.CreateConfigObject(config);
@@ -64,7 +64,7 @@ namespace Candidate.Tests.Setup {
         public void CreateConfigObject_ForGitWithOutUrl_ConfigObjectNotCreated() {
             // arrange
             var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
-            var config = new JobConfigurationModel { Github = new GithubModel { Branch = "master" } };
+            var config = new SiteConfiguration { Github = new GitHub { Branch = "master" } };
 
             // act
             var configObject = configObjectBuilder.CreateConfigObject(config);
@@ -77,7 +77,7 @@ namespace Candidate.Tests.Setup {
         public void CreateConfinObject_ForGitWithBranch_ConfigObjectCreated() {
             // arrange
             var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
-            var config = new JobConfigurationModel { Github = new GithubModel { Url = "git://myhost/repo.git", Branch = "master" } };
+            var config = new SiteConfiguration { Github = new GitHub { Url = "git://myhost/repo.git", Branch = "master" } };
 
             // act
             var configObject = configObjectBuilder.CreateConfigObject(config);
@@ -91,7 +91,7 @@ namespace Candidate.Tests.Setup {
         public void CreateConfinObject_ForGitWithBranchIfBranchNotSet_ConfigObjectBranchIsNull() {
             // arrange
             var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
-            var config = new JobConfigurationModel { Github = new GithubModel { Url = "git://myhost/repo.git" } };
+            var config = new SiteConfiguration { Github = new GitHub { Url = "git://myhost/repo.git" } };
 
             // act
             var configObject = configObjectBuilder.CreateConfigObject(config);
@@ -104,7 +104,7 @@ namespace Candidate.Tests.Setup {
         public void CreateConfigObject_ForSolutionIfGitIsDefined_CreateObjectWithSolution() {
             // arrange
             var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
-            var config = new JobConfigurationModel { Github = new GithubModel { Url = "git://myhost/repo.git", Branch = "master" }, Solution = new SolutionModel { Name = "TestSolution\\Test.sln" } };
+            var config = new SiteConfiguration { Github = new GitHub { Url = "git://myhost/repo.git", Branch = "master" }, Solution = new Solution { Name = "TestSolution\\Test.sln" } };
 
             // act
             var configObject = configObjectBuilder.CreateConfigObject(config);
@@ -118,7 +118,7 @@ namespace Candidate.Tests.Setup {
         public void CreateConfigObject_ForSolutionIfGitIsNoDefined_CreateObjectWithSolution() {
             // arrange
             var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
-            var config = new JobConfigurationModel { Solution = new SolutionModel { Name = "TestSolution\\Test.sln" } };
+            var config = new SiteConfiguration { Solution = new Solution { Name = "TestSolution\\Test.sln" } };
 
             // act
             var configObject = configObjectBuilder.CreateConfigObject(config);
@@ -133,7 +133,7 @@ namespace Candidate.Tests.Setup {
         public void CreateConfigObject_ForIisDefinedIfNoSolution_Exception() {
             // arrange
             var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
-            var config = new JobConfigurationModel { Iis = new IisModel { SiteName = "TestSite" } };
+            var config = new SiteConfiguration { Iis = new Iis { SiteName = "TestSite" } };
 
             // act
             var configObject = configObjectBuilder.CreateConfigObject(config);
@@ -144,7 +144,7 @@ namespace Candidate.Tests.Setup {
         public void CreateConfig_ForIisIfNoWebprojectName_Exception() {
             // arrange
             var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
-            var config = new JobConfigurationModel { Solution = new SolutionModel { Name = "TestSolution\\Test.sln" }, Iis = new IisModel { SiteName = "TestSite" } };
+            var config = new SiteConfiguration { Solution = new Solution { Name = "TestSolution\\Test.sln" }, Iis = new Iis { SiteName = "TestSite" } };
 
             // act
             var configObject = configObjectBuilder.CreateConfigObject(config);
@@ -154,7 +154,7 @@ namespace Candidate.Tests.Setup {
         public void CreateConfigObject_ForIisIfDefined_CreateIisWebSiteObject() {
             // arrange
             var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
-            var config = new JobConfigurationModel { Solution = new SolutionModel { Name = "TestSolution\\Test.sln", WebProject = "Test" }, Iis = new IisModel { SiteName = "TestSite" } };
+            var config = new SiteConfiguration { Solution = new Solution { Name = "TestSolution\\Test.sln", WebProject = "Test" }, Iis = new Iis { SiteName = "TestSite" } };
 
             // act
             var configObject = configObjectBuilder.CreateConfigObject(config);
@@ -168,7 +168,7 @@ namespace Candidate.Tests.Setup {
         public void CreateConfigObject_ForIisIfDefinedWithWebProject_CreateIisWebSiteObject() {
             // arrange
             var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
-            var config = new JobConfigurationModel { Solution = new SolutionModel { Name = "TestSolution\\Test.sln", WebProject = "Test" }, Iis = new IisModel { SiteName = "TestSite" } };
+            var config = new SiteConfiguration { Solution = new Solution { Name = "TestSolution\\Test.sln", WebProject = "Test" }, Iis = new Iis { SiteName = "TestSite" } };
 
             // act
             var configObject = configObjectBuilder.CreateConfigObject(config);
@@ -183,7 +183,7 @@ namespace Candidate.Tests.Setup {
         public void CreateConfigObject_ForIisIfDefined_DefaultPortIs8081() {
             // arrange
             var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
-            var config = new JobConfigurationModel { Solution = new SolutionModel { Name = "TestSolution\\Test.sln", WebProject = "Test" }, Iis = new IisModel { SiteName = "TestSite" } };
+            var config = new SiteConfiguration { Solution = new Solution { Name = "TestSolution\\Test.sln", WebProject = "Test" }, Iis = new Iis { SiteName = "TestSite" } };
 
             // act
             var configObject = configObjectBuilder.CreateConfigObject(config);
@@ -197,7 +197,7 @@ namespace Candidate.Tests.Setup {
         public void CreateConfigObject_ForIisDefinedAndPortSet_SetPort() {
             // arrange
             var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
-            var config = new JobConfigurationModel { Solution = new SolutionModel { Name = "TestSolution\\Test.sln", WebProject = "Test" }, Iis = new IisModel { SiteName = "TestSite", Port = 9000 } };
+            var config = new SiteConfiguration { Solution = new Solution { Name = "TestSolution\\Test.sln", WebProject = "Test" }, Iis = new Iis { SiteName = "TestSite", Port = 9000 } };
 
             // act
             var configObject = configObjectBuilder.CreateConfigObject(config);

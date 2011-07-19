@@ -50,7 +50,7 @@ namespace Candidate.Tests.Controllers
             var settingsManager = new Mock<ISettingsManager>();
             var controller = new ConfigurationController(settingsManager.Object);
 
-            settingsManager.Setup(s => s.ReadSettings<JobsConfigurationSettingsModel>()).Returns(new JobsConfigurationSettingsModel());
+            settingsManager.Setup(s => s.ReadSettings<SitesConfigurationList>()).Returns(new SitesConfigurationList());
 
             // act
             var result = controller.Github("testJob") as ViewResult;
@@ -66,9 +66,9 @@ namespace Candidate.Tests.Controllers
             var settingsManager = new Mock<ISettingsManager>();
             var controller = new ConfigurationController(settingsManager.Object);
 
-            settingsManager.Setup(s => s.ReadSettings<JobsConfigurationSettingsModel>()).Returns(
-                new JobsConfigurationSettingsModel { Configurations = new List<JobConfigurationModel> { 
-                    new JobConfigurationModel { JobName = "testJob", Github = new GithubModel() } } });
+            settingsManager.Setup(s => s.ReadSettings<SitesConfigurationList>()).Returns(
+                new SitesConfigurationList { Configurations = new List<SiteConfiguration> { 
+                    new SiteConfiguration { JobName = "testJob", Github = new GitHub() } } });
 
             // act
             var result = controller.Github("testJob") as ViewResult;
@@ -85,18 +85,18 @@ namespace Candidate.Tests.Controllers
             var controller = new ConfigurationController(settingsManager.Object);
 
             object savedObject = null;
-            settingsManager.Setup(s => s.ReadSettings<JobsConfigurationSettingsModel>()).Returns(
-                new JobsConfigurationSettingsModel
+            settingsManager.Setup(s => s.ReadSettings<SitesConfigurationList>()).Returns(
+                new SitesConfigurationList
                 {
-                    Configurations = new List<JobConfigurationModel> ()
+                    Configurations = new List<SiteConfiguration> ()
                 });
             settingsManager.Setup(s => s.SaveSettings(It.IsAny<object>())).Callback<object>((o) => savedObject = o);
 
             // act
-            var result = controller.Github("testJob", new GithubModel { Branch = "branch", Url = "url" });
+            var result = controller.Github("testJob", new GitHub { Branch = "branch", Url = "url" });
 
             // assert
-            var savedConfiguration = savedObject as JobsConfigurationSettingsModel;
+            var savedConfiguration = savedObject as SitesConfigurationList;
             var config = savedConfiguration.Configurations.Where(c => c.JobName == "testJob").Single();
             Assert.That(config.JobName, Is.EqualTo("testJob"));
             Assert.That(config.Github.Branch, Is.EqualTo("branch"));
@@ -111,21 +111,21 @@ namespace Candidate.Tests.Controllers
             var controller = new ConfigurationController(settingsManager.Object);
 
             object savedObject = null;
-            settingsManager.Setup(s => s.ReadSettings<JobsConfigurationSettingsModel>()).Returns(
-                new JobsConfigurationSettingsModel
+            settingsManager.Setup(s => s.ReadSettings<SitesConfigurationList>()).Returns(
+                new SitesConfigurationList
                 {
-                    Configurations = new List<JobConfigurationModel>()
+                    Configurations = new List<SiteConfiguration>()
                     {
-                        new JobConfigurationModel { JobName = "testJob", Github = new GithubModel { Branch = "branch", Url = "url" } }
+                        new SiteConfiguration { JobName = "testJob", Github = new GitHub { Branch = "branch", Url = "url" } }
                     }
                 });
             settingsManager.Setup(s => s.SaveSettings(It.IsAny<object>())).Callback<object>((o) => savedObject = o);
 
             // act
-            var result = controller.Github("testJob", new GithubModel { Branch = "branch2", Url = "url2" });
+            var result = controller.Github("testJob", new GitHub { Branch = "branch2", Url = "url2" });
 
             // assert
-            var savedConfiguration = savedObject as JobsConfigurationSettingsModel;
+            var savedConfiguration = savedObject as SitesConfigurationList;
             var config = savedConfiguration.Configurations.Where(c => c.JobName == "testJob").Single();
             Assert.That(config.JobName, Is.EqualTo("testJob"));
             Assert.That(config.Github.Branch, Is.EqualTo("branch2"));
@@ -139,7 +139,7 @@ namespace Candidate.Tests.Controllers
             var settingsManager = new Mock<ISettingsManager>();
             var controller = new ConfigurationController(settingsManager.Object);
 
-            settingsManager.Setup(s => s.ReadSettings<JobsConfigurationSettingsModel>()).Returns(new JobsConfigurationSettingsModel());
+            settingsManager.Setup(s => s.ReadSettings<SitesConfigurationList>()).Returns(new SitesConfigurationList());
 
             // act
             var result = controller.Iis("testJob") as ViewResult;
@@ -155,11 +155,11 @@ namespace Candidate.Tests.Controllers
             var settingsManager = new Mock<ISettingsManager>();
             var controller = new ConfigurationController(settingsManager.Object);
 
-            settingsManager.Setup(s => s.ReadSettings<JobsConfigurationSettingsModel>()).Returns(
-                new JobsConfigurationSettingsModel
+            settingsManager.Setup(s => s.ReadSettings<SitesConfigurationList>()).Returns(
+                new SitesConfigurationList
                 {
-                    Configurations = new List<JobConfigurationModel> { 
-                    new JobConfigurationModel { JobName = "testJob", Iis = new IisModel() } }
+                    Configurations = new List<SiteConfiguration> { 
+                    new SiteConfiguration { JobName = "testJob", Iis = new Iis() } }
                 });
 
             // act
@@ -177,18 +177,18 @@ namespace Candidate.Tests.Controllers
             var controller = new ConfigurationController(settingsManager.Object);
 
             object savedObject = null;
-            settingsManager.Setup(s => s.ReadSettings<JobsConfigurationSettingsModel>()).Returns(
-                new JobsConfigurationSettingsModel
+            settingsManager.Setup(s => s.ReadSettings<SitesConfigurationList>()).Returns(
+                new SitesConfigurationList
                 {
-                    Configurations = new List<JobConfigurationModel>()
+                    Configurations = new List<SiteConfiguration>()
                 });
             settingsManager.Setup(s => s.SaveSettings(It.IsAny<object>())).Callback<object>((o) => savedObject = o);
 
             // act
-            var result = controller.Iis("testJob", new IisModel { SiteName = "site" });
+            var result = controller.Iis("testJob", new Iis { SiteName = "site" });
 
             // assert
-            var savedConfiguration = savedObject as JobsConfigurationSettingsModel;
+            var savedConfiguration = savedObject as SitesConfigurationList;
             var config = savedConfiguration.Configurations.Where(c => c.JobName == "testJob").Single();
             Assert.That(config.JobName, Is.EqualTo("testJob"));
             Assert.That(config.Iis.SiteName, Is.EqualTo("site"));
@@ -202,21 +202,21 @@ namespace Candidate.Tests.Controllers
             var controller = new ConfigurationController(settingsManager.Object);
 
             object savedObject = null;
-            settingsManager.Setup(s => s.ReadSettings<JobsConfigurationSettingsModel>()).Returns(
-                new JobsConfigurationSettingsModel
+            settingsManager.Setup(s => s.ReadSettings<SitesConfigurationList>()).Returns(
+                new SitesConfigurationList
                 {
-                    Configurations = new List<JobConfigurationModel>()
+                    Configurations = new List<SiteConfiguration>()
                     {
-                        new JobConfigurationModel { JobName = "testJob", Iis = new IisModel { SiteName = "site" } }
+                        new SiteConfiguration { JobName = "testJob", Iis = new Iis { SiteName = "site" } }
                     }
                 });
             settingsManager.Setup(s => s.SaveSettings(It.IsAny<object>())).Callback<object>((o) => savedObject = o);
 
             // act
-            var result = controller.Iis("testJob", new IisModel { SiteName = "site2" });
+            var result = controller.Iis("testJob", new Iis { SiteName = "site2" });
 
             // assert
-            var savedConfiguration = savedObject as JobsConfigurationSettingsModel;
+            var savedConfiguration = savedObject as SitesConfigurationList;
             var config = savedConfiguration.Configurations.Where(c => c.JobName == "testJob").Single();
             Assert.That(config.JobName, Is.EqualTo("testJob"));
             Assert.That(config.Iis.SiteName, Is.EqualTo("site2"));

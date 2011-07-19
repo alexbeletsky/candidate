@@ -56,5 +56,17 @@ namespace Candidate.Tests.Utils {
             // act
             var job = provider.Logs;
         }
+
+        [Test]
+        public void JobName_GetValue_RetunsValueAfterBeingSet() {
+            // arrange
+            var provider = new DirectoryProvider();
+
+            // act
+            provider.JobName = "currentJob";
+
+            // assert
+            Assert.That(provider.JobName, Is.EqualTo("currentJob"));
+        }
     }
 }
