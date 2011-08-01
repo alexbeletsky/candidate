@@ -88,7 +88,7 @@ namespace Candidate.Tests.Controllers
             settingsManager.Setup(s => s.ReadSettings<SitesConfigurationList>()).Returns(
                 new SitesConfigurationList
                 {
-                    Configurations = new List<SiteConfiguration> ()
+                    Configurations = new List<SiteConfiguration>()
                 });
             settingsManager.Setup(s => s.SaveSettings(It.IsAny<object>())).Callback<object>((o) => savedObject = o);
 
@@ -245,8 +245,8 @@ namespace Candidate.Tests.Controllers
             var controller = new ConfigurationController(settingsManager.Object);
 
             object savedObject = null;
-            settingsManager.Setup(s => s.ReadSettings<JobsSettingsModel>()).Returns(
-                new JobsSettingsModel { Jobs = new List<JobModel> { new JobModel { Name = "testJob" } } }
+            settingsManager.Setup(s => s.ReadSettings<SitesConfigurationList>()).Returns(
+                new SitesConfigurationList { Configurations = new List<SiteConfiguration> { new SiteConfiguration { JobName = "testJob" } } }
                 );
 
             settingsManager.Setup(s => s.SaveSettings(It.IsAny<object>())).Callback<object>((o) => savedObject = o);
@@ -255,8 +255,8 @@ namespace Candidate.Tests.Controllers
             var result = controller.Delete(new DeleteJobModel { JobName = "testJob" }) as ViewResult;
 
             // assert
-            var savedConfiguration = savedObject as JobsSettingsModel;
-            var config = savedConfiguration.Jobs.Where(c => c.Name == "testJob").SingleOrDefault();
+            var savedConfiguration = savedObject as SitesConfigurationList;
+            var config = savedConfiguration.Configurations.Where(c => c.JobName == "testJob").SingleOrDefault();
             Assert.That(config, Is.Null);
         }
     }

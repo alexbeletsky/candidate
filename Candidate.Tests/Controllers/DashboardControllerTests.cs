@@ -6,6 +6,7 @@ using Candidate.Core.Settings;
 using Moq;
 using NUnit.Framework;
 using SharpTestsEx;
+using Candidate.Core.Settings.Model;
 namespace Candidate.Tests.Controllers
 {
     [TestFixture]
@@ -32,13 +33,13 @@ namespace Candidate.Tests.Controllers
             var settingsManager = new Mock<ISettingsManager>();
             var controller = new DashboardController(settingsManager.Object);
 
-            settingsManager.Setup(s => s.ReadSettings<JobsSettingsModel>()).Returns(new JobsSettingsModel { Jobs = new List<JobModel>() });
+            settingsManager.Setup(s => s.ReadSettings<SitesConfigurationList>()).Returns(new SitesConfigurationList { Configurations = new List<SiteConfiguration>() });
 
             // act
             var result = controller.List() as ViewResult;
 
             // assert
-            var model = result.Model as IList<JobModel>;
+            var model = result.Model as IList<SiteConfiguration>;
             model.Should().Not.Be.Null();
         }
 
@@ -65,15 +66,15 @@ namespace Candidate.Tests.Controllers
             var config = new NewJobModel { Name = "testApp" };
 
             object savedSettings = null;
-            settingsManager.Setup(s => s.ReadSettings<JobsSettingsModel>()).Returns(new JobsSettingsModel());
+            settingsManager.Setup(s => s.ReadSettings<SitesConfigurationList>()).Returns(new SitesConfigurationList());
             settingsManager.Setup(s => s.SaveSettings(It.IsAny<object>())).Callback<object>((o) => savedSettings = o);
 
             // act
             var result = controller.Add(config);
 
             // assert
-            var jobSettings = savedSettings as JobsSettingsModel;
-            jobSettings.Jobs.Count.Should().Be(1);
+            var jobSettings = savedSettings as SitesConfigurationList;
+            jobSettings.Configurations.Count.Should().Be(1);
         }
 
         [Test]
@@ -85,7 +86,7 @@ namespace Candidate.Tests.Controllers
             var config = new NewJobModel { Name = "testApp" };
 
             object savedSettings = null;
-            settingsManager.Setup(s => s.ReadSettings<JobsSettingsModel>()).Returns(new JobsSettingsModel());
+            settingsManager.Setup(s => s.ReadSettings<SitesConfigurationList>()).Returns(new SitesConfigurationList());
             settingsManager.Setup(s => s.SaveSettings(It.IsAny<object>())).Callback<object>((o) => savedSettings = o);
 
             // act

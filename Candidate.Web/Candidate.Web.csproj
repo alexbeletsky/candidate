@@ -73,16 +73,10 @@
     <Compile Include="Areas\Dashboard\Controllers\ConfigurationController.cs" />
     <Compile Include="Areas\Dashboard\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Dashboard\Controllers\SetupController.cs" />
-    <Compile Include="Areas\Dashboard\Models\ConfigurationModel.cs" />
     <Compile Include="Areas\Dashboard\Models\DeleteJobModel.cs" />
     <Compile Include="Areas\Dashboard\Controllers\LogController.cs" />
     <Compile Include="Areas\Dashboard\DashboardAreaRegistration.cs" />
-    <Compile Include="Areas\Dashboard\Models\BatchModel.cs" />
-    <Compile Include="Areas\Dashboard\Models\JobsSettingsModel.cs" />
-    <Compile Include="Areas\Dashboard\Models\JobModel.cs" />
     <Compile Include="Areas\Dashboard\Models\NewJobModel.cs" />
-    <Compile Include="Areas\Dashboard\Models\SetupStatesModel.cs" />
-    <Compile Include="Areas\Dashboard\Models\SetupStateModel.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

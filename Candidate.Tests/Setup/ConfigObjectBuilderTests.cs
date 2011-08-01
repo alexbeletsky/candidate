@@ -12,16 +12,6 @@ namespace Candidate.Tests.Setup {
         private static string CurrentDirectory = Directory.GetCurrentDirectory();
         private IDirectoryProvider DirectoryProvider = new DirectoryProvider("ConfigObjectBuilderTests", CurrentDirectory);
 
-        [SetUp]
-        public void Setup() {
-            UnzipTestSolution();
-        }
-
-        [TearDown]
-        public void Teardown() {
-            DeleteTestFolder();
-        }
-
         [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void CreateConfigObject_ForNull_Exception() {
@@ -205,17 +195,6 @@ namespace Candidate.Tests.Setup {
             // assert
             Assert.That(configObject.WebSite, Is.Not.Null);
             Assert.That(configObject.WebSite.Port.Value, Is.EqualTo(9000));
-        }
-
-        private void UnzipTestSolution() {
-            DeleteTestFolder();
-            new FastZip().ExtractZip("TestData\\TestSolution.zip", DirectoryProvider.Source, null);
-        }
-
-        private void DeleteTestFolder() {
-            if (Directory.Exists(DirectoryProvider.Job)) {
-                Directory.Delete(DirectoryProvider.Job, true);
-            }
         }
     }
 }

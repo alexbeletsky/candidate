@@ -2,6 +2,7 @@
     using System.Web.Mvc;
     using Candidate.Areas.Dashboard.Models;
     using Candidate.Core.Settings;
+    using Candidate.Core.Settings.Model;
 
     public class DashboardController : Controller {
         private ISettingsManager _settingsManager;
@@ -17,9 +18,9 @@
 
         [HttpGet]
         public ActionResult List() {
-            var currentSettings = _settingsManager.ReadSettings<JobsSettingsModel>();
+            var currentSettings = _settingsManager.ReadSettings<SitesConfigurationList>();
 
-            return View(currentSettings.Jobs);
+            return View(currentSettings.Configurations);
         }
 
         [HttpGet]
@@ -30,10 +31,10 @@
         [HttpPost]
         public ActionResult Add(NewJobModel newJob) {
             using (var settingsManager = new TrackableSettingsManager(_settingsManager)) {
-                var currentSettings = settingsManager.ReadSettings<JobsSettingsModel>();
-                var currentJobs = currentSettings.Jobs;
+                var currentSettings = settingsManager.ReadSettings<SitesConfigurationList>();
+                var currentJobs = currentSettings.Configurations;
 
-                currentJobs.Add(new JobModel { Name = newJob.Name, Status = 0 });
+                currentJobs.Add(new SiteConfiguration { JobName = newJob.Name });
 
                 return RedirectToAction("Index", new { area = "Dashboard", controller = "Dashboard" });
             }

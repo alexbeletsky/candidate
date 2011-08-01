@@ -102,9 +102,9 @@
         [HttpPost]
         public ActionResult Delete(DeleteJobModel deleteJob) {
             using (var settingsManager = new TrackableSettingsManager(_settingsManager)) {
-                var currentSettings = settingsManager.ReadSettings<JobsSettingsModel>();
-                var jobToDelete = currentSettings.Jobs.Where(j => j.Name == deleteJob.JobName).SingleOrDefault();
-                var currentJobs = currentSettings.Jobs.Remove(jobToDelete);
+                var currentSettings = settingsManager.ReadSettings<SitesConfigurationList>();
+                var jobToDelete = currentSettings.Configurations.Where(j => j.JobName == deleteJob.JobName).SingleOrDefault();
+                var currentJobs = currentSettings.Configurations.Remove(jobToDelete);
 
                 return RedirectToAction("Index", "Dashboard");
             }
