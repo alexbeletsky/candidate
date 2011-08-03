@@ -12,36 +12,41 @@ namespace Candidate.Core.Setup {
             _directoryProvider = directoryProvider;
         }
 
-        public ConfigObject CreateConfigObject(SiteConfiguration config) {
-            if (config == null) {
-                throw new ArgumentNullException("config");
+        public ConfigObject CreateConfigObject(SiteConfiguration siteConfiguration) {
+            if (siteConfiguration == null) {
+                throw new ArgumentNullException("siteConfiguration");
             }
 
             var configObject = new ConfigObject();
 
-            if (config.Github != null && !string.IsNullOrEmpty(config.Github.Url)) {
+            if (siteConfiguration.Github != null && !string.IsNullOrEmpty(siteConfiguration.Github.Url)) {
                 configObject.Git = new GitCheckout {
-                    Repository = config.Github.Url,
+                    Repository = siteConfiguration.Github.Url,
                     Directory = _directoryProvider.Source,
-                    Branch = config.Github.Branch
+                    Branch = siteConfiguration.Github.Branch
                 };
             }
 
-            if (config.Solution != null) {
+            if (siteConfiguration.Solution != null) {
                 configObject.Solution = new VisualStudioSolution {
-                    SolutionPath = GetSolutionPath(config, configObject)
+                    SolutionPath = GetSolutionPath(siteConfiguration, configObject),
+                    OutputDir = GetOutputDir()
                 };
             }
 
-            if (config.Iis != null) {
+            if (siteConfiguration.Iis != null) {
                 configObject.WebSite = new Iis7WebSite {
-                    Directory = GetSiteDirectory(config, configObject),
-                    Name = config.Iis.SiteName,
-                    Port = GetSitePort(config, configObject)
+                    Directory = GetSiteDirectory(siteConfiguration, configObject),
+                    Name = siteConfiguration.Iis.SiteName,
+                    Port = GetSitePort(siteConfiguration, configObject)
                 };
             }
 
             return configObject;
+        }
+
+        private Task<string> GetOutputDir() {
+            return _directoryProvider.Build;
         }
 
         private Task<int> GetSitePort(SiteConfiguration config, ConfigObject configObject) {
@@ -57,10 +62,19 @@ namespace Candidate.Core.Setup {
                 throw new Exception("Couldn't create configuration for IIS without web project name");
             }
 
-            // TODO: put C:\sites\ to configuration
-            return new Copy() { 
-                FromPath = configObject.Solution.Projects[config.Solution.WebProject].ProjectDirectory, 
-                ToPath = @"c:\sites\" + config.Iis.SiteName }.ToPath;
+            return new Copy() {
+                FromPath = GetPublishedPath(config),
+                ToPath = GetDeploymentPath(config),
+                DeleteToDirectory = true
+            }.ToPath;
+        }
+
+        private Task<string> GetPublishedPath(SiteConfiguration config) {
+            return _directoryProvider.PublishedWebSites + "\\" + config.Solution.WebProject;
+        }
+
+        private string GetDeploymentPath(SiteConfiguration config) {
+            return _directoryProvider.Deployment + "\\" + config.Iis.SiteName;
         }
 
         private Task<string> GetSolutionPath(SiteConfiguration config, ConfigObject configObject) {

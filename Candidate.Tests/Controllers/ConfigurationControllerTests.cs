@@ -258,6 +258,7 @@ namespace Candidate.Tests.Controllers
             var savedConfiguration = savedObject as SitesConfigurationList;
             var config = savedConfiguration.Configurations.Where(c => c.JobName == "testJob").SingleOrDefault();
             Assert.That(config, Is.Null);
+            Assert.That(savedConfiguration.Configurations.Count, Is.EqualTo(0));
         }
     }
 }

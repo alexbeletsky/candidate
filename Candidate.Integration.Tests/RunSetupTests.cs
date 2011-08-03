@@ -45,10 +45,10 @@ namespace Candidate.Tests.Integration {
 
             // act
             var defaultSetup = new DefaultSetup(targetsObjectBuilder, targetsBuilder, bounceFactory);
-            defaultSetup.RunForConfig(new DummyLogger(), config);
+            defaultSetup.RunForConfig(new NullLogger(), config);
 
             // assert
-            Assert.That(Directory.Exists(DirectoryProvider.Source + "\\TestSolution\\Test\\bin"));
+            Assert.That(Directory.Exists(DirectoryProvider.Build));
         }
 
         [Test]
@@ -106,7 +106,7 @@ namespace Candidate.Tests.Integration {
 
             // act
             var defaultSetup = new DefaultSetup(targetsObjectBuilder, targetsBuilder, bounceFactory);
-            defaultSetup.RunForConfig(new DummyLogger(), config);
+            defaultSetup.RunForConfig(new NullLogger(), config);
 
             // assert
             var iisServer = new ServerManager();

@@ -72,6 +72,7 @@
     <Compile Include="Log\ILogger.cs" />
     <Compile Include="Setup\SetupResult.cs" />
     <Compile Include="Utils\DirectoryProvider.cs" />
+    <Compile Include="Utils\IDictionary.cs" />
     <Compile Include="Utils\IDirectoryProvider.cs" />
     <Compile Include="Utils\LocalAppDataFolder.cs" />
   </ItemGroup>

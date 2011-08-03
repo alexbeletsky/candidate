@@ -116,7 +116,20 @@ namespace Candidate.Tests.Setup {
             // assert
             Assert.That(configObject.Solution, Is.Not.Null);
             Assert.That(configObject.Solution.SolutionPath.Value, Is.EqualTo(DirectoryProvider.Source + "\\TestSolution\\Test.sln"));
-        }  
+        }
+
+        [Test]
+        public void CreateConfigObject_ForSolution_OutputDirectoryPropertyIsSet() {
+            // arrange
+            var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
+            var config = new SiteConfiguration { Solution = new Solution { Name = "TestSolution\\Test.sln" } };
+
+            // act
+            var configObject = configObjectBuilder.CreateConfigObject(config);
+
+            // assert
+            Assert.That(configObject.Solution.OutputDir.Value, Is.EqualTo(DirectoryProvider.Build));
+        }
 
         [Test]
         [ExpectedException]

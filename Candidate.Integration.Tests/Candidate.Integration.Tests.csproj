@@ -41,6 +41,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\InetSrv\Microsoft.Web.Administration.dll</HintPath>
     </Reference>
+    <Reference Include="Moq">
+      <HintPath>..\lib\moq\Moq.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.5.10.11092\lib\nunit.framework.dll</HintPath>
     </Reference>
