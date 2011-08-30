@@ -5,7 +5,6 @@ using System;
 namespace Candidate.Core.Log {
     public class Logger : ILogger {
         private StreamWriter _writter;
-        private FileStream _fileStream;
 
         public Logger(IDirectoryProvider directoryProvider) {
 

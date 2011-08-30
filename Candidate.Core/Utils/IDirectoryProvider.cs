@@ -12,5 +12,6 @@ namespace Candidate.Core.Utils {
         string Settings { get; }
         string PublishedWebSites { get; }
         string Deployment { get; }
+        string NUnitConsole { get; }
     }
 }

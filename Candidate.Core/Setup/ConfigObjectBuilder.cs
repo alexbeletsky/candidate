@@ -3,6 +3,7 @@ using Bounce.Framework;
 using Candidate.Core.Settings.Model;
 using Candidate.Core.Utils;
 using System.IO;
+using System.Linq;
 
 namespace Candidate.Core.Setup {
     public class ConfigObjectBuilder : IConfigObjectBuilder {
@@ -30,7 +31,16 @@ namespace Candidate.Core.Setup {
             if (siteConfiguration.Solution != null) {
                 configObject.Solution = new VisualStudioSolution {
                     SolutionPath = GetSolutionPath(siteConfiguration, configObject),
+                    Target = "Rebuild",
                     OutputDir = GetOutputDir()
+                };
+
+                var directoryInfo = new DirectoryInfo(_directoryProvider.Build);
+
+                configObject.Tests = new NUnitTests {
+                    NUnitConsolePath = _directoryProvider.NUnitConsole,
+                    FrameworkVersion = "4.0",
+                    DllPaths = configObject.Solution.WhenBuilt(() => directoryInfo.GetFiles("*.dll").Where(p => p.Name.Contains("Test") || p.Name.Contains("Tests")).Select(p => p.FullName))
                 };
             }
 

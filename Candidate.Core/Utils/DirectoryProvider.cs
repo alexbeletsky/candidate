@@ -74,5 +74,12 @@ namespace Candidate.Core.Utils {
                 _jobName = value;
             }
         }
+
+
+        public string NUnitConsole {
+            get {
+                return Root + "\\tools\\NUnit\\nunit-console.exe"; 
+            }
+        }
     }
 }
