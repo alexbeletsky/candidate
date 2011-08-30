@@ -1,6 +1,7 @@
 ﻿using Bounce.Framework;
 using Candidate.Core.Log;
 using Candidate.Core.Settings.Model;
+using Candidate.Core.Utils;
 
 namespace Candidate.Core.Setup {
     public class DefaultSetup : ISetup {
@@ -25,7 +26,7 @@ namespace Candidate.Core.Setup {
 
             _targetsBuilder.BuildTargets(bounce, targets, _command);
 
-            return new SetupResult();
+            return new SetupResult { Url = config.Iis.GetSiteUrl() };
         }
     }
 }

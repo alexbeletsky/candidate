@@ -74,7 +74,7 @@
     <Compile Include="Utils\DirectoryProvider.cs" />
     <Compile Include="Utils\IDirectoryProvider.cs" />
     <Compile Include="Utils\LocalAppDataFolder.cs" />
-    <Compile Include="Utils\Tools.cs" />
+    <Compile Include="Utils\SiteConfigurationExtentions.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

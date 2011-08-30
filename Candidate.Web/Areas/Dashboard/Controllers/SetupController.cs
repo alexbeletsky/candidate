@@ -42,9 +42,9 @@ namespace Candidate.Areas.Dashboard.Controllers {
 
             using (var logger = _loggerFactory.CreateLogger()) {
                 var setup = _setupFactory.CreateSetup();
-                setup.RunForConfig(logger, currentSettings);
+                var result = setup.RunForConfig(logger, currentSettings);
 
-                return Json(new { success = true, logId = logger.LogFullPath });
+                return Json(new { success = true, result = result });
             }
         }
     }

@@ -244,9 +244,19 @@ footer
     font-size: 26px;
 }
 
+span.small 
+{
+    font-size: 15px;
+}
+
 span.error 
 {
     color: #ce1b30;
+}
+
+span.success 
+{
+    color: #2e5e36;
 }
 
 .preloader
