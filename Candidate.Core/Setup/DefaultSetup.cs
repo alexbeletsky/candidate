@@ -26,7 +26,7 @@ namespace Candidate.Core.Setup {
 
             _targetsBuilder.BuildTargets(bounce, targets, _command);
 
-            return new SetupResult { Url = config.Iis.GetSiteUrl() };
+            return new SetupResult { Url = config.Iis.GetSiteUrl(), Log = logger.LogFilename };
         }
     }
 }

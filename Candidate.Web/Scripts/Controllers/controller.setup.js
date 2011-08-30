@@ -8,6 +8,7 @@ $(function () {
 
         var setup = $('#setup');
         var startSetupMethod = setup.data('start-setup');
+        var showLogMethod = setup.data('show-log');
 
         start();
 
@@ -40,12 +41,15 @@ $(function () {
         function finish(result) {
             $('#current-step').html('<span class="success">Application successfully launched!</span>');
             $('#current-step').append('<p><span class="small">Go and visit your site: <a target="_blank" href="' + result.Url + '">' + result.Url + '</a></span></p>');
+            $('#current-step').append('<p><span class="small">Build available <a target="_blank" href="' + showLogMethod + '/' + result.Log + '">here</a></span></p>');
+
             $('.preloader').hide();
             $.unblockUI();
         }
 
         function onError(r) {
             $('#current-step').html('<span class="error">' + r.message + '</span>');
+
             $('.preloader').hide();
             $.unblockUI();
         }
