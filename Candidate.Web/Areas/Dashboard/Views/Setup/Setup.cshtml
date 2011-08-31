@@ -12,7 +12,7 @@
 <input id="job-name" type="hidden" value="@ViewBag.JobName" />
 <input id="setup" type="hidden" 
     data-start-setup="@Url.Action("StartSetup", new { area = "Dashboard" , controller = "Setup", jobName = ViewBag.JobName })" 
-    data-show-log="@Url.Action("ShowLog", new { area = "Dashboard", controller = "Log", obName = ViewBag.JobName })" 
+    data-show-log="@Url.Action("ShowLog", new { area = "Dashboard", controller = "Log", jobName = ViewBag.JobName })" 
     />
 
 <div class="grey-container">
