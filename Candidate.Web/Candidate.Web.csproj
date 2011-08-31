@@ -96,7 +96,6 @@
     <Content Include="Content\teamviewer.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="index.htm" />
     <Content Include="Scripts\Controllers\controller.configure.js" />
     <Content Include="Scripts\Controllers\controller.dashboard.js" />
     <Content Include="Scripts\Controllers\controller.run.js.js" />

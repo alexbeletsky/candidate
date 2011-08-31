@@ -5,6 +5,8 @@
     @Html.ValidationSummary();
                                    
     <fieldset>
+        <legend>
+        </legend>
         <div id="solution-name">
             @Html.LabelFor(m => m.Name)
             @Html.TextBoxFor(m => m.Name)
@@ -12,6 +14,10 @@
         <div id="webproject-name">
             @Html.LabelFor(m => m.WebProject)
             @Html.TextBoxFor(m => m.WebProject)
+        </div>
+        <div id="nunit-name">
+            @Html.LabelFor(m => m.IsRunTests)
+            @Html.CheckBoxFor(m => m.IsRunTests)
         </div>
     </fieldset>
 

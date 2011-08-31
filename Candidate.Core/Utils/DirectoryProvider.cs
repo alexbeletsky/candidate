@@ -1,6 +1,9 @@
 ﻿
 using System;
 namespace Candidate.Core.Utils {
+
+    // TODO: get rid of + "\\" operation, use Path.Combine instead
+
     public class DirectoryProvider : IDirectoryProvider {
         private string _jobName;
 

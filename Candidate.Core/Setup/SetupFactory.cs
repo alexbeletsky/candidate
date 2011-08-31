@@ -13,19 +13,6 @@ namespace Candidate.Core.Setup {
         }
 
         public ISetup CreateSetup() {
-            //if (settingsManager == null) {
-            //    throw new ArgumentNullException("settingsManager");
-            //}
-
-            //if (string.IsNullOrEmpty(jobName)) {
-            //    throw new ArgumentNullException("jobName");
-            //}
-
-            //var currentSettings = settingsManager.ReadSettings<JobsConfigurationSettingsModel>().Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
-            //if (currentSettings == null) {
-            //    throw new Exception(string.Format("Can't create setup for non-existing job: {0}", jobName));
-            //}
-
             return new DefaultSetup(_targetsObjectBuilder, _targetsBuilder, _bounceFactory);
         }
     }

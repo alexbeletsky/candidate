@@ -29,7 +29,7 @@ namespace Candidate.Tests.Integration {
         }
 
         public string LogFilename {
-            get { throw new System.NotImplementedException(); }
+            get { return "dummy.log";  }
         }
 
         public string LogFullPath {

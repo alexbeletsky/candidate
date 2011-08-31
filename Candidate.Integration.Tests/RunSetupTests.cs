@@ -30,7 +30,8 @@ namespace Candidate.Tests.Integration {
             // arrange
             var config = new SiteConfiguration() {
                 Solution = new Solution {
-                    Name = "TestSolution\\Test.sln"
+                    Name = "TestSolution\\Test.sln",
+                    IsRunTests = false
                 },
             };
 
@@ -56,7 +57,8 @@ namespace Candidate.Tests.Integration {
             // arrange
             var config = new SiteConfiguration() {
                 Solution = new Solution {
-                    Name = "TestSolution\\Test.sln"
+                    Name = "TestSolution\\Test.sln",
+                    IsRunTests = false
                 },
             };
 
@@ -89,7 +91,8 @@ namespace Candidate.Tests.Integration {
             var config = new SiteConfiguration() {
                 Solution = new Solution {
                     Name = "TestSolution\\Test.sln",
-                    WebProject = "Test"
+                    WebProject = "Test",
+                    IsRunTests = false
                 },
                 Iis = new Iis {
                     SiteName = "TestSite"

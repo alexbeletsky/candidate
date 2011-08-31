@@ -8,6 +8,7 @@ namespace Candidate.Core.Utils
         {
             get
             {
+                // TODO: consider another special folder, maybe ~/.candidate
                 return Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\Candidate";
             }
         }

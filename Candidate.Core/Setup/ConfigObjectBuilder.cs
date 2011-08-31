@@ -13,11 +13,14 @@ namespace Candidate.Core.Setup {
             _directoryProvider = directoryProvider;
         }
 
+        // TODO: CreateConfigObject have a smell of "Monster method", have to be redesigned. Visitor pattern for configuration creation;
         public ConfigObject CreateConfigObject(SiteConfiguration siteConfiguration) {
             if (siteConfiguration == null) {
                 throw new ArgumentNullException("siteConfiguration");
             }
 
+            // TODO: hard coded values as framework version, target have to be moved to build configuration
+             
             var configObject = new ConfigObject();
 
             if (siteConfiguration.Github != null && !string.IsNullOrEmpty(siteConfiguration.Github.Url)) {
@@ -35,13 +38,15 @@ namespace Candidate.Core.Setup {
                     OutputDir = GetOutputDir()
                 };
 
-                var directoryInfo = new DirectoryInfo(_directoryProvider.Build);
-
-                configObject.Tests = new NUnitTests {
-                    NUnitConsolePath = _directoryProvider.NUnitConsole,
-                    FrameworkVersion = "4.0",
-                    DllPaths = configObject.Solution.WhenBuilt(() => directoryInfo.GetFiles("*.dll").Where(p => p.Name.Contains("Test") || p.Name.Contains("Tests")).Select(p => p.FullName))
-                };
+                if (siteConfiguration.Solution.IsRunTests) {
+                    var directoryInfo = new DirectoryInfo(_directoryProvider.Build);
+                 
+                    configObject.Tests = new NUnitTests {
+                        NUnitConsolePath = _directoryProvider.NUnitConsole,
+                        FrameworkVersion = "4.0",
+                        DllPaths = configObject.Solution.WhenBuilt(() => directoryInfo.GetFiles("*.dll").Where(p => p.Name.Contains("Test") || p.Name.Contains("Tests")).Select(p => p.FullName))
+                    };
+                }
             }
 
             if (siteConfiguration.Iis != null) {
@@ -72,6 +77,7 @@ namespace Candidate.Core.Setup {
                 throw new Exception("Couldn't create configuration for IIS without web project name");
             }
 
+            // TODO: this copy operation is a little hidden and not obvious, have to be fixed
             return new Copy() {
                 FromPath = GetPublishedPath(config),
                 ToPath = GetDeploymentPath(config),

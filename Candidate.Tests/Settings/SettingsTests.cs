@@ -11,26 +11,6 @@ namespace Candidate.Tests.Settings {
         private static string CurrentDirectory = Directory.GetCurrentDirectory();
         private static DirectoryProvider DirectoryProvider = new DirectoryProvider("SettingsTests", CurrentDirectory);
 
-        public class Job {
-            public int Id { get; set; }
-            public string Name { get; set; }
-            public string Configuration { get; set; }
-        }
-
-        public class User {
-            public string FirstName { get; set; }
-            public string LastName { get; set; }
-        }
-
-        public class BuildServerSettings {
-            public IList<Job> Jobs { get; set; }
-            public User User { get; set; }
-        }
-
-        public class NoSuchSettings {
-
-        }
-
         [TearDown]
         public void Teardown() {
             Directory.Delete(DirectoryProvider.Settings, true);
@@ -89,7 +69,27 @@ namespace Candidate.Tests.Settings {
             Assert.That(settings, Is.Not.Null);
         }
 
-        private CompareObjects Comparer {
+        internal class Job {
+            public int Id { get; set; }
+            public string Name { get; set; }
+            public string Configuration { get; set; }
+        }
+
+        internal class User {
+            public string FirstName { get; set; }
+            public string LastName { get; set; }
+        }
+
+        internal class BuildServerSettings {
+            public IList<Job> Jobs { get; set; }
+            public User User { get; set; }
+        }
+
+        internal class NoSuchSettings {
+
+        }
+
+        internal CompareObjects Comparer {
             get {
                 return new CompareObjects();
             }

@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 
-
+// TODO: redesign provider to avoid singletone usage of it.. 
 namespace Candidate.Core.Utils {
     public interface IDirectoryProvider {
         string JobName { set; }
