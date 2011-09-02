@@ -7,6 +7,9 @@ using Candidate.Core.Settings.Model;
 using Candidate.Core.Setup;
 using Candidate.Core.Utils;
 using Candidate.Infrustructure.Error;
+using Candidate.Infrustructure.Filters;
+using Candidate.Areas.Dashboard.Models;
+using Newtonsoft.Json;
 
 namespace Candidate.Areas.Dashboard.Controllers {
 
@@ -32,11 +35,40 @@ namespace Candidate.Areas.Dashboard.Controllers {
         [HttpPost]
         [HandleJsonError]
         public ActionResult StartSetup(string jobName) {
+            var currentSettings = _settingsManager.ReadSettings<SitesConfigurationList>().Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
+            if (currentSettings == null) {
+                throw new Exception(string.Format("Can't create setup for non-existing job: {0}", jobName));
+            }
+
+            return RunDeployAndLog(jobName, currentSettings);
+        }
+
+        [HttpPost]
+        [HandleJsonError]
+        [ValidateToken]
+        public ActionResult Hook(string jobName, string token, string payload) {
 
             var currentSettings = _settingsManager.ReadSettings<SitesConfigurationList>().Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
             if (currentSettings == null) {
                 throw new Exception(string.Format("Can't create setup for non-existing job: {0}", jobName));
             }
+
+            // TODO: move this serialization to service
+            var payloadDeserialized = JsonConvert.DeserializeObject<GithubHookPayload>(payload);
+            var githubConfiguration = currentSettings.Github;
+
+            if (!IsHookForBranch(payloadDeserialized.Branch, githubConfiguration)) {
+                return null;
+            }
+
+            return RunDeployAndLog(jobName, currentSettings);
+        }
+
+        private static bool IsHookForBranch(string payload, GitHub githubConfiguration) {
+            return payload.Equals(githubConfiguration.Branch);
+        }
+
+        private ActionResult RunDeployAndLog(string jobName, SiteConfiguration currentSettings) {
 
             _directoryProvider.JobName = jobName;
 
@@ -47,5 +79,6 @@ namespace Candidate.Areas.Dashboard.Controllers {
                 return Json(new { success = true, result = result });
             }
         }
+
     }
 }

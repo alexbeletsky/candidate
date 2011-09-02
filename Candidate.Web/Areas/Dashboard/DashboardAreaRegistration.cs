@@ -1,19 +1,21 @@
 ﻿using System.Web.Mvc;
 
-namespace Candidate.Areas.Dashboard
-{
-    public class DashboardAreaRegistration : AreaRegistration
-    {
-        public override string AreaName
-        {
-            get
-            {
+namespace Candidate.Areas.Dashboard {
+    public class DashboardAreaRegistration : AreaRegistration {
+        public override string AreaName {
+            get {
                 return "Dashboard";
             }
         }
 
-        public override void RegisterArea(AreaRegistrationContext context)
-        {
+        public override void RegisterArea(AreaRegistrationContext context) {
+
+            context.MapRoute(
+                "Dashboard_hook",
+                "Dashboard/hook/{jobName}/token/{token}",
+                new { controller = "Setup", action = "Hook" }
+            );
+
             context.MapRoute(
                 "Dashboard_log",
                 "Dashboard/{controller}/{action}/{jobName}/{logId}",

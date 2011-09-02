@@ -4,13 +4,11 @@ using Candidate.Core.Utils;
 using Candidate.Core.Setup;
 using Bounce.Framework;
 using Candidate.Core.Log;
+using Candidate.Core.Services;
 
-namespace Candidate.Infrustructure
-{
-    class Services : NinjectModule
-    {
-        public override void Load()
-        {
+namespace Candidate.Infrustructure {
+    class Services : NinjectModule {
+        public override void Load() {
             Bind<ISettingsManager>().To<SettingsManager>();
             Bind<IDirectoryProvider>().To<DirectoryProvider>().InSingletonScope();
             Bind<ISetupFactory>().To<SetupFactory>();
@@ -20,6 +18,7 @@ namespace Candidate.Infrustructure
             Bind<ITargetsRetriever>().To<TargetsRetriever>();
             Bind<IConfigObjectBuilder>().To<ConfigObjectBuilder>();
             Bind<ILoggerFactory>().To<LoggerFactory>();
+            Bind<IHashService>().To<HashService>();
         }
     }
 }

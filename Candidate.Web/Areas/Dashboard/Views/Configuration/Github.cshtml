@@ -1,11 +1,11 @@
 ﻿@model Candidate.Core.Settings.Model.GitHub
 
-<h2>Github repository configuration</h2>
 @using (Html.BeginForm())
 {
     @Html.ValidationSummary();
                                    
     <fieldset>
+        <legend>Github repository configuration</legend>
         <div id="github-url">
             @Html.LabelFor(m => m.Url)
             @Html.TextBoxFor(m => m.Url)
@@ -13,6 +13,10 @@
         <div id="github-branch">
             @Html.LabelFor(m => m.Branch)
             @Html.TextBoxFor(m => m.Branch)
+        </div>
+        <div id="github-hook">
+            @Html.LabelFor(m => m.Hook)
+            @Html.TextBoxFor(m => m.Hook, new { @readonly = true } )            
         </div>
     </fieldset>
     <div class="clear"></div>

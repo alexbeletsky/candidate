@@ -4,12 +4,15 @@
     using Candidate.Areas.Dashboard.Models;
     using Candidate.Core.Settings;
     using Candidate.Core.Settings.Model;
+using Candidate.Core.Services;
 
     public class ConfigurationController : Controller {
         private ISettingsManager _settingsManager;
+        private IHashService _hashServices;
 
-        public ConfigurationController(ISettingsManager settingsManager) {
+        public ConfigurationController(ISettingsManager settingsManager, IHashService hashServices) {
             _settingsManager = settingsManager;
+            _hashServices = hashServices;
         }
 
         [HttpGet]
@@ -24,7 +27,15 @@
             var currentSettings = _settingsManager.ReadSettings<SitesConfigurationList>();
             var jobConfiguration = currentSettings.Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
 
-            return View(jobConfiguration == null ? null : jobConfiguration.Github);
+            if (string.IsNullOrEmpty(jobConfiguration.Github.Hook)) {
+                jobConfiguration.Github.Hook = "http:/" + Url.Action("Hook", new { 
+                    area = "Dashboard", 
+                    controller = "Setup", 
+                    jobName = jobName, 
+                    token = _hashServices.CreateMD5Hash(jobName) });
+            }
+
+            return View(jobConfiguration.Github);
         }
 
         [HttpPost]
@@ -49,7 +60,7 @@
             var currentSettings = _settingsManager.ReadSettings<SitesConfigurationList>();
             var jobConfiguration = currentSettings.Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
 
-            return View(jobConfiguration == null ? null : jobConfiguration.Iis);
+            return View(jobConfiguration.Iis);
         }
 
         [HttpPost]
@@ -74,7 +85,7 @@
             var currentSettings = _settingsManager.ReadSettings<SitesConfigurationList>();
             var jobConfiguration = currentSettings.Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
 
-            return View(jobConfiguration == null ? null : jobConfiguration.Solution);
+            return View(jobConfiguration.Solution);
         }
 
         [HttpPost]

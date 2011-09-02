@@ -7,5 +7,8 @@ namespace Candidate.Core.Settings.Model {
 
         [DisplayName("Branch")]
         public string Branch { get; set; }
+
+        [DisplayName("Hook")]
+        public string Hook { get; set; }
     }
 }
