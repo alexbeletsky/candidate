@@ -401,3 +401,8 @@ button a:visited
     color: #333;
 }
 
+div#summary
+{
+    font-size: 15px;
+}
+

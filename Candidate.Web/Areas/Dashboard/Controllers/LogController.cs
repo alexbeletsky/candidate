@@ -12,7 +12,7 @@ namespace Candidate.Areas.Dashboard.Controllers {
         }
 
         [HttpGet]
-        public ActionResult ShowLog(string jobName, string logId) {
+        public ActionResult Show(string jobName, string logId) {
             _directoryProvider.JobName = jobName;
 
             var pathToLog = _directoryProvider.Logs + "\\" + logId;

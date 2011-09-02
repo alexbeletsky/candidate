@@ -72,11 +72,13 @@
     <Compile Include="Areas\Dashboard\Controllers\BatchController.cs" />
     <Compile Include="Areas\Dashboard\Controllers\ConfigurationController.cs" />
     <Compile Include="Areas\Dashboard\Controllers\DashboardController.cs" />
+    <Compile Include="Areas\Dashboard\Controllers\OverviewController.cs" />
     <Compile Include="Areas\Dashboard\Controllers\SetupController.cs" />
     <Compile Include="Areas\Dashboard\Models\DeleteJobModel.cs" />
     <Compile Include="Areas\Dashboard\Controllers\LogController.cs" />
     <Compile Include="Areas\Dashboard\DashboardAreaRegistration.cs" />
     <Compile Include="Areas\Dashboard\Models\NewJobModel.cs" />
+    <Compile Include="Areas\Dashboard\Models\OverviewModel.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -182,6 +184,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Dashboard\Views\Configuration\Solution.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Dashboard\Views\Overview\Show.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

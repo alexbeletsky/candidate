@@ -1,0 +1,31 @@
+﻿@model Candidate.Areas.Dashboard.Models.OverviewModel
+
+@{
+    ViewBag.Title = "Show";
+    Layout = "~/Areas/Dashboard/Views/Shared/_Layout.cshtml";
+}
+
+<div id="internal-nagivation">
+    <h2>Build > Jobs > Overview</h2>
+    <div class="right">@Html.ActionLink("Back to dashboard", "Index", new { area = "Dashboard", controller = "Dashboard" } )</div>    
+    <div class="clear"></div>
+</div>
+
+<div id="summary">
+    <div id="result">
+        <div class="result"><strong>Last build status:</strong> @Model.LastBuildStatus</div>
+        <div class="time"><strong>Last deployment time:</strong> @Model.LastDeployTime</div>
+        <div class="duration"><strong>Last deployment duration:</strong> @Model.LastDeployDuration</div>
+    </div>
+
+    <div id="logs" class="grey-container">
+        <ul>
+        @foreach (var log in Model.Logs) {
+            <li>
+                @Html.ActionLink(log, "Show", new { area = "Dashboard", controller = "Log", jobName = ViewBag.JobName, logId = log }) 
+            </li>
+        }
+        </ul>
+    </div>
+</div>
+
