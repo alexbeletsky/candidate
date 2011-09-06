@@ -16,7 +16,7 @@
         </div>
         <div id="github-hook">
             @Html.LabelFor(m => m.Hook)
-            @Html.TextBoxFor(m => m.Hook, new { @readonly = true } )            
+            @Html.TextBoxFor(m => m.Hook, new { @readonly = true, @Value = Url.Action("Hook", "Setup", new { area = "Dashboard", jobName = ViewBag.JobName, token = ViewBag.JobNameHash }, "http") } )            
         </div>
     </fieldset>
     <div class="clear"></div>

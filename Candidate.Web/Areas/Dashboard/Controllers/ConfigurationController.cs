@@ -5,35 +5,37 @@
     using Candidate.Core.Settings;
     using Candidate.Core.Settings.Model;
 using Candidate.Core.Services;
+    using Candidate.Infrustructure.Filters;
 
     public class ConfigurationController : Controller {
         private ISettingsManager _settingsManager;
-        private IHashService _hashServices;
 
-        public ConfigurationController(ISettingsManager settingsManager, IHashService hashServices) {
+        public ConfigurationController(ISettingsManager settingsManager) {
             _settingsManager = settingsManager;
-            _hashServices = hashServices;
         }
 
         [HttpGet]
+        [AddViewNameAndHash]
         public ActionResult Index(string jobName) {
-            ViewBag.JobName = jobName;
-
+            
             return View();
         }
 
         [HttpGet]
+        [AddViewNameAndHash]
         public ActionResult Github(string jobName) {
             var currentSettings = _settingsManager.ReadSettings<SitesConfigurationList>();
             var jobConfiguration = currentSettings.Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
 
-            if (string.IsNullOrEmpty(jobConfiguration.Github.Hook)) {
-                jobConfiguration.Github.Hook = "http:/" + Url.Action("Hook", new { 
-                    area = "Dashboard", 
-                    controller = "Setup", 
-                    jobName = jobName, 
-                    token = _hashServices.CreateMD5Hash(jobName) });
-            }
+            //ViewBag.GithubHook = Url.Action("Hook", "Setup", new { area = "Dashboard", jobName = jobName, token = _hashServices.CreateMD5Hash(jobName) }, "http");
+
+            //if (string.IsNullOrEmpty(jobConfiguration.Github.Hook)) {
+            //    jobConfiguration.Github.Hook = "http:/" + Url.Action("Hook", new { 
+            //        area = "Dashboard", 
+            //        controller = "Setup", 
+            //        jobName = jobName, 
+            //        token = _hashServices.CreateMD5Hash(jobName) });
+            //}
 
             return View(jobConfiguration.Github);
         }
@@ -56,6 +58,7 @@ using Candidate.Core.Services;
         }
 
         [HttpGet]
+        [AddViewNameAndHash]
         public ActionResult Iis(string jobName) {
             var currentSettings = _settingsManager.ReadSettings<SitesConfigurationList>();
             var jobConfiguration = currentSettings.Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
@@ -81,6 +84,7 @@ using Candidate.Core.Services;
         }
 
         [HttpGet]
+        [AddViewNameAndHash]
         public ActionResult Solution(string jobName) {
             var currentSettings = _settingsManager.ReadSettings<SitesConfigurationList>();
             var jobConfiguration = currentSettings.Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
@@ -106,6 +110,7 @@ using Candidate.Core.Services;
         }
 
         [HttpGet]
+        [AddViewNameAndHash]
         public ActionResult Delete(string jobName) {
             return View(new DeleteJobModel { JobName = jobName });
         }

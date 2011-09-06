@@ -18,13 +18,19 @@ namespace Candidate.Areas.Dashboard {
 
             context.MapRoute(
                 "Dashboard_log",
-                "Dashboard/{controller}/{action}/{jobName}/{logId}",
+                "Dashboard/Log/{action}/{jobName}/{logId}",
                 new { controller = "Log" }
             );
 
             context.MapRoute(
+                "Dashboard_overview",
+                "Dashboard/Overview/{action}/{*jobName}",
+                new { controller = "Overview" }
+            );
+
+            context.MapRoute(
                 "Dashboard_default",
-                "Dashboard/{controller}/{action}/{jobName}",
+                "Dashboard/{controller}/{action}/{*jobName}",
                 new { action = "Index", controller = "Dashboard", jobName = UrlParameter.Optional }
             );
         }

@@ -16,14 +16,12 @@ namespace Candidate.Tests.Controllers
     public class ConfigurationControllerTests
     {
         protected ConfigurationController Controller { get; set; }
-        protected Mock<IHashService> HashServices { get; set; }
         protected Mock<ISettingsManager> SettingsManager { get; set; }
 
         [SetUp]
         public void Setup() {
             SettingsManager = new Mock<ISettingsManager>();
-            HashServices = new Mock<IHashService>();
-            Controller = new ConfigurationController(SettingsManager.Object, HashServices.Object);
+            Controller = new ConfigurationController(SettingsManager.Object);
         }
         
         [Test]
@@ -36,19 +34,6 @@ namespace Candidate.Tests.Controllers
 
             // assert
             result.Should().Not.Be.Null();
-        }
-
-        [Test]
-        public void Index_Get_PutsJobNameIntoViewBag()
-        {
-            // arrange
-
-            // act
-            var result = Controller.Index("testJob") as ViewResult;
-
-            // assert
-            var jobName = result.ViewBag.JobName;
-            Assert.That(jobName, Is.EqualTo("testJob"));
         }
 
         [Test]
