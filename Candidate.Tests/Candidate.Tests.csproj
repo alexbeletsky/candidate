@@ -78,6 +78,7 @@
     <Compile Include="Controllers\ConfigurationControllerTests.cs" />
     <Compile Include="Controllers\DashboardControllerTests.cs" />
     <Compile Include="Controllers\LoginControllerTests.cs" />
+    <Compile Include="Controllers\SetupControllerTests.cs" />
     <Compile Include="Filters\AddViewNameAndHashAttributeTests.cs" />
     <Compile Include="Log\LoggerFactoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
