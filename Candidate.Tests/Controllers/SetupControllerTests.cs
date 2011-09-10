@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NUnit.Framework;
+﻿using System.Collections.Generic;
 using Candidate.Areas.Dashboard.Controllers;
-using Moq;
+using Candidate.Core.Log;
 using Candidate.Core.Settings;
+using Candidate.Core.Settings.Model;
 using Candidate.Core.Setup;
 using Candidate.Core.Utils;
-using Candidate.Core.Log;
-using Candidate.Core.Settings.Model;
+using Moq;
+using NUnit.Framework;
 
 namespace Candidate.Tests.Controllers {
     [TestFixture]

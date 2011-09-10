@@ -3,10 +3,10 @@ using System.Web.Mvc;
 using Candidate.Areas.Dashboard.Controllers;
 using Candidate.Areas.Dashboard.Models;
 using Candidate.Core.Settings;
+using Candidate.Core.Settings.Model;
 using Moq;
 using NUnit.Framework;
 using SharpTestsEx;
-using Candidate.Core.Settings.Model;
 namespace Candidate.Tests.Controllers
 {
     [TestFixture]

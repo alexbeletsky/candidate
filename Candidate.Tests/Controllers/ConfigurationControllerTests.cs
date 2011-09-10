@@ -8,7 +8,6 @@ using Candidate.Core.Settings.Model;
 using Moq;
 using NUnit.Framework;
 using SharpTestsEx;
-using Candidate.Core.Services;
 
 namespace Candidate.Tests.Controllers
 {

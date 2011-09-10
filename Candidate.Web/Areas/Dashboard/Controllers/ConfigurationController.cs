@@ -4,7 +4,6 @@
     using Candidate.Areas.Dashboard.Models;
     using Candidate.Core.Settings;
     using Candidate.Core.Settings.Model;
-using Candidate.Core.Services;
     using Candidate.Infrustructure.Filters;
 
     public class ConfigurationController : Controller {

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using Candidate.Core.Services;
 using Ninject;
 
@@ -16,6 +12,5 @@ namespace Candidate.Infrustructure.Filters {
             filterContext.Controller.ViewBag.JobName = jobName;
             filterContext.Controller.ViewBag.JobNameHash = HashServices.CreateMD5Hash(jobName);
         }
-
     }
 }

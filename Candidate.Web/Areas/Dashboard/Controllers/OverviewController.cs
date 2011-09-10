@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Candidate.Areas.Dashboard.Models;
 using Candidate.Core.Utils;
-using System.IO;
 
 namespace Candidate.Areas.Dashboard.Controllers {
 

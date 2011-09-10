@@ -1,9 +1,9 @@
 ﻿using System;
+using System.IO;
+using System.Linq;
 using Bounce.Framework;
 using Candidate.Core.Settings.Model;
 using Candidate.Core.Utils;
-using System.IO;
-using System.Linq;
 
 namespace Candidate.Core.Setup {
     public class ConfigObjectBuilder : IConfigObjectBuilder {
@@ -44,7 +44,9 @@ namespace Candidate.Core.Setup {
                     configObject.Tests = new NUnitTests {
                         NUnitConsolePath = _directoryProvider.NUnitConsole,
                         FrameworkVersion = "4.0",
-                        DllPaths = configObject.Solution.WhenBuilt(() => directoryInfo.GetFiles("*.dll").Where(p => p.Name.Contains("Test") || p.Name.Contains("Tests")).Select(p => p.FullName))
+                        DllPaths = configObject.Solution.WhenBuilt(
+                            () => directoryInfo.GetFiles("*.dll").Where(p => p.Name.Contains("Test") || 
+                                p.Name.Contains("Tests")).Select(p => p.FullName))
                     };
                 }
             }

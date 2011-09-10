@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Web.Mvc;
+using Candidate.Areas.Dashboard.Models;
 using Candidate.Core.Log;
 using Candidate.Core.Settings;
 using Candidate.Core.Settings.Model;
@@ -8,7 +9,6 @@ using Candidate.Core.Setup;
 using Candidate.Core.Utils;
 using Candidate.Infrustructure.Error;
 using Candidate.Infrustructure.Filters;
-using Candidate.Areas.Dashboard.Models;
 using Newtonsoft.Json;
 
 namespace Candidate.Areas.Dashboard.Controllers {

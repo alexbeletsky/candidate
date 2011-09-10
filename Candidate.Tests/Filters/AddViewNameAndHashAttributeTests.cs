@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NUnit.Framework;
-using Candidate.Infrustructure.Filters;
-using Candidate.Core.Services;
+﻿using System.Collections.Generic;
 using System.Web.Mvc;
+using Candidate.Core.Services;
+using Candidate.Infrustructure.Filters;
 using Moq;
-using System.Dynamic;
+using NUnit.Framework;
 
 namespace Candidate.Tests.Filters {
     [TestFixture]
