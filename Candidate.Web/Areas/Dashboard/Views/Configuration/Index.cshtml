@@ -14,16 +14,25 @@
         <div class="configuration-line">
             <div id="scm-configuration" class="configuration-box" data-source="@Url.Action("Github", new { area = "Dashboard", controller = "Configuration", jobName = ViewBag.JobName })">
                 <p>
-                    GITHUB</p>
+                    GITHUB
+                </p>
             </div>
             <div id="vs-configuration" class="configuration-box" data-source="@Url.Action("Solution", new { area = "Dashboard", controller = "Configuration", jobName = ViewBag.JobName })">
                 <p>
-                    VS</p>
+                    VS
+                </p>
             </div>
             <div id="iis-configuration" class="configuration-box" data-source="@Url.Action("Iis", new { area = "Dashboard", controller = "Configuration", jobName = ViewBag.JobName })">
                 <p>
-                    IIS</p>
+                    IIS
+                </p>
             </div>
+            <div id="post-configuration" class="configuration-box" data-source="@Url.Action("Post", new { area = "Dashboard", controller = "Configuration", jobName = ViewBag.JobName })">
+                <p>
+                    POST
+                </p>
+            </div>
+
         </div>
     </div>
 </div>

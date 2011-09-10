@@ -1,11 +1,11 @@
 ﻿@model Candidate.Core.Settings.Model.Iis
 
-<h2>IIS web site configuration</h2>
 @using (Html.BeginForm())
 {
     @Html.ValidationSummary();
                                    
     <fieldset>
+        <legend>IIS site configuration</legend>
         <div id="iis-name">
             @Html.LabelFor(m => m.SiteName)
             @Html.TextBoxFor(m => m.SiteName)

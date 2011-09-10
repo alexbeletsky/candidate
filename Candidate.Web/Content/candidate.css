@@ -277,21 +277,20 @@ span.success
 .configuration-line
 {
     margin: 0 auto;
-    width: 760px;
+    width: 700px;
 }
 
 .configuration-box 
 {
     display: inline-block;
     
-    width: 200px;
+    width: 140px;
     height: 120px;
     border: 1px solid #CCC;
     
     -webkit-border-radius: 15px;
     -moz-border-radius: 15px;
     border-radius: 15px;
-    
     
     background: rgb(235,241,246); /* Old browsers */
     background: -moz-linear-gradient(top, rgba(235,241,246,1) 0%, rgba(171,211,238,1) 50%, rgba(137,195,235,1) 51%, rgba(213,235,251,1) 100%); /* FF3.6+ */
@@ -306,7 +305,7 @@ span.success
     -moz-box-shadow: 0px 0px 10px 1px #a3a3a3;
     box-shadow: 0px 0px 10wpx 1px #a3a3a3;
     
-    margin-right: 46px;
+    margin-right: 16px;
     
     padding: 6px 0px;
     text-align: center;

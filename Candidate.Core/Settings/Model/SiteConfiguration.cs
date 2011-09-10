@@ -6,5 +6,6 @@ namespace Candidate.Core.Settings.Model {
         public GitHub Github { get; set; }
         public Solution Solution { get; set; }
         public Iis Iis { get; set; }
+        public Post Post { get; set; }
     }
 }

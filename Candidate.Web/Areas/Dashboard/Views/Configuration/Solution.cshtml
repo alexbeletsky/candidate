@@ -1,12 +1,10 @@
 ﻿@model Candidate.Core.Settings.Model.Solution
            
-<h2>Solution configuration</h2>
 @using (Html.BeginForm()) {
     @Html.ValidationSummary();
                                    
     <fieldset>
-        <legend>
-        </legend>
+        <legend>Visual Studio solution configuration</legend>
         <div id="solution-name">
             @Html.LabelFor(m => m.Name)
             @Html.TextBoxFor(m => m.Name)

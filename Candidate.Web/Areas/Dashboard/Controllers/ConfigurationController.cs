@@ -6,6 +6,7 @@
     using Candidate.Core.Settings.Model;
     using Candidate.Infrustructure.Filters;
 
+    // TODO: avoid code duplication in POST methods
     public class ConfigurationController : Controller {
         private ISettingsManager _settingsManager;
 
@@ -23,33 +24,23 @@
         [HttpGet]
         [AddViewNameAndHash]
         public ActionResult Github(string jobName) {
-            var currentSettings = _settingsManager.ReadSettings<SitesConfigurationList>();
-            var jobConfiguration = currentSettings.Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
+            var currentConfiguration = _settingsManager.ReadSettings<SitesConfigurationList>();
+            var siteConfiguration = currentConfiguration.Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
 
-            //ViewBag.GithubHook = Url.Action("Hook", "Setup", new { area = "Dashboard", jobName = jobName, token = _hashServices.CreateMD5Hash(jobName) }, "http");
-
-            //if (string.IsNullOrEmpty(jobConfiguration.Github.Hook)) {
-            //    jobConfiguration.Github.Hook = "http:/" + Url.Action("Hook", new { 
-            //        area = "Dashboard", 
-            //        controller = "Setup", 
-            //        jobName = jobName, 
-            //        token = _hashServices.CreateMD5Hash(jobName) });
-            //}
-
-            return View(jobConfiguration.Github);
+            return View(siteConfiguration.Github);
         }
 
         [HttpPost]
         public ActionResult Github(string jobName, GitHub config) {
             using (var settingsManager = new TrackableSettingsManager(_settingsManager)) {
-                var currentSettings = settingsManager.ReadSettings<SitesConfigurationList>();
-                var jobConfiguration = currentSettings.Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
+                var currentConfiguration = settingsManager.ReadSettings<SitesConfigurationList>();
+                var siteConfiguration = currentConfiguration.Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
 
-                if (jobConfiguration == null) {
-                    currentSettings.Configurations.Add(new SiteConfiguration { JobName = jobName, Github = config });
+                if (siteConfiguration == null) {
+                    currentConfiguration.Configurations.Add(new SiteConfiguration { JobName = jobName, Github = config });
                 }
                 else {
-                    jobConfiguration.Github = config;
+                    siteConfiguration.Github = config;
                 }
 
                 return Json(new { success = true, settings = config });
@@ -59,23 +50,23 @@
         [HttpGet]
         [AddViewNameAndHash]
         public ActionResult Iis(string jobName) {
-            var currentSettings = _settingsManager.ReadSettings<SitesConfigurationList>();
-            var jobConfiguration = currentSettings.Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
+            var currentConfiguration = _settingsManager.ReadSettings<SitesConfigurationList>();
+            var siteConfiguration = currentConfiguration.Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
 
-            return View(jobConfiguration.Iis);
+            return View(siteConfiguration.Iis);
         }
 
         [HttpPost]
         public ActionResult Iis(string jobName, Iis config) {
             using (var settingsManager = new TrackableSettingsManager(_settingsManager)) {
-                var currentSettings = settingsManager.ReadSettings<SitesConfigurationList>();
-                var jobConfiguration = currentSettings.Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
+                var currentConfiguration = settingsManager.ReadSettings<SitesConfigurationList>();
+                var siteConfiguration = currentConfiguration.Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
 
-                if (jobConfiguration == null) {
-                    currentSettings.Configurations.Add(new SiteConfiguration { JobName = jobName, Iis = config });
+                if (siteConfiguration == null) {
+                    currentConfiguration.Configurations.Add(new SiteConfiguration { JobName = jobName, Iis = config });
                 }
                 else {
-                    jobConfiguration.Iis = config;
+                    siteConfiguration.Iis = config;
                 }
 
                 return Json(new { success = true, settings = config });
@@ -85,23 +76,23 @@
         [HttpGet]
         [AddViewNameAndHash]
         public ActionResult Solution(string jobName) {
-            var currentSettings = _settingsManager.ReadSettings<SitesConfigurationList>();
-            var jobConfiguration = currentSettings.Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
+            var currentConfiguration = _settingsManager.ReadSettings<SitesConfigurationList>();
+            var siteConfiguration = currentConfiguration.Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
 
-            return View(jobConfiguration.Solution);
+            return View(siteConfiguration.Solution);
         }
 
         [HttpPost]
         public ActionResult Solution(string jobName, Solution config) {
             using (var settingsManager = new TrackableSettingsManager(_settingsManager)) {
-                var currentSettings = settingsManager.ReadSettings<SitesConfigurationList>();
-                var jobConfiguration = currentSettings.Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
+                var currentConfiguration = settingsManager.ReadSettings<SitesConfigurationList>();
+                var siteConfiguration = currentConfiguration.Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
 
-                if (jobConfiguration == null) {
-                    currentSettings.Configurations.Add(new SiteConfiguration { JobName = jobName, Solution = config });
+                if (siteConfiguration == null) {
+                    currentConfiguration.Configurations.Add(new SiteConfiguration { JobName = jobName, Solution = config });
                 }
                 else {
-                    jobConfiguration.Solution = config;
+                    siteConfiguration.Solution = config;
                 }
 
                 return Json(new { success = true, settings = config });
@@ -117,11 +108,37 @@
         [HttpPost]
         public ActionResult Delete(DeleteJobModel deleteJob) {
             using (var settingsManager = new TrackableSettingsManager(_settingsManager)) {
-                var currentSettings = settingsManager.ReadSettings<SitesConfigurationList>();
-                var jobToDelete = currentSettings.Configurations.Where(j => j.JobName == deleteJob.JobName).SingleOrDefault();
-                var currentJobs = currentSettings.Configurations.Remove(jobToDelete);
+                var currentConfiguration = settingsManager.ReadSettings<SitesConfigurationList>();
+                var jobToDelete = currentConfiguration.Configurations.Where(j => j.JobName == deleteJob.JobName).SingleOrDefault();
+                var currentJobs = currentConfiguration.Configurations.Remove(jobToDelete);
 
                 return RedirectToAction("Index", "Dashboard");
+            }
+        }
+
+        [HttpGet]
+        [AddViewNameAndHash]
+        public ActionResult Post(string jobName) {
+            var currentConfiguration = _settingsManager.ReadSettings<SitesConfigurationList>();
+            var siteConfiguration = currentConfiguration.Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
+
+            return View(siteConfiguration.Post);
+        }
+
+        [HttpPost]
+        public ActionResult Post(string jobName, Post config) {
+            using (var settingsManager = new TrackableSettingsManager(_settingsManager)) {
+                var currentConfiguration = settingsManager.ReadSettings<SitesConfigurationList>();
+                var siteConfiguration = currentConfiguration.Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
+
+                if (siteConfiguration == null) {
+                    currentConfiguration.Configurations.Add(new SiteConfiguration { JobName = jobName, Post = config });
+                }
+                else {
+                    siteConfiguration.Post = config;
+                }
+
+                return Json(new { success = true, settings = config });
             }
         }
     }

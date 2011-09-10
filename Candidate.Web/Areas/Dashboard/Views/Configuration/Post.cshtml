@@ -1,0 +1,17 @@
+﻿@model Candidate.Core.Settings.Model.Post
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary();
+                                   
+    <fieldset>
+        <legend>Post build configuration</legend>
+        <div id="batch-name">
+            @Html.LabelFor(m => m.PostBatch)
+            @Html.TextBoxFor(m => m.PostBatch)
+        </div>
+    </fieldset>
+
+    <div class="clear"></div>    
+    <button type="submit" class="minimal">Save config</button>
+    <button type="reset" class="minimal">Reset</button>    
+}

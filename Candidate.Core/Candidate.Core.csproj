@@ -57,6 +57,7 @@
     <Compile Include="Settings\ISettingsManager.cs" />
     <Compile Include="Settings\Model\Github.cs" />
     <Compile Include="Settings\Model\Iis.cs" />
+    <Compile Include="Settings\Model\Post.cs" />
     <Compile Include="Settings\Model\SiteConfiguration.cs" />
     <Compile Include="Settings\Model\SitesConfigurationList.cs" />
     <Compile Include="Settings\Model\Solution.cs" />
