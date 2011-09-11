@@ -1,4 +1,5 @@
 ﻿@model Candidate.Core.Settings.Model.Solution
+@using Candidate.Infrustructure.Extensions;
            
 @using (Html.BeginForm()) {
     @Html.ValidationSummary();
@@ -12,6 +13,14 @@
         <div id="webproject-name">
             @Html.LabelFor(m => m.WebProject)
             @Html.TextBoxFor(m => m.WebProject)
+        </div>
+        <div id="config-select">
+            @Html.LabelFor(m => m.Configurations)
+            @Html.DropDownListFor(m => m.SelectedConfiguration, Model.Configurations)
+        </div>
+        <div id="targets-select">
+            @Html.LabelFor(m => m.Targets)
+            @Html.DropDownListFor(m => m.SelectedTarget, Model.Targets)
         </div>
         <div id="nunit-name">
             @Html.LabelFor(m => m.IsRunTests)

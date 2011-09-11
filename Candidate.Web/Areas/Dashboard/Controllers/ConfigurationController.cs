@@ -43,7 +43,7 @@
                     siteConfiguration.Github = config;
                 }
 
-                return Json(new { success = true, settings = config });
+                return Json(new { success = true });
             }
         }
 
@@ -69,7 +69,7 @@
                     siteConfiguration.Iis = config;
                 }
 
-                return Json(new { success = true, settings = config });
+                return Json(new { success = true });
             }
         }
 
@@ -95,7 +95,7 @@
                     siteConfiguration.Solution = config;
                 }
 
-                return Json(new { success = true, settings = config });
+                return Json(new { success = true });
             }
         }
 
@@ -138,7 +138,7 @@
                     siteConfiguration.Post = config;
                 }
 
-                return Json(new { success = true, settings = config });
+                return Json(new { success = true });
             }
         }
     }

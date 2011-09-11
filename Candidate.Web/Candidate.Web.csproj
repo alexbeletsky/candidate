@@ -106,6 +106,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrustructure\Error\HandleJsonError.cs" />
+    <Compile Include="Infrustructure\Extensions\DropDownListForExtensions.cs" />
     <Compile Include="Infrustructure\Filters\AddViewNameAndHashAttribute.cs" />
     <Compile Include="Infrustructure\Filters\ValidateTokenAttribute.cs" />
     <Compile Include="Models\LoginModel.cs" />

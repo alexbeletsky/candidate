@@ -34,7 +34,8 @@ namespace Candidate.Core.Setup {
             if (siteConfiguration.Solution != null) {
                 configObject.Solution = new VisualStudioSolution {
                     SolutionPath = GetSolutionPath(siteConfiguration, configObject),
-                    Target = "Rebuild",
+                    Target = GetTarget(siteConfiguration),
+                    Configuration = GetConfiguration(siteConfiguration),
                     OutputDir = GetOutputDir()
                 };
 
@@ -69,6 +70,14 @@ namespace Candidate.Core.Setup {
             }
 
             return configObject;
+        }
+
+        private Task<string> GetConfiguration(SiteConfiguration siteConfiguration) {
+            return siteConfiguration.Solution.Configurations[siteConfiguration.Solution.SelectedConfiguration];
+        }
+
+        private Task<string> GetTarget(SiteConfiguration siteConfiguration) {
+            return siteConfiguration.Solution.Targets[siteConfiguration.Solution.SelectedTarget];
         }
 
         private Task<string> GetOutputDir() {

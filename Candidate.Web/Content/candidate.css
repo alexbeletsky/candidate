@@ -11,14 +11,14 @@ fieldset
     margin: 0 0 8px 0;
 }
 
-textarea, input[type="text"], input[type="password"]
+textarea, input[type="text"], input[type="password"], select
 {
     background: #f6f6f6;
     border: 1px solid #ccc;
     border-radius: 3px;
     -webkit-box-shadow: inset 0 1px 0 0 #e3e3e3, 0 1px 0 0 #efefef;
     padding: 8px 6px;
-    width: 300px;
+    min-width: 140px;
 }
 
 div#login-box
@@ -35,6 +35,11 @@ div#login-box
     border: 1px solid #A7A7A7;
     clear: both;
     height: auto;
+}
+
+div#login-box input 
+{
+    width: 340px;
 }
 
 div#login-box fieldset label
@@ -336,13 +341,19 @@ span.success
 
 .dialog form
 {
+    display:block;    
 }
 
 .dialog fieldset
 {
-    display:block;
     border-style:none;
     padding: 0 4px 0 4px;
+}
+
+.dialog legend 
+{
+    font-size:large;
+    font-weight: bold;
 }
 
 .dialog label
@@ -352,13 +363,13 @@ span.success
     width: 120px !important;    
 }
 
-.dialog input
+.dialog input[type="text"]
 {
     display: inline-block;
     width: 430px !important;        
 }
 
-.dialog fieldset div
+.dialog div
 {
     display: block;
     float: left;

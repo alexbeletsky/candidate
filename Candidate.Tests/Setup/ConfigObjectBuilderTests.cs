@@ -132,6 +132,58 @@ namespace Candidate.Tests.Setup {
         }
 
         [Test]
+        public void CreateConfigObject_For_Solution_Target_Depends_On_Selected_Target_Rebuild() {
+            // arrange
+            var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
+            var config = new SiteConfiguration { Solution = new Solution { Name = "TestSolution\\Test.sln", SelectedTarget = 1 } };
+
+            // act
+            var configObject = configObjectBuilder.CreateConfigObject(config);
+
+            // assert
+            Assert.That(configObject.Solution.Target.Value, Is.EqualTo("Rebuild"));
+        }
+
+        [Test]
+        public void CreateConfigObject_For_Solution_Target_Depends_On_Selected_Target_Build() {
+            // arrange
+            var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
+            var config = new SiteConfiguration { Solution = new Solution { Name = "TestSolution\\Test.sln", SelectedTarget = 0 } };
+
+            // act
+            var configObject = configObjectBuilder.CreateConfigObject(config);
+
+            // assert
+            Assert.That(configObject.Solution.Target.Value, Is.EqualTo("Build"));
+        }
+
+        [Test]
+        public void CreateConfigObject_For_Solution_Configuration_Depends_On_Selected_Configuration_Debug() {
+            // arrange
+            var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
+            var config = new SiteConfiguration { Solution = new Solution { Name = "TestSolution\\Test.sln", SelectedConfiguration = 0 } };
+
+            // act
+            var configObject = configObjectBuilder.CreateConfigObject(config);
+
+            // assert
+            Assert.That(configObject.Solution.Configuration.Value, Is.EqualTo("Debug"));
+        }
+
+        [Test]
+        public void CreateConfigObject_For_Solution_Configuration_Depends_On_Selected_Configuration_Release() {
+            // arrange
+            var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
+            var config = new SiteConfiguration { Solution = new Solution { Name = "TestSolution\\Test.sln", SelectedConfiguration = 1 } };
+
+            // act
+            var configObject = configObjectBuilder.CreateConfigObject(config);
+
+            // assert
+            Assert.That(configObject.Solution.Configuration.Value, Is.EqualTo("Release"));
+        }
+
+        [Test]
         [ExpectedException]
         public void CreateConfigObject_For_Iis_Defined_If_No_Solution_Throws_Exception() {
             // arrange
