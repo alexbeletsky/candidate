@@ -336,7 +336,7 @@ span.success
 .dialog
 {
     width: 640px;
-    margin: 0 auto;
+    margin: 5px;    
 }
 
 .dialog form
@@ -371,9 +371,7 @@ span.success
 
 .dialog div
 {
-    display: block;
-    float: left;
-    margin: 5px;
+    margin: 9px;    
 }
 
 .job

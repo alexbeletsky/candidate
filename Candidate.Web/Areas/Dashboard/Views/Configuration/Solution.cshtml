@@ -22,13 +22,18 @@
             @Html.LabelFor(m => m.Targets)
             @Html.DropDownListFor(m => m.SelectedTarget, Model.Targets)
         </div>
+        <div id="nunit-select">
+            @Html.LabelFor(m => m.NUnitRuntimeVersions)
+            @Html.DropDownListFor(m => m.SelectedNUnitRuntimeVersion, Model.NUnitRuntimeVersions)
+        </div>
         <div id="nunit-name">
             @Html.LabelFor(m => m.IsRunTests)
             @Html.CheckBoxFor(m => m.IsRunTests)
         </div>
     </fieldset>
 
-    <div class="clear"></div>    
-    <button type="submit" class="minimal">Save config</button>
-    <button type="reset" class="minimal">Reset</button>    
+    <div class="right">
+        <button type="submit" class="minimal">Save config</button>
+        <button type="reset" class="minimal">Reset</button>    
+    </div>
 }

@@ -13,6 +13,10 @@ namespace Candidate.Core.Settings.Model {
                 { 0, "Debug" },
                 { 1, "Release" }
             };
+
+            NUnitRuntimeVersions = new Dictionary<int, string> {
+                { 0, "4.0" }
+            };
         }
 
         [DisplayName("Solution name")]
@@ -21,15 +25,20 @@ namespace Candidate.Core.Settings.Model {
         [DisplayName("Web project")]
         public string WebProject { get; set; }
 
-        [DisplayName("Targets")]
+        [DisplayName("Target")]
         public IDictionary<int, string> Targets { get; set; }
 
         public int SelectedTarget { get; set; }
 
-        [DisplayName("Configurations")]
+        [DisplayName("Configuration")]
         public IDictionary<int, string> Configurations { get; set; }
 
         public int SelectedConfiguration { get; set; }
+
+        [DisplayName("NUnit version")]
+        public IDictionary<int, string> NUnitRuntimeVersions { get; set; }
+
+        public int SelectedNUnitRuntimeVersion { get; set; }
         
         [DisplayName("Run tests?")]
         public bool IsRunTests { get; set; }

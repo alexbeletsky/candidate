@@ -44,7 +44,7 @@ namespace Candidate.Core.Setup {
                  
                     configObject.Tests = new NUnitTests {
                         NUnitConsolePath = _directoryProvider.NUnitConsole,
-                        FrameworkVersion = "4.0",
+                        FrameworkVersion = GetFrameworkVersion(siteConfiguration),
                         DllPaths = configObject.Solution.WhenBuilt(
                             () => directoryInfo.GetFiles("*.dll").Where(p => p.Name.Contains("Test") || 
                                 p.Name.Contains("Tests")).Select(p => p.FullName))
@@ -70,6 +70,10 @@ namespace Candidate.Core.Setup {
             }
 
             return configObject;
+        }
+
+        private Task<string> GetFrameworkVersion(SiteConfiguration siteConfiguration) {
+            return siteConfiguration.Solution.NUnitRuntimeVersions[siteConfiguration.Solution.SelectedNUnitRuntimeVersion];
         }
 
         private Task<string> GetConfiguration(SiteConfiguration siteConfiguration) {
