@@ -114,7 +114,7 @@ namespace Candidate.Core.Setup {
         }
 
         private string GetDeploymentPath(SiteConfiguration config) {
-            return _directoryProvider.Deployment + "\\" + config.Iis.SiteName;
+            return config.Iis.DeployFolder + "\\" + config.Iis.SiteName;
         }
 
         private Task<string> GetSolutionPath(SiteConfiguration config, ConfigObject configObject) {

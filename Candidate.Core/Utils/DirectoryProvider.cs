@@ -60,10 +60,6 @@ namespace Candidate.Core.Utils {
             get { return Build + "\\_PublishedWebsites"; }
         }
 
-        public string Deployment {
-            get { return "c:\\sites"; }
-        }
-
         public string JobName {
             get {
                 if (_jobName == null) {

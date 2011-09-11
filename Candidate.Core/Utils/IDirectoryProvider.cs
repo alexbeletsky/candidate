@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 
-// TODO: redesign provider to avoid singletone usage of it.. 
+// TODO: redesign provider to avoid singleton usage of it.. 
 namespace Candidate.Core.Utils {
     public interface IDirectoryProvider {
         string JobName { set; }
@@ -11,7 +11,6 @@ namespace Candidate.Core.Utils {
         string Logs { get; }
         string Settings { get; }
         string PublishedWebSites { get; }
-        string Deployment { get; }
         string NUnitConsole { get; }
     }
 }
