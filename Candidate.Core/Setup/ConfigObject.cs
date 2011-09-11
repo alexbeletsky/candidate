@@ -6,5 +6,6 @@ namespace Candidate.Core.Setup {
         public VisualStudioSolution Solution { get; set; }
         public NUnitTests Tests { get; set; }
         public Iis7WebSite WebSite { get; set; }
+        public ShellCommand PostBuild { get; set; }
     }
 }

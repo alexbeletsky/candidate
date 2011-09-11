@@ -59,6 +59,15 @@ namespace Candidate.Core.Setup {
                 };
             }
 
+            if (siteConfiguration.Post != null) {
+                if (configObject.Solution != null) {
+                    configObject.PostBuild =  new ShellCommand {
+                        Exe = siteConfiguration.Post.PostBatch,
+                        WorkingDirectory = configObject.Solution.SolutionDirectory
+                    };
+                }
+            }
+
             return configObject;
         }
 
