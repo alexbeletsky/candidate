@@ -3,7 +3,7 @@
     Layout = null;
 }
 
-<div class="grey-container">
+<div id="add-job" class="grey-container">
 @using (Html.BeginForm())
 {
     @Html.ValidationSummary();
@@ -11,6 +11,7 @@
     <button id="close-button" class="clean-grey right">X</button>
                                  
     <fieldset>
+        <legend>Add new job</legend>
         <div id="job-name-label">
             @Html.LabelFor(m => m.Name)
         </div>
