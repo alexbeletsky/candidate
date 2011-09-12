@@ -105,7 +105,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Infrustructure\Authentication\SettingsMembershipProvider.cs" />
+    <Compile Include="Infrustructure\Authentication\IAuthentication.cs" />
+    <Compile Include="Infrustructure\Authentication\Authentication.cs" />
     <Compile Include="Infrustructure\Authentication\User.cs" />
     <Compile Include="Infrustructure\Authentication\UserSettings.cs" />
     <Compile Include="Infrustructure\Error\HandleJsonError.cs" />

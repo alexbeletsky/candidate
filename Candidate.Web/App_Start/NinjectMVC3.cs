@@ -65,6 +65,7 @@ namespace Candidate.App_Start
             kernel.Bind<IConfigObjectBuilder>().To<ConfigObjectBuilder>();
             kernel.Bind<ILoggerFactory>().To<LoggerFactory>();
             kernel.Bind<IHashService>().To<HashService>();
+            kernel.Bind<IAuthentication>().To<Authentication>();
         }        
     }
 }

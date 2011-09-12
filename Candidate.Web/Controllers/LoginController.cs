@@ -1,17 +1,24 @@
 ﻿using System.Web.Mvc;
 using Candidate.Models;
 using System.Web.Security;
+using Candidate.Infrustructure.Authentication;
 
 namespace Candidate.Controllers {
     public class LoginController : Controller {
+        private IAuthentication _authentication;
+
+        public LoginController(IAuthentication  authentication) {
+            _authentication = authentication;
+        }
+
         public ActionResult Index() {
             return View();
         }
 
         [HttpPost]
         public ActionResult Login(LoginModel model) {
-            if (Membership.ValidateUser(model.Login, model.Password)) {
-                FormsAuthentication.SetAuthCookie(model.Login, false);
+            if (_authentication.ValidateUser(model.Login, model.Password)) {
+                _authentication.AuthenticateUser(model.Login);
                 return RedirectToAction("Index", new { area = "Dashboard", controller = "Dashboard" });
             }
 
