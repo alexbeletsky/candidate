@@ -7,6 +7,7 @@ using Candidate.Core.Utils;
 
 namespace Candidate.Areas.Dashboard.Controllers {
 
+    [Authorize]
     public class OverviewController : Controller {
         private IDirectoryProvider _directoryProvider;
 

@@ -3,6 +3,7 @@
     using System.Web.Mvc;
     using Candidate.Core.Settings;
 
+    [Authorize]
     public class BatchController : Controller {
         private ISettingsManager _settingsManager;
 

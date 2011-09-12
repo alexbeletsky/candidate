@@ -13,6 +13,7 @@ using Newtonsoft.Json;
 
 namespace Candidate.Areas.Dashboard.Controllers {
 
+    [Authorize]
     public class SetupController : Controller {
         private ISettingsManager _settingsManager;
         private ISetupFactory _setupFactory;

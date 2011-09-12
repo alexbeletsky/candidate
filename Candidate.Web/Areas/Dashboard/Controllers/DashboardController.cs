@@ -4,6 +4,7 @@
     using Candidate.Core.Settings;
     using Candidate.Core.Settings.Model;
 
+    [Authorize]
     public class DashboardController : Controller {
         private ISettingsManager _settingsManager;
 

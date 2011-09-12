@@ -7,6 +7,7 @@
     using Candidate.Infrustructure.Filters;
 
     // TODO: avoid code duplication in POST methods
+    [Authorize]
     public class ConfigurationController : Controller {
         private ISettingsManager _settingsManager;
 

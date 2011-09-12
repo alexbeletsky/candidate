@@ -3,7 +3,8 @@ using System.Web.Mvc;
 using Candidate.Core.Utils;
 
 namespace Candidate.Areas.Dashboard.Controllers {
-    
+
+    [Authorize]
     public class LogController : Controller {
         private IDirectoryProvider _directoryProvider;
 

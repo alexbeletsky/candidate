@@ -13,6 +13,8 @@ namespace Candidate.App_Start
     using Bounce.Framework;
     using Candidate.Core.Log;
     using Candidate.Core.Services;
+    using System.Web.Security;
+    using Candidate.Infrustructure.Authentication;
 
     public static class NinjectMVC3 
     {

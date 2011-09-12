@@ -5,7 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 
 namespace Candidate.Areas.Admin.Controllers {
-    //[Authorize(Roles = "Admin")]
+    
+    [Authorize]
     public class ElmahController : Controller {
         public ActionResult Index() {
             return new ElmahResult();

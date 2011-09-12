@@ -105,6 +105,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrustructure\Authentication\SettingsMembershipProvider.cs" />
+    <Compile Include="Infrustructure\Authentication\User.cs" />
+    <Compile Include="Infrustructure\Authentication\UserSettings.cs" />
     <Compile Include="Infrustructure\Error\HandleJsonError.cs" />
     <Compile Include="Infrustructure\Extensions\DropDownListForExtensions.cs" />
     <Compile Include="Infrustructure\Filters\AddViewNameAndHashAttribute.cs" />
