@@ -336,7 +336,6 @@ span.success
 .dialog
 {
     width: 640px;
-    margin: 5px;    
 }
 
 .dialog form
@@ -412,5 +411,41 @@ button a:visited
 div#summary
 {
     font-size: 15px;
+}
+
+.tooltip
+{
+    display: block;
+    position: absolute;
+    left: -1em;
+    right: -1em;
+    margin-top: 5px;
+    width: 400px;
+    
+    
+    background: #f7ca94; /* Old browsers */
+    background: -moz-linear-gradient(top, #f7ca94 0%, #fc9b3a 64%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f7ca94), color-stop(64%,#fc9b3a)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #f7ca94 0%,#fc9b3a 64%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #f7ca94 0%,#fc9b3a 64%); /* Opera11.10+ */
+    background: -ms-linear-gradient(top, #f7ca94 0%,#fc9b3a 64%); /* IE10+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7ca94', endColorstr='#fc9b3a',GradientType=0 ); /* IE6-9 */
+    background: linear-gradient(top, #f7ca94 0%,#fc9b3a 64%); /* W3C */
+    
+    padding: .8em 1em;
+    border-radius: .5em;
+    box-shadow: 3px 3px 10px -5px black;
+}
+
+.tooltip:after 
+{
+    content: "";
+    position: absolute;
+    top: -16px;
+    left: 65px;
+    width: 0;
+    height: 0;
+    border: 8px solid transparent;
+    border-bottom-color: #f7ca94;
 }
 

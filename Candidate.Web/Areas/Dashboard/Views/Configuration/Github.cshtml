@@ -1,28 +1,29 @@
 ﻿@model Candidate.Core.Settings.Model.GitHub
-
-@using (Html.BeginForm())
-{
-    @Html.ValidationSummary();
+<div class="dialog">
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary();
                                    
-    <fieldset>
-        <legend>Github repository configuration</legend>
-        <div id="github-url">
-            @Html.LabelFor(m => m.Url)
-            @Html.TextBoxFor(m => m.Url)
-        </div>
-        <div id="github-branch">
-            @Html.LabelFor(m => m.Branch)
-            @Html.TextBoxFor(m => m.Branch)
-        </div>
-        <div id="github-hook">
-            @Html.LabelFor(m => m.Hook)
-            @Html.TextBoxFor(m => m.Hook, new { @readonly = true, @Value = Url.Action("Hook", "Setup", new { area = "Dashboard", jobName = ViewBag.JobName, token = ViewBag.JobNameHash }, "http") } )            
-        </div>
-    </fieldset>
+        <fieldset>
+            <legend>Github repository configuration</legend>
+            <div id="github-url">
+                @Html.LabelFor(m => m.Url)
+                @Html.TextBoxFor(m => m.Url)
+            </div>
+            <div id="github-branch">
+                @Html.LabelFor(m => m.Branch)
+                @Html.TextBoxFor(m => m.Branch)
+            </div>
+            <div id="github-hook">
+                @Html.LabelFor(m => m.Hook)
+                @Html.TextBoxFor(m => m.Hook, new { @readonly = true, @Value = Url.Action("Hook", "Setup", new { area = "Dashboard", jobName = ViewBag.JobName, token = ViewBag.JobNameHash }, "http") } )            
+            </div>
+        </fieldset>
     
-    <div class="right">
-        <button type="submit" class="minimal">Save config</button>
-        <button type="reset" class="minimal">Reset</button>    
-    </div>
+        <div class="right">
+            <button type="submit" class="minimal">Save config</button>
+            <button id="close" type="button" class="minimal">Close</button>    
+        </div>
 
-}
+    }
+</div>

@@ -1,5 +1,5 @@
 ﻿@model Candidate.Core.Settings.Model.Post
-
+<div class="dialog">
 @using (Html.BeginForm()) {
     @Html.ValidationSummary();
                                    
@@ -13,7 +13,7 @@
 
     <div class="right">
         <button type="submit" class="minimal">Save config</button>
-        <button type="reset" class="minimal">Reset</button>    
+        <button id="close" type="button" class="minimal">Close</button>    
     </div>
-
 }
+</div>

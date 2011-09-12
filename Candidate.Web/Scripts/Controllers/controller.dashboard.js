@@ -38,5 +38,15 @@ $(function () {
             }
         });
 
+        var currentUser = $('#user').val();
+        if (currentUser == "admin") {
+            $('li#account').after('<div class="tooltip"><strong>Please create own user</strong>. You are now using admin account with temporary password, consider to change it.</div>');
+            setTimeout(function () {
+                $('.tooltip').fadeOut(2000, function () {
+                    $(this).empty();
+                });
+            }, 7000);
+        }
+
     } ();
 });

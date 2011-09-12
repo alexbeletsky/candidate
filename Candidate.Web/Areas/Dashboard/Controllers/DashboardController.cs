@@ -14,6 +14,8 @@
 
         [HttpGet]
         public ActionResult Index() {
+            ViewBag.User = HttpContext.User.Identity.Name;
+
             return View();
         }
 
