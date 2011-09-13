@@ -6,9 +6,9 @@ using System.Web;
 namespace Candidate.Infrustructure.Authentication {
     public class UserSettings {
         public UserSettings() {
-            Users = new List<User> { new User { Login = "admin", PasswordHash = "21232f297a57a5a743894a0e4a801fc3" } };
+            User = new User { Login = "admin", PasswordHash = "21232f297a57a5a743894a0e4a801fc3", TemporaryPassword = true };
         }
 
-        public IList<User> Users { get; set; }
+        public User User { get; set; }
     }
 }

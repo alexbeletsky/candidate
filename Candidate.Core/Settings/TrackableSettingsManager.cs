@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 
 namespace Candidate.Core.Settings {
+    // TODO: find a better name for that class
     public class TrackableSettingsManager : IDisposable, ISettingsManager {
         private ISettingsManager _settingsManager;
         private List<object> _trackableObjects = new List<object>();

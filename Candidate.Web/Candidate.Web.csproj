@@ -90,11 +90,13 @@
     <Compile Include="App_Start\NinjectMVC3.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\ElmahController.cs" />
+    <Compile Include="Areas\Dashboard\Controllers\AccountController.cs" />
     <Compile Include="Areas\Dashboard\Controllers\BatchController.cs" />
     <Compile Include="Areas\Dashboard\Controllers\ConfigurationController.cs" />
     <Compile Include="Areas\Dashboard\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Dashboard\Controllers\OverviewController.cs" />
     <Compile Include="Areas\Dashboard\Controllers\SetupController.cs" />
+    <Compile Include="Areas\Dashboard\Models\AccountSettingsModel.cs" />
     <Compile Include="Areas\Dashboard\Models\DeleteJobModel.cs" />
     <Compile Include="Areas\Dashboard\Controllers\LogController.cs" />
     <Compile Include="Areas\Dashboard\DashboardAreaRegistration.cs" />
@@ -150,6 +152,7 @@
     <Content Include="license.txt" />
     <Content Include="Scripts\Controllers\controller.configure.js" />
     <Content Include="Scripts\Controllers\controller.dashboard.js" />
+    <Content Include="Scripts\Controllers\controller.menu.js" />
     <Content Include="Scripts\Controllers\controller.run.js.js" />
     <Content Include="Scripts\Controllers\controller.setup.js" />
     <Content Include="Scripts\Controls\dialog.js" />
@@ -248,6 +251,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Dashboard\Views\Configuration\Post.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Dashboard\Views\Account\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Dashboard\Views\Shared\_Unobtrusive.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

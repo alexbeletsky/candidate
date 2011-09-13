@@ -14,7 +14,7 @@
         <nav class="header-menu">
             <ul>
                 <li><a href="#">Faq</a></li>
-                <li id="account"><a href="#">Account</a></li>
+                <li id="account">@Html.ActionLink("Account", "Index", new { area = "Dashboard", controller = "Account" })</li>
                 <li><a href="#">Support</a></li>
                 <li><a href="#">Blog</a></li>
                 <li><a href="/">Sign out</a></li>

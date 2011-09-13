@@ -3,6 +3,7 @@
     using Candidate.Areas.Dashboard.Models;
     using Candidate.Core.Settings;
     using Candidate.Core.Settings.Model;
+    using Candidate.Infrustructure.Authentication;
 
     [Authorize]
     public class DashboardController : Controller {
@@ -14,7 +15,8 @@
 
         [HttpGet]
         public ActionResult Index() {
-            ViewBag.User = HttpContext.User.Identity.Name;
+            var userSettings = _settingsManager.ReadSettings<UserSettings>();
+            ViewBag.TemporaryPassword = userSettings.User.TemporaryPassword;
 
             return View();
         }

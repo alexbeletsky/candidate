@@ -19,9 +19,9 @@ namespace Candidate.Infrustructure.Authentication {
 
         public bool ValidateUser(string login, string password) {
             var currentSettings = _settingsManager.ReadSettings<UserSettings>();
-            var user = currentSettings.Users.Where(_ => _.Login == login).SingleOrDefault();
+            var user = currentSettings.User;
 
-            if (user != null && _hashService.ValidateMD5Hash(password, user.PasswordHash)) {
+            if (user != null && user.Login == login && _hashService.ValidateMD5Hash(password, user.PasswordHash)) {
                 return true;
             }
 

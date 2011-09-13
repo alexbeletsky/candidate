@@ -3,7 +3,7 @@
     Layout = "~/Areas/Dashboard/Views/Shared/_Layout.cshtml";
 }
 
-<input id="user" type="hidden" value="@ViewBag.User" />
+<input id="temporaryPassword" type="hidden" value="@ViewBag.TemporaryPassword" />
 <div id="internal-nagivation">
     <h2>Build > Jobs</h2>
 </div>
@@ -27,5 +27,6 @@
 </div>*@
 
 @section Scripts {
+    <script src="@Url.Content("~/Scripts/Controllers/controller.menu.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/Controllers/controller.dashboard.js")" type="text/javascript"></script>
 }

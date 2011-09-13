@@ -1,0 +1,32 @@
+﻿@{
+    Layout = "~/Areas/Dashboard/Views/Shared/_Unobtrusive.cshtml";
+}
+
+@model Candidate.Areas.Dashboard.Models.AccountSettingsModel
+<div class="dialog">
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary();
+                                   
+    <fieldset>
+        <legend>Change account settings</legend>
+        <div id="user-name">
+            @Html.LabelFor(m => m.Login)
+            @Html.TextBoxFor(m => m.Login)
+        </div>
+        <div id="new-password">
+            @Html.LabelFor(m => m.NewPassword)
+            @Html.PasswordFor(m => m.NewPassword)
+        </div>
+        <div id="confirm-password">
+            @Html.LabelFor(m => m.ConfirmPassword)
+            @Html.PasswordFor(m => m.ConfirmPassword)
+        </div>
+    </fieldset>
+
+    <div class="right">
+        <button type="submit" class="minimal">Save config</button>
+        <button id="close" type="button" class="minimal">Close</button>    
+    </div>
+}    
+</div>

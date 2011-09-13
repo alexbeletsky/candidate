@@ -38,9 +38,9 @@ $(function () {
             }
         });
 
-        var currentUser = $('#user').val();
-        if (currentUser == "admin") {
-            $('li#account').after('<div class="tooltip"><strong>Please create own user</strong>. You are now using admin account with temporary password, consider to change it.</div>');
+        var temporaryPassword = $('#temporaryPassword').val();
+        if (temporaryPassword === "True") {
+            $('li#account').after('<div class="tooltip"><strong>Please create own user</strong>. You are now using account with temporary password, consider to change it as soon as possible.</div>');
             setTimeout(function () {
                 $('.tooltip').fadeOut(2000, function () {
                     $(this).empty();
