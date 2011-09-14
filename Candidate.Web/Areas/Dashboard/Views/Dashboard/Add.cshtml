@@ -1,6 +1,6 @@
 ﻿@model Candidate.Areas.Dashboard.Models.NewJobModel
 @{
-    Layout = null;
+    Layout = "~/Areas/Dashboard/Views/Shared/_Unobtrusive.cshtml";
 }
 
 <div id="add-job" class="grey-container">
@@ -11,11 +11,9 @@
     <button id="close-button" class="clean-grey right">X</button>
                                  
     <fieldset>
-        <legend>Add new job</legend>
-        <div id="job-name-label">
+        <legend>Add new site</legend>
+        <div id="job-name">
             @Html.LabelFor(m => m.Name)
-        </div>
-        <div id="job-name-input">
             @Html.TextBoxFor(m => m.Name)
         </div>
     </fieldset>

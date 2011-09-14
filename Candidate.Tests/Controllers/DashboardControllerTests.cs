@@ -7,17 +7,17 @@ using Candidate.Core.Settings.Model;
 using Moq;
 using NUnit.Framework;
 using SharpTestsEx;
-namespace Candidate.Tests.Controllers
-{
+using Candidate.Infrustructure.Authentication;
+namespace Candidate.Tests.Controllers {
     [TestFixture]
-    public class DashboardControllerTests
-    {
+    public class DashboardControllerTests {
         [Test]
-        public void Index_Get_ReturnsView()
-        {
+        public void Index_Get_ReturnsView() {
             // arrange 
             var settingsManager = new Mock<ISettingsManager>();
             var controller = new DashboardController(settingsManager.Object);
+
+            settingsManager.Setup(_ => _.ReadSettings<UserSettings>()).Returns(new UserSettings { User = new User() });
 
             // act
             var result = controller.Index() as ViewResult;
@@ -27,8 +27,7 @@ namespace Candidate.Tests.Controllers
         }
 
         [Test]
-        public void List_Get_ReturnsTheListOfJobs()
-        {
+        public void List_Get_ReturnsTheListOfJobs() {
             // arrange 
             var settingsManager = new Mock<ISettingsManager>();
             var controller = new DashboardController(settingsManager.Object);
@@ -44,8 +43,7 @@ namespace Candidate.Tests.Controllers
         }
 
         [Test]
-        public void Add_Get_ReturnsView()
-        {
+        public void Add_Get_ReturnsView() {
             // arrange 
             var settingsManager = new Mock<ISettingsManager>();
             var controller = new DashboardController(settingsManager.Object);
@@ -58,8 +56,7 @@ namespace Candidate.Tests.Controllers
         }
 
         [Test]
-        public void Add_Post_NewJobConfigurationAdded()
-        {
+        public void Add_Post_NewJobConfigurationAdded() {
             // arrange 
             var settingsManager = new Mock<ISettingsManager>();
             var controller = new DashboardController(settingsManager.Object);
@@ -78,8 +75,7 @@ namespace Candidate.Tests.Controllers
         }
 
         [Test]
-        public void Add_Post_RedirectedToDashboardIndex()
-        {
+        public void Add_Post_RedirectedToDashboardIndex() {
             // arrange 
             var settingsManager = new Mock<ISettingsManager>();
             var controller = new DashboardController(settingsManager.Object);

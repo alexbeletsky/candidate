@@ -16,8 +16,8 @@ else
             <span class="job-status"></span>
          
             <div id="buttons" class="right cleanfix">
-                <button type="button" class="minimal">@Html.ActionLink("Config", "Index", new { area = "Dashboard", controller = "Configuration", jobName = @job.JobName })</button>
-                <button type="submit" class="minimal">@Html.ActionLink("Setup", "Setup", new { area = "Dashboard", controller = "Setup", jobName = @job.JobName })</button>
+                <button type="button" class="minimal">@Html.ActionLink("Configure", "Index", new { area = "Dashboard", controller = "Configuration", jobName = @job.JobName })</button>
+                <button type="submit" class="minimal">@Html.ActionLink("Deploy", "Setup", new { area = "Dashboard", controller = "Setup", jobName = @job.JobName })</button>
                 <button type="submit" class="minimal" >@Html.ActionLink("Delete", "Delete", new { area = "Dashboard", controller = "Configuration", jobName = @job.JobName })</button>
             </div>          
         </div>

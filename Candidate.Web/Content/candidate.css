@@ -390,6 +390,11 @@ span.success
     width: 120px;
 }
 
+.job span.job-name a
+{
+    font-size: larger;
+}
+
 .job span.job-status
 {
     text-align: center;

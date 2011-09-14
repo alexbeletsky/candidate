@@ -1,4 +1,7 @@
 ﻿@model Candidate.Core.Settings.Model.Post
+@{
+    Layout = "~/Areas/Dashboard/Views/Shared/_Unobtrusive.cshtml";
+}
 <div class="dialog">
 @using (Html.BeginForm()) {
     @Html.ValidationSummary();

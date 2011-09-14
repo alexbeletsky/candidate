@@ -35,14 +35,18 @@
 
         [HttpPost]
         public ActionResult Add(NewJobModel newJob) {
-            using (var settingsManager = new TrackableSettingsManager(_settingsManager)) {
-                var currentSettings = settingsManager.ReadSettings<SitesConfigurationList>();
-                var currentJobs = currentSettings.Configurations;
+            if (ModelState.IsValid) {
+                using (var settingsManager = new TrackableSettingsManager(_settingsManager)) {
+                    var currentSettings = settingsManager.ReadSettings<SitesConfigurationList>();
+                    var currentJobs = currentSettings.Configurations;
 
-                currentJobs.Add(new SiteConfiguration { JobName = newJob.Name });
+                    currentJobs.Add(new SiteConfiguration { JobName = newJob.Name });
 
-                return RedirectToAction("Index", new { area = "Dashboard", controller = "Dashboard" });
+                    return RedirectToAction("Index", new { area = "Dashboard", controller = "Dashboard" });
+                }
             }
+
+            return View(newJob);
         }
     }
 }
