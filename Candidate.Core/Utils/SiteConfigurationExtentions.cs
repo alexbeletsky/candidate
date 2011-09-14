@@ -9,7 +9,7 @@ namespace Candidate.Core.Utils {
                 return null;
             }
 
-            if (config.Port == 0) {
+            if (config.Port == 0 || config.Port == 80) {
                 return string.Format("http://{0}", config.SiteName);
             }
 

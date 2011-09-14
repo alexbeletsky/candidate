@@ -245,7 +245,7 @@ namespace Candidate.Tests.Setup {
 
             // assert
             Assert.That(configObject.WebSite, Is.Not.Null);
-            Assert.That(configObject.WebSite.Port.Value, Is.EqualTo(8081));
+            Assert.That(configObject.WebSite.Port.Value, Is.EqualTo(80));
         }
 
         [Test]
