@@ -13,10 +13,9 @@ namespace Candidate.Core.Services
     {
         public string CreateMD5Hash(string input)
         {
-            return string.Join("",
-                           System.Security.Cryptography.MD5.Create()
-                                .ComputeHash(Encoding.Default.GetBytes(input))
-                                    .Select(byt => byt.ToString("x2")));
+            using (var crypter = System.Security.Cryptography.MD5.Create()) {
+                return string.Join("", crypter.ComputeHash(Encoding.Default.GetBytes(input)).Select(byt => byt.ToString("x2")));
+            }
         }
 
         public bool ValidateMD5Hash(string input, string hash)
