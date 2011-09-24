@@ -7,12 +7,6 @@ namespace Candidate.Core.Settings {
         private JsonSerializer _serializer = new JsonSerializer();
         private string _settingsFolder;
 
-        // to be able to use from SettingsMembershipProvider.cs
-        public SettingsManager()
-            : this(new DirectoryProvider()) {
-
-        }
-
         public SettingsManager(IDirectoryProvider directoryProvider) {
             _settingsFolder = directoryProvider.Settings;
             CreateSettingFolder();
