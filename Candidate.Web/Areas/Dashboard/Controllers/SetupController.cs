@@ -14,6 +14,7 @@ using Newtonsoft.Json;
 namespace Candidate.Areas.Dashboard.Controllers {
 
     [Authorize]
+    [HandleJsonError]
     public class SetupController : Controller {
         private ISettingsManager _settingsManager;
         private ISetupFactory _setupFactory;
@@ -30,11 +31,18 @@ namespace Candidate.Areas.Dashboard.Controllers {
         [HttpGet]
         public ActionResult Setup(string jobName) {
             ViewBag.JobName = jobName;
+
+            var currentConfiguration = _settingsManager.ReadSettings<SitesConfigurationList>();
+            var siteConfiguration = currentConfiguration.Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
+
+            if (!siteConfiguration.IsConfigured()) {
+                return View("NotConfigured");
+            }
+
             return View();
         }
 
         [HttpPost]
-        [HandleJsonError]
         public ActionResult StartSetup(string jobName) {
             var currentSettings = _settingsManager.ReadSettings<SitesConfigurationList>().Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
             if (currentSettings == null) {
@@ -45,7 +53,6 @@ namespace Candidate.Areas.Dashboard.Controllers {
         }
 
         [HttpPost]
-        [HandleJsonError]
         [ValidateToken]
         public ActionResult Hook(string jobName, string token, string payload) {
 
@@ -70,8 +77,7 @@ namespace Candidate.Areas.Dashboard.Controllers {
         }
 
         private ActionResult RunDeployAndLog(string jobName, SiteConfiguration currentSettings) {
-
-            _directoryProvider.JobName = jobName;
+            _directoryProvider.SiteName = jobName;
 
             using (var logger = _loggerFactory.CreateLogger()) {
                 var setup = _setupFactory.CreateSetup();
