@@ -1,0 +1,18 @@
+﻿@{
+    ViewBag.Title = "Deploy";
+    Layout = "~/Areas/Dashboard/Views/Shared/_Layout.cshtml";    
+}
+<div id="internal-nagivation">
+    <h2>
+        Build > Sites > Deploy</h2>
+    <div class="right">@Html.ActionLink("Back to dashboard", "Index", new { area = "Dashboard", controller = "Dashboard" })</div>
+    <div class="clear">
+    </div>
+</div>
+<div class="grey-container">
+    <div class="setup-progress">
+        <div id="current-step">
+            <span class="error">Sorry, it is not possible to start deployment of application, since it is not configured.</span>
+        </div>
+    </div>
+</div>

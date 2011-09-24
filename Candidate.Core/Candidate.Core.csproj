@@ -31,8 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Bounce.Framework">
-      <HintPath>..\..\bounce\Bounce\Bounce.Framework.dll</HintPath>
+    <Reference Include="Bounce.Framework, Version=0.4.4271.19336, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\Bounce\Bounce.Framework.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\lib\Newtonsoft.Json.4.0.1\lib\40\Newtonsoft.Json.dll</HintPath>
