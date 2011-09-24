@@ -1,7 +1,9 @@
-﻿using Bounce.Framework;
+﻿using System.Threading.Tasks;
+using Bounce.Framework;
 using Candidate.Core.Log;
 using Candidate.Core.Settings.Model;
 using Candidate.Core.Utils;
+using System;
 
 namespace Candidate.Core.Setup {
     public class DefaultSetup : ISetup {
@@ -24,6 +26,7 @@ namespace Candidate.Core.Setup {
             var logOptions = _logOptionsFactory.CreateLogOptions(logger, LogLevel.Debug);
             var bounce = _bounceFactory.GetBounce(logOptions);
 
+            // TODO: it have to be run asynchronously, with checking thread status and exit by timeout 
             _targetsBuilder.BuildTargets(bounce, targets, _command);
 
             return new SetupResult { Url = config.Iis.GetSiteUrl(), Log = logger.LogFilename };

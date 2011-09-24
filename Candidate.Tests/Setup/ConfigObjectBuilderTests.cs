@@ -47,7 +47,7 @@ namespace Candidate.Tests.Setup {
 
             // assert
             Assert.That(configObject.Git.Directory.Value, Is.Not.Null);
-            Assert.That(configObject.Git.Directory.Value, Is.EqualTo(DirectoryProvider.Source));
+            Assert.That(configObject.Git.Directory.Value, Is.EqualTo(DirectoryProvider.Sources));
         }
 
         [Test]
@@ -101,7 +101,7 @@ namespace Candidate.Tests.Setup {
 
             // assert
             Assert.That(configObject.Solution, Is.Not.Null);
-            Assert.That(configObject.Solution.SolutionPath.Value, Is.EqualTo(DirectoryProvider.Source + "\\TestSolution\\Test.sln"));
+            Assert.That(configObject.Solution.SolutionPath.Value, Is.EqualTo(DirectoryProvider.Sources + "\\TestSolution\\Test.sln"));
         }
 
         [Test]
@@ -115,7 +115,7 @@ namespace Candidate.Tests.Setup {
 
             // assert
             Assert.That(configObject.Solution, Is.Not.Null);
-            Assert.That(configObject.Solution.SolutionPath.Value, Is.EqualTo(DirectoryProvider.Source + "\\TestSolution\\Test.sln"));
+            Assert.That(configObject.Solution.SolutionPath.Value, Is.EqualTo(DirectoryProvider.Sources + "\\TestSolution\\Test.sln"));
         }
 
         [Test]
@@ -273,7 +273,7 @@ namespace Candidate.Tests.Setup {
 
             // assert
             Assert.That(configObject.PostBuild.Exe.Value, Is.EqualTo("run.bat"));
-            Assert.That(configObject.PostBuild.WorkingDirectory.Value, Is.EqualTo(DirectoryProvider.Source + "\\TestSolution"));
+            Assert.That(configObject.PostBuild.WorkingDirectory.Value, Is.EqualTo(DirectoryProvider.Sources + "\\TestSolution"));
         }
     }
 }

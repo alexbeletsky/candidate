@@ -26,7 +26,7 @@ namespace Candidate.Core.Setup {
             if (siteConfiguration.Github != null && !string.IsNullOrEmpty(siteConfiguration.Github.Url)) {
                 configObject.Git = new GitCheckout {
                     Repository = siteConfiguration.Github.Url,
-                    Directory = _directoryProvider.Source,
+                    Directory = _directoryProvider.Sources,
                     Branch = siteConfiguration.Github.Branch
                 };
             }
@@ -122,7 +122,7 @@ namespace Candidate.Core.Setup {
         }
 
         private string GetSolutionPathFromDirectoryProvider(SiteConfiguration config) {
-            return _directoryProvider.Source + "\\" + config.Solution.Name;
+            return _directoryProvider.Sources + "\\" + config.Solution.Name;
         }
 
         private static Task<string> GetSolutionPathFromGit(SiteConfiguration config, ConfigObject configObject) {

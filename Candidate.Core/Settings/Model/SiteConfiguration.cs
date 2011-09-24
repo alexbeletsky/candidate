@@ -7,5 +7,9 @@ namespace Candidate.Core.Settings.Model {
         public Solution Solution { get; set; }
         public Iis Iis { get; set; }
         public Post Post { get; set; }
+
+        public bool IsConfigured() {
+            return !string.IsNullOrEmpty(JobName) && Github != null && Solution != null && Iis != null;
+        }
     }
 }

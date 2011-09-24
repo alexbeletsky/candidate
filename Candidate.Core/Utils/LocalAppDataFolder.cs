@@ -1,15 +1,17 @@
 ﻿using System;
+using System.IO;
 
 namespace Candidate.Core.Utils
 {
     public class LocalAppDataFolder
     {
+        private static readonly string AppFolder = ".candidate";
+
         public static string Folder
         {
             get
             {
-                // TODO: consider another special folder, maybe ~/.candidate
-                return Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\Candidate";
+                return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), AppFolder);
             }
         }
     }

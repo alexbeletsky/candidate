@@ -18,7 +18,7 @@ namespace Candidate.Areas.Dashboard.Controllers {
         [HttpGet]
         public ActionResult Show(string jobName) {
             ViewBag.JobName = jobName;
-            _directoryProvider.JobName = jobName;
+            _directoryProvider.SiteName = jobName;
 
             var logFiles = new DirectoryInfo(_directoryProvider.Logs).GetFiles("*.log").OrderByDescending(f => f.CreationTime).Select(f => f.Name);
             var overview = new OverviewModel { LastBuildStatus = "Success", LastDeployTime = DateTime.Now, LastDeployDuration = new TimeSpan(0, 2, 30), Logs = logFiles };

@@ -118,12 +118,12 @@ namespace Candidate.Tests.Integration {
 
         private void UnzipTestSolution() {
             DeleteTestFolder();
-            new FastZip().ExtractZip("TestData\\TestSolution.zip", DirectoryProvider.Source, null);
+            new FastZip().ExtractZip("TestData\\TestSolution.zip", DirectoryProvider.Sources, null);
         }
 
         private void DeleteTestFolder() {
-            if (Directory.Exists(DirectoryProvider.Job)) {
-                Directory.Delete(DirectoryProvider.Job, true);
+            if (Directory.Exists(DirectoryProvider.Site)) {
+                Directory.Delete(DirectoryProvider.Site, true);
             }
         }
 

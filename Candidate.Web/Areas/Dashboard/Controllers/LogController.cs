@@ -14,7 +14,7 @@ namespace Candidate.Areas.Dashboard.Controllers {
 
         [HttpGet]
         public ActionResult Show(string jobName, string logId) {
-            _directoryProvider.JobName = jobName;
+            _directoryProvider.SiteName = jobName;
 
             var pathToLog = _directoryProvider.Logs + "\\" + logId;
             using (var reader = new StreamReader(pathToLog)) {

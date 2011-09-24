@@ -45,14 +45,14 @@ namespace Candidate.Tests.Log {
             using (var logger = factory.CreateLogger()) {
                 // assert
                 Assert.That(logger, Is.Not.Null);
-                Assert.That(File.Exists(DirectoryProvider.Job + "\\logs\\" + logger.LogFilename), Is.True); 
+                Assert.That(File.Exists(DirectoryProvider.Site + "\\logs\\" + logger.LogFilename), Is.True); 
             }
         }
 
 
         private void DeleteTestFolder() {
-            if (Directory.Exists(DirectoryProvider.Job)) {
-                Directory.Delete(DirectoryProvider.Job, true);
+            if (Directory.Exists(DirectoryProvider.Site)) {
+                Directory.Delete(DirectoryProvider.Site, true);
             }
         }
     }

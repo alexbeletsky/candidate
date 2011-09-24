@@ -18,7 +18,6 @@
         [HttpGet]
         [AddViewNameAndHash]
         public ActionResult Index(string jobName) {
-            
             return View();
         }
 

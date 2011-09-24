@@ -5,19 +5,19 @@ namespace Candidate.Core.Utils {
     // TODO: get rid of + "\\" operation, use Path.Combine instead
 
     public class DirectoryProvider : IDirectoryProvider {
-        private string _jobName;
+        private string _siteName;
 
         public DirectoryProvider() {
             Root = LocalAppDataFolder.Folder;
         }
 
         public DirectoryProvider(string jobName) {
-            _jobName = jobName;
+            _siteName = jobName;
             Root = LocalAppDataFolder.Folder;
         }
 
         public DirectoryProvider(string jobName, string root) {
-            _jobName = jobName;
+            _siteName = jobName;
             Root = root;
         }
 
@@ -26,21 +26,21 @@ namespace Candidate.Core.Utils {
             private set;
         }
 
-        public string Job {
+        public string Site {
             get {
-                return Root + "\\" + JobName;
+                return Root + "\\sites\\" + SiteName;
             }
         }
 
-        public string Source {
+        public string Sources {
             get {
-                return Job + "\\src";
+                return Site + "\\src";
             }
         }
 
         public string Logs {
             get {
-                return Job + "\\logs";
+                return Site + "\\logs";
             }
         }
 
@@ -52,7 +52,7 @@ namespace Candidate.Core.Utils {
 
         public string Build {
             get {
-                return Source + "\\build";
+                return Sources + "\\build";
             }
         }
 
@@ -60,21 +60,21 @@ namespace Candidate.Core.Utils {
             get { return Build + "\\_PublishedWebsites"; }
         }
 
-        public string JobName {
+        public string SiteName {
             get {
-                if (_jobName == null) {
-                    throw new Exception("Job name has not been set");
+                if (_siteName == null) {
+                    throw new Exception("Site name has not been set");
                 }
 
-                return _jobName;
+                return _siteName;
             }
 
             set {
-                _jobName = value;
+                _siteName = value;
             }
         }
 
-
+        // TODO: make auto deploy of tools on first start
         public string NUnitConsole {
             get {
                 return Root + "\\tools\\NUnit\\nunit-console.exe"; 

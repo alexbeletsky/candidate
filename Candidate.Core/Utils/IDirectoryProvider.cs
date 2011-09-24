@@ -3,10 +3,10 @@
 // TODO: redesign provider to avoid singleton usage of it.. 
 namespace Candidate.Core.Utils {
     public interface IDirectoryProvider {
-        string JobName { set; }
+        string SiteName { set; }
         string Root { get; }
-        string Job { get; }
-        string Source { get; }
+        string Site { get; }
+        string Sources { get; }
         string Build { get; }
         string Logs { get; }
         string Settings { get; }

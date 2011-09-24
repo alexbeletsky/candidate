@@ -21,11 +21,21 @@ namespace Candidate.Infrustructure.Error
                     Data = new
                     {
                         success = false,
-                        message = filterContext.Exception.Message,
+                        message = GetExceptionMessage(filterContext.Exception),
                     }
                 };
                 filterContext.ExceptionHandled = true;
             }
+        }
+
+        private string GetExceptionMessage(Exception exception) {
+            var aggregateException = exception as AggregateException;
+            
+            if (aggregateException != null) {
+                return aggregateException.InnerException.Message;
+            }
+
+            return exception.Message;
         }
 
         private static void SetResponseStatusCode(ActionExecutedContext filterContext)

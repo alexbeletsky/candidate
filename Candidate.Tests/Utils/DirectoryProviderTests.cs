@@ -24,7 +24,7 @@ namespace Candidate.Tests.Utils {
             var provider = new DirectoryProvider();  
 
             // act
-            var job = provider.JobName;
+            var job = provider.SiteName;
         }
 
         [Test]
@@ -34,7 +34,7 @@ namespace Candidate.Tests.Utils {
             var provider = new DirectoryProvider();
 
             // act
-            var job = provider.Job;
+            var job = provider.Site;
         }
 
         [Test]
@@ -44,7 +44,7 @@ namespace Candidate.Tests.Utils {
             var provider = new DirectoryProvider();
 
             // act
-            var job = provider.Source;
+            var job = provider.Sources;
         }
 
         [Test]
@@ -63,10 +63,10 @@ namespace Candidate.Tests.Utils {
             var provider = new DirectoryProvider();
 
             // act
-            provider.JobName = "currentJob";
+            provider.SiteName = "currentJob";
 
             // assert
-            Assert.That(provider.JobName, Is.EqualTo("currentJob"));
+            Assert.That(provider.SiteName, Is.EqualTo("currentJob"));
         }
     }
 }
