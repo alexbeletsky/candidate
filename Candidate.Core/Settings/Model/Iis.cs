@@ -9,6 +9,15 @@ namespace Candidate.Core.Settings.Model {
             DeployFolder = "c:\\sites";
         }
 
+        /// <summary>
+        /// Accepts the specified node visitor and passes control to it
+        /// </summary>
+        /// <param name="nodeVisitor">The node visitor.</param>
+        public void Accept(SiteConfigurationNodeVisitor nodeVisitor)
+        {
+            nodeVisitor.Visit(this);
+        }
+
         [Required]
         [DisplayName("Site name")]
         public string SiteName { get; set; }
@@ -19,6 +28,5 @@ namespace Candidate.Core.Settings.Model {
         [Required]
         [DisplayName("Deploy folder")]
         public string DeployFolder { get; set; }
-
     }
 }

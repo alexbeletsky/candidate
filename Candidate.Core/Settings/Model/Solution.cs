@@ -20,6 +20,15 @@ namespace Candidate.Core.Settings.Model {
             };
         }
 
+        /// <summary>
+        /// Accepts the specified node visitor and passes control to it
+        /// </summary>
+        /// <param name="nodeVisitor">The node visitor.</param>
+        public void Accept(SiteConfigurationNodeVisitor nodeVisitor)
+        {
+            nodeVisitor.Visit(this);
+        }
+
         [Required]
         [DisplayName("Solution name")]
         public string Name { get; set; }
@@ -48,5 +57,5 @@ namespace Candidate.Core.Settings.Model {
         
         [DisplayName("Run tests?")]
         public bool IsRunTests { get; set; }
-    }
+ }
 }

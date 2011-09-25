@@ -67,6 +67,7 @@
     <Compile Include="Settings\TrackableSettingsManager.cs" />
     <Compile Include="Setup\ConfigObject.cs" />
     <Compile Include="Setup\ConfigObjectBuilder.cs" />
+    <Compile Include="Setup\ConfigObjectCreatingNodeVisitor.cs" />
     <Compile Include="Setup\DefaultTargetsObjectBuilder.cs" />
     <Compile Include="Setup\DefaultSetup.cs" />
     <Compile Include="Setup\ITargetsObjectBuilder.cs" />
@@ -76,6 +77,7 @@
     <Compile Include="Setup\SetupFactory.cs" />
     <Compile Include="Log\ILogger.cs" />
     <Compile Include="Setup\SetupResult.cs" />
+    <Compile Include="Settings\Model\SiteConfigurationNodeVisitor.cs" />
     <Compile Include="Utils\DirectoryProvider.cs" />
     <Compile Include="Utils\IDirectoryProvider.cs" />
     <Compile Include="Utils\LocalAppDataFolder.cs" />
