@@ -19,7 +19,7 @@ namespace Candidate.Core.Setup {
         }
 
         /// <summary>
-        /// Gets the constructed config object.`
+        /// Gets the constructed config object.
         /// </summary>
         public ConfigObject ConfigObject {
             get { return _configObject; }
@@ -35,7 +35,7 @@ namespace Candidate.Core.Setup {
         }
 
         /// <summary>
-        /// Perfoms GitHub node specific actions.
+        /// Performs GitHub node specific actions.
         /// </summary>
         /// <param name="node">The GitHubnode.</param>
         public override void Visit(GitHub node) {
@@ -95,7 +95,7 @@ namespace Candidate.Core.Setup {
         }
 
         /// <summary>
-        /// Perfoms Post node specific actions
+        /// Performs Post node specific actions
         /// </summary>
         /// <param name="node">The Post node.</param>
         public override void Visit(Post node) {

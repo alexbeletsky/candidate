@@ -15,14 +15,9 @@ namespace Candidate.Core.Setup {
                 throw new ArgumentNullException("siteConfiguration");
             }
 
-            siteConfiguration.Accept(ConfigVisitor);
-            return ConfigVisitor.ConfigObject;
-        }
-
-        public ConfigObjectCreatingNodeVisitor ConfigVisitor {
-            get {
-                return new ConfigObjectCreatingNodeVisitor(_directoryProvider);
-            }
+            var configVisitor = new ConfigObjectCreatingNodeVisitor(_directoryProvider);
+            siteConfiguration.Accept(configVisitor);
+            return configVisitor.ConfigObject;
         }
     }
 }
