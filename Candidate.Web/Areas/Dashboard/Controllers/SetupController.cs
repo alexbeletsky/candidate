@@ -10,6 +10,7 @@ using Candidate.Core.Utils;
 using Candidate.Infrustructure.Error;
 using Candidate.Infrustructure.Filters;
 using Newtonsoft.Json;
+using Bounce.Framework;
 
 namespace Candidate.Areas.Dashboard.Controllers {
 
@@ -76,15 +77,82 @@ namespace Candidate.Areas.Dashboard.Controllers {
             return payload.Equals(githubConfiguration.Branch);
         }
 
+        private class DummyCommand : ICommandLog {
+            public string CommandArgumentsForLogging {
+                get { return "-vT git@github.com"; }
+            }
+
+            public void CommandComplete(int exitCode) {
+            }
+
+            public void CommandError(string error) {
+            }
+
+            public void CommandOutput(string output) {
+            }
+        }
+
+
+        private class DummyLog : ILog {
+            public ICommandLog BeginExecutingCommand(string command, string args) {
+                return new DummyCommand();    
+            }
+
+            public void Debug(object message) {
+            }
+
+            public void Debug(string format, params object[] args) {
+            }
+
+            public void Error(Exception exception, object message) {
+            }
+
+            public void Error(object message) {
+            }
+
+            public void Error(Exception exception, string format, params object[] args) {
+            }
+
+            public void Error(string format, params object[] args) {
+            }
+
+            public void Info(object message) {
+            }
+
+            public void Info(string format, params object[] args) {
+            }
+
+            public ITaskLog TaskLog {
+                get { return null; } 
+            }
+
+            public void Warning(Exception exception, object message) {
+            }
+
+            public void Warning(object message) {
+            }
+
+            public void Warning(Exception exception, string format, params object[] args) {
+            }
+
+            public void Warning(string format, params object[] args) {
+            }
+        }
+
+
         private ActionResult RunDeployAndLog(string jobName, SiteConfiguration currentSettings) {
             _directoryProvider.SiteName = jobName;
 
-            using (var logger = _loggerFactory.CreateLogger()) {
-                var setup = _setupFactory.CreateSetup();
-                var result = setup.RunForConfig(logger, currentSettings);
+            var sh = new ShellCommandExecutor(() => { return new DummyLog(); });
+            sh.ExecuteAndExpectSuccess(@"D:\Program Files\Git\bin\ssh.exe", "-T git@github.com");
 
-                return Json(new { success = true, result = result });
-            }
+            return null;
+            //using (var logger = _loggerFactory.CreateLogger()) {
+            //    var setup = _setupFactory.CreateSetup();
+            //    var result = setup.RunForConfig(logger, currentSettings);
+
+            //    return Json(new { success = true, result = result });
+            //}
         }
 
     }

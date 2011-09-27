@@ -20,14 +20,21 @@ namespace Candidate.Core.Settings.Model {
         {
             nodeVisitor.Visit(this);
 
-            if (Github != null)
+            if (Github != null) {
                 Github.Accept(nodeVisitor);
-            if (Solution != null)
+            }
+
+            if (Solution != null) {
                 Solution.Accept(nodeVisitor);
-            if (Iis != null)
+            }
+
+            if (Iis != null) {
                 Iis.Accept(nodeVisitor);
-            if (Post != null)
+            }
+
+            if (Post != null) {
                 Post.Accept(nodeVisitor);
+            }
         }
     }
 }
