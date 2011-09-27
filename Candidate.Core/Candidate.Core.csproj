@@ -31,7 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Bounce.Framework, Version=0.4.4271.19336, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Bounce.Framework, Version=0.4.4284.19055, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\Bounce\Bounce.Framework.dll</HintPath>
     </Reference>

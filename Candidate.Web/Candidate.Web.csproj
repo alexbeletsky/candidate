@@ -38,9 +38,8 @@
     <PackageAsSingleFile>true</PackageAsSingleFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Bounce.Framework, Version=0.4.4214.35000, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\bounce\Bounce\Bounce.Framework.dll</HintPath>
+    <Reference Include="Bounce.Framework">
+      <HintPath>..\lib\Bounce\Bounce.Framework.dll</HintPath>
     </Reference>
     <Reference Include="Elmah">
       <HintPath>..\packages\elmah.corelibrary.1.2\lib\Elmah.dll</HintPath>

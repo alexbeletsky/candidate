@@ -31,9 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Bounce.Framework, Version=0.4.4212.36023, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Bounce.Framework, Version=0.4.4284.19055, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\bounce\Bounce\Bounce.Framework.dll</HintPath>
+      <HintPath>..\lib\Bounce\Bounce.Framework.dll</HintPath>
     </Reference>
     <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
