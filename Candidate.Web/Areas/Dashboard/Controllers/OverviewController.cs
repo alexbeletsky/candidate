@@ -20,10 +20,14 @@ namespace Candidate.Areas.Dashboard.Controllers {
             ViewBag.JobName = jobName;
             _directoryProvider.SiteName = jobName;
 
-            var logFiles = new DirectoryInfo(_directoryProvider.Logs).GetFiles("*.log").OrderByDescending(f => f.CreationTime).Select(f => f.Name);
-            var overview = new OverviewModel { LastBuildStatus = "Success", LastDeployTime = DateTime.Now, LastDeployDuration = new TimeSpan(0, 2, 30), Logs = logFiles };
+            if (Directory.Exists(_directoryProvider.Logs)) {
+                var logFiles = new DirectoryInfo(_directoryProvider.Logs).GetFiles("*.log").OrderByDescending(f => f.CreationTime).Select(f => f.Name);
+                var overview = new OverviewModel { LastBuildStatus = "Success", LastDeployTime = DateTime.Now, LastDeployDuration = new TimeSpan(0, 2, 30), Logs = logFiles };
 
-            return View(overview);
+                return View(overview);
+            }
+
+            return View("NoInfo");
         }
     }
 }
