@@ -24,18 +24,28 @@ $(function () {
                 return false;
             });
 
-            $('#close-button').live('click', function () {
+            function slideUp(callback) {
                 $('#action-content').slideUp(function () {
-                    $(this).empty();
+                    callback(this);
                 });
 
+            }
+
+            $('#close-button').live('click', function () {
+                slideUp(function (e) {
+                    $(e).empty();
+                });
                 return false;
             });
 
             $('#add-job input').live('keyup', function (e) {
                 if (e.keyCode == 13) {
-                    $('#add-job button[type=submit]').click();
-                    e.preventDefault();
+
+                    slideUp(function () {
+                        $('#add-job button[type=submit]').click();
+                    });
+
+                    return false;
                 }
             });
 
