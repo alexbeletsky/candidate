@@ -1,8 +1,9 @@
 ﻿
 namespace Candidate.Core.Settings.Model {
-    public class SiteConfiguration {        
+    public class SiteConfiguration {
         public string JobName { get; set; }
-        
+        public string JobDisplayName { get; set; }
+
         public GitHub Github { get; set; }
         public Solution Solution { get; set; }
         public Iis Iis { get; set; }
@@ -12,12 +13,7 @@ namespace Candidate.Core.Settings.Model {
             return !string.IsNullOrEmpty(JobName) && Github != null && Solution != null && Iis != null;
         }
 
-        /// <summary>
-        /// Accepts the specified node visitor.
-        /// </summary>
-        /// <param name="nodeVisitor">The node visitor.</param>
-        public void Accept(SiteConfigurationNodeVisitor nodeVisitor)
-        {
+        public void Accept(SiteConfigurationNodeVisitor nodeVisitor) {
             nodeVisitor.Visit(this);
 
             if (Github != null) {

@@ -158,6 +158,11 @@ nav.content-menu ul li
     margin: 18px 0px 18px 0px;
 }
 
+#job-name input
+{
+    width: 360px;
+}
+
 #team-members-table
 {
     width: 100%;
@@ -387,7 +392,7 @@ span.success
 
 .job span.job-name
 {
-    width: 120px;
+    width: 360px;
 }
 
 .job span.job-name a
