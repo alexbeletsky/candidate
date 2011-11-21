@@ -1,10 +1,12 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using Candidate.Core.Settings.Model;
 using Candidate.Core.Setup;
 using Candidate.Core.Utils;
 using ICSharpCode.SharpZipLib.Zip;
 using NUnit.Framework;
+using SharpTestsEx;
 
 namespace Candidate.Tests.Setup {
     [TestFixture]
@@ -274,6 +276,62 @@ namespace Candidate.Tests.Setup {
             // assert
             Assert.That(configObject.PostBuild.Exe.Value, Is.EqualTo("run.bat"));
             Assert.That(configObject.PostBuild.WorkingDirectory.Value, Is.EqualTo(DirectoryProvider.Sources + "\\TestSolution"));
+        }
+
+        [Test]
+        public void CreateConfigObject_For_Iss_If_Binding_Is_Defined_Add_Binding_Info() {
+            // arrange
+            var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
+            var config = new SiteConfiguration { Iis = new Iis { SiteName = "test", DeployFolder = "c:\\sites", Bindings = "http:*:80:site.com" }, Solution = new Solution { Name = "TestSolution\\Test.sln", WebProject = "Test" } };
+
+            // act
+            var configObject = configObjectBuilder.CreateConfigObject(config);
+
+            // assert
+            configObject.WebSite.Bindings.Value.First().Protocol.Value.Should().Be("http");
+            configObject.WebSite.Bindings.Value.First().Information.Value.Should().Be("*:80:site.com");
+        }
+
+        [Test]
+        public void CreateConfigObject_For_Iss_If_Binding_Is_Defined_Add_Binding_Info_Ftp() {
+            // arrange
+            var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
+            var config = new SiteConfiguration { Iis = new Iis { SiteName = "test", DeployFolder = "c:\\sites", Bindings = "ftp:*:80:site.com" }, Solution = new Solution { Name = "TestSolution\\Test.sln", WebProject = "Test" } };
+
+            // act
+            var configObject = configObjectBuilder.CreateConfigObject(config);
+
+            // assert
+            configObject.WebSite.Bindings.Value.First().Protocol.Value.Should().Be("ftp");
+            configObject.WebSite.Bindings.Value.First().Information.Value.Should().Be("*:80:site.com");
+        }
+
+        [Test]
+        public void CreateConfigObject_For_Iss_If_Binding_Is_Defined_Add_Binding_Info_With_Ip_Address() {
+            // arrange
+            var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
+            var config = new SiteConfiguration { Iis = new Iis { SiteName = "test", DeployFolder = "c:\\sites", Bindings = "ftp:127.0.0.1:80:site.com" }, Solution = new Solution { Name = "TestSolution\\Test.sln", WebProject = "Test" } };
+
+            // act
+            var configObject = configObjectBuilder.CreateConfigObject(config);
+
+            // assert
+            configObject.WebSite.Bindings.Value.First().Protocol.Value.Should().Be("ftp");
+            configObject.WebSite.Bindings.Value.First().Information.Value.Should().Be("127.0.0.1:80:site.com");
+        }
+
+        [Test]
+        public void CreateConfigObject_For_Iis_Binding_Contains_Several_Records() {
+            // arrange
+            var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
+            var config = new SiteConfiguration { Iis = new Iis { SiteName = "test", DeployFolder = "c:\\sites", Bindings = "http:127.0.0.1:80:site.com;ftp:127.0.0.1:80:ftp.site.com" }, Solution = new Solution { Name = "TestSolution\\Test.sln", WebProject = "Test" } };
+
+            // act
+            var configObject = configObjectBuilder.CreateConfigObject(config);
+
+            // assert
+            configObject.WebSite.Bindings.Value.Skip(1).Take(1).First().Protocol.Value.Should().Be("ftp");
+            configObject.WebSite.Bindings.Value.Skip(1).Take(1).First().Information.Value.Should().Be("127.0.0.1:80:ftp.site.com");
         }
     }
 }

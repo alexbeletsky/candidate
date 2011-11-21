@@ -4,11 +4,10 @@ using System.Linq;
 using Bounce.Framework;
 using Candidate.Core.Settings.Model;
 using Candidate.Core.Utils;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace Candidate.Core.Setup {
-    /// <summary>
-    /// Creates ConfigObject instance based on provided SiteConfiguration object
-    /// </summary>
     public class ConfigObjectCreatingNodeVisitor : SiteConfigurationNodeVisitor {
         private readonly ConfigObject _configObject = new ConfigObject();
         private readonly IDirectoryProvider _directoryProvider;
@@ -18,26 +17,14 @@ namespace Candidate.Core.Setup {
             _directoryProvider = provider;
         }
 
-        /// <summary>
-        /// Gets the constructed config object.
-        /// </summary>
         public ConfigObject ConfigObject {
             get { return _configObject; }
         }
 
-        /// <summary>
-        /// Performs SiteConfiguration node specific actions.
-        /// Do not perform any action.
-        /// </summary>
-        /// <param name="node">The SiteConfiguration node.</param>
         public override void Visit(SiteConfiguration node) {
             // NOP
         }
 
-        /// <summary>
-        /// Performs GitHub node specific actions.
-        /// </summary>
-        /// <param name="node">The GitHubnode.</param>
         public override void Visit(GitHub node) {
             if (!string.IsNullOrEmpty(node.Url)) {
                 _configObject.Git = new GitCheckout {
@@ -48,10 +35,6 @@ namespace Candidate.Core.Setup {
             }
         }
 
-        /// <summary>
-        /// Perfoms Solution node specific actions
-        /// </summary>
-        /// <param name="node">The Solution node.</param>
         public override void Visit(Solution node) {
             _solution = node;
             _configObject.Solution = new VisualStudioSolution {
@@ -74,10 +57,6 @@ namespace Candidate.Core.Setup {
             }
         }
 
-        /// <summary>
-        /// Perfoms Iis node specific actions
-        /// </summary>
-        /// <param name="node">The Iis node.</param>
         public override void Visit(Iis node) {
             if (_solution == null || _configObject.Solution == null) {
                 throw new Exception("Couldn't create configuration for IIS without solution file");
@@ -92,12 +71,31 @@ namespace Candidate.Core.Setup {
                 Name = node.SiteName,
                 Port = GetSitePort(node)
             };
+
+            if (node.Bindings != null) {
+                _configObject.WebSite.Bindings = GetBindings(node.Bindings);
+            }
         }
 
-        /// <summary>
-        /// Performs Post node specific actions
-        /// </summary>
-        /// <param name="node">The Post node.</param>
+        private Task<IEnumerable<Iis7WebSiteBinding>> GetBindings(string bindingInformation) {
+            var bounceBindingsList = new List<Iis7WebSiteBinding>();
+
+            var splittedBindingString = bindingInformation.Split(';');
+            foreach (var bindingString in splittedBindingString) {
+                var protocol = bindingString.Substring(0, bindingString.IndexOf(":"));
+                var information = bindingString.Substring(bindingString.IndexOf(":") + 1);
+
+                var binding = new Iis7WebSiteBinding {
+                    Protocol = protocol,
+                    Information = information
+                };
+
+                bounceBindingsList.Add(binding);
+            }
+
+            return bounceBindingsList;
+        }
+
         public override void Visit(Post node) {
             if (_configObject.Solution != null) {
                 _configObject.PostBuild = new ShellCommand {

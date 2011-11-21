@@ -31,7 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Bounce.Framework, Version=0.4.4284.19055, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Bounce.Framework, Version=0.4.4296.19325, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\Bounce\Bounce.Framework.dll</HintPath>
     </Reference>
@@ -65,6 +65,7 @@
     <Compile Include="Settings\Model\Solution.cs" />
     <Compile Include="Settings\SettingsManager.cs" />
     <Compile Include="Settings\TrackableSettingsManager.cs" />
+    <Compile Include="Settings\Validation\IisBindingsAttribute.cs" />
     <Compile Include="Setup\ConfigObject.cs" />
     <Compile Include="Setup\ConfigObjectBuilder.cs" />
     <Compile Include="Setup\ConfigObjectCreatingNodeVisitor.cs" />

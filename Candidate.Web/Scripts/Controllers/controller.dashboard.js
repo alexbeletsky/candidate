@@ -40,7 +40,6 @@ $(function () {
 
             $('#add-job input').live('keyup', function (e) {
                 if (e.keyCode == 13) {
-
                     slideUp(function () {
                         $('#add-job button[type=submit]').click();
                     });

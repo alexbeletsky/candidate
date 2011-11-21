@@ -2,6 +2,7 @@
 using Candidate.Models;
 using System.Web.Security;
 using Candidate.Infrustructure.Authentication;
+using System;
 
 namespace Candidate.Controllers {
     public class LoginController : Controller {

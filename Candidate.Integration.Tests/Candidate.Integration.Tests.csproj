@@ -66,6 +66,7 @@
     <Compile Include="DummyLogger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RunSetupTests.cs" />
+    <Compile Include="ServerManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Candidate.Core\Candidate.Core.csproj">
