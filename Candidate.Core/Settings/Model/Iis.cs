@@ -10,10 +10,6 @@ namespace Candidate.Core.Settings.Model {
             DeployFolder = "c:\\sites";
         }
 
-        /// <summary>
-        /// Accepts the specified node visitor and passes control to it
-        /// </summary>
-        /// <param name="nodeVisitor">The node visitor.</param>
         public void Accept(SiteConfigurationNodeVisitor nodeVisitor)
         {
             nodeVisitor.Visit(this);
@@ -27,7 +23,6 @@ namespace Candidate.Core.Settings.Model {
         public int Port { get; set; }
 
         [DisplayName("Bindings")]
-        [IisBindings]
         public string Bindings { get; set; }
 
         [Required]

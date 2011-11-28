@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers\BindingParser.cs" />
     <Compile Include="Log\ILoggerFactory.cs" />
     <Compile Include="Log\ILogOptionsFactory.cs" />
     <Compile Include="Log\Logger.cs" />

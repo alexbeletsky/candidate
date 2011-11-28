@@ -217,8 +217,8 @@ namespace Candidate.Tests.Setup {
             var configObject = configObjectBuilder.CreateConfigObject(config);
 
             // assert
-            Assert.That(configObject.WebSite, Is.Not.Null);
-            Assert.That(configObject.WebSite.Name.Value, Is.EqualTo("TestSite"));
+            Assert.That(configObject.Website, Is.Not.Null);
+            Assert.That(configObject.Website.Name.Value, Is.EqualTo("TestSite"));
         }
 
         [Test]
@@ -231,9 +231,9 @@ namespace Candidate.Tests.Setup {
             var configObject = configObjectBuilder.CreateConfigObject(config);
 
             // assert
-            Assert.That(configObject.WebSite, Is.Not.Null);
-            Assert.That(configObject.WebSite.Name.Value, Is.EqualTo("TestSite"));
-            Assert.That(configObject.WebSite.Directory.Value, Is.EqualTo("c:\\sites\\TestSite"));
+            Assert.That(configObject.Website, Is.Not.Null);
+            Assert.That(configObject.Website.Name.Value, Is.EqualTo("TestSite"));
+            Assert.That(configObject.Website.Directory.Value, Is.EqualTo("c:\\sites\\TestSite"));
         }
 
         [Test]
@@ -246,8 +246,8 @@ namespace Candidate.Tests.Setup {
             var configObject = configObjectBuilder.CreateConfigObject(config);
 
             // assert
-            Assert.That(configObject.WebSite, Is.Not.Null);
-            Assert.That(configObject.WebSite.Port.Value, Is.EqualTo(80));
+            Assert.That(configObject.Website, Is.Not.Null);
+            Assert.That(configObject.Website.Port.Value, Is.EqualTo(80));
         }
 
         [Test]
@@ -260,8 +260,8 @@ namespace Candidate.Tests.Setup {
             var configObject = configObjectBuilder.CreateConfigObject(config);
 
             // assert
-            Assert.That(configObject.WebSite, Is.Not.Null);
-            Assert.That(configObject.WebSite.Port.Value, Is.EqualTo(9000));
+            Assert.That(configObject.Website, Is.Not.Null);
+            Assert.That(configObject.Website.Port.Value, Is.EqualTo(9000));
         }
 
         [Test]
@@ -288,8 +288,8 @@ namespace Candidate.Tests.Setup {
             var configObject = configObjectBuilder.CreateConfigObject(config);
 
             // assert
-            configObject.WebSite.Bindings.Value.First().Protocol.Value.Should().Be("http");
-            configObject.WebSite.Bindings.Value.First().Information.Value.Should().Be("*:80:site.com");
+            configObject.Website.Bindings.Value.First().Protocol.Value.Should().Be("http");
+            configObject.Website.Bindings.Value.First().Information.Value.Should().Be("*:80:site.com");
         }
 
         [Test]
@@ -302,8 +302,8 @@ namespace Candidate.Tests.Setup {
             var configObject = configObjectBuilder.CreateConfigObject(config);
 
             // assert
-            configObject.WebSite.Bindings.Value.First().Protocol.Value.Should().Be("ftp");
-            configObject.WebSite.Bindings.Value.First().Information.Value.Should().Be("*:80:site.com");
+            configObject.Website.Bindings.Value.First().Protocol.Value.Should().Be("ftp");
+            configObject.Website.Bindings.Value.First().Information.Value.Should().Be("*:80:site.com");
         }
 
         [Test]
@@ -316,8 +316,8 @@ namespace Candidate.Tests.Setup {
             var configObject = configObjectBuilder.CreateConfigObject(config);
 
             // assert
-            configObject.WebSite.Bindings.Value.First().Protocol.Value.Should().Be("ftp");
-            configObject.WebSite.Bindings.Value.First().Information.Value.Should().Be("127.0.0.1:80:site.com");
+            configObject.Website.Bindings.Value.First().Protocol.Value.Should().Be("ftp");
+            configObject.Website.Bindings.Value.First().Information.Value.Should().Be("127.0.0.1:80:site.com");
         }
 
         [Test]
@@ -330,8 +330,8 @@ namespace Candidate.Tests.Setup {
             var configObject = configObjectBuilder.CreateConfigObject(config);
 
             // assert
-            configObject.WebSite.Bindings.Value.Skip(1).Take(1).First().Protocol.Value.Should().Be("ftp");
-            configObject.WebSite.Bindings.Value.Skip(1).Take(1).First().Information.Value.Should().Be("127.0.0.1:80:ftp.site.com");
+            configObject.Website.Bindings.Value.Skip(1).Take(1).First().Protocol.Value.Should().Be("ftp");
+            configObject.Website.Bindings.Value.Skip(1).Take(1).First().Information.Value.Should().Be("127.0.0.1:80:ftp.site.com");
         }
     }
 }

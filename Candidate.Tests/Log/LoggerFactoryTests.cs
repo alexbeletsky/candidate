@@ -45,7 +45,7 @@ namespace Candidate.Tests.Log {
             using (var logger = factory.CreateLogger()) {
                 // assert
                 Assert.That(logger, Is.Not.Null);
-                Assert.That(File.Exists(DirectoryProvider.Site + "\\logs\\" + logger.LogFilename), Is.True); 
+                Assert.That(File.Exists(DirectoryProvider.Site + "\\logs\\" + logger.LogFileName), Is.True); 
             }
         }
 

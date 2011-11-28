@@ -6,6 +6,7 @@ using Candidate.Core.Settings.Model;
 using Candidate.Core.Utils;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using Candidate.Core.Helpers;
 
 namespace Candidate.Core.Setup {
     public class ConfigObjectCreatingNodeVisitor : SiteConfigurationNodeVisitor {
@@ -59,41 +60,31 @@ namespace Candidate.Core.Setup {
 
         public override void Visit(Iis node) {
             if (_solution == null || _configObject.Solution == null) {
-                throw new Exception("Couldn't create configuration for IIS without solution file");
+                throw new ArgumentException("Couldn't create configuration for IIS without solution file.");
             }
 
             if (_solution.WebProject == null) {
-                throw new Exception("Couldn't create configuration for IIS without web project name");
+                throw new ArgumentException("Couldn't create configuration for IIS without web project name.");
             }
 
-            _configObject.WebSite = new Iis7WebSite {
+            _configObject.Website = new Iis7WebSite {
                 Directory = GetSiteDirectory(node, _solution),
                 Name = node.SiteName,
                 Port = GetSitePort(node)
             };
 
             if (node.Bindings != null) {
-                _configObject.WebSite.Bindings = GetBindings(node.Bindings);
+                _configObject.Website.Bindings = GetBindings(node.Bindings);
             }
         }
 
         private Task<IEnumerable<Iis7WebSiteBinding>> GetBindings(string bindingInformation) {
-            var bounceBindingsList = new List<Iis7WebSiteBinding>();
-
-            var splittedBindingString = bindingInformation.Split(';');
-            foreach (var bindingString in splittedBindingString) {
-                var protocol = bindingString.Substring(0, bindingString.IndexOf(":"));
-                var information = bindingString.Substring(bindingString.IndexOf(":") + 1);
-
-                var binding = new Iis7WebSiteBinding {
-                    Protocol = protocol,
-                    Information = information
-                };
-
-                bounceBindingsList.Add(binding);
-            }
-
-            return bounceBindingsList;
+            var parser = new BindingParser();
+            
+            return parser.Parse(bindingInformation).Select(_ => new Iis7WebSiteBinding {
+                Protocol = _.Protocol,
+                Information = _.Information
+            }).ToList();
         }
 
         public override void Visit(Post node) {
@@ -119,7 +110,7 @@ namespace Candidate.Core.Setup {
         }
 
         private Task<string> GetPublishedPath(Solution solution) {
-            return _directoryProvider.PublishedWebSites + "\\" + solution.WebProject;
+            return _directoryProvider.PublishedWebsites + "\\" + solution.WebProject;
         }
 
         private string GetDeploymentPath(Iis iis) {

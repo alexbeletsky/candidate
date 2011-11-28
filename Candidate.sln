@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Candidate.Core", "Candidate
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Candidate.Integration.Tests", "Candidate.Integration.Tests\Candidate.Integration.Tests.csproj", "{EF7592C9-F19D-4A30-A211-01977C4D8BF4}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{EA20B4CD-421A-4B33-BCF2-071ADB825262}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{7FA0D11B-6B08-41D1-8901-88FDAD8300A8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -34,5 +38,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EF7592C9-F19D-4A30-A211-01977C4D8BF4} = {EA20B4CD-421A-4B33-BCF2-071ADB825262}
+		{7CDAEE7A-7C56-4411-83A9-D27E64C7DB0D} = {EA20B4CD-421A-4B33-BCF2-071ADB825262}
+		{F7875002-FC5B-4039-86EE-11540E02D322} = {7FA0D11B-6B08-41D1-8901-88FDAD8300A8}
 	EndGlobalSection
 EndGlobal

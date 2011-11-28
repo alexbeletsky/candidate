@@ -10,11 +10,11 @@ namespace Candidate.Tests.Integration {
             }
         }
 
-        public string LogFilename {
+        public string LogFileName {
             get { throw new global::System.NotImplementedException(); }
         }
 
-        public string LogFullPath {
+        public string LogFileFullPath {
             get { throw new global::System.NotImplementedException(); }
         }
 
@@ -28,11 +28,11 @@ namespace Candidate.Tests.Integration {
             get { return new Mock<System.IO.TextWriter>(MockBehavior.Loose) { DefaultValue = DefaultValue.Mock }.Object; }
         }
 
-        public string LogFilename {
+        public string LogFileName {
             get { return "dummy.log";  }
         }
 
-        public string LogFullPath {
+        public string LogFileFullPath {
             get { throw new System.NotImplementedException(); }
         }
 

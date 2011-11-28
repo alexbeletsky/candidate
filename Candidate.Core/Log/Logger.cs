@@ -8,16 +8,16 @@ namespace Candidate.Core.Log {
 
         public Logger(IDirectoryProvider directoryProvider) {
 
-            LogFilename = GetUniqueLogFilename();
+            LogFileName = GetUniqueLogFilename();
             LogsDirectory = directoryProvider.Logs;
-            LogFullPath = LogsDirectory + "\\" + LogFilename;
+            LogFileFullPath = LogsDirectory + "\\" + LogFileName;
 
             CreateLogsDirectory();
             CreateLogsWriter();
         }
 
         private void CreateLogsWriter() {
-            _writter = new StreamWriter(new FileStream(LogFullPath, FileMode.OpenOrCreate));
+            _writter = new StreamWriter(new FileStream(LogFileFullPath, FileMode.OpenOrCreate));
         }
 
         private void CreateLogsDirectory() {
@@ -36,12 +36,12 @@ namespace Candidate.Core.Log {
             }
         }
 
-        public string LogFilename {
+        public string LogFileName {
             get;
             private set;
         }
 
-        public string LogFullPath {
+        public string LogFileFullPath {
             get;
             private set;
         }

@@ -74,7 +74,7 @@ namespace Candidate.Tests.Integration {
             var loggerFactory = new LoggerFactory(DirectoryProvider);
             var loggerPath = "";
             using (var logger = loggerFactory.CreateLogger()) {
-                loggerPath = logger.LogFullPath;
+                loggerPath = logger.LogFileFullPath;
 
                 var defaultSetup = new DefaultSetup(targetsObjectBuilder, targetsBuilder, bounceFactory);
                 defaultSetup.RunForConfig(logger, config);

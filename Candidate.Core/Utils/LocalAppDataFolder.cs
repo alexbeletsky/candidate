@@ -7,6 +7,10 @@ namespace Candidate.Core.Utils
     {
         private static readonly string AppFolder = ".candidate";
 
+        private LocalAppDataFolder() {
+
+        }
+
         public static string Folder
         {
             get

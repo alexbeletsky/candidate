@@ -20,7 +20,7 @@ namespace Candidate.Core.Settings {
 
         public T ReadSettings<T>() where T : new() {
             try {
-                using (var reader = new JsonTextReader(new StreamReader(GetSettingsFilename<T>()))) {
+                using (var reader = new JsonTextReader(new StreamReader(GetSettingsFileName<T>()))) {
                     var settings = _serializer.Deserialize<T>(reader);
 
                     return settings;
@@ -32,16 +32,16 @@ namespace Candidate.Core.Settings {
         }
 
         public void SaveSettings(object settings) {
-            using (var writer = new JsonTextWriter(new StreamWriter(GetSettingsFilename(settings)))) {
+            using (var writer = new JsonTextWriter(new StreamWriter(GetSettingsFileName(settings)))) {
                 _serializer.Serialize(writer, settings);
             }
         }
 
-        public string GetSettingsFilename<T>() {
+        public string GetSettingsFileName<T>() {
             return _settingsFolder + "\\" + typeof(T).Name + ".json";
         }
 
-        private string GetSettingsFilename(object settings) {
+        private string GetSettingsFileName(object settings) {
             return _settingsFolder + "\\" + settings.GetType().Name + ".json";
         }
     }

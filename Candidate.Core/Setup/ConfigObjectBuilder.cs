@@ -10,13 +10,14 @@ namespace Candidate.Core.Setup {
             _directoryProvider = directoryProvider;
         }
 
-        public ConfigObject CreateConfigObject(SiteConfiguration siteConfiguration) {
-            if (siteConfiguration == null) {
-                throw new ArgumentNullException("siteConfiguration");
+        public ConfigObject CreateConfigObject(SiteConfiguration config) {
+            if (config == null) {
+                throw new ArgumentNullException("config");
             }
 
             var configVisitor = new ConfigObjectCreatingNodeVisitor(_directoryProvider);
-            siteConfiguration.Accept(configVisitor);
+            config.Accept(configVisitor);
+
             return configVisitor.ConfigObject;
         }
     }

@@ -5,19 +5,20 @@ namespace Candidate.Core.Utils {
     // TODO: get rid of + "\\" operation, use Path.Combine instead
 
     public class DirectoryProvider : IDirectoryProvider {
-        private string _siteName;
 
         public DirectoryProvider() {
             Root = LocalAppDataFolder.Folder;
         }
 
-        public DirectoryProvider(string jobName) {
-            _siteName = jobName;
-            Root = LocalAppDataFolder.Folder;
+        public DirectoryProvider(string siteName) {
+            if (siteName == null) {
+                throw new ArgumentNullException("Site name has not been set");
+            }
+
+            SiteName = siteName;
         }
 
-        public DirectoryProvider(string jobName, string root) {
-            _siteName = jobName;
+        public DirectoryProvider(string siteName, string root) : this(siteName) {
             Root = root;
         }
 
@@ -56,22 +57,13 @@ namespace Candidate.Core.Utils {
             }
         }
 
-        public string PublishedWebSites {
+        public string PublishedWebsites {
             get { return Build + "\\_PublishedWebsites"; }
         }
 
         public string SiteName {
-            get {
-                if (_siteName == null) {
-                    throw new Exception("Site name has not been set");
-                }
-
-                return _siteName;
-            }
-
-            set {
-                _siteName = value;
-            }
+            get;
+            set;
         }
 
         // TODO: make auto deploy of tools on first start

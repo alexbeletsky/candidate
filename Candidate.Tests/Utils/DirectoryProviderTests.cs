@@ -18,46 +18,6 @@ namespace Candidate.Tests.Utils {
         }
 
         [Test]
-        [ExpectedException]
-        public void JobName_IfNotSet_Exception() {
-            // arrange
-            var provider = new DirectoryProvider();  
-
-            // act
-            var job = provider.SiteName;
-        }
-
-        [Test]
-        [ExpectedException]
-        public void JobDirectory_CoundNotBeGet_WithoutSettingJobName() {
-            // arrange
-            var provider = new DirectoryProvider();
-
-            // act
-            var job = provider.Site;
-        }
-
-        [Test]
-        [ExpectedException]
-        public void SourceDirectory_CoundNotBeGet_WithoutSettingJobName() {
-            // arrange
-            var provider = new DirectoryProvider();
-
-            // act
-            var job = provider.Sources;
-        }
-
-        [Test]
-        [ExpectedException]
-        public void LogsDirectory_CoundNotBeGet_WithoutSettingJobName() {
-            // arrange
-            var provider = new DirectoryProvider();
-
-            // act
-            var job = provider.Logs;
-        }
-
-        [Test]
         public void JobName_GetValue_RetunsValueAfterBeingSet() {
             // arrange
             var provider = new DirectoryProvider();

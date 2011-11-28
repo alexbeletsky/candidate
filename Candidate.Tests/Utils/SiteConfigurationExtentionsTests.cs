@@ -6,6 +6,7 @@ using NUnit.Framework;
 using Candidate.Core.Settings.Model;
 using Candidate.Core.Utils;
 using SharpTestsEx;
+using Bounce.Framework;
 
 namespace Candidate.Tests.Utils {
     [TestFixture]
@@ -32,6 +33,18 @@ namespace Candidate.Tests.Utils {
 
             // assert
             result.Should().Be("http://xxx.com:8080");
+        }
+
+        [Test]
+        public void GetSiteUrl_SiteWithBindings() {
+            // arrange
+            var iis = new Iis { Bindings = "http:*:90:sss.org" };
+
+            // act
+            var result = iis.GetSiteUrl();
+
+            // assert
+            result.Should().Be("http://sss.org:90");
         }
     }
 }

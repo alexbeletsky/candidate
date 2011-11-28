@@ -29,7 +29,7 @@ namespace Candidate.Core.Setup {
             // TODO: it have to be run asynchronously, with checking thread status and exit by timeout 
             _targetsBuilder.BuildTargets(bounce, targets, _command);
 
-            return new SetupResult { Url = config.Iis.GetSiteUrl(), Log = logger.LogFilename };
+            return new SetupResult { Url = config.Iis.GetSiteUrl(), Log = logger.LogFileName };
         }
     }
 }

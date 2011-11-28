@@ -84,6 +84,7 @@
     <Compile Include="Controllers\LoginControllerTests.cs" />
     <Compile Include="Controllers\SetupControllerTests.cs" />
     <Compile Include="Filters\AddViewNameAndHashAttributeTests.cs" />
+    <Compile Include="Helpers\BindingParserTests.cs" />
     <Compile Include="Log\LoggerFactoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings\IisBindingsAttributeTests.cs" />
