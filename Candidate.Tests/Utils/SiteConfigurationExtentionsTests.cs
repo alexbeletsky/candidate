@@ -2,20 +2,23 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using NUnit.Framework;
+using Bounce.Framework;
 using Candidate.Core.Settings.Model;
 using Candidate.Core.Utils;
+using NUnit.Framework;
 using SharpTestsEx;
-using Bounce.Framework;
 
-namespace Candidate.Tests.Utils {
+namespace Candidate.Tests.Utils
+{
     [TestFixture]
-    public class SiteConfigurationExtentionsTests {
+    public class SiteConfigurationExtentionsTests
+    {
         [Test]
-        public void GetSiteUrl_SiteWithOutPort() {
+        public void GetSiteUrl_SiteWithOutPort()
+        {
             // arrange
             var iis = new Iis { SiteName = "xxx.com" };
- 
+
             // act
             var result = iis.GetSiteUrl();
 
@@ -24,7 +27,8 @@ namespace Candidate.Tests.Utils {
         }
 
         [Test]
-        public void GetSiteUrl_SiteWithPort() {
+        public void GetSiteUrl_SiteWithPort()
+        {
             // arrange
             var iis = new Iis { SiteName = "xxx.com", Port = 8080 };
 
@@ -36,7 +40,8 @@ namespace Candidate.Tests.Utils {
         }
 
         [Test]
-        public void GetSiteUrl_SiteWithBindings() {
+        public void GetSiteUrl_SiteWithBindings()
+        {
             // arrange
             var iis = new Iis { Bindings = "http:*:90:sss.org" };
 

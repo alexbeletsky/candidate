@@ -2,10 +2,13 @@
 using System.ComponentModel.DataAnnotations;
 using Candidate.Core.Settings.Validation;
 
-namespace Candidate.Core.Settings.Model {
-    public class Iis {
+namespace Candidate.Core.Settings.Model
+{
+    public class Iis
+    {
 
-        public Iis() {
+        public Iis()
+        {
             Port = 80;
             DeployFolder = "c:\\sites";
         }
@@ -18,7 +21,7 @@ namespace Candidate.Core.Settings.Model {
         [Required]
         [DisplayName("Site name")]
         public string SiteName { get; set; }
-        
+
         [DisplayName("Port")]
         public int Port { get; set; }
 

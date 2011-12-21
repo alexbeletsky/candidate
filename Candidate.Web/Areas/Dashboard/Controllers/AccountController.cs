@@ -1,29 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using Candidate.Core.Settings;
-using Candidate.Infrustructure.Authentication;
+﻿using System.Web.Mvc;
 using Candidate.Areas.Dashboard.Models;
 using Candidate.Core.Services;
+using Candidate.Core.Settings;
+using Candidate.Infrustructure.Authentication;
 
-namespace Candidate.Areas.Dashboard.Controllers {
-    public class AccountController : Controller {
+namespace Candidate.Areas.Dashboard.Controllers
+{
+    public class AccountController : Controller
+    {
         private ISettingsManager _settingsManager;
         private IHashService _hashService;
 
-        public AccountController(ISettingsManager settingsManager, IHashService hashService) {
+        public AccountController(ISettingsManager settingsManager, IHashService hashService)
+        {
             _settingsManager = settingsManager;
             _hashService = hashService;
         }
 
         [HttpGet]
-        public ActionResult Index() {
+        public ActionResult Index()
+        {
             var userSettings = _settingsManager.ReadSettings<UserSettings>();
 
             var user = userSettings.User;
-            var model = new AccountSettingsModel {
+            var model = new AccountSettingsModel
+            {
                 Login = user.Login
             };
 
@@ -31,9 +32,12 @@ namespace Candidate.Areas.Dashboard.Controllers {
         }
 
         [HttpPost]
-        public ActionResult Index(AccountSettingsModel model) {
-            if (ModelState.IsValid) {
-                using (var settings = new TrackableSettingsManager(_settingsManager)) {
+        public ActionResult Index(AccountSettingsModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                using (var settings = new TrackableSettingsManager(_settingsManager))
+                {
                     var userSettings = settings.ReadSettings<UserSettings>();
                     var user = userSettings.User;
 

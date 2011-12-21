@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using NUnit.Framework;
 using Microsoft.Web.Administration;
+using NUnit.Framework;
 
-namespace Candidate.Integration.Tests {
+namespace Candidate.Integration.Tests
+{
     [TestFixture]
     [Ignore]
-    public class ServerManagerTests {
+    public class ServerManagerTests
+    {
         [Test]
-        public void Test() {
+        public void Test()
+        {
             var manager = new ServerManager();
 
             var site = manager.Sites.Add("SiteFromTest", "c:\\sites", 1010);

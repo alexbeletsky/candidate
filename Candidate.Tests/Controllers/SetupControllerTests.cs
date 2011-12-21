@@ -8,24 +8,28 @@ using Candidate.Core.Utils;
 using Moq;
 using NUnit.Framework;
 
-namespace Candidate.Tests.Controllers {
+namespace Candidate.Tests.Controllers
+{
     [TestFixture]
-    public class SetupControllerTests {
+    public class SetupControllerTests
+    {
 
         [SetUp]
-        public void Setup() {
+        public void Setup()
+        {
             SettingsManagerMock = new Mock<ISettingsManager>();
             SetupFactoryMock = new Mock<ISetupFactory>();
             SetupMock = new Mock<ISetup>();
             LoggerFactoryMock = new Mock<ILoggerFactory>();
             DirectoryProviderMock = new Mock<IDirectoryProvider>();
 
-            ConfigurationList = new SitesConfigurationList() { Configurations = new List<SiteConfiguration> { new SiteConfiguration { JobName = "testJob",  Github = new GitHub { Branch = "master" } } } };
+            ConfigurationList = new SitesConfigurationList() { Configurations = new List<SiteConfiguration> { new SiteConfiguration { JobName = "testJob", Github = new GitHub { Branch = "master" } } } };
             Controller = new SetupController(SettingsManagerMock.Object, SetupFactoryMock.Object, LoggerFactoryMock.Object, DirectoryProviderMock.Object);
         }
 
         [Test]
-        public void Hook_Run_Setup_If_Hooked_For_Current_Branch() {
+        public void Hook_Run_Setup_If_Hooked_For_Current_Branch()
+        {
             // arrange
             SettingsManagerMock.Setup(_ => _.ReadSettings<SitesConfigurationList>()).Returns(ConfigurationList);
             SetupFactoryMock.Setup(_ => _.CreateSetup()).Returns(SetupMock.Object);
@@ -39,7 +43,8 @@ namespace Candidate.Tests.Controllers {
         }
 
         [Test]
-        public void Hook_Does_Not_Run_Setup_If_Hooked_For_Different_Branch() {
+        public void Hook_Does_Not_Run_Setup_If_Hooked_For_Different_Branch()
+        {
             // arrange
             SettingsManagerMock.Setup(_ => _.ReadSettings<SitesConfigurationList>()).Returns(ConfigurationList);
             SetupFactoryMock.Setup(_ => _.CreateSetup()).Returns(SetupMock.Object);

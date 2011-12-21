@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Candidate.Infrustructure.Error
@@ -28,10 +25,12 @@ namespace Candidate.Infrustructure.Error
             }
         }
 
-        private string GetExceptionMessage(Exception exception) {
+        private string GetExceptionMessage(Exception exception)
+        {
             var aggregateException = exception as AggregateException;
-            
-            if (aggregateException != null) {
+
+            if (aggregateException != null)
+            {
                 return aggregateException.InnerException.Message;
             }
 

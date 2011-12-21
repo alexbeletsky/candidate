@@ -3,12 +3,15 @@ using Candidate.Core.Setup;
 using Moq;
 using NUnit.Framework;
 
-namespace Candidate.Tests.Setup {
+namespace Candidate.Tests.Setup
+{
     [TestFixture]
-    public class SetupManagerTests {
+    public class SetupManagerTests
+    {
 
         [Test]
-        public void CreateSetup_SettingsForJobExists_SetupCreated() {
+        public void CreateSetup_SettingsForJobExists_SetupCreated()
+        {
             // arrange
             var targetsObjectBuilderMock = new Mock<ITargetsObjectBuilder>();
             var targetsBuilderMock = new Mock<ITargetsBuilder>();

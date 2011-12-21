@@ -9,20 +9,24 @@ using Moq;
 using NUnit.Framework;
 using SharpTestsEx;
 
-namespace Candidate.Tests.Controllers {
+namespace Candidate.Tests.Controllers
+{
     [TestFixture]
-    public class ConfigurationControllerTests {
+    public class ConfigurationControllerTests
+    {
         protected ConfigurationController Controller { get; set; }
         protected Mock<ISettingsManager> SettingsManager { get; set; }
 
         [SetUp]
-        public void Setup() {
+        public void Setup()
+        {
             SettingsManager = new Mock<ISettingsManager>();
             Controller = new ConfigurationController(SettingsManager.Object);
         }
 
         [Test]
-        public void Index_Get_Returns_View() {
+        public void Index_Get_Returns_View()
+        {
             // arrange
 
             // act
@@ -33,10 +37,12 @@ namespace Candidate.Tests.Controllers {
         }
 
         [Test]
-        public void Github_Get_Returns_Model() {
+        public void Github_Get_Returns_Model()
+        {
             // arrange
             SettingsManager.Setup(s => s.ReadSettings<SitesConfigurationList>()).Returns(
-                new SitesConfigurationList {
+                new SitesConfigurationList
+                {
                     Configurations = new List<SiteConfiguration> { 
                     new SiteConfiguration { JobName = "testJob", Github = new GitHub() } }
                 });
@@ -49,11 +55,13 @@ namespace Candidate.Tests.Controllers {
         }
 
         [Test]
-        public void Github_Post_Creates_New_Settings_Section() {
+        public void Github_Post_Creates_New_Settings_Section()
+        {
             // arrange
             object savedObject = null;
             SettingsManager.Setup(s => s.ReadSettings<SitesConfigurationList>()).Returns(
-                new SitesConfigurationList {
+                new SitesConfigurationList
+                {
                     Configurations = new List<SiteConfiguration>()
                 });
             SettingsManager.Setup(s => s.SaveSettings(It.IsAny<object>())).Callback<object>((o) => savedObject = o);
@@ -70,11 +78,13 @@ namespace Candidate.Tests.Controllers {
         }
 
         [Test]
-        public void Github_Post_Updates_Settings_Section() {
+        public void Github_Post_Updates_Settings_Section()
+        {
             // arrange
             object savedObject = null;
             SettingsManager.Setup(s => s.ReadSettings<SitesConfigurationList>()).Returns(
-                new SitesConfigurationList {
+                new SitesConfigurationList
+                {
                     Configurations = new List<SiteConfiguration>()
                     {
                         new SiteConfiguration { JobName = "testJob", Github = new GitHub { Branch = "branch", Url = "url" } }
@@ -94,10 +104,12 @@ namespace Candidate.Tests.Controllers {
         }
 
         [Test]
-        public void Iis_Get_Returns_Model() {
+        public void Iis_Get_Returns_Model()
+        {
             // arrange
             SettingsManager.Setup(s => s.ReadSettings<SitesConfigurationList>()).Returns(
-                new SitesConfigurationList {
+                new SitesConfigurationList
+                {
                     Configurations = new List<SiteConfiguration> { 
                     new SiteConfiguration { JobName = "testJob", Iis = new Iis() } }
                 });
@@ -110,11 +122,13 @@ namespace Candidate.Tests.Controllers {
         }
 
         [Test]
-        public void Iis_Post_Creates_New_Settings_Section() {
+        public void Iis_Post_Creates_New_Settings_Section()
+        {
             // arrange
             object savedObject = null;
             SettingsManager.Setup(s => s.ReadSettings<SitesConfigurationList>()).Returns(
-                new SitesConfigurationList {
+                new SitesConfigurationList
+                {
                     Configurations = new List<SiteConfiguration>()
                 });
             SettingsManager.Setup(s => s.SaveSettings(It.IsAny<object>())).Callback<object>((o) => savedObject = o);
@@ -130,11 +144,13 @@ namespace Candidate.Tests.Controllers {
         }
 
         [Test]
-        public void Iis_Post_Updates_Settings_Section() {
+        public void Iis_Post_Updates_Settings_Section()
+        {
             // arrange
             object savedObject = null;
             SettingsManager.Setup(s => s.ReadSettings<SitesConfigurationList>()).Returns(
-                new SitesConfigurationList {
+                new SitesConfigurationList
+                {
                     Configurations = new List<SiteConfiguration>()
                     {
                         new SiteConfiguration { JobName = "testJob", Iis = new Iis { SiteName = "site" } }
@@ -153,7 +169,8 @@ namespace Candidate.Tests.Controllers {
         }
 
         [Test]
-        public void Delete_Get_Returns_Model() {
+        public void Delete_Get_Returns_Model()
+        {
             // arrange
             // act
             var result = Controller.Delete("testJob") as ViewResult;
@@ -164,7 +181,8 @@ namespace Candidate.Tests.Controllers {
         }
 
         [Test]
-        public void Delete_Post_Removes_Job_From_List() {
+        public void Delete_Post_Removes_Job_From_List()
+        {
             // arrange
             object savedObject = null;
             SettingsManager.Setup(s => s.ReadSettings<SitesConfigurationList>()).Returns(
@@ -184,10 +202,12 @@ namespace Candidate.Tests.Controllers {
         }
 
         [Test]
-        public void Post_Get_Returns_Model() {
+        public void Post_Get_Returns_Model()
+        {
             // arrange
             SettingsManager.Setup(s => s.ReadSettings<SitesConfigurationList>()).Returns(
-                new SitesConfigurationList {
+                new SitesConfigurationList
+                {
                     Configurations = new List<SiteConfiguration> { 
                                 new SiteConfiguration { JobName = "testJob", Post = new Post { PostBatch = "deploy.bat" } } }
                 });
@@ -201,11 +221,13 @@ namespace Candidate.Tests.Controllers {
         }
 
         [Test]
-        public void Post_Post_Updates_Model() {
+        public void Post_Post_Updates_Model()
+        {
             // arrange
             object savedObject = null;
             SettingsManager.Setup(s => s.ReadSettings<SitesConfigurationList>()).Returns(
-                new SitesConfigurationList {
+                new SitesConfigurationList
+                {
                     Configurations = new List<SiteConfiguration> { 
                                 new SiteConfiguration { JobName = "testJob", Post = new Post { PostBatch = "deploy.bat" } } }
                 });

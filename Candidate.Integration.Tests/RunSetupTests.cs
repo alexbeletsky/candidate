@@ -8,28 +8,35 @@ using ICSharpCode.SharpZipLib.Zip;
 using Microsoft.Web.Administration;
 using NUnit.Framework;
 
-namespace Candidate.Tests.Integration {
+namespace Candidate.Tests.Integration
+{
     [TestFixture]
-    public class RunSetupTests {
+    public class RunSetupTests
+    {
 
         private static string CurrentDirectory = Directory.GetCurrentDirectory();
         private static DirectoryProvider DirectoryProvider = new DirectoryProvider("RunSetupTestsJob", CurrentDirectory);
 
         [SetUp]
-        public void Setup() {
+        public void Setup()
+        {
             UnzipTestSolution();
         }
 
         [TearDown]
-        public void Teardown() {
+        public void Teardown()
+        {
             DeleteTestFolder();
         }
 
         [Test]
-        public void SetupWithOutGitHub_ShouldBuild() {
+        public void SetupWithOutGitHub_ShouldBuild()
+        {
             // arrange
-            var config = new SiteConfiguration() {
-                Solution = new Solution {
+            var config = new SiteConfiguration()
+            {
+                Solution = new Solution
+                {
                     Name = "TestSolution\\Test.sln",
                     IsRunTests = false
                 },
@@ -53,10 +60,13 @@ namespace Candidate.Tests.Integration {
         }
 
         [Test]
-        public void OutputShouldGoToLogger() {
+        public void OutputShouldGoToLogger()
+        {
             // arrange
-            var config = new SiteConfiguration() {
-                Solution = new Solution {
+            var config = new SiteConfiguration()
+            {
+                Solution = new Solution
+                {
                     Name = "TestSolution\\Test.sln",
                     IsRunTests = false
                 },
@@ -73,7 +83,8 @@ namespace Candidate.Tests.Integration {
             // act
             var loggerFactory = new LoggerFactory(DirectoryProvider);
             var loggerPath = "";
-            using (var logger = loggerFactory.CreateLogger()) {
+            using (var logger = loggerFactory.CreateLogger())
+            {
                 loggerPath = logger.LogFileFullPath;
 
                 var defaultSetup = new DefaultSetup(targetsObjectBuilder, targetsBuilder, bounceFactory);
@@ -86,15 +97,19 @@ namespace Candidate.Tests.Integration {
         }
 
         [Test]
-        public void ShouldBeAbleToDeployIisSite() {
+        public void ShouldBeAbleToDeployIisSite()
+        {
             // arrange
-            var config = new SiteConfiguration() {
-                Solution = new Solution {
+            var config = new SiteConfiguration()
+            {
+                Solution = new Solution
+                {
                     Name = "TestSolution\\Test.sln",
                     WebProject = "Test",
                     IsRunTests = false
                 },
-                Iis = new Iis {
+                Iis = new Iis
+                {
                     SiteName = "TestSite"
                 }
             };
@@ -116,13 +131,16 @@ namespace Candidate.Tests.Integration {
             Assert.That(iisServer.Sites["TestSite"], Is.Not.Null);
         }
 
-        private void UnzipTestSolution() {
+        private void UnzipTestSolution()
+        {
             DeleteTestFolder();
             new FastZip().ExtractZip("TestData\\TestSolution.zip", DirectoryProvider.Sources, null);
         }
 
-        private void DeleteTestFolder() {
-            if (Directory.Exists(DirectoryProvider.Site)) {
+        private void DeleteTestFolder()
+        {
+            if (Directory.Exists(DirectoryProvider.Site))
+            {
                 Directory.Delete(DirectoryProvider.Site, true);
             }
         }

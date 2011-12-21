@@ -2,16 +2,21 @@
 using Candidate.Core.Settings.Model;
 using Candidate.Core.Utils;
 
-namespace Candidate.Core.Setup {
-    public class ConfigObjectBuilder : IConfigObjectBuilder {
+namespace Candidate.Core.Setup
+{
+    public class ConfigObjectBuilder : IConfigObjectBuilder
+    {
         private readonly IDirectoryProvider _directoryProvider;
 
-        public ConfigObjectBuilder(IDirectoryProvider directoryProvider) {
+        public ConfigObjectBuilder(IDirectoryProvider directoryProvider)
+        {
             _directoryProvider = directoryProvider;
         }
 
-        public ConfigObject CreateConfigObject(SiteConfiguration config) {
-            if (config == null) {
+        public ConfigObject CreateConfigObject(SiteConfiguration config)
+        {
+            if (config == null)
+            {
                 throw new ArgumentNullException("config");
             }
 

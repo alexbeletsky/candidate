@@ -7,7 +7,8 @@ namespace Candidate.Core.Utils
     {
         private static readonly string AppFolder = ".candidate";
 
-        private LocalAppDataFolder() {
+        private LocalAppDataFolder()
+        {
 
         }
 

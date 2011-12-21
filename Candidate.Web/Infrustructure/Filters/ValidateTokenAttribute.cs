@@ -1,20 +1,25 @@
 ﻿using System;
 using System.Web.Mvc;
 
-namespace Candidate.Infrustructure.Filters {
+namespace Candidate.Infrustructure.Filters
+{
     // TODO: unit test filter
-    public class ValidateTokenAttribute : ActionFilterAttribute {
-        public override void OnActionExecuting(ActionExecutingContext filterContext) {
+    public class ValidateTokenAttribute : ActionFilterAttribute
+    {
+        public override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
             base.OnActionExecuting(filterContext);
 
             var token = filterContext.ActionParameters["token"];
 
-            if (!IsTokenValid(token)) {
+            if (!IsTokenValid(token))
+            {
                 throw new Exception("User is not authorized");
             }
         }
 
-        private bool IsTokenValid(object token) {
+        private bool IsTokenValid(object token)
+        {
             // TODO: place logic for token validation here
             return true;
         }

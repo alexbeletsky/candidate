@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 
-namespace Candidate.Areas.Dashboard.Models {
-    public class AccountSettingsModel {
+namespace Candidate.Areas.Dashboard.Models
+{
+    public class AccountSettingsModel
+    {
         [Required]
         [DisplayName("Login")]
         public string Login { get; set; }

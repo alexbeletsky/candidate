@@ -1,6 +1,8 @@
 ﻿
-namespace Candidate.Core.Setup {
-    public interface ISetupFactory {
+namespace Candidate.Core.Setup
+{
+    public interface ISetupFactory
+    {
         ISetup CreateSetup();
     }
 }

@@ -8,15 +8,18 @@ using ICSharpCode.SharpZipLib.Zip;
 using NUnit.Framework;
 using SharpTestsEx;
 
-namespace Candidate.Tests.Setup {
+namespace Candidate.Tests.Setup
+{
     [TestFixture]
-    public class ConfigObjectBuilderTests {
+    public class ConfigObjectBuilderTests
+    {
         private static string CurrentDirectory = Directory.GetCurrentDirectory();
         private IDirectoryProvider DirectoryProvider = new DirectoryProvider("ConfigObjectBuilderTests", CurrentDirectory);
 
         [Test]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void CreateConfigObject_For_Null_Throws_Exception() {
+        public void CreateConfigObject_For_Null_Throws_Exception()
+        {
             // arrange
             var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
 
@@ -25,11 +28,12 @@ namespace Candidate.Tests.Setup {
         }
 
         [Test]
-        public void CreateConfigObject_For_Git_Creates_Object_With_Git() {
+        public void CreateConfigObject_For_Git_Creates_Object_With_Git()
+        {
             // arrange
             var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
             var config = new SiteConfiguration { Github = new GitHub { Url = "git://myhost/repo.git", Branch = "master" } };
-            
+
             // act
             var configObject = configObjectBuilder.CreateConfigObject(config);
 
@@ -39,7 +43,8 @@ namespace Candidate.Tests.Setup {
         }
 
         [Test]
-        public void CreateConfigObject_For_Git_Directory_Is_Inited() {
+        public void CreateConfigObject_For_Git_Directory_Is_Inited()
+        {
             // arrange
             var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
             var config = new SiteConfiguration { Github = new GitHub { Url = "git://myhost/repo.git", Branch = "master" } };
@@ -53,7 +58,8 @@ namespace Candidate.Tests.Setup {
         }
 
         [Test]
-        public void CreateConfigObject_For_Git_With_Out_Url_Config_Object_Not_Created() {
+        public void CreateConfigObject_For_Git_With_Out_Url_Config_Object_Not_Created()
+        {
             // arrange
             var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
             var config = new SiteConfiguration { Github = new GitHub { Branch = "master" } };
@@ -66,7 +72,8 @@ namespace Candidate.Tests.Setup {
         }
 
         [Test]
-        public void CreateConfinObject_For_Git_With_Branch_Config_Object_Created() {
+        public void CreateConfinObject_For_Git_With_Branch_Config_Object_Created()
+        {
             // arrange
             var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
             var config = new SiteConfiguration { Github = new GitHub { Url = "git://myhost/repo.git", Branch = "master" } };
@@ -80,7 +87,8 @@ namespace Candidate.Tests.Setup {
         }
 
         [Test]
-        public void CreateConfinObject_For_Git_With_Branch_If_Branch_Not_Set_Config_Object_Branch_Is_Null() {
+        public void CreateConfinObject_For_Git_With_Branch_If_Branch_Not_Set_Config_Object_Branch_Is_Null()
+        {
             // arrange
             var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
             var config = new SiteConfiguration { Github = new GitHub { Url = "git://myhost/repo.git" } };
@@ -93,7 +101,8 @@ namespace Candidate.Tests.Setup {
         }
 
         [Test]
-        public void CreateConfigObject_For_Solution_If_Git_Is_Defined_Create_Object_With_Solution() {
+        public void CreateConfigObject_For_Solution_If_Git_Is_Defined_Create_Object_With_Solution()
+        {
             // arrange
             var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
             var config = new SiteConfiguration { Github = new GitHub { Url = "git://myhost/repo.git", Branch = "master" }, Solution = new Solution { Name = "TestSolution\\Test.sln" } };
@@ -107,7 +116,8 @@ namespace Candidate.Tests.Setup {
         }
 
         [Test]
-        public void CreateConfigObject_For_Solution_If_Git_Is_Not_Defined_Create_Object_With_Solution() {
+        public void CreateConfigObject_For_Solution_If_Git_Is_Not_Defined_Create_Object_With_Solution()
+        {
             // arrange
             var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
             var config = new SiteConfiguration { Solution = new Solution { Name = "TestSolution\\Test.sln" } };
@@ -121,7 +131,8 @@ namespace Candidate.Tests.Setup {
         }
 
         [Test]
-        public void CreateConfigObject_For_Solution_Output_Directory_Is_Set() {
+        public void CreateConfigObject_For_Solution_Output_Directory_Is_Set()
+        {
             // arrange
             var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
             var config = new SiteConfiguration { Solution = new Solution { Name = "TestSolution\\Test.sln" } };
@@ -134,7 +145,8 @@ namespace Candidate.Tests.Setup {
         }
 
         [Test]
-        public void CreateConfigObject_For_Solution_Target_Depends_On_Selected_Target_Rebuild() {
+        public void CreateConfigObject_For_Solution_Target_Depends_On_Selected_Target_Rebuild()
+        {
             // arrange
             var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
             var config = new SiteConfiguration { Solution = new Solution { Name = "TestSolution\\Test.sln", SelectedTarget = 1 } };
@@ -147,7 +159,8 @@ namespace Candidate.Tests.Setup {
         }
 
         [Test]
-        public void CreateConfigObject_For_Solution_Target_Depends_On_Selected_Target_Build() {
+        public void CreateConfigObject_For_Solution_Target_Depends_On_Selected_Target_Build()
+        {
             // arrange
             var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
             var config = new SiteConfiguration { Solution = new Solution { Name = "TestSolution\\Test.sln", SelectedTarget = 0 } };
@@ -160,7 +173,8 @@ namespace Candidate.Tests.Setup {
         }
 
         [Test]
-        public void CreateConfigObject_For_Solution_Configuration_Depends_On_Selected_Configuration_Debug() {
+        public void CreateConfigObject_For_Solution_Configuration_Depends_On_Selected_Configuration_Debug()
+        {
             // arrange
             var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
             var config = new SiteConfiguration { Solution = new Solution { Name = "TestSolution\\Test.sln", SelectedConfiguration = 0 } };
@@ -173,7 +187,8 @@ namespace Candidate.Tests.Setup {
         }
 
         [Test]
-        public void CreateConfigObject_For_Solution_Configuration_Depends_On_Selected_Configuration_Release() {
+        public void CreateConfigObject_For_Solution_Configuration_Depends_On_Selected_Configuration_Release()
+        {
             // arrange
             var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
             var config = new SiteConfiguration { Solution = new Solution { Name = "TestSolution\\Test.sln", SelectedConfiguration = 1 } };
@@ -187,7 +202,8 @@ namespace Candidate.Tests.Setup {
 
         [Test]
         [ExpectedException]
-        public void CreateConfigObject_For_Iis_Defined_If_No_Solution_Throws_Exception() {
+        public void CreateConfigObject_For_Iis_Defined_If_No_Solution_Throws_Exception()
+        {
             // arrange
             var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
             var config = new SiteConfiguration { Iis = new Iis { SiteName = "TestSite" } };
@@ -198,7 +214,8 @@ namespace Candidate.Tests.Setup {
 
         [Test]
         [ExpectedException]
-        public void CreateConfig_For_Iis_If_No_Webproject_Name_Throws_Exception() {
+        public void CreateConfig_For_Iis_If_No_Webproject_Name_Throws_Exception()
+        {
             // arrange
             var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
             var config = new SiteConfiguration { Solution = new Solution { Name = "TestSolution\\Test.sln" }, Iis = new Iis { SiteName = "TestSite" } };
@@ -208,7 +225,8 @@ namespace Candidate.Tests.Setup {
         }
 
         [Test]
-        public void CreateConfigObject_For_Iis_If_Defined_Create_Iis_Web_Site_Object() {
+        public void CreateConfigObject_For_Iis_If_Defined_Create_Iis_Web_Site_Object()
+        {
             // arrange
             var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
             var config = new SiteConfiguration { Solution = new Solution { Name = "TestSolution\\Test.sln", WebProject = "Test" }, Iis = new Iis { SiteName = "TestSite" } };
@@ -222,7 +240,8 @@ namespace Candidate.Tests.Setup {
         }
 
         [Test]
-        public void CreateConfigObject_For_Iis_If_Defined_With_Web_Project_Create_Iis_Web_Site_Object() {
+        public void CreateConfigObject_For_Iis_If_Defined_With_Web_Project_Create_Iis_Web_Site_Object()
+        {
             // arrange
             var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
             var config = new SiteConfiguration { Solution = new Solution { Name = "TestSolution\\Test.sln", WebProject = "Test" }, Iis = new Iis { SiteName = "TestSite" } };
@@ -237,7 +256,8 @@ namespace Candidate.Tests.Setup {
         }
 
         [Test]
-        public void CreateConfigObject_For_Iis_If_Defined_Default_Port_Is_8081() {
+        public void CreateConfigObject_For_Iis_If_Defined_Default_Port_Is_8081()
+        {
             // arrange
             var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
             var config = new SiteConfiguration { Solution = new Solution { Name = "TestSolution\\Test.sln", WebProject = "Test" }, Iis = new Iis { SiteName = "TestSite" } };
@@ -251,7 +271,8 @@ namespace Candidate.Tests.Setup {
         }
 
         [Test]
-        public void CreateConfigObject_For_Iis_Defined_And_Port_Set_SetPort() {
+        public void CreateConfigObject_For_Iis_Defined_And_Port_Set_SetPort()
+        {
             // arrange
             var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
             var config = new SiteConfiguration { Solution = new Solution { Name = "TestSolution\\Test.sln", WebProject = "Test" }, Iis = new Iis { SiteName = "TestSite", Port = 9000 } };
@@ -265,7 +286,8 @@ namespace Candidate.Tests.Setup {
         }
 
         [Test]
-        public void CreateConfigObject_For_Solution_If_Post_Batch_Is_Defined_Add_Post_Batch_Run() {
+        public void CreateConfigObject_For_Solution_If_Post_Batch_Is_Defined_Add_Post_Batch_Run()
+        {
             // arrange
             var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
             var config = new SiteConfiguration { Solution = new Solution { Name = "TestSolution\\Test.sln", WebProject = "Test" }, Post = new Post { PostBatch = "run.bat" } };
@@ -279,7 +301,8 @@ namespace Candidate.Tests.Setup {
         }
 
         [Test]
-        public void CreateConfigObject_For_Iss_If_Binding_Is_Defined_Add_Binding_Info() {
+        public void CreateConfigObject_For_Iss_If_Binding_Is_Defined_Add_Binding_Info()
+        {
             // arrange
             var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
             var config = new SiteConfiguration { Iis = new Iis { SiteName = "test", DeployFolder = "c:\\sites", Bindings = "http:*:80:site.com" }, Solution = new Solution { Name = "TestSolution\\Test.sln", WebProject = "Test" } };
@@ -293,7 +316,8 @@ namespace Candidate.Tests.Setup {
         }
 
         [Test]
-        public void CreateConfigObject_For_Iss_If_Binding_Is_Defined_Add_Binding_Info_Ftp() {
+        public void CreateConfigObject_For_Iss_If_Binding_Is_Defined_Add_Binding_Info_Ftp()
+        {
             // arrange
             var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
             var config = new SiteConfiguration { Iis = new Iis { SiteName = "test", DeployFolder = "c:\\sites", Bindings = "ftp:*:80:site.com" }, Solution = new Solution { Name = "TestSolution\\Test.sln", WebProject = "Test" } };
@@ -307,7 +331,8 @@ namespace Candidate.Tests.Setup {
         }
 
         [Test]
-        public void CreateConfigObject_For_Iss_If_Binding_Is_Defined_Add_Binding_Info_With_Ip_Address() {
+        public void CreateConfigObject_For_Iss_If_Binding_Is_Defined_Add_Binding_Info_With_Ip_Address()
+        {
             // arrange
             var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
             var config = new SiteConfiguration { Iis = new Iis { SiteName = "test", DeployFolder = "c:\\sites", Bindings = "ftp:127.0.0.1:80:site.com" }, Solution = new Solution { Name = "TestSolution\\Test.sln", WebProject = "Test" } };
@@ -321,7 +346,8 @@ namespace Candidate.Tests.Setup {
         }
 
         [Test]
-        public void CreateConfigObject_For_Iis_Binding_Contains_Several_Records() {
+        public void CreateConfigObject_For_Iis_Binding_Contains_Several_Records()
+        {
             // arrange
             var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
             var config = new SiteConfiguration { Iis = new Iis { SiteName = "test", DeployFolder = "c:\\sites", Bindings = "http:127.0.0.1:80:site.com;ftp:127.0.0.1:80:ftp.site.com" }, Solution = new Solution { Name = "TestSolution\\Test.sln", WebProject = "Test" } };

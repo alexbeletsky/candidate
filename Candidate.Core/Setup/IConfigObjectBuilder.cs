@@ -1,7 +1,9 @@
 ﻿using Candidate.Core.Settings.Model;
 
-namespace Candidate.Core.Setup {
-    public interface IConfigObjectBuilder {
+namespace Candidate.Core.Setup
+{
+    public interface IConfigObjectBuilder
+    {
         ConfigObject CreateConfigObject(SiteConfiguration config);
     }
 }

@@ -1,15 +1,19 @@
 ﻿using System;
 using Candidate.Core.Utils;
 
-namespace Candidate.Core.Log {
-    public class LoggerFactory : ILoggerFactory{
+namespace Candidate.Core.Log
+{
+    public class LoggerFactory : ILoggerFactory
+    {
         private IDirectoryProvider _directoryProvider;
 
-        public LoggerFactory(IDirectoryProvider directoryProvider) {
+        public LoggerFactory(IDirectoryProvider directoryProvider)
+        {
             _directoryProvider = directoryProvider;
         }
-        
-        public ILogger CreateLogger() {
+
+        public ILogger CreateLogger()
+        {
             return new Logger(_directoryProvider);
         }
 

@@ -3,33 +3,31 @@
 
 namespace Candidate.App_Start
 {
-    using System.Reflection;
-    using Microsoft.Web.Infrastructure.DynamicModuleHelper;
-    using Ninject;
-    using Ninject.Web.Mvc;
-    using Candidate.Core.Settings;
-    using Candidate.Core.Utils;
-    using Candidate.Core.Setup;
     using Bounce.Framework;
     using Candidate.Core.Log;
     using Candidate.Core.Services;
-    using System.Web.Security;
+    using Candidate.Core.Settings;
+    using Candidate.Core.Setup;
+    using Candidate.Core.Utils;
     using Candidate.Infrustructure.Authentication;
+    using Microsoft.Web.Infrastructure.DynamicModuleHelper;
+    using Ninject;
+    using Ninject.Web.Mvc;
 
-    public static class NinjectMVC3 
+    public static class NinjectMVC3
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
 
         /// <summary>
         /// Starts the application
         /// </summary>
-        public static void Start() 
+        public static void Start()
         {
             DynamicModuleUtility.RegisterModule(typeof(OnePerRequestModule));
             DynamicModuleUtility.RegisterModule(typeof(HttpApplicationInitializationModule));
             bootstrapper.Initialize(CreateKernel);
         }
-        
+
         /// <summary>
         /// Stops the application.
         /// </summary>
@@ -37,7 +35,7 @@ namespace Candidate.App_Start
         {
             bootstrapper.ShutDown();
         }
-        
+
         /// <summary>
         /// Creates the kernel that will manage your application.
         /// </summary>
@@ -66,6 +64,6 @@ namespace Candidate.App_Start
             kernel.Bind<ILoggerFactory>().To<LoggerFactory>();
             kernel.Bind<IHashService>().To<HashService>();
             kernel.Bind<IAuthentication>().To<Authentication>();
-        }        
+        }
     }
 }

@@ -1,8 +1,4 @@
-﻿using System.Web.Mvc;
-using Candidate.Controllers;
-using Candidate.Models;
-using NUnit.Framework;
-using SharpTestsEx;
+﻿using NUnit.Framework;
 
 namespace Candidate.Tests.Controllers
 {

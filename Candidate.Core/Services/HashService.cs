@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Security.Cryptography;
+using System.Text;
 
 // http://msdn.microsoft.com/en-us/library/system.security.cryptography.md5.aspx
 // https://gist.github.com/734467#comments
@@ -13,7 +13,8 @@ namespace Candidate.Core.Services
     {
         public string CreateMD5Hash(string input)
         {
-            using (var crypter = System.Security.Cryptography.MD5.Create()) {
+            using (var crypter = System.Security.Cryptography.MD5.Create())
+            {
                 return string.Join("", crypter.ComputeHash(Encoding.Default.GetBytes(input)).Select(byt => byt.ToString("x2")));
             }
         }

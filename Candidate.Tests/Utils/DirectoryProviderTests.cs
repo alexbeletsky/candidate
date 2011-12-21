@@ -2,23 +2,27 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using NUnit.Framework;
 using Candidate.Core.Utils;
+using NUnit.Framework;
 
-namespace Candidate.Tests.Utils {
+namespace Candidate.Tests.Utils
+{
     [TestFixture]
-    public class DirectoryProviderTests {
+    public class DirectoryProviderTests
+    {
         [Test]
-        public void DefaultContruction_RootIsSet() {
+        public void DefaultContruction_RootIsSet()
+        {
             // arrange
-            var provider = new DirectoryProvider();  
-  
+            var provider = new DirectoryProvider();
+
             // assert
             Assert.That(provider.Root, Is.Not.Empty);
         }
 
         [Test]
-        public void JobName_GetValue_RetunsValueAfterBeingSet() {
+        public void JobName_GetValue_RetunsValueAfterBeingSet()
+        {
             // arrange
             var provider = new DirectoryProvider();
 

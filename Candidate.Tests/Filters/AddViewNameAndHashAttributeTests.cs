@@ -5,12 +5,15 @@ using Candidate.Infrustructure.Filters;
 using Moq;
 using NUnit.Framework;
 
-namespace Candidate.Tests.Filters {
+namespace Candidate.Tests.Filters
+{
     [TestFixture]
-    public class AddViewNameAndHashAttributeTests {
+    public class AddViewNameAndHashAttributeTests
+    {
 
         [SetUp]
-        public void Setup() {
+        public void Setup()
+        {
             Filter = new AddViewNameAndHashAttribute();
             HashService = new HashService();
             Filter.HashServices = HashService;
@@ -24,7 +27,8 @@ namespace Candidate.Tests.Filters {
         }
 
         [Test]
-        public void Filter_Adds_ViewName_Into_Bag() {
+        public void Filter_Adds_ViewName_Into_Bag()
+        {
             // act
             Filter.OnActionExecuting(FilterContext);
 
@@ -33,7 +37,8 @@ namespace Candidate.Tests.Filters {
         }
 
         [Test]
-        public void Filter_Adds_ViewName_Hash_Into_Bag() {
+        public void Filter_Adds_ViewName_Hash_Into_Bag()
+        {
             // act
             Filter.OnActionExecuting(FilterContext);
 

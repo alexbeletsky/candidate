@@ -1,57 +1,67 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
-using NUnit.Framework;
 using Candidate.Core.Log;
-using Moq;
 using Candidate.Core.Utils;
-using System.IO;
+using Moq;
+using NUnit.Framework;
 
-namespace Candidate.Tests.Log {
+namespace Candidate.Tests.Log
+{
     [TestFixture]
-    public class LoggerFactoryTests {
+    public class LoggerFactoryTests
+    {
 
         private static string CurrentDirectory = Directory.GetCurrentDirectory();
         private static DirectoryProvider DirectoryProvider = new DirectoryProvider("LoggerFactoryTests", CurrentDirectory);
 
         [SetUp]
-        public void Setup() {
+        public void Setup()
+        {
         }
 
         [TearDown]
-        public void Teardown() {
+        public void Teardown()
+        {
             DeleteTestFolder();
         }
 
         [Test]
-        public void CreateLogger_CreatesNewInstance() {
+        public void CreateLogger_CreatesNewInstance()
+        {
             // arrange
             var factory = new LoggerFactory(DirectoryProvider);
 
             // act
-            using (var logger = factory.CreateLogger()) {
+            using (var logger = factory.CreateLogger())
+            {
                 // assert
                 Assert.That(logger, Is.Not.Null);
             }
         }
 
         [Test]
-        public void CreateLogger_CreatesNewInstance_LogFileIsCreaeted() {
+        public void CreateLogger_CreatesNewInstance_LogFileIsCreaeted()
+        {
             // arrange
             var factory = new LoggerFactory(DirectoryProvider);
 
             // act
-            using (var logger = factory.CreateLogger()) {
+            using (var logger = factory.CreateLogger())
+            {
                 // assert
                 Assert.That(logger, Is.Not.Null);
-                Assert.That(File.Exists(DirectoryProvider.Site + "\\logs\\" + logger.LogFileName), Is.True); 
+                Assert.That(File.Exists(DirectoryProvider.Site + "\\logs\\" + logger.LogFileName), Is.True);
             }
         }
 
 
-        private void DeleteTestFolder() {
-            if (Directory.Exists(DirectoryProvider.Site)) {
+        private void DeleteTestFolder()
+        {
+            if (Directory.Exists(DirectoryProvider.Site))
+            {
                 Directory.Delete(DirectoryProvider.Site, true);
             }
         }

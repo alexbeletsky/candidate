@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
 
-namespace Candidate.Core.Settings.Model {
-    public class Post {
+namespace Candidate.Core.Settings.Model
+{
+    public class Post
+    {
         /// <summary>
         /// Accepts the specified node visitor and passes control to it
         /// </summary>

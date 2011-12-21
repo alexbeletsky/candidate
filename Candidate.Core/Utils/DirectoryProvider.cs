@@ -1,75 +1,97 @@
 ﻿
 using System;
-namespace Candidate.Core.Utils {
+namespace Candidate.Core.Utils
+{
 
     // TODO: get rid of + "\\" operation, use Path.Combine instead
 
-    public class DirectoryProvider : IDirectoryProvider {
+    public class DirectoryProvider : IDirectoryProvider
+    {
 
-        public DirectoryProvider() {
+        public DirectoryProvider()
+        {
             Root = LocalAppDataFolder.Folder;
         }
 
-        public DirectoryProvider(string siteName) {
-            if (siteName == null) {
+        public DirectoryProvider(string siteName)
+        {
+            if (siteName == null)
+            {
                 throw new ArgumentNullException("Site name has not been set");
             }
 
             SiteName = siteName;
         }
 
-        public DirectoryProvider(string siteName, string root) : this(siteName) {
+        public DirectoryProvider(string siteName, string root)
+            : this(siteName)
+        {
             Root = root;
         }
 
-        public string Root {
+        public string Root
+        {
             get;
             private set;
         }
 
-        public string Site {
-            get {
+        public string Site
+        {
+            get
+            {
                 return Root + "\\sites\\" + SiteName;
             }
         }
 
-        public string Sources {
-            get {
+        public string Sources
+        {
+            get
+            {
                 return Site + "\\src";
             }
         }
 
-        public string Logs {
-            get {
+        public string Logs
+        {
+            get
+            {
                 return Site + "\\logs";
             }
         }
 
-        public string Settings {
-            get {
+        public string Settings
+        {
+            get
+            {
                 return Root + "\\settings";
             }
         }
 
-        public string Build {
-            get {
+        public string Build
+        {
+            get
+            {
                 return Sources + "\\build";
             }
         }
 
-        public string PublishedWebsites {
+        public string PublishedWebsites
+        {
             get { return Build + "\\_PublishedWebsites"; }
         }
 
-        public string SiteName {
+        public string SiteName
+        {
             get;
             set;
         }
 
         // TODO: make auto deploy of tools on first start
-        public string NUnitConsole {
-            get {
-                return Root + "\\tools\\NUnit\\nunit-console.exe"; 
+        public string NUnitConsole
+        {
+            get
+            {
+                return Root + "\\tools\\NUnit\\nunit-console.exe";
             }
         }
     }

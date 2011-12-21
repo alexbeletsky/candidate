@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using NUnit.Framework;
 using Candidate.Core.Settings.Validation;
 using Machine.Specifications;
+using NUnit.Framework;
 
-namespace Candidate.Tests.Settings {
+namespace Candidate.Tests.Settings
+{
 
     //public class when_binding_is_correct {
     //    Establish context = () => {
@@ -21,7 +22,7 @@ namespace Candidate.Tests.Settings {
     //}
 
     //public class BingingValidatorTests {
-        
+
     //    [TestCase(":*:90:candidate.net", Result=false)]
     //    [TestCase(":*:90:candidate.net", Result=true)]
     //    public bool Test(string binding) {
@@ -98,7 +99,7 @@ namespace Candidate.Tests.Settings {
 
     //        // act
     //        var result = validator.IsValid("http:*::can.net");
-                
+
     //        // assert 
     //        Assert.That(result, Is.False);
     //    }

@@ -2,20 +2,24 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using NUnit.Framework;
 using Candidate.Core.Helpers;
+using NUnit.Framework;
 using SharpTestsEx;
 
-namespace Candidate.Tests.Helpers {
+namespace Candidate.Tests.Helpers
+{
     [TestFixture]
-    public class BindingParserTests {
+    public class BindingParserTests
+    {
         [SetUp]
-        public void Setup() {
-            Parser = new BindingParser();        
+        public void Setup()
+        {
+            Parser = new BindingParser();
         }
-        
+
         [Test]
-        public void parser_should_get_protocol() {
+        public void parser_should_get_protocol()
+        {
             // act
             var result = Parser.Parse("http:*:80:www.candidate.net");
 
@@ -24,7 +28,8 @@ namespace Candidate.Tests.Helpers {
         }
 
         [Test]
-        public void parser_should_get_information() {
+        public void parser_should_get_information()
+        {
             // act
             var result = Parser.Parse("http:*:80:www.candidate.net");
 
@@ -33,7 +38,8 @@ namespace Candidate.Tests.Helpers {
         }
 
         [Test]
-        public void parser_should_get_ip_address() {
+        public void parser_should_get_ip_address()
+        {
             // act
             var result = Parser.Parse("http:*:80:www.candidate.net");
 
@@ -42,7 +48,8 @@ namespace Candidate.Tests.Helpers {
         }
 
         [Test]
-        public void parser_should_get_site_name() {
+        public void parser_should_get_site_name()
+        {
             // act
             var result = Parser.Parse("http:*:80:www.candidate.net");
 
@@ -51,7 +58,8 @@ namespace Candidate.Tests.Helpers {
         }
 
         [Test]
-        public void parser_should_get_port() {
+        public void parser_should_get_port()
+        {
             // act
             var result = Parser.Parse("http:*:80:www.candidate.net");
 
@@ -60,14 +68,15 @@ namespace Candidate.Tests.Helpers {
         }
 
         [Test]
-        public void parse_should_parse_multiple_bingings() {
+        public void parse_should_parse_multiple_bingings()
+        {
             // act
             var result = Parser.Parse("http:*:80:www.candidate.net;http:*:80:candidate.net");
 
             // assert
             var x = result.Skip(1).Take(1).First();
             x.Protocol.Should().Be("http");
-            x.Ip.Should().Be("*");   
+            x.Ip.Should().Be("*");
             x.SiteName.Should().Be("candidate.net");
             x.Port.Should().Be("80");
         }

@@ -1,10 +1,13 @@
-﻿using System.ComponentModel;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace Candidate.Core.Settings.Model {
-    public class Solution {
-        public Solution() {
+namespace Candidate.Core.Settings.Model
+{
+    public class Solution
+    {
+        public Solution()
+        {
             Targets = new Dictionary<int, string> {
                 { 0, "Build" },
                 { 1, "Rebuild"}
@@ -54,8 +57,8 @@ namespace Candidate.Core.Settings.Model {
         public IDictionary<int, string> NUnitRuntimeVersions { get; set; }
 
         public int SelectedNUnitRuntimeVersion { get; set; }
-        
+
         [DisplayName("Run tests?")]
         public bool IsRunTests { get; set; }
- }
+    }
 }

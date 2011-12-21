@@ -5,22 +5,27 @@ using Candidate.Core.Utils;
 using KellermanSoftware.CompareNetObjects;
 using NUnit.Framework;
 
-namespace Candidate.Tests.Settings {
+namespace Candidate.Tests.Settings
+{
     [TestFixture]
-    public class SettingsTests {
+    public class SettingsTests
+    {
         private static string CurrentDirectory = Directory.GetCurrentDirectory();
         private static DirectoryProvider DirectoryProvider = new DirectoryProvider("SettingsTests", CurrentDirectory);
 
         [TearDown]
-        public void Teardown() {
+        public void Teardown()
+        {
             Directory.Delete(DirectoryProvider.Settings, true);
         }
 
         [Test]
-        public void SettingsManager_SaveSettings() {
+        public void SettingsManager_SaveSettings()
+        {
             // arrange
             var settingsManager = new SettingsManager(DirectoryProvider);
-            var settings = new BuildServerSettings {
+            var settings = new BuildServerSettings
+            {
                 User = new User { FirstName = "Alexander", LastName = "Beletsky" },
                 Jobs = new List<Job> { new Job { Id = 0, Configuration = "Git", Name = "proj" } },
             };
@@ -34,10 +39,12 @@ namespace Candidate.Tests.Settings {
         }
 
         [Test]
-        public void SettingManager_With_TrackableObjects() {
+        public void SettingManager_With_TrackableObjects()
+        {
             // arrange
             var settingsManager = new SettingsManager(DirectoryProvider);
-            var settings = new BuildServerSettings {
+            var settings = new BuildServerSettings
+            {
                 User = new User { FirstName = "Alexander", LastName = "Beletsky" },
                 Jobs = new List<Job> { new Job { Id = 0, Configuration = "Git", Name = "proj" } },
             };
@@ -45,7 +52,8 @@ namespace Candidate.Tests.Settings {
             settingsManager.SaveSettings(settings);
 
             // act
-            using (var trackableSettingsManager = new TrackableSettingsManager(settingsManager)) {
+            using (var trackableSettingsManager = new TrackableSettingsManager(settingsManager))
+            {
                 var restoredSettings = trackableSettingsManager.ReadSettings<BuildServerSettings>();
                 restoredSettings.User.FirstName = "John";
                 restoredSettings.User.LastName = "Doe";
@@ -58,10 +66,11 @@ namespace Candidate.Tests.Settings {
         }
 
         [Test]
-        public void ReadSettings_IfNoSettingsCreated_ReturnNewObject() {
+        public void ReadSettings_IfNoSettingsCreated_ReturnNewObject()
+        {
             // arrange
             var settingsManager = new SettingsManager(DirectoryProvider);
-            
+
             // act
             var settings = settingsManager.ReadSettings<NoSuchSettings>();
 
@@ -69,28 +78,34 @@ namespace Candidate.Tests.Settings {
             Assert.That(settings, Is.Not.Null);
         }
 
-        internal class Job {
+        internal class Job
+        {
             public int Id { get; set; }
             public string Name { get; set; }
             public string Configuration { get; set; }
         }
 
-        internal class User {
+        internal class User
+        {
             public string FirstName { get; set; }
             public string LastName { get; set; }
         }
 
-        internal class BuildServerSettings {
+        internal class BuildServerSettings
+        {
             public IList<Job> Jobs { get; set; }
             public User User { get; set; }
         }
 
-        internal class NoSuchSettings {
+        internal class NoSuchSettings
+        {
 
         }
 
-        internal CompareObjects Comparer {
-            get {
+        internal CompareObjects Comparer
+        {
+            get
+            {
                 return new CompareObjects();
             }
         }

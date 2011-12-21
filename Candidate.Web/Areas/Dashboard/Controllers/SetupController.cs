@@ -10,19 +10,21 @@ using Candidate.Core.Utils;
 using Candidate.Infrustructure.Error;
 using Candidate.Infrustructure.Filters;
 using Newtonsoft.Json;
-using Bounce.Framework;
 
-namespace Candidate.Areas.Dashboard.Controllers {
+namespace Candidate.Areas.Dashboard.Controllers
+{
 
     [Authorize]
     [HandleJsonError]
-    public class SetupController : Controller {
+    public class SetupController : Controller
+    {
         private ISettingsManager _settingsManager;
         private ISetupFactory _setupFactory;
         private ILoggerFactory _loggerFactory;
         private IDirectoryProvider _directoryProvider;
 
-        public SetupController(ISettingsManager settingsManager, ISetupFactory setupFactory, ILoggerFactory loggerFactory, IDirectoryProvider directoryProvider) {
+        public SetupController(ISettingsManager settingsManager, ISetupFactory setupFactory, ILoggerFactory loggerFactory, IDirectoryProvider directoryProvider)
+        {
             _settingsManager = settingsManager;
             _setupFactory = setupFactory;
             _loggerFactory = loggerFactory;
@@ -30,13 +32,15 @@ namespace Candidate.Areas.Dashboard.Controllers {
         }
 
         [HttpGet]
-        public ActionResult Setup(string jobName) {
+        public ActionResult Setup(string jobName)
+        {
             ViewBag.JobName = jobName;
 
             var currentConfiguration = _settingsManager.ReadSettings<SitesConfigurationList>();
             var siteConfiguration = currentConfiguration.Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
 
-            if (!siteConfiguration.IsConfigured()) {
+            if (!siteConfiguration.IsConfigured())
+            {
                 return View("NotConfigured");
             }
 
@@ -44,9 +48,11 @@ namespace Candidate.Areas.Dashboard.Controllers {
         }
 
         [HttpPost]
-        public ActionResult StartSetup(string jobName) {
+        public ActionResult StartSetup(string jobName)
+        {
             var currentSettings = _settingsManager.ReadSettings<SitesConfigurationList>().Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
-            if (currentSettings == null) {
+            if (currentSettings == null)
+            {
                 throw new Exception(string.Format("Can't create setup for non-existing job: {0}", jobName));
             }
 
@@ -55,10 +61,12 @@ namespace Candidate.Areas.Dashboard.Controllers {
 
         [HttpPost]
         [ValidateToken]
-        public ActionResult Hook(string jobName, string token, string payload) {
+        public ActionResult Hook(string jobName, string token, string payload)
+        {
 
             var currentSettings = _settingsManager.ReadSettings<SitesConfigurationList>().Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
-            if (currentSettings == null) {
+            if (currentSettings == null)
+            {
                 throw new Exception(string.Format("Can't create setup for non-existing job: {0}", jobName));
             }
 
@@ -66,21 +74,25 @@ namespace Candidate.Areas.Dashboard.Controllers {
             var payloadDeserialized = JsonConvert.DeserializeObject<GithubHookPayload>(payload);
             var githubConfiguration = currentSettings.Github;
 
-            if (!IsHookForBranch(payloadDeserialized.Branch, githubConfiguration)) {
+            if (!IsHookForBranch(payloadDeserialized.Branch, githubConfiguration))
+            {
                 return null;
             }
 
             return RunDeployAndLog(jobName, currentSettings);
         }
 
-        private static bool IsHookForBranch(string payload, GitHub githubConfiguration) {
+        private static bool IsHookForBranch(string payload, GitHub githubConfiguration)
+        {
             return payload.Equals(githubConfiguration.Branch);
         }
 
-        private ActionResult RunDeployAndLog(string jobName, SiteConfiguration currentSettings) {
+        private ActionResult RunDeployAndLog(string jobName, SiteConfiguration currentSettings)
+        {
             _directoryProvider.SiteName = jobName;
 
-            using (var logger = _loggerFactory.CreateLogger()) {
+            using (var logger = _loggerFactory.CreateLogger())
+            {
                 var setup = _setupFactory.CreateSetup();
                 var result = setup.RunForConfig(logger, currentSettings);
 

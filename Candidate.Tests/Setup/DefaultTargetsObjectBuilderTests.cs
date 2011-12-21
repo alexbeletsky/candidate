@@ -5,11 +5,14 @@ using Candidate.Core.Setup;
 using Moq;
 using NUnit.Framework;
 
-namespace Candidate.Tests.Setup {
+namespace Candidate.Tests.Setup
+{
     [TestFixture]
-    public class DefaultTargetsObjectBuilderTests {
+    public class DefaultTargetsObjectBuilderTests
+    {
         [Test]
-        public void DefaultBounceTargetsBuilder() {
+        public void DefaultBounceTargetsBuilder()
+        {
             // arrange
             var targetsRetrieverMock = new Mock<ITargetsRetriever>();
             var configObjectBuilderMock = new Mock<IConfigObjectBuilder>();
@@ -20,7 +23,8 @@ namespace Candidate.Tests.Setup {
         }
 
         [Test]
-        public void BuildTargetsFromConfig_ConfigObjectCreated_TargetsCreated() {
+        public void BuildTargetsFromConfig_ConfigObjectCreated_TargetsCreated()
+        {
             // arrange
             var config = new SiteConfiguration { Github = new GitHub { Url = "git://myhost/repo.git", Branch = "master" } };
             var targetsRetrieverMock = new Mock<ITargetsRetriever>();
