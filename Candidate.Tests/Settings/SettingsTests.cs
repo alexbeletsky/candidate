@@ -52,7 +52,7 @@ namespace Candidate.Tests.Settings
             settingsManager.SaveSettings(settings);
 
             // act
-            using (var trackableSettingsManager = new TrackableSettingsManager(settingsManager))
+            using (var trackableSettingsManager = new AutoSaveSettingsManager(settingsManager))
             {
                 var restoredSettings = trackableSettingsManager.ReadSettings<BuildServerSettings>();
                 restoredSettings.User.FirstName = "John";

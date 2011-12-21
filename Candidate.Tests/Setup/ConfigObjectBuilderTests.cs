@@ -290,14 +290,14 @@ namespace Candidate.Tests.Setup
         {
             // arrange
             var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
-            var config = new SiteConfiguration { Solution = new Solution { Name = "TestSolution\\Test.sln", WebProject = "Test" }, Post = new Post { PostBatch = "run.bat" } };
+            var config = new SiteConfiguration { Solution = new Solution { Name = "TestSolution\\Test.sln", WebProject = "Test" }, Post = new Post { Batch = "run.bat" } };
 
             // act
             var configObject = configObjectBuilder.CreateConfigObject(config);
 
             // assert
             Assert.That(configObject.PostBuild.Exe.Value, Is.EqualTo("run.bat"));
-            Assert.That(configObject.PostBuild.WorkingDirectory.Value, Is.EqualTo(DirectoryProvider.Sources + "\\TestSolution"));
+            Assert.That(configObject.PostBuild.WorkingDirectory.Value, Is.EqualTo(DirectoryProvider.Sources));
         }
 
         [Test]
@@ -358,6 +358,21 @@ namespace Candidate.Tests.Setup
             // assert
             configObject.Website.Bindings.Value.Skip(1).Take(1).First().Protocol.Value.Should().Be("ftp");
             configObject.Website.Bindings.Value.Skip(1).Take(1).First().Information.Value.Should().Be("127.0.0.1:80:ftp.site.com");
+        }
+
+        [Test]
+        public void should_create_simple_run_task_if_pre_batch_is_set()
+        {
+            // arrange
+            var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
+            var config = new SiteConfiguration { Pre = new Pre { Batch = "run.bat" } };
+            
+            // act
+            var configObject = configObjectBuilder.CreateConfigObject(config);
+
+            // assert
+            Assert.That(configObject.PreBuild.Exe.Value, Is.EqualTo("run.bat"));
+            Assert.That(configObject.PreBuild.WorkingDirectory.Value, Is.EqualTo(DirectoryProvider.Sources));
         }
     }
 }

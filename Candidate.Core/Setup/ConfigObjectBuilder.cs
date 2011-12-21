@@ -1,6 +1,7 @@
 ﻿using System;
 using Candidate.Core.Settings.Model;
 using Candidate.Core.Utils;
+using Candidate.Core.Settings.Extensions;
 
 namespace Candidate.Core.Setup
 {
@@ -15,13 +16,8 @@ namespace Candidate.Core.Setup
 
         public ConfigObject CreateConfigObject(SiteConfiguration config)
         {
-            if (config == null)
-            {
-                throw new ArgumentNullException("config");
-            }
-
             var configVisitor = new ConfigObjectCreatingNodeVisitor(_directoryProvider);
-            config.Accept(configVisitor);
+            config.Visit(configVisitor);
 
             return configVisitor.ConfigObject;
         }

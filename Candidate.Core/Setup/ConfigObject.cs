@@ -4,6 +4,7 @@ namespace Candidate.Core.Setup
 {
     public class ConfigObject
     {
+        public ShellCommand PreBuild { get; set; }
         public GitCheckout Git { get; set; }
         public VisualStudioSolution Solution { get; set; }
         public NUnitTests Tests { get; set; }

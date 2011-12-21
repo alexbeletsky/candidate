@@ -12,6 +12,11 @@
 <div class="grey-container">
     <div class="configuration">
         <div class="configuration-line">
+            <div id="pre-configuration" class="configuration-box" data-source="@Url.Action("Pre", new { area = "Dashboard", controller = "Configuration", jobName = ViewBag.JobName })">
+                <p>
+                    PRE
+                </p>
+            </div>
             <div id="scm-configuration" class="configuration-box" data-source="@Url.Action("Github", new { area = "Dashboard", controller = "Configuration", jobName = ViewBag.JobName })">
                 <p>
                     GITHUB

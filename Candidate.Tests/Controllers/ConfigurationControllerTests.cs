@@ -14,14 +14,13 @@ namespace Candidate.Tests.Controllers
     [TestFixture]
     public class ConfigurationControllerTests
     {
-        protected ConfigurationController Controller { get; set; }
-        protected Mock<ISettingsManager> SettingsManager { get; set; }
-
         [SetUp]
         public void Setup()
         {
             SettingsManager = new Mock<ISettingsManager>();
             Controller = new ConfigurationController(SettingsManager.Object);
+            SavedObject = null;
+            SettingsManager.Setup(s => s.SaveSettings(It.IsAny<object>())).Callback<object>((o) => SavedObject = o);
         }
 
         [Test]
@@ -58,19 +57,17 @@ namespace Candidate.Tests.Controllers
         public void Github_Post_Creates_New_Settings_Section()
         {
             // arrange
-            object savedObject = null;
             SettingsManager.Setup(s => s.ReadSettings<SitesConfigurationList>()).Returns(
                 new SitesConfigurationList
                 {
                     Configurations = new List<SiteConfiguration>()
                 });
-            SettingsManager.Setup(s => s.SaveSettings(It.IsAny<object>())).Callback<object>((o) => savedObject = o);
 
             // act
             var result = Controller.Github("testJob", new GitHub { Branch = "branch", Url = "url" });
 
             // assert
-            var savedConfiguration = savedObject as SitesConfigurationList;
+            var savedConfiguration = SavedObject as SitesConfigurationList;
             var config = savedConfiguration.Configurations.Where(c => c.JobName == "testJob").Single();
             Assert.That(config.JobName, Is.EqualTo("testJob"));
             Assert.That(config.Github.Branch, Is.EqualTo("branch"));
@@ -81,7 +78,6 @@ namespace Candidate.Tests.Controllers
         public void Github_Post_Updates_Settings_Section()
         {
             // arrange
-            object savedObject = null;
             SettingsManager.Setup(s => s.ReadSettings<SitesConfigurationList>()).Returns(
                 new SitesConfigurationList
                 {
@@ -90,13 +86,12 @@ namespace Candidate.Tests.Controllers
                         new SiteConfiguration { JobName = "testJob", Github = new GitHub { Branch = "branch", Url = "url" } }
                     }
                 });
-            SettingsManager.Setup(s => s.SaveSettings(It.IsAny<object>())).Callback<object>((o) => savedObject = o);
 
             // act
             var result = Controller.Github("testJob", new GitHub { Branch = "branch2", Url = "url2" });
 
             // assert
-            var savedConfiguration = savedObject as SitesConfigurationList;
+            var savedConfiguration = SavedObject as SitesConfigurationList;
             var config = savedConfiguration.Configurations.Where(c => c.JobName == "testJob").Single();
             Assert.That(config.JobName, Is.EqualTo("testJob"));
             Assert.That(config.Github.Branch, Is.EqualTo("branch2"));
@@ -125,19 +120,17 @@ namespace Candidate.Tests.Controllers
         public void Iis_Post_Creates_New_Settings_Section()
         {
             // arrange
-            object savedObject = null;
             SettingsManager.Setup(s => s.ReadSettings<SitesConfigurationList>()).Returns(
                 new SitesConfigurationList
                 {
                     Configurations = new List<SiteConfiguration>()
                 });
-            SettingsManager.Setup(s => s.SaveSettings(It.IsAny<object>())).Callback<object>((o) => savedObject = o);
 
             // act
             var result = Controller.Iis("testJob", new Iis { SiteName = "site" });
 
             // assert
-            var savedConfiguration = savedObject as SitesConfigurationList;
+            var savedConfiguration = SavedObject as SitesConfigurationList;
             var config = savedConfiguration.Configurations.Where(c => c.JobName == "testJob").Single();
             Assert.That(config.JobName, Is.EqualTo("testJob"));
             Assert.That(config.Iis.SiteName, Is.EqualTo("site"));
@@ -147,7 +140,6 @@ namespace Candidate.Tests.Controllers
         public void Iis_Post_Updates_Settings_Section()
         {
             // arrange
-            object savedObject = null;
             SettingsManager.Setup(s => s.ReadSettings<SitesConfigurationList>()).Returns(
                 new SitesConfigurationList
                 {
@@ -156,13 +148,12 @@ namespace Candidate.Tests.Controllers
                         new SiteConfiguration { JobName = "testJob", Iis = new Iis { SiteName = "site" } }
                     }
                 });
-            SettingsManager.Setup(s => s.SaveSettings(It.IsAny<object>())).Callback<object>((o) => savedObject = o);
 
             // act
             var result = Controller.Iis("testJob", new Iis { SiteName = "site2" });
 
             // assert
-            var savedConfiguration = savedObject as SitesConfigurationList;
+            var savedConfiguration = SavedObject as SitesConfigurationList;
             var config = savedConfiguration.Configurations.Where(c => c.JobName == "testJob").Single();
             Assert.That(config.JobName, Is.EqualTo("testJob"));
             Assert.That(config.Iis.SiteName, Is.EqualTo("site2"));
@@ -184,18 +175,16 @@ namespace Candidate.Tests.Controllers
         public void Delete_Post_Removes_Job_From_List()
         {
             // arrange
-            object savedObject = null;
             SettingsManager.Setup(s => s.ReadSettings<SitesConfigurationList>()).Returns(
                 new SitesConfigurationList { Configurations = new List<SiteConfiguration> { new SiteConfiguration { JobName = "testJob" } } }
                 );
 
-            SettingsManager.Setup(s => s.SaveSettings(It.IsAny<object>())).Callback<object>((o) => savedObject = o);
 
             // act
             var result = Controller.Delete(new DeleteJobModel { JobName = "testJob" }) as ViewResult;
 
             // assert
-            var savedConfiguration = savedObject as SitesConfigurationList;
+            var savedConfiguration = SavedObject as SitesConfigurationList;
             var config = savedConfiguration.Configurations.Where(c => c.JobName == "testJob").SingleOrDefault();
             Assert.That(config, Is.Null);
             Assert.That(savedConfiguration.Configurations.Count, Is.EqualTo(0));
@@ -209,7 +198,7 @@ namespace Candidate.Tests.Controllers
                 new SitesConfigurationList
                 {
                     Configurations = new List<SiteConfiguration> { 
-                                new SiteConfiguration { JobName = "testJob", Post = new Post { PostBatch = "deploy.bat" } } }
+                                new SiteConfiguration { JobName = "testJob", Post = new Post { Batch = "deploy.bat" } } }
                 });
 
             // act
@@ -217,29 +206,71 @@ namespace Candidate.Tests.Controllers
 
             // assert
             var model = result.Model as Post;
-            Assert.That(model.PostBatch, Is.EqualTo("deploy.bat"));
+            Assert.That(model.Batch, Is.EqualTo("deploy.bat"));
         }
 
         [Test]
         public void Post_Post_Updates_Model()
         {
             // arrange
-            object savedObject = null;
             SettingsManager.Setup(s => s.ReadSettings<SitesConfigurationList>()).Returns(
                 new SitesConfigurationList
                 {
                     Configurations = new List<SiteConfiguration> { 
-                                new SiteConfiguration { JobName = "testJob", Post = new Post { PostBatch = "deploy.bat" } } }
+                                new SiteConfiguration { JobName = "testJob", Post = new Post { Batch = "deploy.bat" } } }
                 });
-            SettingsManager.Setup(s => s.SaveSettings(It.IsAny<object>())).Callback<object>((o) => savedObject = o);
 
             // act
-            Controller.Post("testJob", new Post { PostBatch = "newDeploy.bat" });
+            Controller.Post("testJob", new Post { Batch = "newDeploy.bat" });
 
             // assert
-            var savedConfiguration = savedObject as SitesConfigurationList;
+            var savedConfiguration = SavedObject as SitesConfigurationList;
             var config = savedConfiguration.Configurations.Where(c => c.JobName == "testJob").SingleOrDefault();
-            Assert.That(config.Post.PostBatch, Is.EqualTo("newDeploy.bat"));
+            Assert.That(config.Post.Batch, Is.EqualTo("newDeploy.bat"));
         }
+
+        [Test]
+        public void pre_get_should_return_model()
+        {
+            // arrange
+            SettingsManager.Setup(s => s.ReadSettings<SitesConfigurationList>()).Returns(
+                new SitesConfigurationList
+                {
+                    Configurations = new List<SiteConfiguration> { 
+                                new SiteConfiguration { JobName = "testJob", Pre = new Pre { Batch = "pre.bat" } } }
+                });
+
+            // act
+            var result = Controller.Pre("testJob") as ViewResult;
+
+            // assert
+            var model = result.Model as Pre;
+            Assert.That(model.Batch, Is.EqualTo("pre.bat"));
+
+        }
+
+        [Test]
+        public void pre_post_should_update_settings()
+        {
+            // arrange
+            SettingsManager.Setup(s => s.ReadSettings<SitesConfigurationList>()).Returns(
+                new SitesConfigurationList
+                {
+                    Configurations = new List<SiteConfiguration> { 
+                                new SiteConfiguration { JobName = "testJob", Pre = new Pre { Batch = "deploy.bat" } } }
+                });
+
+            // act
+            Controller.Pre("testJob", new Pre { Batch = "newDeploy.bat" });
+
+            // assert
+            var savedConfiguration = SavedObject as SitesConfigurationList;
+            var config = savedConfiguration.Configurations.Where(c => c.JobName == "testJob").SingleOrDefault();
+            Assert.That(config.Pre.Batch, Is.EqualTo("newDeploy.bat"));
+        }
+
+        private ConfigurationController Controller { get; set; }
+        private Mock<ISettingsManager> SettingsManager { get; set; }
+        private object SavedObject { get; set; }
     }
 }

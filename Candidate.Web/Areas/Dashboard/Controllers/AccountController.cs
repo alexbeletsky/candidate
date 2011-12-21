@@ -36,7 +36,7 @@ namespace Candidate.Areas.Dashboard.Controllers
         {
             if (ModelState.IsValid)
             {
-                using (var settings = new TrackableSettingsManager(_settingsManager))
+                using (var settings = new AutoSaveSettingsManager(_settingsManager))
                 {
                     var userSettings = settings.ReadSettings<UserSettings>();
                     var user = userSettings.User;

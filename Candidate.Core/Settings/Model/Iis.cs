@@ -13,11 +13,6 @@ namespace Candidate.Core.Settings.Model
             DeployFolder = "c:\\sites";
         }
 
-        public void Accept(SiteConfigurationNodeVisitor nodeVisitor)
-        {
-            nodeVisitor.Visit(this);
-        }
-
         [Required]
         [DisplayName("Site name")]
         public string SiteName { get; set; }

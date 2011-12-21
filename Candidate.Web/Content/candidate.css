@@ -282,12 +282,12 @@ span.success
 
 .configuration
 {
+    margin: 0 auto;    
 }
 
 .configuration-line
 {
-    margin: 0 auto;
-    width: 700px;
+    margin: 0 60px;        
 }
 
 .configuration-box 

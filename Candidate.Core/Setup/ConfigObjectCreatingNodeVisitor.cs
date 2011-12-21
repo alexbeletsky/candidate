@@ -28,7 +28,16 @@ namespace Candidate.Core.Setup
 
         public override void Visit(SiteConfiguration node)
         {
-            // NOP
+
+        }
+
+        public override void Visit(Pre node)
+        {
+            _configObject.PreBuild = new ShellCommand
+            {
+                Exe = node.Batch,
+                WorkingDirectory = _directoryProvider.Sources
+            };
         }
 
         public override void Visit(GitHub node)
@@ -108,14 +117,11 @@ namespace Candidate.Core.Setup
 
         public override void Visit(Post node)
         {
-            if (_configObject.Solution != null)
+            _configObject.PostBuild = new ShellCommand
             {
-                _configObject.PostBuild = new ShellCommand
-                {
-                    Exe = node.PostBatch,
-                    WorkingDirectory = _configObject.Solution.SolutionDirectory
-                };
-            }
+                Exe = node.Batch,
+                WorkingDirectory = _directoryProvider.Sources
+            };
         }
 
         private static Task<int> GetSitePort(Iis iis)

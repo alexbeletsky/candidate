@@ -87,7 +87,6 @@
     <Compile Include="Helpers\BindingParserTests.cs" />
     <Compile Include="Log\LoggerFactoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Settings\IisBindingsAttributeTests.cs" />
     <Compile Include="Settings\SettingsTests.cs" />
     <Compile Include="Setup\DefaultTargetsObjectBuilderTests.cs" />
     <Compile Include="Setup\ConfigObjectBuilderTests.cs" />

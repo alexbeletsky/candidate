@@ -45,7 +45,7 @@
         {
             if (ModelState.IsValid)
             {
-                using (var settingsManager = new TrackableSettingsManager(_settingsManager))
+                using (var settingsManager = new AutoSaveSettingsManager(_settingsManager))
                 {
                     var currentSettings = settingsManager.ReadSettings<SitesConfigurationList>();
                     var currentJobs = currentSettings.Configurations;

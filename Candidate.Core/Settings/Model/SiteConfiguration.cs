@@ -6,6 +6,7 @@ namespace Candidate.Core.Settings.Model
         public string JobName { get; set; }
         public string JobDisplayName { get; set; }
 
+        public Pre Pre { get; set; }
         public GitHub Github { get; set; }
         public Solution Solution { get; set; }
         public Iis Iis { get; set; }
@@ -14,31 +15,6 @@ namespace Candidate.Core.Settings.Model
         public bool IsConfigured()
         {
             return !string.IsNullOrEmpty(JobName) && Github != null && Solution != null && Iis != null;
-        }
-
-        public void Accept(SiteConfigurationNodeVisitor nodeVisitor)
-        {
-            nodeVisitor.Visit(this);
-
-            if (Github != null)
-            {
-                Github.Accept(nodeVisitor);
-            }
-
-            if (Solution != null)
-            {
-                Solution.Accept(nodeVisitor);
-            }
-
-            if (Iis != null)
-            {
-                Iis.Accept(nodeVisitor);
-            }
-
-            if (Post != null)
-            {
-                Post.Accept(nodeVisitor);
-            }
         }
     }
 }
