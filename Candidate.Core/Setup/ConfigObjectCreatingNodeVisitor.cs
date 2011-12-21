@@ -31,20 +31,11 @@ namespace Candidate.Core.Setup
 
         }
 
-        public override void Visit(Pre node)
-        {
-            _configObject.PreBuild = new ShellCommand
-            {
-                Exe = node.Batch,
-                WorkingDirectory = _directoryProvider.Sources
-            };
-        }
-
         public override void Visit(GitHub node)
         {
             if (!string.IsNullOrEmpty(node.Url))
             {
-                _configObject.Git = new GitCheckout
+                _configObject.CheckoutSources = new GitCheckout
                 {
                     Repository = node.Url,
                     Directory = _directoryProvider.Sources,
@@ -56,7 +47,7 @@ namespace Candidate.Core.Setup
         public override void Visit(Solution node)
         {
             _solution = node;
-            _configObject.Solution = new VisualStudioSolution
+            _configObject.BuildSolution = new VisualStudioSolution
             {
                 SolutionPath = GetSolutionPath(node, _configObject),
                 Target = GetTarget(node),
@@ -68,11 +59,11 @@ namespace Candidate.Core.Setup
             {
                 var directoryInfo = new DirectoryInfo(_directoryProvider.Build);
 
-                _configObject.Tests = new NUnitTests
+                _configObject.RunTests = new NUnitTests
                 {
                     NUnitConsolePath = _directoryProvider.NUnitConsole,
                     FrameworkVersion = GetFrameworkVersion(node),
-                    DllPaths = _configObject.Solution.WhenBuilt(
+                    DllPaths = _configObject.BuildSolution.WhenBuilt(
                         () => directoryInfo.GetFiles("*.dll").Where(p => p.Name.Contains("Test") ||
                             p.Name.Contains("Tests")).Select(p => p.FullName))
                 };
@@ -81,7 +72,7 @@ namespace Candidate.Core.Setup
 
         public override void Visit(Iis node)
         {
-            if (_solution == null || _configObject.Solution == null)
+            if (_solution == null || _configObject.BuildSolution == null)
             {
                 throw new ArgumentException("Couldn't create configuration for IIS without solution file.");
             }
@@ -91,7 +82,7 @@ namespace Candidate.Core.Setup
                 throw new ArgumentException("Couldn't create configuration for IIS without web project name.");
             }
 
-            _configObject.Website = new Iis7WebSite
+            _configObject.DeployWebsite = new Iis7WebSite
             {
                 Directory = GetSiteDirectory(node, _solution),
                 Name = node.SiteName,
@@ -100,7 +91,7 @@ namespace Candidate.Core.Setup
 
             if (node.Bindings != null)
             {
-                _configObject.Website.Bindings = GetBindings(node.Bindings);
+                _configObject.DeployWebsite.Bindings = GetBindings(node.Bindings);
             }
         }
 
@@ -115,12 +106,31 @@ namespace Candidate.Core.Setup
             }).ToList();
         }
 
-        public override void Visit(Post node)
+        public override void Visit(Pre node)
         {
-            _configObject.PostBuild = new ShellCommand
+            if (_configObject.CheckoutSources == null)
+            {
+                throw new ArgumentException("Could not create pre-step without Git configuration.");
+            }
+
+            _configObject.PreBuildBatch = new ShellCommand
             {
                 Exe = node.Batch,
-                WorkingDirectory = _directoryProvider.Sources
+                WorkingDirectory = _configObject.CheckoutSources.Directory
+            };
+        }
+
+        public override void Visit(Post node)
+        {
+            if (_configObject.CheckoutSources == null)
+            {
+                throw new ArgumentException("Could not create post-step without Git configuration.");
+            }
+
+            _configObject.PostBuildBatch = new ShellCommand
+            {
+                Exe = node.Batch,
+                WorkingDirectory = _configObject.CheckoutSources.Directory
             };
         }
 
@@ -172,7 +182,7 @@ namespace Candidate.Core.Setup
 
         private Task<string> GetSolutionPath(Solution solution, ConfigObject configObject)
         {
-            return configObject.Git != null ? GetSolutionPathFromGit(solution, configObject) : GetSolutionPathFromDirectoryProvider(solution);
+            return configObject.CheckoutSources != null ? GetSolutionPathFromGit(solution, configObject) : GetSolutionPathFromDirectoryProvider(solution);
         }
 
         private string GetSolutionPathFromDirectoryProvider(Solution solution)
@@ -182,7 +192,7 @@ namespace Candidate.Core.Setup
 
         private Task<string> GetSolutionPathFromGit(Solution solution, ConfigObject configObject)
         {
-            return configObject.Git.Files[solution.Name];
+            return configObject.CheckoutSources.Files[solution.Name];
         }
     }
 }

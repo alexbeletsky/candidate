@@ -38,8 +38,8 @@ namespace Candidate.Tests.Setup
             var configObject = configObjectBuilder.CreateConfigObject(config);
 
             // assert
-            Assert.That(configObject.Git, Is.Not.Null);
-            Assert.That(configObject.Git.Repository.Value, Is.EqualTo("git://myhost/repo.git"));
+            Assert.That(configObject.CheckoutSources, Is.Not.Null);
+            Assert.That(configObject.CheckoutSources.Repository.Value, Is.EqualTo("git://myhost/repo.git"));
         }
 
         [Test]
@@ -53,8 +53,8 @@ namespace Candidate.Tests.Setup
             var configObject = configObjectBuilder.CreateConfigObject(config);
 
             // assert
-            Assert.That(configObject.Git.Directory.Value, Is.Not.Null);
-            Assert.That(configObject.Git.Directory.Value, Is.EqualTo(DirectoryProvider.Sources));
+            Assert.That(configObject.CheckoutSources.Directory.Value, Is.Not.Null);
+            Assert.That(configObject.CheckoutSources.Directory.Value, Is.EqualTo(DirectoryProvider.Sources));
         }
 
         [Test]
@@ -68,7 +68,7 @@ namespace Candidate.Tests.Setup
             var configObject = configObjectBuilder.CreateConfigObject(config);
 
             // assert
-            Assert.That(configObject.Git, Is.Null);
+            Assert.That(configObject.CheckoutSources, Is.Null);
         }
 
         [Test]
@@ -82,8 +82,8 @@ namespace Candidate.Tests.Setup
             var configObject = configObjectBuilder.CreateConfigObject(config);
 
             // assert
-            Assert.That(configObject.Git.Branch.Value, Is.Not.Null);
-            Assert.That(configObject.Git.Branch.Value, Is.EqualTo("master"));
+            Assert.That(configObject.CheckoutSources.Branch.Value, Is.Not.Null);
+            Assert.That(configObject.CheckoutSources.Branch.Value, Is.EqualTo("master"));
         }
 
         [Test]
@@ -97,7 +97,7 @@ namespace Candidate.Tests.Setup
             var configObject = configObjectBuilder.CreateConfigObject(config);
 
             // assert
-            Assert.That(configObject.Git.Branch.Value, Is.Null);
+            Assert.That(configObject.CheckoutSources.Branch.Value, Is.Null);
         }
 
         [Test]
@@ -111,8 +111,8 @@ namespace Candidate.Tests.Setup
             var configObject = configObjectBuilder.CreateConfigObject(config);
 
             // assert
-            Assert.That(configObject.Solution, Is.Not.Null);
-            Assert.That(configObject.Solution.SolutionPath.Value, Is.EqualTo(DirectoryProvider.Sources + "\\TestSolution\\Test.sln"));
+            Assert.That(configObject.BuildSolution, Is.Not.Null);
+            Assert.That(configObject.BuildSolution.SolutionPath.Value, Is.EqualTo(DirectoryProvider.Sources + "\\TestSolution\\Test.sln"));
         }
 
         [Test]
@@ -126,8 +126,8 @@ namespace Candidate.Tests.Setup
             var configObject = configObjectBuilder.CreateConfigObject(config);
 
             // assert
-            Assert.That(configObject.Solution, Is.Not.Null);
-            Assert.That(configObject.Solution.SolutionPath.Value, Is.EqualTo(DirectoryProvider.Sources + "\\TestSolution\\Test.sln"));
+            Assert.That(configObject.BuildSolution, Is.Not.Null);
+            Assert.That(configObject.BuildSolution.SolutionPath.Value, Is.EqualTo(DirectoryProvider.Sources + "\\TestSolution\\Test.sln"));
         }
 
         [Test]
@@ -141,7 +141,7 @@ namespace Candidate.Tests.Setup
             var configObject = configObjectBuilder.CreateConfigObject(config);
 
             // assert
-            Assert.That(configObject.Solution.OutputDir.Value, Is.EqualTo(DirectoryProvider.Build));
+            Assert.That(configObject.BuildSolution.OutputDir.Value, Is.EqualTo(DirectoryProvider.Build));
         }
 
         [Test]
@@ -155,7 +155,7 @@ namespace Candidate.Tests.Setup
             var configObject = configObjectBuilder.CreateConfigObject(config);
 
             // assert
-            Assert.That(configObject.Solution.Target.Value, Is.EqualTo("Rebuild"));
+            Assert.That(configObject.BuildSolution.Target.Value, Is.EqualTo("Rebuild"));
         }
 
         [Test]
@@ -169,7 +169,7 @@ namespace Candidate.Tests.Setup
             var configObject = configObjectBuilder.CreateConfigObject(config);
 
             // assert
-            Assert.That(configObject.Solution.Target.Value, Is.EqualTo("Build"));
+            Assert.That(configObject.BuildSolution.Target.Value, Is.EqualTo("Build"));
         }
 
         [Test]
@@ -183,7 +183,7 @@ namespace Candidate.Tests.Setup
             var configObject = configObjectBuilder.CreateConfigObject(config);
 
             // assert
-            Assert.That(configObject.Solution.Configuration.Value, Is.EqualTo("Debug"));
+            Assert.That(configObject.BuildSolution.Configuration.Value, Is.EqualTo("Debug"));
         }
 
         [Test]
@@ -197,7 +197,7 @@ namespace Candidate.Tests.Setup
             var configObject = configObjectBuilder.CreateConfigObject(config);
 
             // assert
-            Assert.That(configObject.Solution.Configuration.Value, Is.EqualTo("Release"));
+            Assert.That(configObject.BuildSolution.Configuration.Value, Is.EqualTo("Release"));
         }
 
         [Test]
@@ -235,8 +235,8 @@ namespace Candidate.Tests.Setup
             var configObject = configObjectBuilder.CreateConfigObject(config);
 
             // assert
-            Assert.That(configObject.Website, Is.Not.Null);
-            Assert.That(configObject.Website.Name.Value, Is.EqualTo("TestSite"));
+            Assert.That(configObject.DeployWebsite, Is.Not.Null);
+            Assert.That(configObject.DeployWebsite.Name.Value, Is.EqualTo("TestSite"));
         }
 
         [Test]
@@ -250,9 +250,9 @@ namespace Candidate.Tests.Setup
             var configObject = configObjectBuilder.CreateConfigObject(config);
 
             // assert
-            Assert.That(configObject.Website, Is.Not.Null);
-            Assert.That(configObject.Website.Name.Value, Is.EqualTo("TestSite"));
-            Assert.That(configObject.Website.Directory.Value, Is.EqualTo("c:\\sites\\TestSite"));
+            Assert.That(configObject.DeployWebsite, Is.Not.Null);
+            Assert.That(configObject.DeployWebsite.Name.Value, Is.EqualTo("TestSite"));
+            Assert.That(configObject.DeployWebsite.Directory.Value, Is.EqualTo("c:\\sites\\TestSite"));
         }
 
         [Test]
@@ -266,8 +266,8 @@ namespace Candidate.Tests.Setup
             var configObject = configObjectBuilder.CreateConfigObject(config);
 
             // assert
-            Assert.That(configObject.Website, Is.Not.Null);
-            Assert.That(configObject.Website.Port.Value, Is.EqualTo(80));
+            Assert.That(configObject.DeployWebsite, Is.Not.Null);
+            Assert.That(configObject.DeployWebsite.Port.Value, Is.EqualTo(80));
         }
 
         [Test]
@@ -281,23 +281,8 @@ namespace Candidate.Tests.Setup
             var configObject = configObjectBuilder.CreateConfigObject(config);
 
             // assert
-            Assert.That(configObject.Website, Is.Not.Null);
-            Assert.That(configObject.Website.Port.Value, Is.EqualTo(9000));
-        }
-
-        [Test]
-        public void CreateConfigObject_For_Solution_If_Post_Batch_Is_Defined_Add_Post_Batch_Run()
-        {
-            // arrange
-            var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
-            var config = new SiteConfiguration { Solution = new Solution { Name = "TestSolution\\Test.sln", WebProject = "Test" }, Post = new Post { Batch = "run.bat" } };
-
-            // act
-            var configObject = configObjectBuilder.CreateConfigObject(config);
-
-            // assert
-            Assert.That(configObject.PostBuild.Exe.Value, Is.EqualTo("run.bat"));
-            Assert.That(configObject.PostBuild.WorkingDirectory.Value, Is.EqualTo(DirectoryProvider.Sources));
+            Assert.That(configObject.DeployWebsite, Is.Not.Null);
+            Assert.That(configObject.DeployWebsite.Port.Value, Is.EqualTo(9000));
         }
 
         [Test]
@@ -311,8 +296,8 @@ namespace Candidate.Tests.Setup
             var configObject = configObjectBuilder.CreateConfigObject(config);
 
             // assert
-            configObject.Website.Bindings.Value.First().Protocol.Value.Should().Be("http");
-            configObject.Website.Bindings.Value.First().Information.Value.Should().Be("*:80:site.com");
+            configObject.DeployWebsite.Bindings.Value.First().Protocol.Value.Should().Be("http");
+            configObject.DeployWebsite.Bindings.Value.First().Information.Value.Should().Be("*:80:site.com");
         }
 
         [Test]
@@ -326,8 +311,8 @@ namespace Candidate.Tests.Setup
             var configObject = configObjectBuilder.CreateConfigObject(config);
 
             // assert
-            configObject.Website.Bindings.Value.First().Protocol.Value.Should().Be("ftp");
-            configObject.Website.Bindings.Value.First().Information.Value.Should().Be("*:80:site.com");
+            configObject.DeployWebsite.Bindings.Value.First().Protocol.Value.Should().Be("ftp");
+            configObject.DeployWebsite.Bindings.Value.First().Information.Value.Should().Be("*:80:site.com");
         }
 
         [Test]
@@ -341,8 +326,8 @@ namespace Candidate.Tests.Setup
             var configObject = configObjectBuilder.CreateConfigObject(config);
 
             // assert
-            configObject.Website.Bindings.Value.First().Protocol.Value.Should().Be("ftp");
-            configObject.Website.Bindings.Value.First().Information.Value.Should().Be("127.0.0.1:80:site.com");
+            configObject.DeployWebsite.Bindings.Value.First().Protocol.Value.Should().Be("ftp");
+            configObject.DeployWebsite.Bindings.Value.First().Information.Value.Should().Be("127.0.0.1:80:site.com");
         }
 
         [Test]
@@ -356,23 +341,39 @@ namespace Candidate.Tests.Setup
             var configObject = configObjectBuilder.CreateConfigObject(config);
 
             // assert
-            configObject.Website.Bindings.Value.Skip(1).Take(1).First().Protocol.Value.Should().Be("ftp");
-            configObject.Website.Bindings.Value.Skip(1).Take(1).First().Information.Value.Should().Be("127.0.0.1:80:ftp.site.com");
+            configObject.DeployWebsite.Bindings.Value.Skip(1).Take(1).First().Protocol.Value.Should().Be("ftp");
+            configObject.DeployWebsite.Bindings.Value.Skip(1).Take(1).First().Information.Value.Should().Be("127.0.0.1:80:ftp.site.com");
         }
+
+        [Test]
+        public void should_create_simple_run_task_if_post_batch_is_set()
+        {
+            // arrange
+            var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
+            var config = new SiteConfiguration { Github = new GitHub { Url = "git@git.com" }, Post = new Post { Batch = "run.bat" } };
+
+            // act
+            var configObject = configObjectBuilder.CreateConfigObject(config);
+
+            // assert
+            Assert.That(configObject.PostBuildBatch.Exe.Value, Is.EqualTo("run.bat"));
+            Assert.That(configObject.PostBuildBatch.WorkingDirectory.Value, Is.EqualTo(DirectoryProvider.Sources));
+        }
+
 
         [Test]
         public void should_create_simple_run_task_if_pre_batch_is_set()
         {
             // arrange
             var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
-            var config = new SiteConfiguration { Pre = new Pre { Batch = "run.bat" } };
+            var config = new SiteConfiguration { Github = new GitHub { Url = "git@git.com" }, Pre = new Pre { Batch = "run.bat" } };
             
             // act
             var configObject = configObjectBuilder.CreateConfigObject(config);
 
             // assert
-            Assert.That(configObject.PreBuild.Exe.Value, Is.EqualTo("run.bat"));
-            Assert.That(configObject.PreBuild.WorkingDirectory.Value, Is.EqualTo(DirectoryProvider.Sources));
+            Assert.That(configObject.PreBuildBatch.Exe.Value, Is.EqualTo("run.bat"));
+            Assert.That(configObject.PreBuildBatch.WorkingDirectory.Value, Is.EqualTo(DirectoryProvider.Sources));
         }
     }
 }
