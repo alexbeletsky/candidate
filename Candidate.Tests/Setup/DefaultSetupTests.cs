@@ -2,6 +2,7 @@
 using Bounce.Framework;
 using Candidate.Core.Log;
 using Candidate.Core.Settings.Model;
+using Candidate.Core.Settings.Model.Configurations;
 using Candidate.Core.Setup;
 using Moq;
 using NUnit.Framework;
@@ -18,7 +19,7 @@ namespace Candidate.Tests.Setup
             var targetsObjectBuilderMock = new Mock<ITargetsObjectBuilder>();
             var targetsBuilderMock = new Mock<ITargetsBuilder>();
             var bounceFactoryMock = new Mock<IBounceFactory>();
-            var config = new SiteConfiguration();
+            var config = new VisualStudioConfiguration();
             var setup = new DefaultSetup(targetsObjectBuilderMock.Object, targetsBuilderMock.Object, bounceFactoryMock.Object);
 
             // act 
@@ -35,7 +36,7 @@ namespace Candidate.Tests.Setup
             var targetsObjectBuilderMock = new Mock<ITargetsObjectBuilder>();
             var targetsBuilderMock = new Mock<ITargetsBuilder>();
             var bounceFactoryMock = new Mock<IBounceFactory>();
-            var config = new SiteConfiguration();
+            var config = new VisualStudioConfiguration();
             var setup = new DefaultSetup(targetsObjectBuilderMock.Object, targetsBuilderMock.Object, bounceFactoryMock.Object);
 
             var targetsList = new List<Target>();
@@ -55,7 +56,7 @@ namespace Candidate.Tests.Setup
             var targetsObjectBuilderMock = new Mock<ITargetsObjectBuilder>();
             var targetsBuilderMock = new Mock<ITargetsBuilder>();
             var bounceFactoryMock = new Mock<IBounceFactory>();
-            var config = new SiteConfiguration();
+            var config = new VisualStudioConfiguration();
             var setup = new DefaultSetup(targetsObjectBuilderMock.Object, targetsBuilderMock.Object, bounceFactoryMock.Object);
 
             var targetsList = new List<Target>();

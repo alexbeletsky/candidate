@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Bounce.Framework;
 using Candidate.Core.Log;
 using Candidate.Core.Settings.Model;
+using Candidate.Core.Settings.Model.Configurations;
 using Candidate.Core.Utils;
 
 namespace Candidate.Core.Setup
@@ -24,7 +25,7 @@ namespace Candidate.Core.Setup
             _command = BounceCommandFactory.GetCommandByName("build");
         }
 
-        public SetupResult RunForConfig(ILogger logger, SiteConfiguration config)
+        public SetupResult RunForConfig(ILogger logger, VisualStudioConfiguration config)
         {
             var targets = _targetsObjectBuilder.BuildTargetsFromConfig(config);
             var logOptions = _logOptionsFactory.CreateLogOptions(logger, LogLevel.Debug);

@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using Candidate.Core.Settings.Model;
+using Candidate.Core.Settings.Model.Configurations;
 using Candidate.Core.Setup;
 using Candidate.Core.Utils;
 using ICSharpCode.SharpZipLib.Zip;
@@ -32,7 +33,7 @@ namespace Candidate.Tests.Setup
         {
             // arrange
             var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
-            var config = new SiteConfiguration { Github = new GitHub { Url = "git://myhost/repo.git", Branch = "master" } };
+            var config = new VisualStudioConfiguration { Github = new Github { Url = "git://myhost/repo.git", Branch = "master" } };
 
             // act
             var configObject = configObjectBuilder.CreateConfigObject(config);
@@ -47,7 +48,7 @@ namespace Candidate.Tests.Setup
         {
             // arrange
             var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
-            var config = new SiteConfiguration { Github = new GitHub { Url = "git://myhost/repo.git", Branch = "master" } };
+            var config = new VisualStudioConfiguration { Github = new Github { Url = "git://myhost/repo.git", Branch = "master" } };
 
             // act
             var configObject = configObjectBuilder.CreateConfigObject(config);
@@ -62,7 +63,7 @@ namespace Candidate.Tests.Setup
         {
             // arrange
             var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
-            var config = new SiteConfiguration { Github = new GitHub { Branch = "master" } };
+            var config = new VisualStudioConfiguration { Github = new Github { Branch = "master" } };
 
             // act
             var configObject = configObjectBuilder.CreateConfigObject(config);
@@ -76,7 +77,7 @@ namespace Candidate.Tests.Setup
         {
             // arrange
             var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
-            var config = new SiteConfiguration { Github = new GitHub { Url = "git://myhost/repo.git", Branch = "master" } };
+            var config = new VisualStudioConfiguration { Github = new Github { Url = "git://myhost/repo.git", Branch = "master" } };
 
             // act
             var configObject = configObjectBuilder.CreateConfigObject(config);
@@ -91,7 +92,7 @@ namespace Candidate.Tests.Setup
         {
             // arrange
             var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
-            var config = new SiteConfiguration { Github = new GitHub { Url = "git://myhost/repo.git" } };
+            var config = new VisualStudioConfiguration { Github = new Github { Url = "git://myhost/repo.git" } };
 
             // act
             var configObject = configObjectBuilder.CreateConfigObject(config);
@@ -105,7 +106,7 @@ namespace Candidate.Tests.Setup
         {
             // arrange
             var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
-            var config = new SiteConfiguration { Github = new GitHub { Url = "git://myhost/repo.git", Branch = "master" }, Solution = new Solution { Name = "TestSolution\\Test.sln" } };
+            var config = new VisualStudioConfiguration { Github = new Github { Url = "git://myhost/repo.git", Branch = "master" }, Solution = new Solution { Name = "TestSolution\\Test.sln" } };
 
             // act
             var configObject = configObjectBuilder.CreateConfigObject(config);
@@ -120,7 +121,7 @@ namespace Candidate.Tests.Setup
         {
             // arrange
             var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
-            var config = new SiteConfiguration { Solution = new Solution { Name = "TestSolution\\Test.sln" } };
+            var config = new VisualStudioConfiguration { Solution = new Solution { Name = "TestSolution\\Test.sln" } };
 
             // act
             var configObject = configObjectBuilder.CreateConfigObject(config);
@@ -135,7 +136,7 @@ namespace Candidate.Tests.Setup
         {
             // arrange
             var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
-            var config = new SiteConfiguration { Solution = new Solution { Name = "TestSolution\\Test.sln" } };
+            var config = new VisualStudioConfiguration { Solution = new Solution { Name = "TestSolution\\Test.sln" } };
 
             // act
             var configObject = configObjectBuilder.CreateConfigObject(config);
@@ -149,7 +150,7 @@ namespace Candidate.Tests.Setup
         {
             // arrange
             var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
-            var config = new SiteConfiguration { Solution = new Solution { Name = "TestSolution\\Test.sln", SelectedTarget = 1 } };
+            var config = new VisualStudioConfiguration { Solution = new Solution { Name = "TestSolution\\Test.sln", SelectedTarget = 1 } };
 
             // act
             var configObject = configObjectBuilder.CreateConfigObject(config);
@@ -163,7 +164,7 @@ namespace Candidate.Tests.Setup
         {
             // arrange
             var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
-            var config = new SiteConfiguration { Solution = new Solution { Name = "TestSolution\\Test.sln", SelectedTarget = 0 } };
+            var config = new VisualStudioConfiguration { Solution = new Solution { Name = "TestSolution\\Test.sln", SelectedTarget = 0 } };
 
             // act
             var configObject = configObjectBuilder.CreateConfigObject(config);
@@ -177,7 +178,7 @@ namespace Candidate.Tests.Setup
         {
             // arrange
             var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
-            var config = new SiteConfiguration { Solution = new Solution { Name = "TestSolution\\Test.sln", SelectedConfiguration = 0 } };
+            var config = new VisualStudioConfiguration { Solution = new Solution { Name = "TestSolution\\Test.sln", SelectedConfiguration = 0 } };
 
             // act
             var configObject = configObjectBuilder.CreateConfigObject(config);
@@ -191,7 +192,7 @@ namespace Candidate.Tests.Setup
         {
             // arrange
             var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
-            var config = new SiteConfiguration { Solution = new Solution { Name = "TestSolution\\Test.sln", SelectedConfiguration = 1 } };
+            var config = new VisualStudioConfiguration { Solution = new Solution { Name = "TestSolution\\Test.sln", SelectedConfiguration = 1 } };
 
             // act
             var configObject = configObjectBuilder.CreateConfigObject(config);
@@ -206,7 +207,7 @@ namespace Candidate.Tests.Setup
         {
             // arrange
             var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
-            var config = new SiteConfiguration { Iis = new Iis { SiteName = "TestSite" } };
+            var config = new VisualStudioConfiguration { Iis = new Iis { SiteName = "TestSite" } };
 
             // act
             var configObject = configObjectBuilder.CreateConfigObject(config);
@@ -218,7 +219,7 @@ namespace Candidate.Tests.Setup
         {
             // arrange
             var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
-            var config = new SiteConfiguration { Solution = new Solution { Name = "TestSolution\\Test.sln" }, Iis = new Iis { SiteName = "TestSite" } };
+            var config = new VisualStudioConfiguration { Solution = new Solution { Name = "TestSolution\\Test.sln" }, Iis = new Iis { SiteName = "TestSite" } };
 
             // act
             var configObject = configObjectBuilder.CreateConfigObject(config);
@@ -229,7 +230,7 @@ namespace Candidate.Tests.Setup
         {
             // arrange
             var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
-            var config = new SiteConfiguration { Solution = new Solution { Name = "TestSolution\\Test.sln", WebProject = "Test" }, Iis = new Iis { SiteName = "TestSite" } };
+            var config = new VisualStudioConfiguration { Solution = new Solution { Name = "TestSolution\\Test.sln", WebProject = "Test" }, Iis = new Iis { SiteName = "TestSite" } };
 
             // act
             var configObject = configObjectBuilder.CreateConfigObject(config);
@@ -244,7 +245,7 @@ namespace Candidate.Tests.Setup
         {
             // arrange
             var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
-            var config = new SiteConfiguration { Solution = new Solution { Name = "TestSolution\\Test.sln", WebProject = "Test" }, Iis = new Iis { SiteName = "TestSite" } };
+            var config = new VisualStudioConfiguration { Solution = new Solution { Name = "TestSolution\\Test.sln", WebProject = "Test" }, Iis = new Iis { SiteName = "TestSite" } };
 
             // act
             var configObject = configObjectBuilder.CreateConfigObject(config);
@@ -260,7 +261,7 @@ namespace Candidate.Tests.Setup
         {
             // arrange
             var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
-            var config = new SiteConfiguration { Solution = new Solution { Name = "TestSolution\\Test.sln", WebProject = "Test" }, Iis = new Iis { SiteName = "TestSite" } };
+            var config = new VisualStudioConfiguration { Solution = new Solution { Name = "TestSolution\\Test.sln", WebProject = "Test" }, Iis = new Iis { SiteName = "TestSite" } };
 
             // act
             var configObject = configObjectBuilder.CreateConfigObject(config);
@@ -275,7 +276,7 @@ namespace Candidate.Tests.Setup
         {
             // arrange
             var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
-            var config = new SiteConfiguration { Solution = new Solution { Name = "TestSolution\\Test.sln", WebProject = "Test" }, Iis = new Iis { SiteName = "TestSite", Port = 9000 } };
+            var config = new VisualStudioConfiguration { Solution = new Solution { Name = "TestSolution\\Test.sln", WebProject = "Test" }, Iis = new Iis { SiteName = "TestSite", Port = 9000 } };
 
             // act
             var configObject = configObjectBuilder.CreateConfigObject(config);
@@ -290,7 +291,7 @@ namespace Candidate.Tests.Setup
         {
             // arrange
             var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
-            var config = new SiteConfiguration { Iis = new Iis { SiteName = "test", DeployFolder = "c:\\sites", Bindings = "http:*:80:site.com" }, Solution = new Solution { Name = "TestSolution\\Test.sln", WebProject = "Test" } };
+            var config = new VisualStudioConfiguration { Iis = new Iis { SiteName = "test", DeployFolder = "c:\\sites", Bindings = "http:*:80:site.com" }, Solution = new Solution { Name = "TestSolution\\Test.sln", WebProject = "Test" } };
 
             // act
             var configObject = configObjectBuilder.CreateConfigObject(config);
@@ -305,7 +306,7 @@ namespace Candidate.Tests.Setup
         {
             // arrange
             var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
-            var config = new SiteConfiguration { Iis = new Iis { SiteName = "test", DeployFolder = "c:\\sites", Bindings = "ftp:*:80:site.com" }, Solution = new Solution { Name = "TestSolution\\Test.sln", WebProject = "Test" } };
+            var config = new VisualStudioConfiguration { Iis = new Iis { SiteName = "test", DeployFolder = "c:\\sites", Bindings = "ftp:*:80:site.com" }, Solution = new Solution { Name = "TestSolution\\Test.sln", WebProject = "Test" } };
 
             // act
             var configObject = configObjectBuilder.CreateConfigObject(config);
@@ -320,7 +321,7 @@ namespace Candidate.Tests.Setup
         {
             // arrange
             var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
-            var config = new SiteConfiguration { Iis = new Iis { SiteName = "test", DeployFolder = "c:\\sites", Bindings = "ftp:127.0.0.1:80:site.com" }, Solution = new Solution { Name = "TestSolution\\Test.sln", WebProject = "Test" } };
+            var config = new VisualStudioConfiguration { Iis = new Iis { SiteName = "test", DeployFolder = "c:\\sites", Bindings = "ftp:127.0.0.1:80:site.com" }, Solution = new Solution { Name = "TestSolution\\Test.sln", WebProject = "Test" } };
 
             // act
             var configObject = configObjectBuilder.CreateConfigObject(config);
@@ -335,7 +336,7 @@ namespace Candidate.Tests.Setup
         {
             // arrange
             var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
-            var config = new SiteConfiguration { Iis = new Iis { SiteName = "test", DeployFolder = "c:\\sites", Bindings = "http:127.0.0.1:80:site.com;ftp:127.0.0.1:80:ftp.site.com" }, Solution = new Solution { Name = "TestSolution\\Test.sln", WebProject = "Test" } };
+            var config = new VisualStudioConfiguration { Iis = new Iis { SiteName = "test", DeployFolder = "c:\\sites", Bindings = "http:127.0.0.1:80:site.com;ftp:127.0.0.1:80:ftp.site.com" }, Solution = new Solution { Name = "TestSolution\\Test.sln", WebProject = "Test" } };
 
             // act
             var configObject = configObjectBuilder.CreateConfigObject(config);
@@ -350,7 +351,7 @@ namespace Candidate.Tests.Setup
         {
             // arrange
             var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
-            var config = new SiteConfiguration { Github = new GitHub { Url = "git@git.com" }, Post = new Post { Batch = "run.bat" } };
+            var config = new VisualStudioConfiguration { Github = new Github { Url = "git@git.com" }, Post = new Post { Batch = "run.bat" } };
 
             // act
             var configObject = configObjectBuilder.CreateConfigObject(config);
@@ -366,7 +367,7 @@ namespace Candidate.Tests.Setup
         {
             // arrange
             var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
-            var config = new SiteConfiguration { Github = new GitHub { Url = "git@git.com" }, Pre = new Pre { Batch = "run.bat" } };
+            var config = new VisualStudioConfiguration { Github = new Github { Url = "git@git.com" }, Pre = new Pre { Batch = "run.bat" } };
             
             // act
             var configObject = configObjectBuilder.CreateConfigObject(config);

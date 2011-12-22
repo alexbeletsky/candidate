@@ -1,4 +1,6 @@
-﻿namespace Candidate.Areas.Dashboard.Controllers
+﻿using Candidate.Core.Settings.Model.Configurations;
+
+namespace Candidate.Areas.Dashboard.Controllers
 {
     using System.Linq;
     using System.Web.Mvc;
@@ -29,7 +31,7 @@
         [HttpGet]
         public ActionResult List()
         {
-            var currentSettings = _settingsManager.ReadSettings<SitesConfigurationList>();
+            var currentSettings = _settingsManager.ReadSettings<ConfigurationsList>();
 
             return View(currentSettings.Configurations);
         }
@@ -47,10 +49,10 @@
             {
                 using (var settingsManager = new AutoSaveSettingsManager(_settingsManager))
                 {
-                    var currentSettings = settingsManager.ReadSettings<SitesConfigurationList>();
+                    var currentSettings = settingsManager.ReadSettings<ConfigurationsList>();
                     var currentJobs = currentSettings.Configurations;
 
-                    currentJobs.Add(new SiteConfiguration { JobName = SubstitutePunctuationWithDashes(newJob.Name), JobDisplayName = newJob.Name });
+                    currentJobs.Add(new VisualStudioConfiguration { Id = SubstitutePunctuationWithDashes(newJob.Name), ReadableName = newJob.Name });
 
                     return RedirectToAction("Index", new { area = "Dashboard", controller = "Dashboard" });
                 }

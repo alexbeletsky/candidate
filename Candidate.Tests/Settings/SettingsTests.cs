@@ -10,8 +10,8 @@ namespace Candidate.Tests.Settings
     [TestFixture]
     public class SettingsTests
     {
-        private static string CurrentDirectory = Directory.GetCurrentDirectory();
-        private static DirectoryProvider DirectoryProvider = new DirectoryProvider("SettingsTests", CurrentDirectory);
+        private static readonly string CurrentDirectory = Directory.GetCurrentDirectory();
+        private static readonly DirectoryProvider DirectoryProvider = new DirectoryProvider("SettingsTests", CurrentDirectory);
 
         [TearDown]
         public void Teardown()

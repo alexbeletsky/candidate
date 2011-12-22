@@ -1,4 +1,4 @@
-﻿@model IList<Candidate.Core.Settings.Model.SiteConfiguration>
+﻿@model IList<Candidate.Core.Settings.Model.Configurations.VisualStudioConfiguration>
 @{
     ViewBag.Title = "List";
 }
@@ -12,12 +12,12 @@ else
     foreach (var job in Model)
     {
         <div class="job clearfix">
-            <span class="job-name">@Html.ActionLink(@job.JobDisplayName, "Show", new { area = "Dashboard", controller = "Overview", jobName = @job.JobName })</span>
+            <span class="job-name">@Html.ActionLink(@job.ReadableName, "Show", new { area = "Dashboard", controller = "Overview", jobName = @job.Id })</span>
             <span class="job-status"></span>
             <div id="buttons" class="right cleanfix">
-                <button type="button" class="minimal" data-target="@Url.Action("Index", "Configuration", new { jobName = @job.JobName })">Configure</button>
-                <button type="button" class="minimal" data-target="@Url.Action("Setup", "Setup", new { jobName = @job.JobName })">Deploy</button>
-                <button type="button" class="minimal" data-target="@Url.Action("Delete", "Configuration", new { jobName = @job.JobName })">Delete</button>
+                <button type="button" class="minimal" data-target="@Url.Action("Index", "Configuration", new { jobName = @job.Id })">Configure</button>
+                <button type="button" class="minimal" data-target="@Url.Action("Setup", "Setup", new { jobName = @job.Id })">Deploy</button>
+                <button type="button" class="minimal" data-target="@Url.Action("Delete", "Configuration", new { jobName = @job.Id })">Delete</button>
             </div>          
         </div>
          

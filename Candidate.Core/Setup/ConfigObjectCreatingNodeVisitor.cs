@@ -6,11 +6,12 @@ using System.Text.RegularExpressions;
 using Bounce.Framework;
 using Candidate.Core.Helpers;
 using Candidate.Core.Settings.Model;
+using Candidate.Core.Settings.Model.Configurations;
 using Candidate.Core.Utils;
 
 namespace Candidate.Core.Setup
 {
-    public class ConfigObjectCreatingNodeVisitor : SiteConfigurationNodeVisitor
+    public class ConfigObjectCreatingNodeVisitor : ConfigurationNodeVisitor
     {
         private readonly ConfigObject _configObject = new ConfigObject();
         private readonly IDirectoryProvider _directoryProvider;
@@ -26,12 +27,12 @@ namespace Candidate.Core.Setup
             get { return _configObject; }
         }
 
-        public override void Visit(SiteConfiguration node)
+        public override void Visit(VisualStudioConfiguration node)
         {
 
         }
 
-        public override void Visit(GitHub node)
+        public override void Visit(Github node)
         {
             if (!string.IsNullOrEmpty(node.Url))
             {

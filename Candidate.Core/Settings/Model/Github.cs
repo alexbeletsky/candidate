@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Candidate.Core.Settings.Model
 {
-    public class GitHub
+    public class Github
     {
         [Required]
         [DisplayName("Repository URL")]

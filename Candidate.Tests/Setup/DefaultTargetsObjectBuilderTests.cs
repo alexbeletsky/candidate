@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Bounce.Framework;
 using Candidate.Core.Settings.Model;
+using Candidate.Core.Settings.Model.Configurations;
 using Candidate.Core.Setup;
 using Moq;
 using NUnit.Framework;
@@ -16,7 +17,7 @@ namespace Candidate.Tests.Setup
             // arrange
             var targetsRetrieverMock = new Mock<ITargetsRetriever>();
             var configObjectBuilderMock = new Mock<IConfigObjectBuilder>();
-            var config = new SiteConfiguration();
+            var config = new VisualStudioConfiguration();
 
             //act
             var targetsBuilder = new DefaultTargetsObjectBuilder(targetsRetrieverMock.Object, configObjectBuilderMock.Object);
@@ -26,7 +27,7 @@ namespace Candidate.Tests.Setup
         public void BuildTargetsFromConfig_ConfigObjectCreated_TargetsCreated()
         {
             // arrange
-            var config = new SiteConfiguration { Github = new GitHub { Url = "git://myhost/repo.git", Branch = "master" } };
+            var config = new VisualStudioConfiguration { Github = new Github { Url = "git://myhost/repo.git", Branch = "master" } };
             var targetsRetrieverMock = new Mock<ITargetsRetriever>();
             var configObjectBuilderMock = new Mock<IConfigObjectBuilder>();
             var targetsBuilder = new DefaultTargetsObjectBuilder(targetsRetrieverMock.Object, configObjectBuilderMock.Object);

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Bounce.Framework;
 using Candidate.Core.Settings.Model;
+using Candidate.Core.Settings.Model.Configurations;
 
 namespace Candidate.Core.Setup
 {
@@ -15,7 +16,7 @@ namespace Candidate.Core.Setup
             _configObjectBuilder = configObjectBuilder;
         }
 
-        public IEnumerable<Target> BuildTargetsFromConfig(SiteConfiguration config)
+        public IEnumerable<Target> BuildTargetsFromConfig(VisualStudioConfiguration config)
         {
             var configObject = _configObjectBuilder.CreateConfigObject(config);
 

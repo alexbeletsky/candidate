@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Candidate.Core.Settings.Model;
+using Candidate.Core.Settings.Model.Configurations;
 
 namespace Candidate.Core.Settings.Extensions
 {
     public static class VisitorExtensions
     {
-        public static void Visit(this SiteConfiguration self, SiteConfigurationNodeVisitor visitor)
+        public static void Visit(this VisualStudioConfiguration self, ConfigurationNodeVisitor visitor)
         {
             if (self == null)
             {
@@ -22,7 +23,7 @@ namespace Candidate.Core.Settings.Extensions
             self.Post.Visit(visitor);
         }
 
-        static void Visit(this Pre self, SiteConfigurationNodeVisitor visitor)
+        static void Visit(this Pre self, ConfigurationNodeVisitor visitor)
         {
             if (self != null)
             {
@@ -30,7 +31,7 @@ namespace Candidate.Core.Settings.Extensions
             }
         }
 
-        static void Visit(this GitHub self, SiteConfigurationNodeVisitor visitor)
+        static void Visit(this Github self, ConfigurationNodeVisitor visitor)
         {
             if (self != null)
             {
@@ -39,7 +40,7 @@ namespace Candidate.Core.Settings.Extensions
 
         }
 
-        static void Visit(this Solution self, SiteConfigurationNodeVisitor visitor)
+        static void Visit(this Solution self, ConfigurationNodeVisitor visitor)
         {
             if (self != null)
             {
@@ -47,7 +48,7 @@ namespace Candidate.Core.Settings.Extensions
             }
         }
 
-        static void Visit(this Iis self, SiteConfigurationNodeVisitor visitor)
+        static void Visit(this Iis self, ConfigurationNodeVisitor visitor)
         {
             if (self != null)
             {
@@ -55,7 +56,7 @@ namespace Candidate.Core.Settings.Extensions
             }
         }
 
-        static void Visit(this Post self, SiteConfigurationNodeVisitor visitor)
+        static void Visit(this Post self, ConfigurationNodeVisitor visitor)
         {
             if (self != null)
             {

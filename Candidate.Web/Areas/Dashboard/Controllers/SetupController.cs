@@ -5,6 +5,7 @@ using Candidate.Areas.Dashboard.Models;
 using Candidate.Core.Log;
 using Candidate.Core.Settings;
 using Candidate.Core.Settings.Model;
+using Candidate.Core.Settings.Model.Configurations;
 using Candidate.Core.Setup;
 using Candidate.Core.Utils;
 using Candidate.Infrustructure.Error;
@@ -34,60 +35,64 @@ namespace Candidate.Areas.Dashboard.Controllers
         [HttpGet]
         public ActionResult Setup(string jobName)
         {
-            ViewBag.JobName = jobName;
+            throw new NotImplementedException();
 
-            var currentConfiguration = _settingsManager.ReadSettings<SitesConfigurationList>();
-            var siteConfiguration = currentConfiguration.Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
+            //ViewBag.Id = jobName;
 
-            if (!siteConfiguration.IsConfigured())
-            {
-                return View("NotConfigured");
-            }
+            //var currentConfiguration = _settingsManager.ReadSettings<ConfigurationsList>();
+            //var siteConfiguration = currentConfiguration.Configurations.Where(c => c.Id == jobName).SingleOrDefault();
 
-            return View();
+            //if (!siteConfiguration.IsConfigured())
+            //{
+            //    return View("NotConfigured");
+            //}
+
+            //return View();
         }
 
         [HttpPost]
         public ActionResult StartSetup(string jobName)
         {
-            var currentSettings = _settingsManager.ReadSettings<SitesConfigurationList>().Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
-            if (currentSettings == null)
-            {
-                throw new Exception(string.Format("Can't create setup for non-existing job: {0}", jobName));
-            }
+            throw new NotImplementedException();
 
-            return RunDeployAndLog(jobName, currentSettings);
+            //var currentSettings = _settingsManager.ReadSettings<ConfigurationsList>().Configurations.Where(c => c.Id == jobName).SingleOrDefault();
+            //if (currentSettings == null)
+            //{
+            //    throw new Exception(string.Format("Can't create setup for non-existing job: {0}", jobName));
+            //}
+
+            //return RunDeployAndLog(jobName, currentSettings);
         }
 
         [HttpPost]
         [ValidateToken]
         public ActionResult Hook(string jobName, string token, string payload)
         {
+            throw new NotImplementedException();
+            //var currentSettings = _settingsManager.ReadSettings<ConfigurationsList>().Configurations.Where(c => c.Id == jobName).SingleOrDefault();
+            //if (currentSettings == null)
+            //{
+            //    throw new Exception(string.Format("Can't create setup for non-existing job: {0}", jobName));
+            //}
 
-            var currentSettings = _settingsManager.ReadSettings<SitesConfigurationList>().Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
-            if (currentSettings == null)
-            {
-                throw new Exception(string.Format("Can't create setup for non-existing job: {0}", jobName));
-            }
+            //// TODO: move this serialization to service
+            //var payloadDeserialized = JsonConvert.DeserializeObject<GithubHookPayload>(payload);
+            //var githubConfiguration = currentSettings.Github;
 
-            // TODO: move this serialization to service
-            var payloadDeserialized = JsonConvert.DeserializeObject<GithubHookPayload>(payload);
-            var githubConfiguration = currentSettings.Github;
+            //if (!IsHookForBranch(payloadDeserialized.Branch, githubConfiguration))
+            //{
+            //    return null;
+            //}
 
-            if (!IsHookForBranch(payloadDeserialized.Branch, githubConfiguration))
-            {
-                return null;
-            }
-
-            return RunDeployAndLog(jobName, currentSettings);
+            //return RunDeployAndLog(jobName, currentSettings);
         }
 
-        private static bool IsHookForBranch(string payload, GitHub githubConfiguration)
+        private static bool IsHookForBranch(string payload, Github githubConfiguration)
         {
             return payload.Equals(githubConfiguration.Branch);
         }
 
-        private ActionResult RunDeployAndLog(string jobName, SiteConfiguration currentSettings)
+        private ActionResult RunDeployAndLog(string jobName, VisualStudioConfiguration currentSettings)
         {
             _directoryProvider.SiteName = jobName;
 

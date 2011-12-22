@@ -1,4 +1,6 @@
-﻿namespace Candidate.Areas.Dashboard.Controllers
+﻿using System;
+
+namespace Candidate.Areas.Dashboard.Controllers
 {
     using System.Linq;
     using System.Web.Mvc;
@@ -27,106 +29,126 @@
         [HttpGet, AddViewNameAndHash]
         public ActionResult Pre(string jobName)
         {
-            var currentConfiguration = _settingsManager.ReadSettings<SitesConfigurationList>();
-            var siteConfiguration = currentConfiguration.Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
+            throw new NotImplementedException();
 
-            return View(siteConfiguration.Pre);
+            //var currentConfiguration = _settingsManager.ReadSettings<ConfigurationsList>();
+            //var siteConfiguration = currentConfiguration.Configurations.Where(c => c.Id == jobName).SingleOrDefault();
+
+            //return View(siteConfiguration.Pre);
         }
 
         [HttpPost]
         public ActionResult Pre(string jobName, Pre config)
         {
-            if (ModelState.IsValid)
-            {
-                _settingsManager.SaveSiteConfiguration(jobName, c => c.Pre = config);
-                return Json(new { success = true });
-            }
+            throw new NotImplementedException();
 
-            return Json(new { success = false });
+            //if (ModelState.IsValid)
+            //{
+            //    _settingsManager.SaveSiteConfiguration(jobName, c => c.Pre = config);
+            //    return Json(new { success = true });
+            //}
+
+            //return Json(new { success = false });
         }
 
         [HttpGet, AddViewNameAndHash]
         public ActionResult Github(string jobName)
         {
-            var currentConfiguration = _settingsManager.ReadSettings<SitesConfigurationList>();
-            var siteConfiguration = currentConfiguration.Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
+            throw new NotImplementedException();
 
-            return View(siteConfiguration.Github);
+            //var currentConfiguration = _settingsManager.ReadSettings<ConfigurationsList>();
+            //var siteConfiguration = currentConfiguration.Configurations.Where(c => c.Id == jobName).SingleOrDefault();
+
+            //return View(siteConfiguration.Github);
         }
 
         [HttpPost]
-        public ActionResult Github(string jobName, GitHub config)
+        public ActionResult Github(string jobName, Github config)
         {
-            if (ModelState.IsValid)
-            {
-                _settingsManager.SaveSiteConfiguration(jobName, c => c.Github = config);
-                return Json(new { success = true });
-            }
+            throw new NotImplementedException();
 
-            return Json(new { success = false });
+            //if (ModelState.IsValid)
+            //{
+            //    _settingsManager.SaveSiteConfiguration(jobName, c => c.Github = config);
+            //    return Json(new { success = true });
+            //}
+
+            //return Json(new { success = false });
         }
 
         [HttpGet, AddViewNameAndHash]
         public ActionResult Iis(string jobName)
         {
-            var currentConfiguration = _settingsManager.ReadSettings<SitesConfigurationList>();
-            var siteConfiguration = currentConfiguration.Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
+            throw new NotImplementedException();
 
-            return View(siteConfiguration.Iis ?? new Iis());
+            //var currentConfiguration = _settingsManager.ReadSettings<ConfigurationsList>();
+            //var siteConfiguration = currentConfiguration.Configurations.Where(c => c.Id == jobName).SingleOrDefault();
+
+            //return View(siteConfiguration.Iis ?? new Iis());
         }
 
         [HttpPost]
         public ActionResult Iis(string jobName, Iis config)
         {
-            if (ModelState.IsValid)
-            {
-                _settingsManager.SaveSiteConfiguration(jobName, c => c.Iis = config);
-                return Json(new { success = true });
-            }
+            throw new NotImplementedException();
 
-            return Json(new { success = false });
+            //if (ModelState.IsValid)
+            //{
+            //    _settingsManager.SaveSiteConfiguration(jobName, c => c.Iis = config);
+            //    return Json(new { success = true });
+            //}
+
+            //return Json(new { success = false });
         }
 
         [HttpGet, AddViewNameAndHash]
         public ActionResult Solution(string jobName)
         {
-            var currentConfiguration = _settingsManager.ReadSettings<SitesConfigurationList>();
-            var siteConfiguration = currentConfiguration.Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
+            throw new NotImplementedException();
 
-            return View(siteConfiguration.Solution ?? new Solution());
+            //var currentConfiguration = _settingsManager.ReadSettings<ConfigurationsList>();
+            //var siteConfiguration = currentConfiguration.Configurations.Where(c => c.Id == jobName).SingleOrDefault();
+
+            //return View(siteConfiguration.Solution ?? new Solution());
         }
 
         [HttpPost]
         public ActionResult Solution(string jobName, Solution config)
         {
-            if (ModelState.IsValid)
-            {
-                _settingsManager.SaveSiteConfiguration(jobName, c => c.Solution = config);
-                return Json(new { success = true });
-            }
+            throw new NotImplementedException();
 
-            return Json(new { success = false });
+            //if (ModelState.IsValid)
+            //{
+            //    _settingsManager.SaveSiteConfiguration(jobName, c => c.Solution = config);
+            //    return Json(new { success = true });
+            //}
+
+            //return Json(new { success = false });
         }
 
         [HttpGet, AddViewNameAndHash]
         public ActionResult Post(string jobName)
         {
-            var currentConfiguration = _settingsManager.ReadSettings<SitesConfigurationList>();
-            var siteConfiguration = currentConfiguration.Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
+            throw new NotImplementedException();
 
-            return View(siteConfiguration.Post);
+            //var currentConfiguration = _settingsManager.ReadSettings<ConfigurationsList>();
+            //var siteConfiguration = currentConfiguration.Configurations.Where(c => c.Id == jobName).SingleOrDefault();
+
+            //return View(siteConfiguration.Post);
         }
 
         [HttpPost]
         public ActionResult Post(string jobName, Post config)
         {
-            if (ModelState.IsValid)
-            {
-                _settingsManager.SaveSiteConfiguration(jobName, c => c.Post = config);
-                return Json(new { success = true });
-            }
+            throw new NotImplementedException();
 
-            return Json(new { success = false });
+            //if (ModelState.IsValid)
+            //{
+            //    _settingsManager.SaveSiteConfiguration(jobName, c => c.Post = config);
+            //    return Json(new { success = true });
+            //}
+
+            //return Json(new { success = false });
         }
 
         [HttpGet, AddViewNameAndHash]
@@ -138,13 +160,15 @@
         [HttpPost]
         public ActionResult Delete(DeleteJobModel deleteJob)
         {
-            if (ModelState.IsValid)
-            {
-                _settingsManager.DeleteSiteConfiguration(deleteJob.JobName);
-                return RedirectToAction("Index", "Dashboard");
-            }
+            throw new NotImplementedException();
 
-            return View(deleteJob);
+            //if (ModelState.IsValid)
+            //{
+            //    _settingsManager.DeleteSiteConfiguration(deleteJob.Id);
+            //    return RedirectToAction("Index", "Dashboard");
+            //}
+
+            //return View(deleteJob);
         }
 
 

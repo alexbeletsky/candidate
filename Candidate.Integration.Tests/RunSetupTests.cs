@@ -2,6 +2,7 @@
 using Bounce.Framework;
 using Candidate.Core.Log;
 using Candidate.Core.Settings.Model;
+using Candidate.Core.Settings.Model.Configurations;
 using Candidate.Core.Setup;
 using Candidate.Core.Utils;
 using ICSharpCode.SharpZipLib.Zip;
@@ -33,7 +34,7 @@ namespace Candidate.Tests.Integration
         public void SetupWithOutGitHub_ShouldBuild()
         {
             // arrange
-            var config = new SiteConfiguration()
+            var config = new VisualStudioConfiguration()
             {
                 Solution = new Solution
                 {
@@ -63,7 +64,7 @@ namespace Candidate.Tests.Integration
         public void OutputShouldGoToLogger()
         {
             // arrange
-            var config = new SiteConfiguration()
+            var config = new VisualStudioConfiguration()
             {
                 Solution = new Solution
                 {
@@ -100,7 +101,7 @@ namespace Candidate.Tests.Integration
         public void ShouldBeAbleToDeployIisSite()
         {
             // arrange
-            var config = new SiteConfiguration()
+            var config = new VisualStudioConfiguration()
             {
                 Solution = new Solution
                 {

@@ -1,5 +1,6 @@
 ﻿using System;
 using Candidate.Core.Settings.Model;
+using Candidate.Core.Settings.Model.Configurations;
 using Candidate.Core.Utils;
 using Candidate.Core.Settings.Extensions;
 
@@ -14,7 +15,7 @@ namespace Candidate.Core.Setup
             _directoryProvider = directoryProvider;
         }
 
-        public ConfigObject CreateConfigObject(SiteConfiguration config)
+        public ConfigObject CreateConfigObject(VisualStudioConfiguration config)
         {
             var configVisitor = new ConfigObjectCreatingNodeVisitor(_directoryProvider);
             config.Visit(configVisitor);

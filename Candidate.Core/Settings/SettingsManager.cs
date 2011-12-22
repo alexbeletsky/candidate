@@ -6,11 +6,12 @@ namespace Candidate.Core.Settings
 {
     public class SettingsManager : ISettingsManager
     {
-        private JsonSerializer _serializer = new JsonSerializer();
-        private string _settingsFolder;
+        private readonly JsonSerializer _serializer;
+        private readonly string _settingsFolder;
 
         public SettingsManager(IDirectoryProvider directoryProvider)
         {
+            _serializer = JsonSerializer.Create(new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Objects });
             _settingsFolder = directoryProvider.Settings;
             CreateSettingFolder();
         }

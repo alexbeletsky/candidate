@@ -1,38 +1,59 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Candidate.Core.Settings.Model;
+using Candidate.Core.Settings.Model.Configurations;
 
 namespace Candidate.Core.Settings
 {
     public static class SettingsManagerExtensions
     {
-        public static void SaveSiteConfiguration(this ISettingsManager settingsManager, string jobName, Action<SiteConfiguration> UpdateConfig)
+        public static void SaveConfiguration<T>(this ISettingsManager settingsManager, T configurationToSave) where T : Configuration, new()
         {
             using (var manager = new AutoSaveSettingsManager(settingsManager))
             {
-                var currentConfiguration = manager.ReadSettings<SitesConfigurationList>();
-                var siteConfiguration = currentConfiguration.Configurations.Where(c => c.JobName == jobName).SingleOrDefault();
+                var storedList = manager.ReadSettings<ConfigurationsList>();
+                var storedConfiguration = (T)storedList.Configurations.SingleOrDefault(c => c.Id == configurationToSave.Id);
 
-                if (siteConfiguration == null)
+                if (storedConfiguration == null)
                 {
-                    siteConfiguration = new SiteConfiguration { JobName = jobName };
-                    currentConfiguration.Configurations.Add(siteConfiguration);
+                    storedList.Configurations.Add(configurationToSave);
                 }
-
-                UpdateConfig(siteConfiguration);
+                //else
+                //{
+                //    storedConfiguration.Copy(configurationToSave);
+                //}
             }
         }
 
-        public static void DeleteSiteConfiguration(this ISettingsManager settingsManager, string jobName)
+        public static T ReadConfiguration<T>(this ISettingsManager settingsManager, string jobName) where T : Configuration, new()
+        {
+            return settingsManager.ReadConfiguration<T>(c => c.Id == jobName);
+        }
+
+        public static T ReadConfiguration<T>(this ISettingsManager settingsManager, Func<Configuration, bool> predicate) where T : Configuration, new()
+        {
+            var configuration = settingsManager.ReadSettings<ConfigurationsList>().Configurations.SingleOrDefault(predicate);
+
+            if (configuration == null || !(configuration is T))
+            {
+                throw new ConfigurationNotFoundException();
+            }
+
+            return (T)configuration;
+        }
+
+        public static void UpdateConfiguration<T>(this ISettingsManager settingsManager, string jobName, Action<T> UpdateConfig) where T : Configuration, new()
+        {
+            settingsManager.UpdateConfiguration(c => c.Id == jobName, UpdateConfig);
+        }
+
+        public static void UpdateConfiguration<T>(this ISettingsManager settingsManager, Func<Configuration, bool> predicate, Action<T> UpdateConfig) where T : Configuration, new()
         {
             using (var manager = new AutoSaveSettingsManager(settingsManager))
             {
-                var currentConfiguration = manager.ReadSettings<SitesConfigurationList>();
-                var jobToDelete = currentConfiguration.Configurations.Where(j => j.JobName == jobName).SingleOrDefault();
-                
-                currentConfiguration.Configurations.Remove(jobToDelete);
+                var storedConfiguration = manager.ReadConfiguration<T>(predicate);
+
+                UpdateConfig(storedConfiguration);
             }
         }
     }

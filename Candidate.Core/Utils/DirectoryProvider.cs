@@ -17,7 +17,7 @@ namespace Candidate.Core.Utils
         {
             if (siteName == null)
             {
-                throw new ArgumentNullException("Site name has not been set");
+                throw new ArgumentNullException("siteName");
             }
 
             SiteName = siteName;
