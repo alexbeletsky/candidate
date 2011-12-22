@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using Candidate.Core.Settings;
+using Candidate.Core.Settings.Exceptions;
 using Candidate.Core.Settings.Model;
 using Candidate.Core.Settings.Model.Configurations;
 using Candidate.Core.Utils;

@@ -17,26 +17,26 @@ namespace Candidate.Areas.Dashboard
 
             context.MapRoute(
                 "Dashboard_hook",
-                "Dashboard/hook/{jobName}/token/{token}",
+                "dashboard/hook/{id}/token/{token}",
                 new { controller = "Setup", action = "Hook" }
             );
 
             context.MapRoute(
                 "Dashboard_log",
-                "Dashboard/Log/{action}/{jobName}/{logId}",
+                "dashboard/log/{action}/{id}/{logId}",
                 new { controller = "Log" }
             );
 
             context.MapRoute(
                 "Dashboard_overview",
-                "Dashboard/Overview/{action}/{*jobName}",
+                "dashboard/overview/{action}/{id}",
                 new { controller = "Overview" }
             );
 
             context.MapRoute(
                 "Dashboard_default",
-                "Dashboard/{controller}/{action}/{*jobName}",
-                new { action = "Index", controller = "Dashboard", jobName = UrlParameter.Optional }
+                "dashboard/{controller}/{action}/{id}",
+                new { action = "Index", controller = "Dashboard", id = UrlParameter.Optional }
             );
         }
     }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Candidate.Core.Settings.Exceptions;
 using Candidate.Core.Settings.Model;
 using Candidate.Core.Settings.Model.Configurations;
 
@@ -18,10 +19,6 @@ namespace Candidate.Core.Settings
                 {
                     storedList.Configurations.Add(configurationToSave);
                 }
-                //else
-                //{
-                //    storedConfiguration.Copy(configurationToSave);
-                //}
             }
         }
 

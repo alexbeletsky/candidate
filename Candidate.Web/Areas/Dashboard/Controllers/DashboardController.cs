@@ -12,7 +12,7 @@ namespace Candidate.Areas.Dashboard.Controllers
     [Authorize]
     public class DashboardController : Controller
     {
-        private ISettingsManager _settingsManager;
+        private readonly ISettingsManager _settingsManager;
 
         public DashboardController(ISettingsManager settingsManager)
         {
@@ -54,7 +54,7 @@ namespace Candidate.Areas.Dashboard.Controllers
 
                     currentJobs.Add(new VisualStudioConfiguration { Id = SubstitutePunctuationWithDashes(newJob.Name), ReadableName = newJob.Name });
 
-                    return RedirectToAction("Index", new { area = "Dashboard", controller = "Dashboard" });
+                    return RedirectToAction("Index", new { controller = "Dashboard" });
                 }
             }
 
