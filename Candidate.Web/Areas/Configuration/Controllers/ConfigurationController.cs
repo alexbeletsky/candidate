@@ -1,14 +1,14 @@
 ﻿using System;
-using System.Linq;
 using System.Web.Mvc;
 using Candidate.Areas.Dashboard.Models;
 using Candidate.Core.Configurations;
 using Candidate.Core.Model;
-using Candidate.Core.Model.Configurations;
 using Candidate.Core.Settings;
 using Candidate.Infrustructure.Filters;
+using Candidate.Core.Extensions;
+using Config = Candidate.Core.Model.Configurations;
 
-namespace Candidate.Areas.Dashboard.Controllers
+namespace Candidate.Areas.Configuration.Controllers
 {
     [Authorize]
     public class ConfigurationController : Controller
@@ -22,42 +22,36 @@ namespace Candidate.Areas.Dashboard.Controllers
             _configurationsFactory = configurationsFactory;
         }
 
-        [HttpGet]
-        [AddViewNameAndHash]
-        public ActionResult Index(string id)
+        [HttpGet, AddViewNameAndHash, ActionName("for")]
+        public ActionResult Configure(string id)
         {
-            return View();
+            var viewName = _settingsManager.ReadConfiguration<Config.Configuration>(c => c.Id == id).ViewName;
+
+            return View(viewName);
         }
 
-        [HttpGet]
+        [HttpGet, ActionName("add")]
         public ActionResult Add()
         {
             return View(new NewConfigurationModel());
         }
 
-        [HttpPost]
+        [HttpPost, ActionName("add")]
         public ActionResult Add(NewConfigurationModel model)
         {
             if (ModelState.IsValid)
             {
                 var configuration = _configurationsFactory.CreateConfiguration(
                     model.SelectedType,
-                    SubstitutePunctuationWithDashes(model.Name),
+                    model.Name.SubstitutePunctuationWithDashes(),
                     model.Name);
 
                 _settingsManager.SaveConfiguration(configuration);
 
-                return RedirectToAction("Index", new { controller = "Dashboard" });
+                return RedirectToAction("index", new { area = "dashboard", controller = "dashboard" });
             }
 
             return View(model);
-        }
-
-        // TODO: ABE move to extension method
-        private string SubstitutePunctuationWithDashes(string title)
-        {
-            var titleWithoutPunctuation = new string(title.Where(c => !char.IsPunctuation(c)).ToArray());
-            return titleWithoutPunctuation.ToLower().Trim().Replace(" ", "-");
         }
 
         [HttpGet, AddViewNameAndHash]
@@ -185,26 +179,24 @@ namespace Candidate.Areas.Dashboard.Controllers
             //return Json(new { success = false });
         }
 
-        [HttpGet, AddViewNameAndHash]
+        [HttpGet, AddViewNameAndHash, ActionName("delete")]
         public ActionResult Delete(string id)
         {
-            return View(new DeleteJobModel { JobName = id });
+            var configuration = _settingsManager.ReadConfiguration<Config.Configuration>(c => c.Id == id);
+
+            return View(configuration);
         }
 
-        [HttpPost]
-        public ActionResult Delete(DeleteJobModel deleteJob)
+        [HttpPost, ActionName("delete")]
+        public ActionResult Delete(string id, string notUsedJustToOverloadDelete)
         {
-            throw new NotImplementedException();
+            if (ModelState.IsValid)
+            {
+                _settingsManager.DeleteConfiguration(id);
+                return RedirectToAction("index", new { area = "dashboard", controller = "dashboard" });
+            }
 
-            //if (ModelState.IsValid)
-            //{
-            //    _settingsManager.DeleteSiteConfiguration(deleteJob.Id);
-            //    return RedirectToAction("Index", "Dashboard");
-            //}
-
-            //return View(deleteJob);
+            return View();
         }
-
-
     }
 }

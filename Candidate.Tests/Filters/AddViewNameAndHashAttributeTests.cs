@@ -10,7 +10,6 @@ namespace Candidate.Tests.Filters
     [TestFixture]
     public class AddViewNameAndHashAttributeTests
     {
-
         [SetUp]
         public void Setup()
         {
@@ -20,7 +19,7 @@ namespace Candidate.Tests.Filters
 
             FilterContext = new ActionExecutingContext();
             FilterContext.ActionParameters = new Dictionary<string, object> { 
-                { "jobName", "myCurrentJob" }
+                { "id", "myCurrentJob" }
             };
 
             FilterContext.Controller = new Mock<ControllerBase>().Object;
@@ -47,10 +46,8 @@ namespace Candidate.Tests.Filters
             Assert.That(FilterContext.Controller.ViewBag.JobNameHash, Is.EqualTo(expected));
         }
 
-        protected AddViewNameAndHashAttribute Filter { get; set; }
-
-        protected ActionExecutingContext FilterContext { get; set; }
-
-        protected HashService HashService { get; set; }
+        private AddViewNameAndHashAttribute Filter { get; set; }
+        private ActionExecutingContext FilterContext { get; set; }
+        private HashService HashService { get; set; }
     }
 }

@@ -13,5 +13,10 @@ namespace Candidate.Core.Model.Configurations
         {
             return !string.IsNullOrEmpty(Id) && Github != null && Solution != null && Iis != null;
         }
+
+        public override string ViewName
+        {
+            get { return "ConfigureVisualStudio"; }
+        }
     }
 }

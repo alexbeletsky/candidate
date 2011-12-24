@@ -1,7 +1,7 @@
 ﻿using System;
+using Candidate.Core.Extensions;
 using Candidate.Core.Model.Configurations;
 using Candidate.Core.Utils;
-using Candidate.Core.Settings.Extensions;
 
 namespace Candidate.Core.Setup
 {

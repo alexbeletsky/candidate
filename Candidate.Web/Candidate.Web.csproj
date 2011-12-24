@@ -89,14 +89,13 @@
     <Compile Include="App_Start\NinjectMVC3.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\ElmahController.cs" />
+    <Compile Include="Areas\Configuration\ConfigurationAreaRegistration.cs" />
     <Compile Include="Areas\Dashboard\Controllers\AccountController.cs" />
-    <Compile Include="Areas\Dashboard\Controllers\BatchController.cs" />
-    <Compile Include="Areas\Dashboard\Controllers\ConfigurationController.cs" />
+    <Compile Include="Areas\Configuration\Controllers\ConfigurationController.cs" />
     <Compile Include="Areas\Dashboard\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Dashboard\Controllers\OverviewController.cs" />
-    <Compile Include="Areas\Dashboard\Controllers\SetupController.cs" />
+    <Compile Include="Areas\Dashboard\Controllers\DeploymentController.cs" />
     <Compile Include="Areas\Dashboard\Models\AccountSettingsModel.cs" />
-    <Compile Include="Areas\Dashboard\Models\DeleteJobModel.cs" />
     <Compile Include="Areas\Dashboard\Controllers\LogController.cs" />
     <Compile Include="Areas\Dashboard\DashboardAreaRegistration.cs" />
     <Compile Include="Areas\Dashboard\Models\GithubHookPayload.cs" />
@@ -200,6 +199,7 @@
     <Content Include="Views\Login\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Areas\Configuration\Models\" />
     <Folder Include="Settings\" />
   </ItemGroup>
   <ItemGroup>
@@ -218,10 +218,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Dashboard\Views\Configuration\Add.cshtml" />
+    <Content Include="Areas\Configuration\Views\Configuration\Add.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Dashboard\Views\Configuration\Index.cshtml" />
+    <Content Include="Areas\Configuration\Views\Configuration\ConfigureVisualStudio.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Dashboard\Views\Shared\_Layout.cshtml" />
@@ -230,19 +230,19 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Dashboard\Views\Configuration\Delete.cshtml" />
+    <Content Include="Areas\Configuration\Views\Configuration\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Dashboard\Views\Setup\Setup.cshtml" />
+    <Content Include="Areas\Dashboard\Views\Deployment\Setup.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Dashboard\Views\Configuration\Github.cshtml" />
+    <Content Include="Areas\Configuration\Views\Configuration\Github.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Dashboard\Views\Configuration\Iis.cshtml" />
+    <Content Include="Areas\Configuration\Views\Configuration\Iis.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Dashboard\Views\Configuration\Solution.cshtml" />
+    <Content Include="Areas\Configuration\Views\Configuration\Solution.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Dashboard\Views\Overview\Show.cshtml" />
@@ -251,7 +251,7 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Dashboard\Views\Configuration\Post.cshtml" />
+    <Content Include="Areas\Configuration\Views\Configuration\Post.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Dashboard\Views\Account\Index.cshtml" />
@@ -260,13 +260,19 @@
     <Content Include="Areas\Dashboard\Views\Shared\_Unobtrusive.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Dashboard\Views\Setup\NotConfigured.cshtml" />
+    <Content Include="Areas\Dashboard\Views\Deployment\NotConfigured.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Dashboard\Views\Overview\NoInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Dashboard\Views\Configuration\Pre.cshtml" />
+    <Content Include="Areas\Configuration\Views\Configuration\Pre.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Configuration\Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Configuration\Views\Shared\_Configure.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

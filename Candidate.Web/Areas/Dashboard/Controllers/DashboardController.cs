@@ -1,13 +1,10 @@
 ﻿using Candidate.Core.Model;
+using System.Web.Mvc;
+using Candidate.Core.Settings;
+using Candidate.Infrustructure.Authentication;
 
 namespace Candidate.Areas.Dashboard.Controllers
 {
-    using System.Linq;
-    using System.Web.Mvc;
-    using Candidate.Areas.Dashboard.Models;
-    using Candidate.Core.Settings;
-    using Candidate.Infrustructure.Authentication;
-
     [Authorize]
     public class DashboardController : Controller
     {

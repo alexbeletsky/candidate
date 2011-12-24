@@ -24,7 +24,7 @@
 //            DirectoryProviderMock = new Mock<IDirectoryProvider>();
 
 //            ConfigurationList = new ConfigurationsList() { Configurations = new List<VisualStudioConfiguration> { new VisualStudioConfiguration { Id = "testJob", Github = new Github { Branch = "master" } } } };
-//            Controller = new SetupController(SettingsManagerMock.Object, SetupFactoryMock.Object, LoggerFactoryMock.Object, DirectoryProviderMock.Object);
+//            Controller = new DeploymentController(SettingsManagerMock.Object, SetupFactoryMock.Object, LoggerFactoryMock.Object, DirectoryProviderMock.Object);
 //        }
 
 //        [Test]
@@ -57,7 +57,7 @@
 //            SetupMock.Verify(_ => _.RunForConfig(It.IsAny<ILogger>(), It.IsAny<VisualStudioConfiguration>()), Times.Never());
 //        }
 
-//        protected SetupController Controller { get; set; }
+//        protected DeploymentController Controller { get; set; }
 //        protected Mock<ISettingsManager> SettingsManagerMock { get; set; }
 //        protected Mock<ISetupFactory> SetupFactoryMock { get; set; }
 //        protected Mock<ISetup> SetupMock { get; set; }

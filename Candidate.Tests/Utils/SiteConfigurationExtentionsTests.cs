@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Bounce.Framework;
+using Candidate.Core.Extensions;
 using Candidate.Core.Model;
 using Candidate.Core.Utils;
 using NUnit.Framework;

@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Configurations\ConfigurationsFactory.cs" />
     <Compile Include="Configurations\IConfigurationsFactory.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Helpers\BindingParser.cs" />
     <Compile Include="Log\ILoggerFactory.cs" />
     <Compile Include="Log\ILogOptionsFactory.cs" />
@@ -74,7 +75,7 @@
     <Compile Include="Services\HashService.cs" />
     <Compile Include="Services\IHashService.cs" />
     <Compile Include="Settings\Exceptions\ConfigurationNotFoundException.cs" />
-    <Compile Include="Settings\Extensions\VisitorExtensions.cs" />
+    <Compile Include="Extensions\VisitorExtensions.cs" />
     <Compile Include="Settings\ISettingsManager.cs" />
     <Compile Include="Settings\SettingsManager.cs" />
     <Compile Include="Settings\SettingsManagerExtensions.cs" />
@@ -95,7 +96,7 @@
     <Compile Include="Utils\DirectoryProvider.cs" />
     <Compile Include="Utils\IDirectoryProvider.cs" />
     <Compile Include="Utils\LocalAppDataFolder.cs" />
-    <Compile Include="Utils\SiteConfigurationExtentions.cs" />
+    <Compile Include="Extensions\SiteConfigurationExtentions.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

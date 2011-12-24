@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
-using Candidate.Areas.Dashboard.Controllers;
+using Candidate.Areas.Configuration.Controllers;
 using Candidate.Areas.Dashboard.Models;
 using Candidate.Core.Configurations;
 using Candidate.Core.Model;
@@ -15,6 +15,8 @@ namespace Candidate.Tests.Controllers
     [TestFixture]
     public class ConfigurationControllerTests
     {
+        private ConfigurationsList ConfigurationsList { get; set; }
+
         [SetUp]
         public void Setup()
         {
@@ -23,7 +25,41 @@ namespace Candidate.Tests.Controllers
             SavedObject = null;
 
             SettingsManager.Setup(s => s.SaveSettings(It.IsAny<object>())).Callback<object>(o => SavedObject = o);
-            SettingsManager.Setup(s => s.ReadSettings<ConfigurationsList>()).Returns(new ConfigurationsList());
+            ConfigurationsList = new ConfigurationsList();
+            SettingsManager.Setup(s => s.ReadSettings<ConfigurationsList>()).Returns(ConfigurationsList);
+        }
+
+        [Test]
+        public void should_configure_return_view_based_on_type_case_visual_studio()
+        {
+            // arrange
+            ConfigurationsList.Configurations.Add(new VisualStudioConfiguration { Id = "visualStudio" });
+
+            // act
+            var result = Controller.Configure("visualStudio") as ViewResult;
+            Assert.That(result.ViewName, Is.EqualTo("ConfigureVisualStudio"));
+        }
+
+        [Test]
+        public void should_configure_return_view_based_on_type_case_batch()
+        {
+            // arrange
+            ConfigurationsList.Configurations.Add(new BatchConfiguration { Id = "batch" });
+
+            // act
+            var result = Controller.Configure("batch") as ViewResult;
+            Assert.That(result.ViewName, Is.EqualTo("ConfigureBatch"));
+        }
+
+        [Test]
+        public void should_configure_return_view_based_on_type_case_xcopy()
+        {
+            // arrange
+            ConfigurationsList.Configurations.Add(new XCopyConfiguration { Id = "xcopy" });
+
+            // act
+            var result = Controller.Configure("xcopy") as ViewResult;
+            Assert.That(result.ViewName, Is.EqualTo("ConfigureXCopy"));
         }
 
         [Test]
@@ -113,8 +149,37 @@ namespace Candidate.Tests.Controllers
             var result = Controller.Add(config) as RedirectToRouteResult;
 
             // assert
-            result.RouteValues["controller"].Should().Be("Dashboard");
-            result.RouteValues["action"].Should().Be("Index");
+            result.RouteValues["area"].Should().Be("dashboard");
+            result.RouteValues["controller"].Should().Be("dashboard");
+            result.RouteValues["action"].Should().Be("index");
+        }
+
+        [Test]
+        public void should_delete_return_model()
+        {
+            // arrange
+            ConfigurationsList.Configurations.Add(new VisualStudioConfiguration { Id = "test" });
+
+            // act
+            var result = Controller.Delete("test") as ViewResult;
+
+            // assert
+            var model = result.Model as Configuration;
+            Assert.That(model.Id, Is.EqualTo("test"));
+        }
+
+        [Test]
+        public void should_delete_post_remove_configuration()
+        {
+            // arrange
+            var configuration = new VisualStudioConfiguration { Id = "test" };
+            ConfigurationsList.Configurations.Add(configuration);
+
+            // act
+            Controller.Delete("test", "");
+
+            // assert
+            Assert.That(ConfigurationsList.Configurations.SingleOrDefault(_ => _.Id == "test"), Is.Null);
         }
 
 //        [Test]
@@ -254,7 +319,7 @@ namespace Candidate.Tests.Controllers
 //        }
 
 //        [Test]
-//        public void Delete_Get_Returns_Model()
+//        public void should_delete_return_model()
 //        {
 //            // arrange
 //            // act

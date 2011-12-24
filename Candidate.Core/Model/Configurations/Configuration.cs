@@ -4,5 +4,7 @@ namespace Candidate.Core.Model.Configurations
     {
         public string Id { get; set; }
         public string ReadableName { get; set; }
+
+        public abstract string ViewName { get; }
     }
 }

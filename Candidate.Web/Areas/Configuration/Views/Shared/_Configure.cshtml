@@ -1,0 +1,20 @@
+﻿@{
+    Layout = "~/Areas/Dashboard/Views/Shared/_Layout.cshtml";    
+}
+<div id="internal-nagivation">
+    <h2>
+        Build > Sites > Configure</h2>
+    <div class="right">@Html.ActionLink("Back to dashboard", "index", new { area = "dashboard", controller = "dashboard" })</div>
+    <div class="clear">
+    </div>
+</div>
+<div class="grey-container">
+    <div class="configuration">
+        @RenderBody()
+    </div>
+</div>
+<div class="dialog">
+</div>
+@section Scripts {
+    <script src="@Url.Content("~/Scripts/Controllers/controller.configure.js")" type="text/javascript"></script>
+}

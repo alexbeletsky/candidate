@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Bounce.Framework;
 using Candidate.Core.Model;
 using Candidate.Core.Model.Configurations;
 using Candidate.Core.Settings.Exceptions;
@@ -12,22 +13,22 @@ namespace Candidate.Core.Settings
         {
             using (var manager = new AutoSaveSettingsManager(settingsManager))
             {
-                var storedList = manager.ReadSettings<ConfigurationsList>();
-                var storedConfiguration = (T)storedList.Configurations.SingleOrDefault(c => c.Id == configurationToSave.Id);
+                var configurations = manager.ReadSettings<ConfigurationsList>();
+                var configuration = (T)configurations.Configurations.SingleOrDefault(c => c.Id == configurationToSave.Id);
 
-                if (storedConfiguration == null)
+                if (configuration == null)
                 {
-                    storedList.Configurations.Add(configurationToSave);
+                    configurations.Configurations.Add(configurationToSave);
                 }
             }
         }
 
-        public static T ReadConfiguration<T>(this ISettingsManager settingsManager, string jobName) where T : Configuration, new()
+        public static T ReadConfiguration<T>(this ISettingsManager settingsManager, string jobName) where T : Configuration
         {
             return settingsManager.ReadConfiguration<T>(c => c.Id == jobName);
         }
 
-        public static T ReadConfiguration<T>(this ISettingsManager settingsManager, Func<Configuration, bool> predicate) where T : Configuration, new()
+        public static T ReadConfiguration<T>(this ISettingsManager settingsManager, Func<Configuration, bool> predicate) where T : Configuration
         {
             var configuration = settingsManager.ReadSettings<ConfigurationsList>().Configurations.SingleOrDefault(predicate);
 
@@ -51,6 +52,27 @@ namespace Candidate.Core.Settings
                 var storedConfiguration = manager.ReadConfiguration<T>(predicate);
 
                 UpdateConfig(storedConfiguration);
+            }
+        }
+
+        public static void DeleteConfiguration(this ISettingsManager settingsManager, string id)
+        {
+            settingsManager.DeleteConfiguration(c => c.Id == id);
+        }
+
+        public static void DeleteConfiguration(this ISettingsManager settingsManager, Func<Configuration, bool> predicate)
+        {
+            using (var manager = new AutoSaveSettingsManager(settingsManager))
+            {
+                var configurations = manager.ReadSettings<ConfigurationsList>();
+                var configurationToDelete = configurations.Configurations.SingleOrDefault(predicate);
+
+                if (configurationToDelete == null)
+                {
+                    throw new ConfigurationNotFoundException();
+                }
+
+                configurations.Configurations.Remove(configurationToDelete);
             }
         }
     }

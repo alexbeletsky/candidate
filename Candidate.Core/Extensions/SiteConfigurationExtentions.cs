@@ -1,9 +1,8 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using Candidate.Core.Helpers;
 using Candidate.Core.Model;
 
-namespace Candidate.Core.Utils
+namespace Candidate.Core.Extensions
 {
     public static class SiteConfigurationExtentions
     {
@@ -18,10 +17,8 @@ namespace Candidate.Core.Utils
                 {
                     return string.Format("http://{0}", config.SiteName);
                 }
-                else
-                {
-                    return string.Format("http://{0}:{1}", config.SiteName, config.Port);
-                }
+                
+                return string.Format("http://{0}:{1}", config.SiteName, config.Port);
             }
 
             if (!string.IsNullOrEmpty(config.Bindings))

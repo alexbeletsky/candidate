@@ -11,7 +11,7 @@ namespace Candidate.Infrustructure.Filters
 
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            var jobName = filterContext.ActionParameters["jobName"] as string;
+            var jobName = filterContext.ActionParameters["id"] as string;
             filterContext.Controller.ViewBag.JobName = jobName;
             filterContext.Controller.ViewBag.JobNameHash = HashServices.CreateMD5Hash(jobName);
         }

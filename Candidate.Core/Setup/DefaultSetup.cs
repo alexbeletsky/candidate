@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Bounce.Framework;
+using Candidate.Core.Extensions;
 using Candidate.Core.Log;
 using Candidate.Core.Model.Configurations;
 using Candidate.Core.Utils;

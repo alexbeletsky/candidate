@@ -5,14 +5,14 @@
 
 <div id="internal-nagivation">
     <h2>Build > Sites > Setup</h2>
-    <div class="right">@Html.ActionLink("Back to dashboard", "Index", new { area = "Dashboard", controller = "Dashboard" } )</div>    
+    <div class="right">@Html.ActionLink("Back to dashboard", "Index", new { controller = "Dashboard" } )</div>    
     <div class="clear"></div>
 </div>
 
 <input id="job-name" type="hidden" value="@ViewBag.JobName" />
 <input id="setup" type="hidden" 
-    data-start-setup="@Url.Action("StartSetup", new { area = "Dashboard" , controller = "Setup", jobName = ViewBag.JobName })" 
-    data-show-log="@Url.Action("Show", new { area = "Dashboard", controller = "Log", jobName = ViewBag.JobName })" 
+    data-start-setup="@Url.Action("StartSetup", new { controller = "Deployment", jobName = ViewBag.JobName })" 
+    data-show-log="@Url.Action("Show", new { controller = "Log", jobName = ViewBag.JobName })" 
     />
 
 <div class="grey-container">

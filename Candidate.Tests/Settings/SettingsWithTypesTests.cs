@@ -214,6 +214,23 @@ namespace Candidate.Tests.Settings
             Assert.Throws<ConfigurationNotFoundException>(() => settingsManager.ReadConfiguration<BatchConfiguration>(_ => _.Id == "test 2"));
         }
 
+        [Test]
+        public void should_delete_configuration()
+        {
+            // arrange
+            var settingsManager = new SettingsManager(DirectoryProvider);
+
+            settingsManager.SaveConfiguration(new BatchConfiguration { Id = "test 1" });
+            settingsManager.SaveConfiguration(new VisualStudioConfiguration { Id = "test 2" });
+            settingsManager.SaveConfiguration(new XCopyConfiguration { Id = "test 3" });
+
+            // act
+            settingsManager.DeleteConfiguration(c => c.Id == "test 2");
+
+            // assert
+            Assert.Throws<ConfigurationNotFoundException>(() => settingsManager.ReadConfiguration<VisualStudioConfiguration>(c => c.Id == "test 2"));
+        }
+
         internal CompareObjects Comparer
         {
             get

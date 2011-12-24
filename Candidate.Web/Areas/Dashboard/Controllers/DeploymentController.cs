@@ -17,14 +17,14 @@ namespace Candidate.Areas.Dashboard.Controllers
 
     [Authorize]
     [HandleJsonError]
-    public class SetupController : Controller
+    public class DeploymentController : Controller
     {
         private ISettingsManager _settingsManager;
         private ISetupFactory _setupFactory;
         private ILoggerFactory _loggerFactory;
         private IDirectoryProvider _directoryProvider;
 
-        public SetupController(ISettingsManager settingsManager, ISetupFactory setupFactory, ILoggerFactory loggerFactory, IDirectoryProvider directoryProvider)
+        public DeploymentController(ISettingsManager settingsManager, ISetupFactory setupFactory, ILoggerFactory loggerFactory, IDirectoryProvider directoryProvider)
         {
             _settingsManager = settingsManager;
             _setupFactory = setupFactory;

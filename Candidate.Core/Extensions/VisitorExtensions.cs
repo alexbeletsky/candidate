@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Candidate.Core.Model;
 using Candidate.Core.Model.Configurations;
 
-namespace Candidate.Core.Settings.Extensions
+namespace Candidate.Core.Extensions
 {
     public static class VisitorExtensions
     {
