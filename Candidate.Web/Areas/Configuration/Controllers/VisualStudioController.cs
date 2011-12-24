@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Web;
@@ -11,65 +10,46 @@ using Config = Candidate.Core.Model.Configurations;
 
 namespace Candidate.Areas.Configuration.Controllers
 {
-    public class VisualStudioController : Controller
+    public class VisualStudioController : ConfigurationControllerBase
     {
-        private readonly ISettingsManager _settingsManager;
-
-        public VisualStudioController(ISettingsManager settingsManager)
+        public VisualStudioController(ISettingsManager settingsManager) : base(settingsManager)
         {
-            _settingsManager = settingsManager;
         }
 
         [HttpGet, AddViewNameAndHash, ActionName("github")]
         public ActionResult ConfigureGithubSection(string id)
         {
-            return View(id, "Github", c => c.Github);
+            return View<Config.VisualStudioConfiguration>(id, "Github", c => c.Github);
         }
 
         [HttpPost, AddViewNameAndHash, ActionName("github")]
         public ActionResult ConfigureGithubSection(string id, Github config)
         {
-            return Post(id, c => c.Github = config);
+            return Post<Config.VisualStudioConfiguration>(id, c => c.Github = config);
         }
 
         [HttpGet, ActionName("solution")]
         public ActionResult ConfigureSolutionSection(string id)
         {
-            return View(id, "Solution", c => c.Solution);
+            return View<Config.VisualStudioConfiguration>(id, "Solution", c => c.Solution);
         }
 
         [HttpPost, ActionName("solution")]
         public ActionResult ConfigureSolutionSection(string id, Solution config)
         {
-            return Post(id, c => c.Solution = config);
+            return Post<Config.VisualStudioConfiguration>(id, c => c.Solution = config);
         }
 
         [HttpGet, ActionName("iis")]
         public ActionResult ConfigureIisSection(string id)
         {
-            return View(id, "Iis", c => c.Iis);
+            return View<Config.VisualStudioConfiguration>(id, "Iis", c => c.Iis);
         }
 
         [HttpPost, ActionName("iis")]
         public ActionResult ConfigureIisSection(string id, Iis config)
         {
-            return Post(id, c => c.Iis = config);
-        }
-
-        private ActionResult View(string id, string viewName, Func<Config.VisualStudioConfiguration, object> property)
-        {
-            var configuration = _settingsManager.ReadConfiguration<Config.VisualStudioConfiguration>(id);
-            return View(viewName, property(configuration));
-        }
-
-        private ActionResult Post(string id, Action<Config.VisualStudioConfiguration> update)
-        {
-            if (ModelState.IsValid)
-            {
-                _settingsManager.UpdateConfiguration(id, update);
-            }
-
-            return View();
+            return Post<Config.VisualStudioConfiguration>(id, c => c.Iis = config);
         }
     }
 }

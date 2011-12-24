@@ -90,6 +90,8 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\ElmahController.cs" />
     <Compile Include="Areas\Configuration\ConfigurationAreaRegistration.cs" />
+    <Compile Include="Areas\Configuration\Controllers\BatchController.cs" />
+    <Compile Include="Areas\Configuration\Controllers\ConfigurationControllerBase.cs" />
     <Compile Include="Areas\Configuration\Controllers\VisualStudioController.cs" />
     <Compile Include="Areas\Dashboard\Controllers\AccountController.cs" />
     <Compile Include="Areas\Configuration\Controllers\ConfigurationController.cs" />
@@ -240,10 +242,10 @@
     <Content Include="Areas\Deployment\Views\Deployment\Setup.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Configuration\Views\VisualStudio\Github.cshtml" />
+    <Content Include="Areas\Configuration\Views\Shared\Github.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Configuration\Views\VisualStudio\Iis.cshtml" />
+    <Content Include="Areas\Configuration\Views\Shared\Iis.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Configuration\Views\VisualStudio\Solution.cshtml" />
@@ -255,7 +257,7 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Configuration\Views\VisualStudio\Post.cshtml" />
+    <Content Include="Areas\Configuration\Views\Shared\Post.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Dashboard\Views\Account\Index.cshtml" />
