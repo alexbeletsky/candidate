@@ -9,46 +9,47 @@ using Config = Candidate.Core.Model.Configurations;
 
 namespace Candidate.Areas.Configuration.Controllers
 {
-    public class BatchController : ConfigurationControllerBase
+    public class XCopyController : ConfigurationControllerBase
     {
-        public BatchController(ISettingsManager settingsManager) : base(settingsManager)
+        public XCopyController(ISettingsManager settingsManager) : base(settingsManager)
         {
+
         }
 
         [HttpGet, ActionName("github")]
         public ActionResult ConfigureGithibSection(string id)
         {
-            return View<Config.BatchConfiguration>(id, "Github", c => c.Github);
+            return View<Config.XCopyConfiguration>(id, "Github", c => c.Github);
         }
 
         [HttpPost, ActionName("github")]
         public ActionResult ConfigureGithibSection(string id, Github config)
         {
-            return Post<Config.BatchConfiguration>(id, c => c.Github = config);
+            return Post<Config.XCopyConfiguration>(id, c => c.Github = config);
         }
 
         [HttpGet, ActionName("iis")]
         public ActionResult ConfigureIisSection(string id)
         {
-            return View<Config.BatchConfiguration>(id, "Iis", c => c.Iis);
+            return View<Config.XCopyConfiguration>(id, "Iis", c => c.Iis);
         }
 
         [HttpPost, ActionName("iis")]
         public ActionResult ConfigureIisSection(string id, Iis config)
         {
-            return Post<Config.BatchConfiguration>(id, c => c.Iis = config);
+            return Post<Config.XCopyConfiguration>(id, c => c.Iis = config);
         }
 
-        [HttpGet, ActionName("batch")]
+        [HttpGet, ActionName("xcopy")]
         public ActionResult ConfigurePostSection(string id)
         {
-            return View<Config.BatchConfiguration>(id, "Post", c => c.Post);
+            return View<Config.XCopyConfiguration>(id, "Post", c => c.XCopy);
         }
 
-        [HttpPost, ActionName("batch")]
+        [HttpPost, ActionName("xcopy")]
         public ActionResult ConfigurePostSection(string id, Post config)
         {
-            return Post<Config.BatchConfiguration>(id, c => c.Post = config);
+            return Post<Config.XCopyConfiguration>(id, c => c.XCopy = config);
         }
     }
 }

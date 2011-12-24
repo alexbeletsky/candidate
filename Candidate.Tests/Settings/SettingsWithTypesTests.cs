@@ -37,7 +37,7 @@ namespace Candidate.Tests.Settings
                                                 Id = jobName,
                                                 Github = new Github {Branch = "master", Url = "git@github.com"},
                                                 Iis = new Iis {SiteName = jobName, Port = 2222},
-                                                XCopy = new XCopy()
+                                                XCopy = new Post()
                                             };
 
             settingsManager.SaveConfiguration(expectedConfiguration);
@@ -60,7 +60,7 @@ namespace Candidate.Tests.Settings
                                                 Id = jobName,
                                                 Github = new Github {Branch = "master", Url = "git@github.com"},
                                                 Iis = new Iis {SiteName = jobName, Port = 2222},
-                                                XCopy = new XCopy()
+                                                XCopy = new Post()
                                             };
 
             settingsManager.SaveConfiguration(expectedConfiguration);
