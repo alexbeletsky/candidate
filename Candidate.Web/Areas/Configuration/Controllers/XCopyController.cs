@@ -39,17 +39,5 @@ namespace Candidate.Areas.Configuration.Controllers
         {
             return Post<Config.XCopyConfiguration>(id, c => c.Iis = config);
         }
-
-        [HttpGet, ActionName("xcopy")]
-        public ActionResult ConfigurePostSection(string id)
-        {
-            return View<Config.XCopyConfiguration>(id, "Post", c => c.XCopy);
-        }
-
-        [HttpPost, ActionName("xcopy")]
-        public ActionResult ConfigurePostSection(string id, Post config)
-        {
-            return Post<Config.XCopyConfiguration>(id, c => c.XCopy = config);
-        }
     }
 }

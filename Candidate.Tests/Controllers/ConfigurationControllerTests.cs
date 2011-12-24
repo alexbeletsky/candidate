@@ -191,7 +191,7 @@ namespace Candidate.Tests.Controllers
 
             // assert
             Assert.That(ConfigurationsList.Configurations.SingleOrDefault(_ => _.Id == "test"), Is.Null);
-        }
+        } 
 
         private ConfigurationController Controller { get; set; }
         private Mock<ISettingsManager> SettingsManager { get; set; }
