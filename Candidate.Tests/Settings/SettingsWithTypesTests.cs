@@ -131,7 +131,6 @@ namespace Candidate.Tests.Settings
                                                 Github = new Github { Branch = "master" },
                                                 Id = jobName,
                                                 Iis = new Iis { SiteName = jobName, Port = 2222 },
-                                                Post = new Post { Batch = "run.bat" }
                                             };
 
             settingsManager.SaveConfiguration(expectedConfiguration);
@@ -154,17 +153,16 @@ namespace Candidate.Tests.Settings
                 Github = new Github { Branch = "master" },
                 Id = jobName,
                 Iis = new Iis { SiteName = jobName, Port = 2222 },
-                Post = new Post { Batch = "run.bat" }
             };
 
             settingsManager.SaveConfiguration(expectedConfiguration);
 
             // act
-            settingsManager.UpdateConfiguration<VisualStudioConfiguration>(jobName, c => c.Post.Batch = "exec.bat");
+            settingsManager.UpdateConfiguration<VisualStudioConfiguration>(jobName, c => c.Iis.Port= 3333);
 
             // assert
             var actualConfiguration = settingsManager.ReadConfiguration<VisualStudioConfiguration>(jobName);
-            Assert.That(actualConfiguration.Post.Batch, Is.EqualTo("exec.bat"));
+            Assert.That(actualConfiguration.Iis.Port, Is.EqualTo(3333));
         }
 
         [Test]

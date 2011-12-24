@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Web.Mvc;
 using Candidate.Areas.Dashboard.Models;
 using Candidate.Core.Configurations;
@@ -22,12 +23,12 @@ namespace Candidate.Areas.Configuration.Controllers
             _configurationsFactory = configurationsFactory;
         }
 
-        [HttpGet, AddViewNameAndHash, ActionName("for")]
+        [HttpGet, AddViewNameAndHash, ActionName("configure")]
         public ActionResult Configure(string id)
         {
-            var viewName = _settingsManager.ReadConfiguration<Config.Configuration>(c => c.Id == id).ViewName;
+            var configuration = _settingsManager.ReadConfiguration<Config.Configuration>(c => c.Id == id); ;
 
-            return View(viewName);
+            return View(configuration.ViewName, configuration);
         }
 
         [HttpGet, ActionName("add")]
@@ -54,15 +55,31 @@ namespace Candidate.Areas.Configuration.Controllers
             return View(model);
         }
 
+        [HttpGet, AddViewNameAndHash, ActionName("delete")]
+        public ActionResult Delete(string id)
+        {
+            var configuration = _settingsManager.ReadConfiguration<Config.Configuration>(c => c.Id == id);
+
+            return View(configuration);
+        }
+
+        [HttpPost, ActionName("delete")]
+        public ActionResult Delete(string id, string notUsedJustToOverloadDelete)
+        {
+            if (ModelState.IsValid)
+            {
+                _settingsManager.DeleteConfiguration(id);
+                return RedirectToAction("index", new { area = "dashboard", controller = "dashboard" });
+            }
+
+            return View();
+        }
+
+
         [HttpGet, AddViewNameAndHash]
-        public ActionResult Pre(string id)
+        public ActionResult Pre(string id, Config.ConfigurationType type)
         {
             throw new NotImplementedException();
-
-            //var currentConfiguration = _settingsManager.ReadSettings<ConfigurationsList>();
-            //var siteConfiguration = currentConfiguration.Configurations.Where(c => c.Id == id).SingleOrDefault();
-
-            //return View(siteConfiguration.Pre);
         }
 
         [HttpPost]
@@ -177,26 +194,6 @@ namespace Candidate.Areas.Configuration.Controllers
             //}
 
             //return Json(new { success = false });
-        }
-
-        [HttpGet, AddViewNameAndHash, ActionName("delete")]
-        public ActionResult Delete(string id)
-        {
-            var configuration = _settingsManager.ReadConfiguration<Config.Configuration>(c => c.Id == id);
-
-            return View(configuration);
-        }
-
-        [HttpPost, ActionName("delete")]
-        public ActionResult Delete(string id, string notUsedJustToOverloadDelete)
-        {
-            if (ModelState.IsValid)
-            {
-                _settingsManager.DeleteConfiguration(id);
-                return RedirectToAction("index", new { area = "dashboard", controller = "dashboard" });
-            }
-
-            return View();
         }
     }
 }

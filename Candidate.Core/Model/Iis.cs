@@ -5,7 +5,6 @@ namespace Candidate.Core.Model
 {
     public class Iis
     {
-
         public Iis()
         {
             Port = 80;

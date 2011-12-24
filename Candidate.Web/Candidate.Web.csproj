@@ -90,6 +90,7 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\ElmahController.cs" />
     <Compile Include="Areas\Configuration\ConfigurationAreaRegistration.cs" />
+    <Compile Include="Areas\Configuration\Controllers\VisualStudioController.cs" />
     <Compile Include="Areas\Dashboard\Controllers\AccountController.cs" />
     <Compile Include="Areas\Configuration\Controllers\ConfigurationController.cs" />
     <Compile Include="Areas\Dashboard\Controllers\DashboardController.cs" />
@@ -239,13 +240,13 @@
     <Content Include="Areas\Deployment\Views\Deployment\Setup.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Configuration\Views\Configuration\Github.cshtml" />
+    <Content Include="Areas\Configuration\Views\VisualStudio\Github.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Configuration\Views\Configuration\Iis.cshtml" />
+    <Content Include="Areas\Configuration\Views\VisualStudio\Iis.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Configuration\Views\Configuration\Solution.cshtml" />
+    <Content Include="Areas\Configuration\Views\VisualStudio\Solution.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Dashboard\Views\Overview\Show.cshtml" />
@@ -254,7 +255,7 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Configuration\Views\Configuration\Post.cshtml" />
+    <Content Include="Areas\Configuration\Views\VisualStudio\Post.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Dashboard\Views\Account\Index.cshtml" />
@@ -269,7 +270,7 @@
     <Content Include="Areas\Dashboard\Views\Overview\NoInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Configuration\Views\Configuration\Pre.cshtml" />
+    <Content Include="Areas\Configuration\Views\VisualStudio\Pre.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Configuration\Views\Web.config" />
@@ -284,7 +285,7 @@
     <Content Include="Areas\Configuration\Views\Configuration\ConfigureBatch.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Configuration\Views\Configuration\ConfigureForXCopy.cshtml" />
+    <Content Include="Areas\Configuration\Views\Configuration\ConfigureXCopy.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

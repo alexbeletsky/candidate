@@ -63,6 +63,17 @@ namespace Candidate.Tests.Controllers
         }
 
         [Test]
+        public void should_configure_return_model()
+        {
+            // arrange
+            ConfigurationsList.Configurations.Add(new XCopyConfiguration { Id = "xcopy" });
+
+            // act
+            var result = Controller.Configure("xcopy") as ViewResult;
+            Assert.That(result.Model, Is.TypeOf<XCopyConfiguration>());
+        }
+
+        [Test]
         public void should_add_action_return_view()
         {
             // act

@@ -16,8 +16,6 @@ namespace Candidate.Core.Extensions
             self.Github.Visit(visitor);
             self.Solution.Visit(visitor);
             self.Iis.Visit(visitor);
-            self.Pre.Visit(visitor);
-            self.Post.Visit(visitor);
         }
 
         static void Visit(this Pre self, ConfigurationNodeVisitor visitor)

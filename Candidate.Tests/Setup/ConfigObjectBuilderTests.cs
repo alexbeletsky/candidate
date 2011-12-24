@@ -346,35 +346,35 @@ namespace Candidate.Tests.Setup
             configObject.DeployWebsite.Bindings.Value.Skip(1).Take(1).First().Information.Value.Should().Be("127.0.0.1:80:ftp.site.com");
         }
 
-        [Test]
-        public void should_create_simple_run_task_if_post_batch_is_set()
-        {
-            // arrange
-            var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
-            var config = new VisualStudioConfiguration { Github = new Github { Url = "git@git.com" }, Post = new Post { Batch = "run.bat" } };
+        //[Test]
+        //public void should_create_simple_run_task_if_post_batch_is_set()
+        //{
+        //    // arrange
+        //    var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
+        //    var config = new VisualStudioConfiguration { Github = new Github { Url = "git@git.com" }, Post = new Post { Batch = "run.bat" } };
 
-            // act
-            var configObject = configObjectBuilder.CreateConfigObject(config);
+        //    // act
+        //    var configObject = configObjectBuilder.CreateConfigObject(config);
 
-            // assert
-            Assert.That(configObject.PostBuildBatch.Exe.Value, Is.EqualTo("run.bat"));
-            Assert.That(configObject.PostBuildBatch.WorkingDirectory.Value, Is.EqualTo(DirectoryProvider.Sources));
-        }
+        //    // assert
+        //    Assert.That(configObject.PostBuildBatch.Exe.Value, Is.EqualTo("run.bat"));
+        //    Assert.That(configObject.PostBuildBatch.WorkingDirectory.Value, Is.EqualTo(DirectoryProvider.Sources));
+        //}
 
 
-        [Test]
-        public void should_create_simple_run_task_if_pre_batch_is_set()
-        {
-            // arrange
-            var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
-            var config = new VisualStudioConfiguration { Github = new Github { Url = "git@git.com" }, Pre = new Pre { Batch = "run.bat" } };
+        //[Test]
+        //public void should_create_simple_run_task_if_pre_batch_is_set()
+        //{
+        //    // arrange
+        //    var configObjectBuilder = new ConfigObjectBuilder(DirectoryProvider);
+        //    var config = new VisualStudioConfiguration { Github = new Github { Url = "git@git.com" }, Pre = new Pre { Batch = "run.bat" } };
             
-            // act
-            var configObject = configObjectBuilder.CreateConfigObject(config);
+        //    // act
+        //    var configObject = configObjectBuilder.CreateConfigObject(config);
 
-            // assert
-            Assert.That(configObject.PreBuildBatch.Exe.Value, Is.EqualTo("run.bat"));
-            Assert.That(configObject.PreBuildBatch.WorkingDirectory.Value, Is.EqualTo(DirectoryProvider.Sources));
-        }
+        //    // assert
+        //    Assert.That(configObject.PreBuildBatch.Exe.Value, Is.EqualTo("run.bat"));
+        //    Assert.That(configObject.PreBuildBatch.WorkingDirectory.Value, Is.EqualTo(DirectoryProvider.Sources));
+        //}
     }
 }

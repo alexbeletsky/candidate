@@ -287,7 +287,7 @@ span.success
 
 .configuration-line
 {
-    margin: 0 60px;        
+    text-align: center;
 }
 
 .configuration-box 
@@ -315,8 +315,7 @@ span.success
     -moz-box-shadow: 0px 0px 10px 1px #a3a3a3;
     box-shadow: 0px 0px 10wpx 1px #a3a3a3;
     
-    margin-right: 16px;
-    
+    margin-right: 16px;   
     padding: 6px 0px;
     text-align: center;
 
@@ -356,8 +355,10 @@ span.success
 
 .dialog legend 
 {
+    line-height: 56px;
     font-size:large;
     font-weight: bold;
+    display: block;
 }
 
 .dialog label

@@ -84,6 +84,7 @@
     <Compile Include="Controllers\DashboardControllerTests.cs" />
     <Compile Include="Controllers\LoginControllerTests.cs" />
     <Compile Include="Controllers\SetupControllerTests.cs" />
+    <Compile Include="Controllers\VisualStudioControllerTests.cs" />
     <Compile Include="Filters\AddViewNameAndHashAttributeTests.cs" />
     <Compile Include="Helpers\BindingParserTests.cs" />
     <Compile Include="Log\LoggerFactoryTests.cs" />
