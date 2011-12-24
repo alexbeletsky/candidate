@@ -94,13 +94,14 @@
     <Compile Include="Areas\Configuration\Controllers\ConfigurationController.cs" />
     <Compile Include="Areas\Dashboard\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Dashboard\Controllers\OverviewController.cs" />
-    <Compile Include="Areas\Dashboard\Controllers\DeploymentController.cs" />
+    <Compile Include="Areas\Deployment\Controllers\DeploymentController.cs" />
     <Compile Include="Areas\Dashboard\Models\AccountSettingsModel.cs" />
     <Compile Include="Areas\Dashboard\Controllers\LogController.cs" />
     <Compile Include="Areas\Dashboard\DashboardAreaRegistration.cs" />
     <Compile Include="Areas\Dashboard\Models\GithubHookPayload.cs" />
     <Compile Include="Areas\Dashboard\Models\NewConfigurationModel.cs" />
     <Compile Include="Areas\Dashboard\Models\OverviewModel.cs" />
+    <Compile Include="Areas\Deployment\DeploymentAreaRegistration.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -200,6 +201,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Configuration\Models\" />
+    <Folder Include="Areas\Deployment\Models\" />
+    <Folder Include="Areas\Deployment\Views\Shared\" />
     <Folder Include="Settings\" />
   </ItemGroup>
   <ItemGroup>
@@ -233,7 +236,7 @@
     <Content Include="Areas\Configuration\Views\Configuration\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Dashboard\Views\Deployment\Setup.cshtml" />
+    <Content Include="Areas\Deployment\Views\Deployment\Setup.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Configuration\Views\Configuration\Github.cshtml" />
@@ -260,7 +263,7 @@
     <Content Include="Areas\Dashboard\Views\Shared\_Unobtrusive.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Dashboard\Views\Deployment\NotConfigured.cshtml" />
+    <Content Include="Areas\Deployment\Views\Deployment\NotConfigured.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Dashboard\Views\Overview\NoInfo.cshtml" />
@@ -273,6 +276,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Configuration\Views\Shared\_Configure.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Deployment\Views\Web.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

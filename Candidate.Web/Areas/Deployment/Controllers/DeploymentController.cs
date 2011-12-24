@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Linq;
 using System.Web.Mvc;
-using Candidate.Areas.Dashboard.Models;
 using Candidate.Core.Log;
 using Candidate.Core.Model;
 using Candidate.Core.Model.Configurations;
@@ -10,11 +8,9 @@ using Candidate.Core.Setup;
 using Candidate.Core.Utils;
 using Candidate.Infrustructure.Error;
 using Candidate.Infrustructure.Filters;
-using Newtonsoft.Json;
 
-namespace Candidate.Areas.Dashboard.Controllers
+namespace Candidate.Areas.Deployment.Controllers
 {
-
     [Authorize]
     [HandleJsonError]
     public class DeploymentController : Controller
