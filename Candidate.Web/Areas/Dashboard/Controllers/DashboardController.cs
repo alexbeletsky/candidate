@@ -1,4 +1,4 @@
-﻿using Candidate.Core.Settings.Model.Configurations;
+﻿using Candidate.Core.Model;
 
 namespace Candidate.Areas.Dashboard.Controllers
 {
@@ -6,7 +6,6 @@ namespace Candidate.Areas.Dashboard.Controllers
     using System.Web.Mvc;
     using Candidate.Areas.Dashboard.Models;
     using Candidate.Core.Settings;
-    using Candidate.Core.Settings.Model;
     using Candidate.Infrustructure.Authentication;
 
     [Authorize]
@@ -35,37 +34,5 @@ namespace Candidate.Areas.Dashboard.Controllers
 
             return View(currentSettings.Configurations);
         }
-
-        [HttpGet]
-        public ActionResult Add()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult Add(NewJobModel newJob)
-        {
-            if (ModelState.IsValid)
-            {
-                using (var settingsManager = new AutoSaveSettingsManager(_settingsManager))
-                {
-                    var currentSettings = settingsManager.ReadSettings<ConfigurationsList>();
-                    var currentJobs = currentSettings.Configurations;
-
-                    currentJobs.Add(new VisualStudioConfiguration { Id = SubstitutePunctuationWithDashes(newJob.Name), ReadableName = newJob.Name });
-
-                    return RedirectToAction("Index", new { controller = "Dashboard" });
-                }
-            }
-
-            return View(newJob);
-        }
-
-        private string SubstitutePunctuationWithDashes(string title)
-        {
-            var titleWithoutPunctuation = new string(title.Where(c => !char.IsPunctuation(c)).ToArray());
-            return titleWithoutPunctuation.ToLower().Trim().Replace(" ", "-");
-        }
-
     }
 }

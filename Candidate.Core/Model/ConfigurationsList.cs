@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using Candidate.Core.Settings.Model.Configurations;
+using System.Collections.Generic;
+using Candidate.Core.Model.Configurations;
 
-namespace Candidate.Core.Settings.Model
+namespace Candidate.Core.Model
 {
     public class ConfigurationsList
     {

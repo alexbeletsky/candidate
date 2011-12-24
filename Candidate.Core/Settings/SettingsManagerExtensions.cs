@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Linq;
+using Candidate.Core.Model;
+using Candidate.Core.Model.Configurations;
 using Candidate.Core.Settings.Exceptions;
-using Candidate.Core.Settings.Model;
-using Candidate.Core.Settings.Model.Configurations;
 
 namespace Candidate.Core.Settings
 {
     public static class SettingsManagerExtensions
     {
-        public static void SaveConfiguration<T>(this ISettingsManager settingsManager, T configurationToSave) where T : Configuration, new()
+        public static void SaveConfiguration<T>(this ISettingsManager settingsManager, T configurationToSave) where T : Configuration
         {
             using (var manager = new AutoSaveSettingsManager(settingsManager))
             {

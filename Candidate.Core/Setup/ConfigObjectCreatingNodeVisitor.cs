@@ -5,8 +5,8 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using Bounce.Framework;
 using Candidate.Core.Helpers;
-using Candidate.Core.Settings.Model;
-using Candidate.Core.Settings.Model.Configurations;
+using Candidate.Core.Model;
+using Candidate.Core.Model.Configurations;
 using Candidate.Core.Utils;
 
 namespace Candidate.Core.Setup

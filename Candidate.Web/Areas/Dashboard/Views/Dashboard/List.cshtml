@@ -1,4 +1,4 @@
-﻿@model IList<Candidate.Core.Settings.Model.Configurations.Configuration>
+﻿@model IList<Candidate.Core.Model.Configurations.Configuration>
 @{
     ViewBag.Title = "List";
 }
@@ -13,11 +13,12 @@ else
     {
         <div class="job clearfix">
             <span class="job-name">@Html.ActionLink(@job.ReadableName, "Show", new { controller = "Overview", jobName = @job.Id })</span>
+            
             <span class="job-status"></span>
             <div id="buttons" class="right cleanfix">
-                <button type="button" class="minimal" data-target="@Url.Action("Index", "Configuration", new { jobName = @job.Id })">Configure</button>
-                <button type="button" class="minimal" data-target="@Url.Action("Setup", "Setup", new { jobName = @job.Id })">Deploy</button>
-                <button type="button" class="minimal" data-target="@Url.Action("Delete", "Configuration", new { jobName = @job.Id })">Delete</button>
+                <button type="button" class="minimal" data-target="@Url.Action("Index", "Configuration", new { id = @job.Id })">Configure</button>
+                <button type="button" class="minimal" data-target="@Url.Action("Setup", "Setup", new { id = @job.Id })">Deploy</button>
+                <button type="button" class="minimal" data-target="@Url.Action("Delete", "Configuration", new { id = @job.Id })">Delete</button>
             </div>          
         </div>
          

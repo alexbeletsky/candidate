@@ -1,8 +1,8 @@
 ﻿using System.IO;
 using Bounce.Framework;
 using Candidate.Core.Log;
-using Candidate.Core.Settings.Model;
-using Candidate.Core.Settings.Model.Configurations;
+using Candidate.Core.Model;
+using Candidate.Core.Model.Configurations;
 using Candidate.Core.Setup;
 using Candidate.Core.Utils;
 using ICSharpCode.SharpZipLib.Zip;

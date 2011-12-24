@@ -1,8 +1,8 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using Candidate.Core.Settings.Model;
-using Candidate.Core.Settings.Model.Configurations;
+using Candidate.Core.Model;
+using Candidate.Core.Model.Configurations;
 using Candidate.Core.Setup;
 using Candidate.Core.Utils;
 using ICSharpCode.SharpZipLib.Zip;

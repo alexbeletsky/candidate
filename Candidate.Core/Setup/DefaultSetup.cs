@@ -2,8 +2,7 @@
 using System.Threading.Tasks;
 using Bounce.Framework;
 using Candidate.Core.Log;
-using Candidate.Core.Settings.Model;
-using Candidate.Core.Settings.Model.Configurations;
+using Candidate.Core.Model.Configurations;
 using Candidate.Core.Utils;
 
 namespace Candidate.Core.Setup

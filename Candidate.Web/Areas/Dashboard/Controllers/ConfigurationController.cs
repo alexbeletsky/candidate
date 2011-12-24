@@ -1,50 +1,84 @@
 ﻿using System;
+using System.Linq;
+using System.Web.Mvc;
+using Candidate.Areas.Dashboard.Models;
+using Candidate.Core.Configurations;
+using Candidate.Core.Model;
+using Candidate.Core.Model.Configurations;
+using Candidate.Core.Settings;
+using Candidate.Infrustructure.Filters;
 
 namespace Candidate.Areas.Dashboard.Controllers
 {
-    using System.Linq;
-    using System.Web.Mvc;
-    using Candidate.Areas.Dashboard.Models;
-    using Candidate.Core.Settings;
-    using Candidate.Core.Settings.Model;
-    using Candidate.Infrustructure.Filters;
-
     [Authorize]
     public class ConfigurationController : Controller
     {
-        private ISettingsManager _settingsManager;
+        private readonly ISettingsManager _settingsManager;
+        private readonly IConfigurationsFactory _configurationsFactory;
 
-        public ConfigurationController(ISettingsManager settingsManager)
+        public ConfigurationController(ISettingsManager settingsManager, IConfigurationsFactory configurationsFactory)
         {
             _settingsManager = settingsManager;
+            _configurationsFactory = configurationsFactory;
         }
 
         [HttpGet]
         [AddViewNameAndHash]
-        public ActionResult Index(string jobName)
+        public ActionResult Index(string id)
         {
             return View();
         }
 
+        [HttpGet]
+        public ActionResult Add()
+        {
+            return View(new NewConfigurationModel());
+        }
+
+        [HttpPost]
+        public ActionResult Add(NewConfigurationModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var configuration = _configurationsFactory.CreateConfiguration(
+                    model.SelectedType,
+                    SubstitutePunctuationWithDashes(model.Name),
+                    model.Name);
+
+                _settingsManager.SaveConfiguration(configuration);
+
+                return RedirectToAction("Index", new { controller = "Dashboard" });
+            }
+
+            return View(model);
+        }
+
+        // TODO: ABE move to extension method
+        private string SubstitutePunctuationWithDashes(string title)
+        {
+            var titleWithoutPunctuation = new string(title.Where(c => !char.IsPunctuation(c)).ToArray());
+            return titleWithoutPunctuation.ToLower().Trim().Replace(" ", "-");
+        }
+
         [HttpGet, AddViewNameAndHash]
-        public ActionResult Pre(string jobName)
+        public ActionResult Pre(string id)
         {
             throw new NotImplementedException();
 
             //var currentConfiguration = _settingsManager.ReadSettings<ConfigurationsList>();
-            //var siteConfiguration = currentConfiguration.Configurations.Where(c => c.Id == jobName).SingleOrDefault();
+            //var siteConfiguration = currentConfiguration.Configurations.Where(c => c.Id == id).SingleOrDefault();
 
             //return View(siteConfiguration.Pre);
         }
 
         [HttpPost]
-        public ActionResult Pre(string jobName, Pre config)
+        public ActionResult Pre(string id, Pre config)
         {
             throw new NotImplementedException();
 
             //if (ModelState.IsValid)
             //{
-            //    _settingsManager.SaveSiteConfiguration(jobName, c => c.Pre = config);
+            //    _settingsManager.SaveSiteConfiguration(id, c => c.Pre = config);
             //    return Json(new { success = true });
             //}
 
@@ -52,24 +86,24 @@ namespace Candidate.Areas.Dashboard.Controllers
         }
 
         [HttpGet, AddViewNameAndHash]
-        public ActionResult Github(string jobName)
+        public ActionResult Github(string id)
         {
             throw new NotImplementedException();
 
             //var currentConfiguration = _settingsManager.ReadSettings<ConfigurationsList>();
-            //var siteConfiguration = currentConfiguration.Configurations.Where(c => c.Id == jobName).SingleOrDefault();
+            //var siteConfiguration = currentConfiguration.Configurations.Where(c => c.Id == id).SingleOrDefault();
 
             //return View(siteConfiguration.Github);
         }
 
         [HttpPost]
-        public ActionResult Github(string jobName, Github config)
+        public ActionResult Github(string id, Github config)
         {
             throw new NotImplementedException();
 
             //if (ModelState.IsValid)
             //{
-            //    _settingsManager.SaveSiteConfiguration(jobName, c => c.Github = config);
+            //    _settingsManager.SaveSiteConfiguration(id, c => c.Github = config);
             //    return Json(new { success = true });
             //}
 
@@ -77,24 +111,24 @@ namespace Candidate.Areas.Dashboard.Controllers
         }
 
         [HttpGet, AddViewNameAndHash]
-        public ActionResult Iis(string jobName)
+        public ActionResult Iis(string id)
         {
             throw new NotImplementedException();
 
             //var currentConfiguration = _settingsManager.ReadSettings<ConfigurationsList>();
-            //var siteConfiguration = currentConfiguration.Configurations.Where(c => c.Id == jobName).SingleOrDefault();
+            //var siteConfiguration = currentConfiguration.Configurations.Where(c => c.Id == id).SingleOrDefault();
 
             //return View(siteConfiguration.Iis ?? new Iis());
         }
 
         [HttpPost]
-        public ActionResult Iis(string jobName, Iis config)
+        public ActionResult Iis(string id, Iis config)
         {
             throw new NotImplementedException();
 
             //if (ModelState.IsValid)
             //{
-            //    _settingsManager.SaveSiteConfiguration(jobName, c => c.Iis = config);
+            //    _settingsManager.SaveSiteConfiguration(id, c => c.Iis = config);
             //    return Json(new { success = true });
             //}
 
@@ -102,24 +136,24 @@ namespace Candidate.Areas.Dashboard.Controllers
         }
 
         [HttpGet, AddViewNameAndHash]
-        public ActionResult Solution(string jobName)
+        public ActionResult Solution(string id)
         {
             throw new NotImplementedException();
 
             //var currentConfiguration = _settingsManager.ReadSettings<ConfigurationsList>();
-            //var siteConfiguration = currentConfiguration.Configurations.Where(c => c.Id == jobName).SingleOrDefault();
+            //var siteConfiguration = currentConfiguration.Configurations.Where(c => c.Id == id).SingleOrDefault();
 
             //return View(siteConfiguration.Solution ?? new Solution());
         }
 
         [HttpPost]
-        public ActionResult Solution(string jobName, Solution config)
+        public ActionResult Solution(string id, Solution config)
         {
             throw new NotImplementedException();
 
             //if (ModelState.IsValid)
             //{
-            //    _settingsManager.SaveSiteConfiguration(jobName, c => c.Solution = config);
+            //    _settingsManager.SaveSiteConfiguration(id, c => c.Solution = config);
             //    return Json(new { success = true });
             //}
 
@@ -127,24 +161,24 @@ namespace Candidate.Areas.Dashboard.Controllers
         }
 
         [HttpGet, AddViewNameAndHash]
-        public ActionResult Post(string jobName)
+        public ActionResult Post(string id)
         {
             throw new NotImplementedException();
 
             //var currentConfiguration = _settingsManager.ReadSettings<ConfigurationsList>();
-            //var siteConfiguration = currentConfiguration.Configurations.Where(c => c.Id == jobName).SingleOrDefault();
+            //var siteConfiguration = currentConfiguration.Configurations.Where(c => c.Id == id).SingleOrDefault();
 
             //return View(siteConfiguration.Post);
         }
 
         [HttpPost]
-        public ActionResult Post(string jobName, Post config)
+        public ActionResult Post(string id, Post config)
         {
             throw new NotImplementedException();
 
             //if (ModelState.IsValid)
             //{
-            //    _settingsManager.SaveSiteConfiguration(jobName, c => c.Post = config);
+            //    _settingsManager.SaveSiteConfiguration(id, c => c.Post = config);
             //    return Json(new { success = true });
             //}
 
@@ -152,9 +186,9 @@ namespace Candidate.Areas.Dashboard.Controllers
         }
 
         [HttpGet, AddViewNameAndHash]
-        public ActionResult Delete(string jobName)
+        public ActionResult Delete(string id)
         {
-            return View(new DeleteJobModel { JobName = jobName });
+            return View(new DeleteJobModel { JobName = id });
         }
 
         [HttpPost]

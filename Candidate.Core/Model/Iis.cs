@@ -1,8 +1,7 @@
-﻿using System.ComponentModel;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using Candidate.Core.Settings.Validation;
 
-namespace Candidate.Core.Settings.Model
+namespace Candidate.Core.Model
 {
     public class Iis
     {

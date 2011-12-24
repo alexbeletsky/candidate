@@ -1,5 +1,5 @@
-﻿
-namespace Candidate.Core.Settings.Model.Configurations
+
+namespace Candidate.Core.Model.Configurations
 {
     public class VisualStudioConfiguration : Configuration
     {

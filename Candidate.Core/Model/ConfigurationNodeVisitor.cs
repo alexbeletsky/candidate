@@ -1,6 +1,6 @@
-﻿using Candidate.Core.Settings.Model.Configurations;
+using Candidate.Core.Model.Configurations;
 
-namespace Candidate.Core.Settings.Model
+namespace Candidate.Core.Model
 {
     public abstract class ConfigurationNodeVisitor
     {

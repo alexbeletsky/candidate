@@ -1,6 +1,5 @@
 ﻿using System;
-using Candidate.Core.Settings.Model;
-using Candidate.Core.Settings.Model.Configurations;
+using Candidate.Core.Model.Configurations;
 using Candidate.Core.Utils;
 using Candidate.Core.Settings.Extensions;
 

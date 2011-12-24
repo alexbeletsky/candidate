@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Candidate.Core.Helpers;
-using Candidate.Core.Settings.Model;
+using Candidate.Core.Model;
 
 namespace Candidate.Core.Utils
 {

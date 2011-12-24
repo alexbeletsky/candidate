@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using Bounce.Framework;
 using Candidate.Core.Log;
-using Candidate.Core.Settings.Model;
-using Candidate.Core.Settings.Model.Configurations;
+using Candidate.Core.Model.Configurations;
 using Candidate.Core.Setup;
 using Moq;
 using NUnit.Framework;

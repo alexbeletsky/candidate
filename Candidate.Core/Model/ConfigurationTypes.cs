@@ -1,4 +1,4 @@
-namespace Candidate.Core.Settings.Model
+namespace Candidate.Core.Model
 {
     public enum ConfigurationTypes
     {

@@ -2,9 +2,9 @@
 using System.Web.Mvc;
 using Candidate.Areas.Dashboard.Controllers;
 using Candidate.Areas.Dashboard.Models;
+using Candidate.Core.Model;
+using Candidate.Core.Model.Configurations;
 using Candidate.Core.Settings;
-using Candidate.Core.Settings.Model;
-using Candidate.Core.Settings.Model.Configurations;
 using Candidate.Infrustructure.Authentication;
 using Moq;
 using NUnit.Framework;
@@ -45,60 +45,6 @@ namespace Candidate.Tests.Controllers
             // assert
             var model = result.Model as IList<Configuration>;
             model.Should().Not.Be.Null();
-        }
-
-        [Test]
-        public void Add_Get_ReturnsView()
-        {
-            // arrange 
-            var settingsManager = new Mock<ISettingsManager>();
-            var controller = new DashboardController(settingsManager.Object);
-
-            // act
-            var result = controller.Add() as ViewResult;
-
-            // assert
-            result.Should().Not.Be.Null();
-        }
-
-        [Test]
-        public void Add_Post_NewJobConfigurationAdded()
-        {
-            // arrange 
-            var settingsManager = new Mock<ISettingsManager>();
-            var controller = new DashboardController(settingsManager.Object);
-            var config = new NewJobModel { Name = "testApp" };
-
-            object savedSettings = null;
-            settingsManager.Setup(s => s.ReadSettings<ConfigurationsList>()).Returns(new ConfigurationsList());
-            settingsManager.Setup(s => s.SaveSettings(It.IsAny<object>())).Callback<object>((o) => savedSettings = o);
-
-            // act
-            var result = controller.Add(config);
-
-            // assert
-            var jobSettings = savedSettings as ConfigurationsList;
-            jobSettings.Configurations.Count.Should().Be(1);
-        }
-
-        [Test]
-        public void Add_Post_RedirectedToDashboardIndex()
-        {
-            // arrange 
-            var settingsManager = new Mock<ISettingsManager>();
-            var controller = new DashboardController(settingsManager.Object);
-            var config = new NewJobModel { Name = "testApp" };
-
-            object savedSettings = null;
-            settingsManager.Setup(s => s.ReadSettings<ConfigurationsList>()).Returns(new ConfigurationsList());
-            settingsManager.Setup(s => s.SaveSettings(It.IsAny<object>())).Callback<object>((o) => savedSettings = o);
-
-            // act
-            var result = controller.Add(config) as RedirectToRouteResult;
-
-            // assert
-            result.RouteValues["controller"].Should().Be("Dashboard");
-            result.RouteValues["action"].Should().Be("Index");
         }
     }
 }

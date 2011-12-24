@@ -100,7 +100,7 @@
     <Compile Include="Areas\Dashboard\Controllers\LogController.cs" />
     <Compile Include="Areas\Dashboard\DashboardAreaRegistration.cs" />
     <Compile Include="Areas\Dashboard\Models\GithubHookPayload.cs" />
-    <Compile Include="Areas\Dashboard\Models\NewJobModel.cs" />
+    <Compile Include="Areas\Dashboard\Models\NewConfigurationModel.cs" />
     <Compile Include="Areas\Dashboard\Models\OverviewModel.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Global.asax.cs">
@@ -218,7 +218,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Dashboard\Views\Dashboard\Add.cshtml" />
+    <Content Include="Areas\Dashboard\Views\Configuration\Add.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Dashboard\Views\Configuration\Index.cshtml" />

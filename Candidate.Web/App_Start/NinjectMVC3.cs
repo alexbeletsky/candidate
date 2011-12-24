@@ -1,3 +1,5 @@
+using Candidate.Core.Configurations;
+
 [assembly: WebActivator.PreApplicationStartMethod(typeof(Candidate.App_Start.NinjectMVC3), "Start")]
 [assembly: WebActivator.ApplicationShutdownMethodAttribute(typeof(Candidate.App_Start.NinjectMVC3), "Stop")]
 
@@ -53,6 +55,8 @@ namespace Candidate.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
+            // TODO: ABE get rid of this, switch to conventions..
+
             kernel.Bind<ISettingsManager>().To<SettingsManager>();
             kernel.Bind<IDirectoryProvider>().To<DirectoryProvider>().InSingletonScope();
             kernel.Bind<ISetupFactory>().To<SetupFactory>();
@@ -64,6 +68,7 @@ namespace Candidate.App_Start
             kernel.Bind<ILoggerFactory>().To<LoggerFactory>();
             kernel.Bind<IHashService>().To<HashService>();
             kernel.Bind<IAuthentication>().To<Authentication>();
+            kernel.Bind<IConfigurationsFactory>().To<ConfigurationsFactory>();
         }
     }
 }

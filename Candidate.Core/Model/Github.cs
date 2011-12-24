@@ -1,7 +1,7 @@
-﻿using System.ComponentModel;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace Candidate.Core.Settings.Model
+namespace Candidate.Core.Model
 {
     public class Github
     {

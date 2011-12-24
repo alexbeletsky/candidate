@@ -11,12 +11,21 @@ namespace Candidate.Infrustructure.Extensions
 
     public static class DropDownListForExtensions
     {
-        public static MvcHtmlString DropDownListFor<TModel, TSelectedProperty>(
+        //public static MvcHtmlString DropDownListFor<TModel, TSelectedProperty>(
+        //    this HtmlHelper<TModel> helper,
+        //    Expression<Func<TModel, TSelectedProperty>> expression,
+        //    IDictionary<int, string> dictionary)
+        //{
+
+        //    var selectListItems = new SelectList(dictionary, "Key", "Value");
+        //    return helper.DropDownListFor(expression, selectListItems);
+        //}
+
+        public static MvcHtmlString DropDownListFor<TModel, TSelectedProperty, TKey>(
             this HtmlHelper<TModel> helper,
             Expression<Func<TModel, TSelectedProperty>> expression,
-            IDictionary<int, string> dictionary)
+            IDictionary<TKey, string> dictionary)
         {
-
             var selectListItems = new SelectList(dictionary, "Key", "Value");
             return helper.DropDownListFor(expression, selectListItems);
         }
