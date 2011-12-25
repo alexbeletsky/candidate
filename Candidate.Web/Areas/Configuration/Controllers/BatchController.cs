@@ -9,7 +9,7 @@ using Config = Candidate.Core.Model.Configurations;
 
 namespace Candidate.Areas.Configuration.Controllers
 {
-    public class BatchController : ConfigurationControllerBase
+    public class BatchController : ControllerBase
     {
         public BatchController(ISettingsManager settingsManager) : base(settingsManager)
         {

@@ -14,6 +14,11 @@ namespace Candidate.Core.Model.Configurations
         public Solution Solution { get; set; }
         public Iis Iis { get; set; }
 
+        public override string Type
+        {
+            get { return "visualstudio"; }
+        }
+
         public override string ViewName
         {
             get { return "ConfigureVisualStudio"; }

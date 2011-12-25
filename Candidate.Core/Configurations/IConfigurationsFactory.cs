@@ -4,6 +4,6 @@ namespace Candidate.Core.Configurations
 {
     public interface IConfigurationsFactory
     {
-        Configuration CreateConfiguration(ConfigurationType type, string id, string readableName);
+        Configuration CreateConfiguration(string type, string id, string readableName);
     }
 }

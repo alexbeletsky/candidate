@@ -88,11 +88,12 @@
     <Compile Include="Areas\Admin\Controllers\ElmahController.cs" />
     <Compile Include="Areas\Configuration\ConfigurationAreaRegistration.cs" />
     <Compile Include="Areas\Configuration\Controllers\BatchController.cs" />
-    <Compile Include="Areas\Configuration\Controllers\ConfigurationControllerBase.cs" />
+    <Compile Include="Areas\Configuration\Controllers\ConfigurationController.cs" />
+    <Compile Include="Areas\Configuration\Controllers\ControllerBase.cs" />
     <Compile Include="Areas\Configuration\Controllers\VisualStudioController.cs" />
     <Compile Include="Areas\Configuration\Controllers\XCopyController.cs" />
     <Compile Include="Areas\Dashboard\Controllers\AccountController.cs" />
-    <Compile Include="Areas\Configuration\Controllers\ConfigurationController.cs" />
+    <Compile Include="Areas\Configuration\Controllers\ConfigureController.cs" />
     <Compile Include="Areas\Dashboard\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Dashboard\Controllers\OverviewController.cs" />
     <Compile Include="Areas\Deployment\Controllers\DeployController.cs" />
@@ -232,7 +233,7 @@
     <Content Include="Areas\Configuration\Views\Configuration\Add.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Configuration\Views\Configuration\ConfigureVisualStudio.cshtml" />
+    <Content Include="Areas\Configuration\Views\Configure\VisualStudio.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Dashboard\Views\Shared\_Layout.cshtml" />
@@ -289,10 +290,10 @@
     <Content Include="Areas\Deployment\Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Configuration\Views\Configuration\ConfigureBatch.cshtml" />
+    <Content Include="Areas\Configuration\Views\Configure\Batch.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Configuration\Views\Configuration\ConfigureXCopy.cshtml" />
+    <Content Include="Areas\Configuration\Views\Configure\XCopy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Deployment\Views\Deploy\Deploy.cshtml" />

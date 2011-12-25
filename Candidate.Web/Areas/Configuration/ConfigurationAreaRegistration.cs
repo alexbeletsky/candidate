@@ -16,20 +16,20 @@ namespace Candidate.Areas.Configuration
         {
             context.MapRoute(
                 "Configuration_Simple",
-                "configuration/{action}/{id}",
-                new { controller = "Configuration", action = "Configure", id = UrlParameter.Optional }
+                "configuration/add",
+                new { controller = "Configuration", action = "Add" }
             );
 
-            context.MapRoute(
-                "Configuration_Configure",
-                "configuration/configure/{id}",
-                new { controller = "Configuration", action = "Configure" }
-            );
+            //context.MapRoute(
+            //    "Configuration_Configure",
+            //    "configuration/configure/{id}",
+            //    new { controller = "Configuration", action = "Configure" }
+            //);
 
             context.MapRoute(
                 "Configuration_Default",
                 "configuration/{controller}/{action}/{id}",
-                new { controller = "Configuration", action = "Configure", id = UrlParameter.Optional }
+                new { controller = "Configuration", id = UrlParameter.Optional }
             );
         }
     }

@@ -13,24 +13,24 @@ namespace Candidate.Tests.Configurations
         public void should_create_batch_configuration()
         {
             // assert
-            Assert.That(CreateConfiguration(ConfigurationType.Batch), Is.TypeOf<BatchConfiguration>());
+            Assert.That(CreateConfiguration("batch"), Is.TypeOf<BatchConfiguration>());
         }
 
         [Test]
         public void should_create_xcopyt_configuration()
         {
             // assert
-            Assert.That(CreateConfiguration(ConfigurationType.XCopy), Is.TypeOf<XCopyConfiguration>());
+            Assert.That(CreateConfiguration("xcopy"), Is.TypeOf<XCopyConfiguration>());
         }
 
         [Test]
         public void should_create_visual_studio_configuration()
         {
             // assert
-            Assert.That(CreateConfiguration(ConfigurationType.VisualStudio), Is.TypeOf<VisualStudioConfiguration>());
+            Assert.That(CreateConfiguration("visualstudio"), Is.TypeOf<VisualStudioConfiguration>());
         }
 
-        private static Configuration CreateConfiguration(ConfigurationType type)
+        private static Configuration CreateConfiguration(string type)
         {
             return new ConfigurationsFactory().CreateConfiguration(type, "test-id", "Test Configuration");
         }

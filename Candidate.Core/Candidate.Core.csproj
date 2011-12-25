@@ -68,7 +68,6 @@
     <Compile Include="Model\ConfigurationsList.cs" />
     <Compile Include="Model\Configurations\BatchConfiguration.cs" />
     <Compile Include="Model\Configurations\Configuration.cs" />
-    <Compile Include="Model\Configurations\ConfigurationType.cs" />
     <Compile Include="Model\Configurations\VisualStudioConfiguration.cs" />
     <Compile Include="Model\Configurations\XCopyConfiguration.cs" />
     <Compile Include="Model\ConfigurationTypes.cs" />

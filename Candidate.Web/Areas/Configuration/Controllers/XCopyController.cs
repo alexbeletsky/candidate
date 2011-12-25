@@ -9,7 +9,8 @@ using Config = Candidate.Core.Model.Configurations;
 
 namespace Candidate.Areas.Configuration.Controllers
 {
-    public class XCopyController : ConfigurationControllerBase
+    [Authorize]
+    public class XCopyController : ControllerBase
     {
         public XCopyController(ISettingsManager settingsManager) : base(settingsManager)
         {

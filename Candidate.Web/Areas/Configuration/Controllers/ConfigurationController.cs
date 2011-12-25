@@ -1,9 +1,12 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
 using Candidate.Areas.Dashboard.Models;
 using Candidate.Core.Configurations;
-using Candidate.Core.Settings;
-using Candidate.Infrustructure.Filters;
 using Candidate.Core.Extensions;
+using Candidate.Core.Settings;
 using Config = Candidate.Core.Model.Configurations;
 
 namespace Candidate.Areas.Configuration.Controllers
@@ -18,14 +21,6 @@ namespace Candidate.Areas.Configuration.Controllers
         {
             _settingsManager = settingsManager;
             _configurationsFactory = configurationsFactory;
-        }
-
-        [HttpGet, AddViewNameAndHash, ActionName("configure")]
-        public ActionResult Configure(string id)
-        {
-            var configuration = _settingsManager.ReadConfiguration<Config.Configuration>(c => c.Id == id); ;
-
-            return View(configuration.ViewName, configuration);
         }
 
         [HttpGet, ActionName("add")]
@@ -52,7 +47,7 @@ namespace Candidate.Areas.Configuration.Controllers
             return View(model);
         }
 
-        [HttpGet, AddViewNameAndHash, ActionName("delete")]
+        [HttpGet, ActionName("delete")]
         public ActionResult Delete(string id)
         {
             var configuration = _settingsManager.ReadConfiguration<Config.Configuration>(c => c.Id == id);
@@ -61,7 +56,7 @@ namespace Candidate.Areas.Configuration.Controllers
         }
 
         [HttpPost, ActionName("delete")]
-        public ActionResult Delete(string id, string notUsedJustToOverloadDelete)
+        public ActionResult DeleteConfiguration(string id)
         {
             if (ModelState.IsValid)
             {

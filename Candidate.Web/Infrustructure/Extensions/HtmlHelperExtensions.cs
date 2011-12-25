@@ -14,5 +14,11 @@ namespace Candidate.Infrustructure.Extensions
             var action = helper.ViewContext.RouteData.GetRequiredString("action");
             return new MvcHtmlString(action.FirstCharIsUpperCase());
         }
+
+        public static MvcHtmlString CurrentController(this HtmlHelper helper)
+        {
+            var controller = helper.ViewContext.RouteData.GetRequiredString("controller");
+            return new MvcHtmlString(controller.FirstCharIsUpperCase());
+        }
     }
 }

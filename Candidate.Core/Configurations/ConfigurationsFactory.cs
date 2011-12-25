@@ -5,17 +5,17 @@ namespace Candidate.Core.Configurations
 {
     public class ConfigurationsFactory : IConfigurationsFactory
     {
-        public Configuration CreateConfiguration(ConfigurationType type, string id, string readableName)
+        public Configuration CreateConfiguration(string type, string id, string readableName)
         {
             switch (type)
             {
-                case ConfigurationType.Batch:
+                case "batch":
                     return new BatchConfiguration { Id = id, ReadableName = readableName };
 
-                case ConfigurationType.XCopy:
+                case "xcopy":
                     return new XCopyConfiguration { Id = id, ReadableName = readableName };
 
-                case ConfigurationType.VisualStudio:
+                case "visualstudio":
                     return new VisualStudioConfiguration { Id = id, ReadableName = readableName };
 
                 default:

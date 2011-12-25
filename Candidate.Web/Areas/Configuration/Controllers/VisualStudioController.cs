@@ -10,7 +10,8 @@ using Config = Candidate.Core.Model.Configurations;
 
 namespace Candidate.Areas.Configuration.Controllers
 {
-    public class VisualStudioController : ConfigurationControllerBase
+    [Authorize]
+    public class VisualStudioController : ControllerBase
     {
         public VisualStudioController(ISettingsManager settingsManager) : base(settingsManager)
         {

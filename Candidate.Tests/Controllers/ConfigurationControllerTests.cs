@@ -29,49 +29,6 @@ namespace Candidate.Tests.Controllers
             SettingsManager.Setup(s => s.ReadSettings<ConfigurationsList>()).Returns(ConfigurationsList);
         }
 
-        [Test]
-        public void should_configure_return_view_based_on_type_case_visual_studio()
-        {
-            // arrange
-            ConfigurationsList.Configurations.Add(new VisualStudioConfiguration { Id = "visualStudio" });
-
-            // act
-            var result = Controller.Configure("visualStudio") as ViewResult;
-            Assert.That(result.ViewName, Is.EqualTo("ConfigureVisualStudio"));
-        }
-
-        [Test]
-        public void should_configure_return_view_based_on_type_case_batch()
-        {
-            // arrange
-            ConfigurationsList.Configurations.Add(new BatchConfiguration { Id = "batch" });
-
-            // act
-            var result = Controller.Configure("batch") as ViewResult;
-            Assert.That(result.ViewName, Is.EqualTo("ConfigureBatch"));
-        }
-
-        [Test]
-        public void should_configure_return_view_based_on_type_case_xcopy()
-        {
-            // arrange
-            ConfigurationsList.Configurations.Add(new XCopyConfiguration { Id = "xcopy" });
-
-            // act
-            var result = Controller.Configure("xcopy") as ViewResult;
-            Assert.That(result.ViewName, Is.EqualTo("ConfigureXCopy"));
-        }
-
-        [Test]
-        public void should_configure_return_model()
-        {
-            // arrange
-            ConfigurationsList.Configurations.Add(new XCopyConfiguration { Id = "xcopy" });
-
-            // act
-            var result = Controller.Configure("xcopy") as ViewResult;
-            Assert.That(result.Model, Is.TypeOf<XCopyConfiguration>());
-        }
 
         [Test]
         public void should_add_action_return_view()
@@ -98,7 +55,7 @@ namespace Candidate.Tests.Controllers
         public void should_add_post_method_create_new_configuration()
         {
             // arrange 
-            var config = new NewConfigurationModel { Name = "testApp" };
+            var config = new NewConfigurationModel { Name = "testApp", SelectedType = "batch" };
 
             // act
             Controller.Add(config);
@@ -112,7 +69,7 @@ namespace Candidate.Tests.Controllers
         public void should_add_create_configuration_based_on_type_case_for_batch()
         {
             // arrange 
-            var config = new NewConfigurationModel { Name = "testApp", SelectedType = ConfigurationType.Batch };
+            var config = new NewConfigurationModel { Name = "testApp", SelectedType = "batch" };
 
             // act
             Controller.Add(config);
@@ -126,7 +83,7 @@ namespace Candidate.Tests.Controllers
         public void should_add_create_configuration_based_on_type_case_for_xcopy()
         {
             // arrange 
-            var config = new NewConfigurationModel { Name = "testApp", SelectedType = ConfigurationType.XCopy };
+            var config = new NewConfigurationModel { Name = "testApp", SelectedType = "xcopy" };
 
             // act
             Controller.Add(config);
@@ -140,7 +97,7 @@ namespace Candidate.Tests.Controllers
         public void should_add_create_configuration_based_on_type_case_for_visual_studio()
         {
             // arrange 
-            var config = new NewConfigurationModel { Name = "testApp", SelectedType = ConfigurationType.VisualStudio };
+            var config = new NewConfigurationModel { Name = "testApp", SelectedType = "visualstudio" };
 
             // act
             Controller.Add(config);
@@ -154,7 +111,7 @@ namespace Candidate.Tests.Controllers
         public void should_add_post_redirect_to_dashboard()
         {
             // arrange 
-            var config = new NewConfigurationModel { Name = "testApp" };
+            var config = new NewConfigurationModel { Name = "testApp", SelectedType = "xcopy" };
 
             // act
             var result = Controller.Add(config) as RedirectToRouteResult;
@@ -187,7 +144,7 @@ namespace Candidate.Tests.Controllers
             ConfigurationsList.Configurations.Add(configuration);
 
             // act
-            Controller.Delete("test", "");
+            Controller.DeleteConfiguration("test");
 
             // assert
             Assert.That(ConfigurationsList.Configurations.SingleOrDefault(_ => _.Id == "test"), Is.Null);
