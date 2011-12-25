@@ -38,9 +38,6 @@
     <PackageAsSingleFile>true</PackageAsSingleFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Bounce.Framework">
-      <HintPath>..\lib\Bounce\Bounce.Framework.dll</HintPath>
-    </Reference>
     <Reference Include="Elmah">
       <HintPath>..\packages\elmah.corelibrary.1.2\lib\Elmah.dll</HintPath>
     </Reference>
@@ -219,6 +216,10 @@
     <Content Include="Areas\Dashboard\Views\_ViewStart.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Bounce\Bounce.Framework\Bounce.Framework.csproj">
+      <Project>{05E5A4A4-E497-4FDF-B843-8EE583F5D71E}</Project>
+      <Name>Bounce.Framework</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Candidate.Core\Candidate.Core.csproj">
       <Project>{F7875002-FC5B-4039-86EE-11540E02D322}</Project>
       <Name>Candidate.Core</Name>
