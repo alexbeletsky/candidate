@@ -143,7 +143,7 @@ namespace Candidate.Core.Setup
         private Task<string> GetSiteDirectory(Iis iis, Solution solution)
         {
             // TODO: this copy operation is a little hidden and not obvious, have to be fixed
-            return new Copy()
+            return new Copy
             {
                 FromPath = GetPublishedPath(solution),
                 ToPath = GetDeploymentPath(iis),

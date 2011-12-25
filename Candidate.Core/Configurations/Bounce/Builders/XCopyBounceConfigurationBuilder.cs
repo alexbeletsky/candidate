@@ -27,7 +27,7 @@ namespace Candidate.Core.Configurations.Bounce.Builders
                        {
                            CheckoutSources = new CheckoutSourcesTask(xCopyConfiguration.Github.Url, xCopyConfiguration.Github.Branch, _directoryProvider.Sources).ToTask(),
                            CopyToDestination = new CopyToDestinationTask(_directoryProvider.Sources, xCopyConfiguration.Iis.DeployFolder, configuration.Id).ToTask(),
-                           DeployWebsite = new DeployWebsiteTask(xCopyConfiguration.Iis, _directoryProvider).ToTask()
+                           //DeployWebsite = new DeployWebsiteTask().ToTask()
                        };
         }
     }

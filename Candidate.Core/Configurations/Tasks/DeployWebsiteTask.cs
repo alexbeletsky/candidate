@@ -1,3 +1,4 @@
+using System;
 using Bounce.Framework;
 using Candidate.Core.Model;
 using Candidate.Core.Utils;
@@ -6,20 +7,49 @@ namespace Candidate.Core.Configurations.Tasks
 {
     internal class DeployWebsiteTask
     {
-        private readonly Iis _iis;
-        private readonly IDirectoryProvider _directoryProvider;
+        private readonly string _siteFolder;
+        private readonly string _siteName;
+        private readonly int _port;
+        private readonly string _bindingsString;
 
-        public DeployWebsiteTask(Iis iis, IDirectoryProvider directoryProvider)
+        public DeployWebsiteTask(string siteFolder, string siteName, int port)
+            : this(siteFolder, siteName, port, null)
         {
-            _iis = iis;
-            _directoryProvider = directoryProvider;
+
         }
+
+        public DeployWebsiteTask(string siteFolder, string siteName, int port, string bindingsString)
+        {
+            if (string.IsNullOrEmpty(siteFolder))
+            {
+                throw new ArgumentNullException("siteFolder");
+            }
+
+            if (string.IsNullOrEmpty(siteName))
+            {
+                throw new ArgumentNullException("siteName");
+            }
+
+            if (port <= 0 && string.IsNullOrEmpty(bindingsString))
+            {
+                throw new ArgumentOutOfRangeException("port");
+            }
+
+            _siteFolder = siteFolder;
+            _siteName = siteName;
+            _port = port;
+            _bindingsString = bindingsString;
+        }
+
 
         public Iis7WebSite ToTask()
         {
+
             return new Iis7WebSite
                        {
-                           Directory = _iis.DeployFolder
+                           Directory = _siteFolder,
+                           Name = _siteName,
+                           Port = _port
                        };
         }
     }

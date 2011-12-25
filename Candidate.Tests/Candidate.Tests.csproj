@@ -80,7 +80,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configurations\BounceConfigurationFactoryTests.cs" />
+    <Compile Include="Configurations\CheckoutSourcesTaskTests.cs" />
     <Compile Include="Configurations\ConfigurationFactoryTests.cs" />
+    <Compile Include="Configurations\CopyToDestinationTaskTests.cs" />
+    <Compile Include="Configurations\DeployWebsiteTaskTests.cs" />
     <Compile Include="Controllers\ConfigurationControllerTests.cs" />
     <Compile Include="Controllers\DashboardControllerTests.cs" />
     <Compile Include="Controllers\LoginControllerTests.cs" />

@@ -5,24 +5,25 @@ namespace Candidate.Core.Configurations.Tasks
 {
     internal class CopyToDestinationTask
     {
-        private readonly string _sources;
+        private readonly string _sourcesFolder;
         private readonly string _deployFolder;
-        private readonly string _id;
+        private readonly string _configurationId;
 
-        public CopyToDestinationTask(string sources, string deployFolder, string id)
+        public CopyToDestinationTask(string sourcesFolder, string deployFolder, string configurationId)
         {
-            _sources = sources;
+            _sourcesFolder = sourcesFolder;
             _deployFolder = deployFolder;
-            _id = id;
+            _configurationId = configurationId;
         }
 
         public Copy ToTask()
         {
             return new Copy 
                        { 
-                           FromPath = _sources,
-                           ToPath = Path.Combine(_deployFolder, _id),
-                           Excludes = new [] { ".git" }
+                           FromPath = _sourcesFolder,
+                           ToPath = Path.Combine(_deployFolder, _configurationId),
+                           Excludes = new [] { ".git" },
+                           DeleteToDirectory = true
                        };
         }
     }
