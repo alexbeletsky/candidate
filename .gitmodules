@@ -1,0 +1,3 @@
+[submodule "Bounce"]
+	path = Bounce
+	url = git@github.com:alexanderbeletsky/bounce.git
