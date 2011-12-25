@@ -1,4 +1,3 @@
-using System.IO;
 using Bounce.Framework;
 
 namespace Candidate.Core.Configurations.Tasks
@@ -7,13 +6,11 @@ namespace Candidate.Core.Configurations.Tasks
     {
         private readonly string _sourcesFolder;
         private readonly string _deployFolder;
-        private readonly string _configurationId;
 
-        public CopyToDestinationTask(string sourcesFolder, string deployFolder, string configurationId)
+        public CopyToDestinationTask(string sourcesFolder, string deployFolder)
         {
             _sourcesFolder = sourcesFolder;
             _deployFolder = deployFolder;
-            _configurationId = configurationId;
         }
 
         public Copy ToTask()
@@ -21,7 +18,7 @@ namespace Candidate.Core.Configurations.Tasks
             return new Copy 
                        { 
                            FromPath = _sourcesFolder,
-                           ToPath = Path.Combine(_deployFolder, _configurationId),
+                           ToPath = _deployFolder,
                            Excludes = new [] { ".git" },
                            DeleteToDirectory = true
                        };

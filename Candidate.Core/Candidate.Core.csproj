@@ -54,6 +54,8 @@
     <Compile Include="Configurations\Tasks\CheckoutSourcesTask.cs" />
     <Compile Include="Configurations\Tasks\CopyToDestinationTask.cs" />
     <Compile Include="Configurations\Tasks\DeployWebsiteTask.cs" />
+    <Compile Include="Configurations\Tasks\StartSiteTask.cs" />
+    <Compile Include="Configurations\Tasks\StopSiteTask.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Helpers\BindingParser.cs" />
     <Compile Include="Log\ILoggerFactory.cs" />

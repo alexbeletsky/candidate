@@ -33,8 +33,10 @@ namespace Candidate.Tests.Configurations
             var bounceConfig = bounceConfigFactory.CreateForXCopy(configuration);
 
             Assert.That(bounceConfig.CheckoutSources, Is.Not.Null);
+            Assert.That(bounceConfig.StopSiteBeforeDeployment, Is.Not.Null);
             Assert.That(bounceConfig.CopyToDestination, Is.Not.Null);
-            //Assert.That(bounceConfig.DeployWebsite, Is.Not.Null);
+            Assert.That(bounceConfig.DeployWebsite, Is.Not.Null);
+            Assert.That(bounceConfig.StartSiteAfterDeployment, Is.Not.Null);
         }
     }
 }

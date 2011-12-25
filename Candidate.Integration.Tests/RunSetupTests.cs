@@ -5,11 +5,12 @@ using Candidate.Core.Model;
 using Candidate.Core.Model.Configurations;
 using Candidate.Core.Setup;
 using Candidate.Core.Utils;
+using Candidate.Tests.Integration;
 using ICSharpCode.SharpZipLib.Zip;
 using Microsoft.Web.Administration;
 using NUnit.Framework;
 
-namespace Candidate.Tests.Integration
+namespace Candidate.Integration.Tests
 {
     [TestFixture]
     public class RunSetupTests
