@@ -6,7 +6,7 @@ namespace Candidate.Controllers
 {
     public class LoginController : Controller
     {
-        private IAuthentication _authentication;
+        private readonly IAuthentication _authentication;
 
         public LoginController(IAuthentication authentication)
         {
@@ -24,11 +24,11 @@ namespace Candidate.Controllers
             if (_authentication.ValidateUser(model.Login, model.Password))
             {
                 _authentication.AuthenticateUser(model.Login);
-                return RedirectToAction("Index", new { area = "Dashboard", controller = "Dashboard" });
+                return RedirectToAction("index", new { area = "dashboard", controller = "dashboard" });
             }
 
             ModelState.AddModelError("", "Login or password is incorrect.");
-            return View("Index", model);
+            return View("index", model);
         }
     }
 }

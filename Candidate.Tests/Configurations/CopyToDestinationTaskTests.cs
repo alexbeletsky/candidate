@@ -13,7 +13,7 @@ namespace Candidate.Tests.Configurations
         public void should_create_copy_to_destination_task()
         {
             // arrange
-            var task = new CopyToDestinationTask(@"c:\development\projects\a\src", @"c:\sites", "simple-deploy");
+            var task = new CopyToDestinationTask(@"c:\development\projects\a\src", @"c:\sites\simple-deploy");
 
             // act
             var bounceTask = task.ToTask();
@@ -28,7 +28,7 @@ namespace Candidate.Tests.Configurations
         public void should_delete_to_folder()
         {
             // arrange
-            var task = new CopyToDestinationTask(@"c:\development\projects\a\src", @"c:\sites", "simple-deploy");
+            var task = new CopyToDestinationTask(@"c:\development\projects\a\src", @"c:\sites\simple-deploy");
 
             // act
             var bounceTask = task.ToTask();

@@ -12,5 +12,10 @@ namespace Candidate.Core.Extensions
             var titleWithoutPunctuation = new string(title.Where(c => !Char.IsPunctuation(c)).ToArray());
             return titleWithoutPunctuation.ToLower().Trim().Replace(" ", "-");
         }
+
+        public static string FirstCharIsUpperCase(this string value)
+        {
+            return string.Format("{0}{1}", char.ToUpper(value.ElementAt(0)), value.Substring(1));
+        }
     }
 }
