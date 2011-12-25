@@ -79,8 +79,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configurations\BounceConfigurationFactoryTests.cs" />
     <Compile Include="Configurations\ConfigurationFactoryTests.cs" />
-    <Compile Include="Configurations\FooTests.cs" />
     <Compile Include="Controllers\ConfigurationControllerTests.cs" />
     <Compile Include="Controllers\DashboardControllerTests.cs" />
     <Compile Include="Controllers\LoginControllerTests.cs" />

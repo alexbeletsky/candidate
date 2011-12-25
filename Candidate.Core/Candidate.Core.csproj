@@ -48,8 +48,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configurations\BounceConfigurationFactory.cs" />
+    <Compile Include="Configurations\Bounce\Builders\XCopyBounceConfigurationBuilder.cs" />
+    <Compile Include="Configurations\Bounce\XCopyBounceConfiguration.cs" />
     <Compile Include="Configurations\ConfigurationsFactory.cs" />
+    <Compile Include="Configurations\Exceptions\ConfigurationTypeNotSupported.cs" />
+    <Compile Include="Configurations\IBounceConfigurationFactory.cs" />
     <Compile Include="Configurations\IConfigurationsFactory.cs" />
+    <Compile Include="Configurations\Tasks\CheckoutSourcesTask.cs" />
+    <Compile Include="Configurations\Tasks\CopyToDestinationTask.cs" />
+    <Compile Include="Configurations\Tasks\DeployWebsiteTask.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Helpers\BindingParser.cs" />
     <Compile Include="Log\ILoggerFactory.cs" />
