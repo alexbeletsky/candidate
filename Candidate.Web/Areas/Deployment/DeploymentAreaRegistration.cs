@@ -14,6 +14,11 @@ namespace Candidate.Areas.Deployment
 
         public override void RegisterArea(AreaRegistrationContext context)
         {
+            context.MapRoute(
+                "Deployment_deploy",
+                "deployment/deploy/{id}",
+                new { action = "Deploy", controller = "Deploy" }
+            );
             
             context.MapRoute(
                 "Deployment_default",

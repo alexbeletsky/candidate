@@ -1,18 +1,14 @@
 ﻿@model Candidate.Core.Model.Configurations.Configuration
-
 @{
     ViewBag.Title = "Deployment | Deploy";
     Layout = "~/Areas/Dashboard/Views/Shared/_Page.cshtml";    
 }
 
-@using (Html.BeginForm())
-{
+<form id="deploy" action="@Model.Type">
     @Html.ValidationSummary()
     @Html.HiddenFor(m => m.Id)
-
     <p>
         Are you sure to deploy <strong>@Model.ReadableName</strong> now?
     </p>
-                                        
     <button type="submit" class="minimal">Deploy</button>
-} 
+</form>

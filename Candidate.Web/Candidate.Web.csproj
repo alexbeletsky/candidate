@@ -104,6 +104,7 @@
     <Compile Include="Areas\Dashboard\Models\GithubHookPayload.cs" />
     <Compile Include="Areas\Dashboard\Models\NewConfigurationModel.cs" />
     <Compile Include="Areas\Dashboard\Models\OverviewModel.cs" />
+    <Compile Include="Areas\Deployment\Controllers\VisualStudioController.cs" />
     <Compile Include="Areas\Deployment\DeploymentAreaRegistration.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Global.asax.cs">

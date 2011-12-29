@@ -14,25 +14,32 @@ namespace Candidate.Areas.Configuration.Controllers
             _settingsManager = settingsManager;
         }
 
-        [HttpGet, ActionName("batch")]
-        public ActionResult ConfigureBatch(string id)
+        [HttpGet, ActionName("configure")]
+        public ActionResult Configure(string id)
         {
-            var configuration = _settingsManager.ReadConfiguration<Config.BatchConfiguration>(id);
-            return View(configuration);
+            var configuration = _settingsManager.ReadConfiguration<Config.Configuration>(id);
+            return View(configuration.Type, configuration);
         }
 
-        [HttpGet, ActionName("xcopy")]
-        public ActionResult ConfigureXCopy(string id)
-        {
-            var configuration = _settingsManager.ReadConfiguration<Config.XCopyConfiguration>(id);
-            return View(configuration);
-        }
+        //[HttpGet, ActionName("batch")]
+        //public ActionResult ConfigureBatch(string id)
+        //{
+        //    var configuration = _settingsManager.ReadConfiguration<Config.BatchConfiguration>(id);
+        //    return View(configuration);
+        //}
 
-        [HttpGet, ActionName("visualstudio")]
-        public ActionResult ConfigureVisualStudio(string id)
-        {
-            var configuration = _settingsManager.ReadConfiguration<Config.VisualStudioConfiguration>(id);
-            return View(configuration);
-        }
+        //[HttpGet, ActionName("xcopy")]
+        //public ActionResult ConfigureXCopy(string id)
+        //{
+        //    var configuration = _settingsManager.ReadConfiguration<Config.XCopyConfiguration>(id);
+        //    return View(configuration);
+        //}
+
+        //[HttpGet, ActionName("visualstudio")]
+        //public ActionResult ConfigureVisualStudio(string id)
+        //{
+        //    var configuration = _settingsManager.ReadConfiguration<Config.VisualStudioConfiguration>(id);
+        //    return View(configuration);
+        //}
     }
 }

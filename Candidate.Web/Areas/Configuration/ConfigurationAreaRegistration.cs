@@ -20,11 +20,17 @@ namespace Candidate.Areas.Configuration
                 new { controller = "Configuration", action = "Add" }
             );
 
-            //context.MapRoute(
-            //    "Configuration_Configure",
-            //    "configuration/configure/{id}",
-            //    new { controller = "Configuration", action = "Configure" }
-            //);
+            context.MapRoute(
+                "Configuration_Delete",
+                "configuration/delete/{id}",
+                new { controller = "Configuration", action = "Delete" }
+            );
+
+            context.MapRoute(
+                "Configuration_Configure",
+                "configuration/configure/{id}",
+                new { controller = "Configure", action = "Configure" }
+            );
 
             context.MapRoute(
                 "Configuration_Default",

@@ -21,23 +21,30 @@ namespace Candidate.Areas.Deployment.Controllers
             _settingsManager = settingsManager;
         }
 
-        [HttpGet, ActionName("batch")]
-        public ActionResult DeployBatch(string id)
+        [HttpGet, ActionName("deploy")]
+        public ActionResult Deploy(string id)
         {
-            var configuration = _settingsManager.ReadConfiguration<Config.BatchConfiguration>(id);
-            return View("Deploy", configuration);
+            var configuration = _settingsManager.ReadConfiguration<Config.Configuration>(id);
+            return View(configuration);
         }
 
-        [HttpPost, ActionName("batch")]
-        public ActionResult DeployBatch(Config.BatchConfiguration configuration)
-        {
-            if (ModelState.IsValid)
-            {
-                return View("Action", configuration);
-            }
+        //[HttpGet, ActionName("batch")]
+        //public ActionResult DeployBatch(string id)
+        //{
+        //    var configuration = _settingsManager.ReadConfiguration<Config.BatchConfiguration>(id);
+        //    return View("Deploy", configuration);
+        //}
 
-            return View();
-        }
+        //[HttpPost, ActionName("batch")]
+        //public ActionResult DeployBatch(Config.BatchConfiguration configuration)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        return View("Action", configuration);
+        //    }
+
+        //    return View();
+        //}
 
 
         //[HttpGet, ActionName("deploy")]
