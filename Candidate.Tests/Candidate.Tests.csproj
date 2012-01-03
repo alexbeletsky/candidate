@@ -84,7 +84,6 @@
     <Compile Include="Configurations\StopSiteTaskTests.cs" />
     <Compile Include="Controllers\ConfigurationControllerTests.cs" />
     <Compile Include="Controllers\DashboardControllerTests.cs" />
-    <Compile Include="Controllers\LoginControllerTests.cs" />
     <Compile Include="Controllers\SetupControllerTests.cs" />
     <Compile Include="Controllers\VisualStudioControllerTests.cs" />
     <Compile Include="Deploy\DeployRunnerFactoryTests.cs" />

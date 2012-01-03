@@ -1,5 +1,6 @@
 using System;
 using Candidate.Core.Configurations;
+using Candidate.Core.Deploy;
 using Candidate.Core.Utils;
 
 namespace Candidate.Core.Model.Configurations
@@ -23,7 +24,7 @@ namespace Candidate.Core.Model.Configurations
             get { return "batch";  }
         }
 
-        public override DeployResults Deploy()
+        public override IDeployRunner CreateDeployRunner()
         {
             throw new NotImplementedException();
         }

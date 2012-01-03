@@ -1,3 +1,5 @@
+using Candidate.Core.Deploy;
+
 namespace Candidate.Core.Model.Configurations
 {
     public class XCopyConfiguration : Configuration
@@ -16,7 +18,7 @@ namespace Candidate.Core.Model.Configurations
             get { return "xcopy"; }
         }
 
-        public override DeployResults Deploy()
+        public override IDeployRunner CreateDeployRunner()
         {
             throw new System.NotImplementedException();
         }

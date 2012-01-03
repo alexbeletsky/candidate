@@ -1,4 +1,6 @@
 
+using Candidate.Core.Deploy;
+
 namespace Candidate.Core.Model.Configurations
 {
     public class VisualStudioConfiguration : Configuration
@@ -19,7 +21,7 @@ namespace Candidate.Core.Model.Configurations
             get { return "visualstudio"; }
         }
 
-        public override DeployResults Deploy()
+        public override IDeployRunner CreateDeployRunner()
         {
             throw new System.NotImplementedException();
         }
