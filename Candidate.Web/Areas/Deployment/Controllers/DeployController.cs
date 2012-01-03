@@ -28,6 +28,22 @@ namespace Candidate.Areas.Deployment.Controllers
             return View(configuration);
         }
 
+        [HttpPost, ActionName("deploy")]
+        public ActionResult PreDeploy(string id)
+        {
+            var configuration = _settingsManager.ReadConfiguration<Config.Configuration>(id);
+            return View("Action", configuration);
+        }
+
+        [HttpPost, ActionName("start")]
+        public ActionResult StartDeploy(string id)
+        {
+            var configuration = _settingsManager.ReadConfiguration<Config.Configuration>(id);
+            var results = configuration.Deploy();
+
+            return Json(new { success = true, result = new { url = results.Url } });
+        }
+
         //[HttpGet, ActionName("batch")]
         //public ActionResult DeployBatch(string id)
         //{

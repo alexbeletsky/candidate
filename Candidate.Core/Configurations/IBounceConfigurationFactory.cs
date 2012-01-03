@@ -5,6 +5,7 @@ namespace Candidate.Core.Configurations
 {
     public interface IBounceConfigurationFactory
     {
-        XCopyBounceConfiguration CreateForXCopy(Configuration configuration);
+        XCopyBounceConfiguration CreateFor(XCopyConfiguration configuration);
+        BatchBounceConfiguration CreateFor(BatchConfiguration configuration);
     }
 }

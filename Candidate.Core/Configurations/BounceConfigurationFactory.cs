@@ -14,9 +14,14 @@ namespace Candidate.Core.Configurations
             _directoryProvider = directoryProvider;
         }
 
-        public XCopyBounceConfiguration CreateForXCopy(Configuration configuration)
+        public XCopyBounceConfiguration CreateFor(XCopyConfiguration configuration)
         {
             return new XCopyBounceConfigurationBuilder(_directoryProvider).CreateConfig(configuration);
+        }
+
+        public BatchBounceConfiguration CreateFor(BatchConfiguration configuration)
+        {
+            return new BatchBounceConfigurationBuilder(_directoryProvider).CreateConfig(configuration);
         }
     }
 }

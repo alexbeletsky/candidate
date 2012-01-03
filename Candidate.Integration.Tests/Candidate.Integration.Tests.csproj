@@ -59,10 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DummyLogger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RunSetupTests.cs" />
-    <Compile Include="ServerManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Bounce\Bounce.Framework\Bounce.Framework.csproj">

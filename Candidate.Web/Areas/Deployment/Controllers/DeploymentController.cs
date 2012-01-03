@@ -139,7 +139,7 @@ namespace Candidate.Areas.Deployment.Controllers
         {
             using (var logger = _loggerFactory.CreateLogger())
             {
-                var bounceConfig = _bounceConfigFactory.CreateForXCopy(configuration);
+                var bounceConfig = _bounceConfigFactory.CreateFor(configuration);
                 var bounceTargets = bounceConfig.ToTargets();
                 var bounce = _bounceFactory.GetBounce(_logOptionsFactory.CreateLogOptions(logger, LogLevel.Debug));
 

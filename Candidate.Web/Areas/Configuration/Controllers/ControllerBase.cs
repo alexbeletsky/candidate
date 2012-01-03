@@ -26,7 +26,7 @@ namespace Candidate.Areas.Configuration.Controllers
                 _settingsManager.UpdateConfiguration(id, update);
             }
 
-            return View();
+            return RedirectToAction("configure", new { area = "Configuration", controller = "Configure" });
         }
     }
 }

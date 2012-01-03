@@ -1,7 +1,12 @@
+using System;
+using Candidate.Core.Configurations;
+using Candidate.Core.Utils;
+
 namespace Candidate.Core.Model.Configurations
 {
     public class BatchConfiguration : Configuration
     {
+        // TODO: ABE add build results folder..
         public BatchConfiguration()
         {
             Github = new Github();
@@ -18,9 +23,9 @@ namespace Candidate.Core.Model.Configurations
             get { return "batch";  }
         }
 
-        public override string ViewName
+        public override DeployResults Deploy()
         {
-            get { return "ConfigureBatch"; }
+            throw new NotImplementedException();
         }
     }
 }

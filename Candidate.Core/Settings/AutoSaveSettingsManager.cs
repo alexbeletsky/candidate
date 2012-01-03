@@ -5,8 +5,8 @@ namespace Candidate.Core.Settings
 {
     public class AutoSaveSettingsManager : IDisposable, ISettingsManager
     {
-        private ISettingsManager _settingsManager;
-        private List<object> _trackableObjects = new List<object>();
+        private readonly ISettingsManager _settingsManager;
+        private readonly List<object> _autoSavedObjects = new List<object>();
 
         public AutoSaveSettingsManager(ISettingsManager settingsManager)
         {
@@ -15,13 +15,13 @@ namespace Candidate.Core.Settings
 
         public void Dispose()
         {
-            _trackableObjects.ForEach((o) => { _settingsManager.SaveSettings(o); });
+            _autoSavedObjects.ForEach(o => _settingsManager.SaveSettings(o));
         }
 
         public T ReadSettings<T>() where T : new()
         {
             var readSettings = _settingsManager.ReadSettings<T>();
-            _trackableObjects.Add(readSettings);
+            _autoSavedObjects.Add(readSettings);
 
             return readSettings;
         }

@@ -16,9 +16,9 @@ namespace Candidate.Core.Model.Configurations
             get { return "xcopy"; }
         }
 
-        public override string ViewName
+        public override DeployResults Deploy()
         {
-            get { return "ConfigureXCopy"; }
+            throw new System.NotImplementedException();
         }
     }
 }

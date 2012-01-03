@@ -46,6 +46,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configurations\BounceConfigurationFactory.cs" />
+    <Compile Include="Configurations\Bounce\BatchBounceConfiguration.cs" />
+    <Compile Include="Configurations\Bounce\Builders\BatchBounceConfigurationBuilder.cs" />
     <Compile Include="Configurations\Bounce\Builders\XCopyBounceConfigurationBuilder.cs" />
     <Compile Include="Configurations\Bounce\XCopyBounceConfiguration.cs" />
     <Compile Include="Configurations\ConfigurationsFactory.cs" />
@@ -55,8 +57,13 @@
     <Compile Include="Configurations\Tasks\CheckoutSourcesTask.cs" />
     <Compile Include="Configurations\Tasks\CopyToDestinationTask.cs" />
     <Compile Include="Configurations\Tasks\DeployWebsiteTask.cs" />
+    <Compile Include="Configurations\Tasks\ShellTask.cs" />
     <Compile Include="Configurations\Tasks\StartSiteTask.cs" />
     <Compile Include="Configurations\Tasks\StopSiteTask.cs" />
+    <Compile Include="Deploy\ConfigurationsExtensions.cs" />
+    <Compile Include="Deploy\DeployRunnerFactory.cs" />
+    <Compile Include="Deploy\DeployRunner.cs" />
+    <Compile Include="Deploy\IDeployRunner.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Helpers\BindingParser.cs" />
     <Compile Include="Log\ILoggerFactory.cs" />

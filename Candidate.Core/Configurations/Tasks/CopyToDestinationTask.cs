@@ -4,21 +4,21 @@ namespace Candidate.Core.Configurations.Tasks
 {
     internal class CopyToDestinationTask
     {
-        private readonly string _sourcesFolder;
-        private readonly string _deployFolder;
+        private readonly string _fromDirectory;
+        private readonly string _toDirectory;
 
-        public CopyToDestinationTask(string sourcesFolder, string deployFolder)
+        public CopyToDestinationTask(string fromDirectory, string toDirectory)
         {
-            _sourcesFolder = sourcesFolder;
-            _deployFolder = deployFolder;
+            _fromDirectory = fromDirectory;
+            _toDirectory = toDirectory;
         }
 
         public Copy ToTask()
         {
             return new Copy 
                        { 
-                           FromPath = _sourcesFolder,
-                           ToPath = _deployFolder,
+                           FromPath = _fromDirectory,
+                           ToPath = _toDirectory,
                            Excludes = new [] { ".git" },
                            DeleteToDirectory = true
                        };

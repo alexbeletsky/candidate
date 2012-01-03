@@ -19,9 +19,9 @@ namespace Candidate.Core.Model.Configurations
             get { return "visualstudio"; }
         }
 
-        public override string ViewName
+        public override DeployResults Deploy()
         {
-            get { return "ConfigureVisualStudio"; }
+            throw new System.NotImplementedException();
         }
     }
 }
