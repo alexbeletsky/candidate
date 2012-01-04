@@ -39,7 +39,9 @@ namespace Candidate.Areas.Deployment.Controllers
         public ActionResult StartDeploy(string id)
         {
             var configuration = _settingsManager.ReadConfiguration<Config.Configuration>(id);
-            var results = configuration.CreateDeployRunner();
+            
+            var runner = configuration.CreateDeployRunner();
+            var results = runner.Run();
 
             return Json(new { success = true, result = new { url = results.Url } });
         }

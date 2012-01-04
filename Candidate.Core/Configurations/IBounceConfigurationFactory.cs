@@ -7,5 +7,6 @@ namespace Candidate.Core.Configurations
     {
         XCopyBounceConfiguration CreateFor(XCopyConfiguration configuration);
         BatchBounceConfiguration CreateFor(BatchConfiguration configuration);
+        VisualStudioBounceConfiguration CreateFor(VisualStudioConfiguration configuration);
     }
 }

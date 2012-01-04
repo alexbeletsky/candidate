@@ -3,6 +3,7 @@ using System.Linq;
 using System.Text;
 using Candidate.Core.Configurations;
 using Candidate.Core.Configurations.Bounce;
+using Candidate.Core.Configurations.Bounce.Builders;
 using Candidate.Core.Model.Configurations;
 using Candidate.Core.Utils;
 

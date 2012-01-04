@@ -23,5 +23,10 @@ namespace Candidate.Core.Configurations
         {
             return new BatchBounceConfigurationBuilder(_directoryProvider).CreateConfig(configuration);
         }
+
+        public VisualStudioBounceConfiguration CreateFor(VisualStudioConfiguration configuration)
+        {
+            return new VisualStudioBounceConfigurationBuilder(_directoryProvider).CreateConfig(configuration);
+        }
     }
 }
