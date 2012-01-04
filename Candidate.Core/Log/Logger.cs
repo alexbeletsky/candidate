@@ -10,7 +10,6 @@ namespace Candidate.Core.Log
 
         public Logger(IDirectoryProvider directoryProvider)
         {
-
             LogFileName = GetUniqueLogFilename();
             LogsDirectory = directoryProvider.Logs;
             LogFileFullPath = LogsDirectory + "\\" + LogFileName;

@@ -80,6 +80,7 @@
     <Compile Include="Configurations\ConfigurationFactoryTests.cs" />
     <Compile Include="Configurations\CopyToDestinationTaskTests.cs" />
     <Compile Include="Configurations\DeployWebsiteTaskTests.cs" />
+    <Compile Include="Configurations\ShellTaskTests.cs" />
     <Compile Include="Configurations\StartSiteTaskTests.cs" />
     <Compile Include="Configurations\StopSiteTaskTests.cs" />
     <Compile Include="Controllers\ConfigurationControllerTests.cs" />

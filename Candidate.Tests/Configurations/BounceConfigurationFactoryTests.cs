@@ -15,8 +15,8 @@ namespace Candidate.Tests.Configurations
         public void Setup()
         {
             DirectoryProvider = new Mock<IDirectoryProvider>();
-            DirectoryProvider.Setup(_ => _.Sources).Returns("/sources");
-            DirectoryProvider.Setup(_ => _.Build).Returns("/build");
+            DirectoryProvider.Setup(_ => _.Sources).Returns("\\sources");
+            DirectoryProvider.Setup(_ => _.Build).Returns("\\build");
         }
 
         protected Mock<IDirectoryProvider> DirectoryProvider { get; set; }
@@ -63,6 +63,44 @@ namespace Candidate.Tests.Configurations
             Assert.That(bounceConfig.RunBatchBuild, Is.Not.Null);
             Assert.That(bounceConfig.DeployWebsite, Is.Not.Null);
             Assert.That(bounceConfig.StartSiteAfterDeployment, Is.Not.Null);
+        }
+
+        [Test]
+        public void should_create_bounce_configuration_run_batch()
+        {
+            var batch = new BatchConfiguration
+            {
+                Id = "batch-build",
+                Github = new Github { Branch = "master", Url = "git@git.com" },
+                Iis = new Iis { Port = 9090, SiteName = "x", DeployFolder = "c:\\sites" },
+                Post = new Post { Batch = "build.bat" }
+            };
+
+            var bounceConfigFactory = new BounceConfigurationFactory(DirectoryProvider.Object);
+
+            var bounceConfig = bounceConfigFactory.CreateFor(batch);
+
+            Assert.That(bounceConfig.RunBatchBuild.Exe.Value, Is.EqualTo("build.bat"));
+            Assert.That(bounceConfig.RunBatchBuild.WorkingDirectory.Value, Is.EqualTo("\\sources\\batch-build"));
+        }
+
+        [Test]
+        public void should_create_bounce_configuration_copy_to_destination()
+        {
+            var batch = new BatchConfiguration
+            {
+                Id = "batch-build",
+                Github = new Github { Branch = "master", Url = "git@git.com" },
+                Iis = new Iis { Port = 9090, SiteName = "x", DeployFolder = "c:\\sites" },
+                Post = new Post { Batch = "build.bat" }
+            };
+
+            var bounceConfigFactory = new BounceConfigurationFactory(DirectoryProvider.Object);
+
+            var bounceConfig = bounceConfigFactory.CreateFor(batch);
+
+            Assert.That(bounceConfig.CopyToDestination.FromPath.Value, Is.EqualTo("\\sources\\batch-build"));
+            Assert.That(bounceConfig.CopyToDestination.ToPath.Value, Is.EqualTo("c:\\sites\\batch-build"));
         }
 
         [Test]

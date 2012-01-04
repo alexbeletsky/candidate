@@ -26,7 +26,7 @@ namespace Candidate.Core.Model.Configurations
 
         public override IDeployRunner CreateDeployRunner(Context context)
         {
-            throw new NotImplementedException();
+            return new DeployRunnerFactory(context.DirectoryProvider).ForConfiguration(this);
         }
     }
 }

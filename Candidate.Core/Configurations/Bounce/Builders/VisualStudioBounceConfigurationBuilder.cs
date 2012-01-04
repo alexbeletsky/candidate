@@ -17,10 +17,11 @@ namespace Candidate.Core.Configurations.Bounce.Builders
         public VisualStudioBounceConfiguration CreateConfig(VisualStudioConfiguration configuration)
         {
             var deploymentFolder = Path.Combine(configuration.Iis.DeployFolder, configuration.Id);
+            var sourcesDirectory = Path.Combine(_directoryProvider.Sources, configuration.Id);
 
             // TODO: ABE requires sourcesDirectory
             var checkout = new CheckoutSourcesTask(configuration.Github.Url, configuration.Github.Branch,
-                                        _directoryProvider.Sources).ToTask();
+                                        sourcesDirectory).ToTask();
 
             var build = new BuildSolutionTask(_directoryProvider.Sources, configuration.Solution.Name,
                                         configuration.Solution.Targets[configuration.Solution.SelectedTarget],

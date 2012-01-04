@@ -17,7 +17,7 @@ namespace Candidate.Core.Configurations.Tasks
         {
             return new ShellCommand
             {
-                Arguments = _batch,
+                Exe = _batch,
                 WorkingDirectory = _sourcesDirectory,
             };
         }
