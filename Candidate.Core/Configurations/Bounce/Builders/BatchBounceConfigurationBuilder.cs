@@ -19,6 +19,8 @@ namespace Candidate.Core.Configurations.Bounce.Builders
         {
             var deploymentFolder = Path.Combine(configuration.Iis.DeployFolder, configuration.Id);
 
+            // TODO: ABE requires sourcesDirectory
+
             return new BatchBounceConfiguration 
             {
                 CheckoutSources = new CheckoutSourcesTask(configuration.Github.Url, configuration.Github.Branch, _directoryProvider.Sources).ToTask(),

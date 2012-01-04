@@ -4,7 +4,10 @@ using System.Linq;
 using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
+using Candidate.Core.Deploy;
+using Candidate.Core.Log;
 using Candidate.Core.Settings;
+using Candidate.Core.Utils;
 using Candidate.Infrustructure.Error;
 using Config = Candidate.Core.Model.Configurations;
 
@@ -15,10 +18,12 @@ namespace Candidate.Areas.Deployment.Controllers
     public class DeployController : Controller
     {
         private readonly ISettingsManager _settingsManager;
+        private readonly IDirectoryProvider _directoryProvider;
 
-        public DeployController(ISettingsManager settingsManager)
+        public DeployController(ISettingsManager settingsManager, IDirectoryProvider directoryProvider)
         {
             _settingsManager = settingsManager;
+            _directoryProvider = directoryProvider;
         }
 
         [HttpGet, ActionName("deploy")]
@@ -40,8 +45,8 @@ namespace Candidate.Areas.Deployment.Controllers
         {
             var configuration = _settingsManager.ReadConfiguration<Config.Configuration>(id);
             
-            var runner = configuration.CreateDeployRunner();
-            var results = runner.Run();
+            var runner = configuration.CreateDeployRunner(new Context { DirectoryProvider = _directoryProvider });
+            var results = runner.Run(new LoggerFactory(_directoryProvider));
 
             return Json(new { success = true, result = new { url = results.Url } });
         }

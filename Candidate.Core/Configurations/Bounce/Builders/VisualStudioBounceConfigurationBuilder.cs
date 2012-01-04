@@ -18,15 +18,17 @@ namespace Candidate.Core.Configurations.Bounce.Builders
         {
             var deploymentFolder = Path.Combine(configuration.Iis.DeployFolder, configuration.Id);
 
-            var checkout =
-                new CheckoutSourcesTask(configuration.Github.Url, configuration.Github.Branch,
+            // TODO: ABE requires sourcesDirectory
+            var checkout = new CheckoutSourcesTask(configuration.Github.Url, configuration.Github.Branch,
                                         _directoryProvider.Sources).ToTask();
+
             var build = new BuildSolutionTask(_directoryProvider.Sources, configuration.Solution.Name,
-                                  configuration.Solution.Targets[configuration.Solution.SelectedTarget],
-                                  configuration.Solution.Configurations[configuration.Solution.SelectedConfiguration],
-                                  _directoryProvider.Build).ToTask();
+                                        configuration.Solution.Targets[configuration.Solution.SelectedTarget],
+                                        configuration.Solution.Configurations[configuration.Solution.SelectedConfiguration],
+                                        _directoryProvider.Build).ToTask();
+
             var runTests = new RunTestsTask(configuration.Solution.IsRunTests, _directoryProvider.Build,
-                                            _directoryProvider.NUnitConsole, configuration.Solution.NUnitRuntimeVersions[configuration.Solution.SelectedNUnitRuntimeVersion], build).ToTask();
+                                        _directoryProvider.NUnitConsole, configuration.Solution.NUnitRuntimeVersions[configuration.Solution.SelectedNUnitRuntimeVersion], build).ToTask();
 
             return new VisualStudioBounceConfiguration
                        {

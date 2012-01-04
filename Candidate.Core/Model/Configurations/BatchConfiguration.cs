@@ -24,7 +24,7 @@ namespace Candidate.Core.Model.Configurations
             get { return "batch";  }
         }
 
-        public override IDeployRunner CreateDeployRunner()
+        public override IDeployRunner CreateDeployRunner(Context context)
         {
             throw new NotImplementedException();
         }

@@ -65,8 +65,12 @@
     <Compile Include="Configurations\Tasks\StartSiteTask.cs" />
     <Compile Include="Configurations\Tasks\StopSiteTask.cs" />
     <Compile Include="Deploy\ConfigurationsExtensions.cs" />
+    <Compile Include="Deploy\Context.cs" />
+    <Compile Include="Deploy\Deployer.cs" />
+    <Compile Include="Deploy\DeployResults.cs" />
     <Compile Include="Deploy\DeployRunnerFactory.cs" />
     <Compile Include="Deploy\DeployRunner.cs" />
+    <Compile Include="Deploy\IDeployable.cs" />
     <Compile Include="Deploy\IDeployRunner.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Helpers\BindingParser.cs" />
@@ -79,8 +83,6 @@
     <Compile Include="Model\ConfigurationsList.cs" />
     <Compile Include="Model\Configurations\BatchConfiguration.cs" />
     <Compile Include="Model\Configurations\Configuration.cs" />
-    <Compile Include="Model\Configurations\DeployResults.cs" />
-    <Compile Include="Model\Configurations\IDeployable.cs" />
     <Compile Include="Model\Configurations\VisualStudioConfiguration.cs" />
     <Compile Include="Model\Configurations\XCopyConfiguration.cs" />
     <Compile Include="Model\ConfigurationTypes.cs" />

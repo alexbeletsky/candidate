@@ -18,9 +18,9 @@ namespace Candidate.Core.Model.Configurations
             get { return "xcopy"; }
         }
 
-        public override IDeployRunner CreateDeployRunner()
+        public override IDeployRunner CreateDeployRunner(Context context)
         {
-            throw new System.NotImplementedException();
+            return new DeployRunnerFactory(context.DirectoryProvider).ForConfiguration(this);
         }
     }
 }

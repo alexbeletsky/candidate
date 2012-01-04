@@ -21,7 +21,7 @@ namespace Candidate.Core.Model.Configurations
             get { return "visualstudio"; }
         }
 
-        public override IDeployRunner CreateDeployRunner()
+        public override IDeployRunner CreateDeployRunner(Context context)
         {
             throw new System.NotImplementedException();
         }

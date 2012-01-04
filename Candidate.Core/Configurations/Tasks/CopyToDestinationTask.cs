@@ -19,7 +19,7 @@ namespace Candidate.Core.Configurations.Tasks
                        { 
                            FromPath = _fromDirectory,
                            ToPath = _toDirectory,
-                           Excludes = new [] { ".git" },
+                           Excludes = new [] { @"**\.git\" },
                            DeleteToDirectory = true
                        };
         }

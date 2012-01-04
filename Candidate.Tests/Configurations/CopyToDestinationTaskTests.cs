@@ -21,7 +21,7 @@ namespace Candidate.Tests.Configurations
             // assert
             Assert.That(bounceTask.FromPath.Value, Is.EqualTo(@"c:\development\projects\a\src"));
             Assert.That(bounceTask.ToPath.Value, Is.EqualTo(@"c:\sites\simple-deploy"));
-            Assert.That(bounceTask.Excludes.Value.Contains(".git"), Is.True);
+            Assert.That(bounceTask.Excludes.Value.Contains(@"**\.git\"), Is.True);
         }
 
         [Test]

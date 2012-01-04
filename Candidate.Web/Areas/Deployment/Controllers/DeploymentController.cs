@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Web.Mvc;
 using Bounce.Framework;
-using Candidate.Core.Configurations;
 using Candidate.Core.Configurations.Bounce;
 using Candidate.Core.Configurations.Bounce.Builders;
+using Candidate.Core.Deploy;
 using Candidate.Core.Log;
 using Candidate.Core.Model;
 using Candidate.Core.Model.Configurations;
@@ -16,6 +16,7 @@ using Candidate.Infrustructure.Filters;
 
 namespace Candidate.Areas.Deployment.Controllers
 {
+    // TODO: ABE remove
     [Authorize]
     [HandleJsonError]
     public class DeploymentController : Controller
@@ -88,72 +89,31 @@ namespace Candidate.Areas.Deployment.Controllers
             //return RunDeployAndLog(jobName, currentSettings);
         }
 
-        private static bool IsHookForBranch(string payload, Github githubConfiguration)
-        {
-            return payload.Equals(githubConfiguration.Branch);
-        }
+        //private static bool IsHookForBranch(string payload, Github githubConfiguration)
+        //{
+        //    return payload.Equals(githubConfiguration.Branch);
+        //}
 
-        private ActionResult RunDeployAndLog(string jobName, VisualStudioConfiguration currentSettings)
-        {
-            _directoryProvider.SiteName = jobName;
+        //private ActionResult RunDeployAndLog(string jobName, VisualStudioConfiguration currentSettings)
+        //{
+        //    _directoryProvider.SiteName = jobName;
 
-            using (var logger = _loggerFactory.CreateLogger())
-            {
-                var setup = _setupFactory.CreateSetup();
-                var result = setup.RunForConfig(logger, currentSettings);
+        //    using (var logger = _loggerFactory.CreateLogger())
+        //    {
+        //        var setup = _setupFactory.CreateSetup();
+        //        var result = setup.RunForConfig(logger, currentSettings);
 
-                return Json(new { success = true, result = result });
-            }
-        }
+        //        return Json(new { success = true, result = result });
+        //    }
+        //}
 
-        private void ThisHowISeeItShouldLookLike(string id)
-        {
-            var configuration = _settingsManager.ReadConfiguration<XCopyConfiguration>(id);
+        //private void ThisHowISeeItShouldLookLike(string id)
+        //{
+        //    var configuration = _settingsManager.ReadConfiguration<XCopyConfiguration>(id);
 
-            var configurationBuilder = new Deployer(_directoryProvider, _loggerFactory);
-            configurationBuilder.DeployXCopyConfig(configuration);
-        }
+        //    var configurationBuilder = new Deployer(_directoryProvider, _loggerFactory);
+        //    configurationBuilder.DeployXCopyConfig(configuration);
+        //}
 
-    }
-
-    internal class Deployer
-    {
-        private readonly IDirectoryProvider _directoryProvider;
-        private readonly ILoggerFactory _loggerFactory;
-        private readonly BounceConfigurationFactory _bounceConfigFactory;
-        private readonly BounceFactory _bounceFactory;
-        private readonly TargetsBuilder _bounceTargetsRunner;
-        private readonly FileLogOptionsFactory _logOptionsFactory;
-
-        public Deployer(IDirectoryProvider directoryProvider, ILoggerFactory loggerFactory)
-        {
-            _directoryProvider = directoryProvider;
-            _loggerFactory = loggerFactory;
-
-            _bounceConfigFactory = new BounceConfigurationFactory(_directoryProvider);
-            _bounceFactory = new BounceFactory();
-            _logOptionsFactory = new FileLogOptionsFactory();
-            _bounceTargetsRunner = new TargetsBuilder();
-        }
-
-        public void DeployXCopyConfig(XCopyConfiguration configuration)
-        {
-            using (var logger = _loggerFactory.CreateLogger())
-            {
-                var bounceConfig = _bounceConfigFactory.CreateFor(configuration);
-                var bounceTargets = bounceConfig.ToTargets();
-                var bounce = _bounceFactory.GetBounce(_logOptionsFactory.CreateLogOptions(logger, LogLevel.Debug));
-
-                _bounceTargetsRunner.BuildTargets(bounce, bounceTargets, BounceCommandFactory.GetCommandByName("build"));
-            }
-        }
-    }
-
-    internal static class ConfigurationsExtensions
-    {
-        public static IEnumerable<Target> ToTargets(this XCopyBounceConfiguration config)
-        {
-            return null;
-        }
     }
 }

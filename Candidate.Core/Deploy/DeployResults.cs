@@ -1,4 +1,4 @@
-namespace Candidate.Core.Model.Configurations
+namespace Candidate.Core.Deploy
 {
     public class DeployResults
     {

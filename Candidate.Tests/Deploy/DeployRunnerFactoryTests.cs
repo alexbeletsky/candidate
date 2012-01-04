@@ -57,6 +57,8 @@ namespace Candidate.Tests.Deploy
         static DeployRunnerFactory CreateFactory(Mock<IDirectoryProvider> directoryProviderMock = null)
         {
             directoryProviderMock = directoryProviderMock ?? new Mock<IDirectoryProvider>();
+            directoryProviderMock.Setup(_ => _.Sources).Returns("/sources");
+
             return new DeployRunnerFactory(directoryProviderMock.Object);
         }
     }

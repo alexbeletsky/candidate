@@ -5,7 +5,7 @@ namespace Candidate.Core.Log
 {
     public class LoggerFactory : ILoggerFactory
     {
-        private IDirectoryProvider _directoryProvider;
+        private readonly IDirectoryProvider _directoryProvider;
 
         public LoggerFactory(IDirectoryProvider directoryProvider)
         {
@@ -16,13 +16,5 @@ namespace Candidate.Core.Log
         {
             return new Logger(_directoryProvider);
         }
-
-        //private string GetPathToLog() {
-        //    return _directoryProvider.Logs + "\\" + GetUniqueLogFilename();
-        //}
-
-        //private string GetUniqueLogFilename() {
-        //    return Guid.NewGuid().ToString() + ".log";
-        //}
     }
 }

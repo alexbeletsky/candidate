@@ -1,3 +1,4 @@
+using System.IO;
 using Bounce.Framework;
 
 namespace Candidate.Core.Configurations.Tasks
