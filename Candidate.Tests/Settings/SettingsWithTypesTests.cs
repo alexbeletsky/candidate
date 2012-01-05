@@ -82,7 +82,7 @@ namespace Candidate.Tests.Settings
                                                 Github = new Github { Branch = "master" },
                                                 Id = jobName,
                                                 Iis = new Iis { SiteName = jobName, Port = 2222 },
-                                                Post = new Post { Batch = "run.bat" }
+                                                Batch = new Batch { BuildScript = "build.bat" }
                                             };
 
             settingsManager.SaveConfiguration(expectedConfiguration);
@@ -105,17 +105,17 @@ namespace Candidate.Tests.Settings
                 Github = new Github { Branch = "master" },
                 Id = jobName,
                 Iis = new Iis { SiteName = jobName, Port = 2222 },
-                Post = new Post { Batch = "run.bat" }
+                Batch = new Batch { BuildScript = "build.bat" }
             };
 
             settingsManager.SaveConfiguration(expectedConfiguration);
 
             // act
-            settingsManager.UpdateConfiguration<BatchConfiguration>(jobName, c => c.Post.Batch = "exec.bat");
+            settingsManager.UpdateConfiguration<BatchConfiguration>(jobName, c => c.Batch.BuildScript = "exec.bat");
 
             // assert
             var actualConfiguration = settingsManager.ReadConfiguration<BatchConfiguration>(jobName);
-            Assert.That(actualConfiguration.Post.Batch, Is.EqualTo("exec.bat"));
+            Assert.That(actualConfiguration.Batch.BuildScript, Is.EqualTo("exec.bat"));
         }
 
         [Test]

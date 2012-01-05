@@ -17,16 +17,22 @@ namespace Candidate.Core.Configurations.Bounce.Builders
 
         public BatchBounceConfiguration CreateConfig(BatchConfiguration configuration)
         {
-            var deploymentFolder = Path.Combine(configuration.Iis.DeployFolder, configuration.Id);
+            var deploymentDirectory = Path.Combine(configuration.Iis.DeployFolder, configuration.Id);
             var sourcesDirectory = Path.Combine(_directoryProvider.Sources, configuration.Id);
+
+            var buildDirectory = sourcesDirectory;
+            if (!string.IsNullOrEmpty(configuration.Batch.BuildFolder))
+            {
+                buildDirectory = Path.Combine(sourcesDirectory, configuration.Batch.BuildFolder);
+            }
 
             return new BatchBounceConfiguration 
             {
                 CheckoutSources = new CheckoutSourcesTask(configuration.Github.Url, configuration.Github.Branch, sourcesDirectory).ToTask(),
                 StopSiteBeforeDeployment = new StopSiteTask(configuration.Iis.SiteName).ToTask(),
-                RunBatchBuild = new ShellTask(configuration.Post.Batch, sourcesDirectory).ToTask(),
-                CopyToDestination = new CopyToDestinationTask(sourcesDirectory, deploymentFolder).ToTask(),
-                DeployWebsite = new DeployWebsiteTask(deploymentFolder, configuration.Iis.SiteName, configuration.Iis.Port, configuration.Iis.Bindings).ToTask(),
+                RunBatchBuild = new ShellTask(configuration.Batch.BuildScript, sourcesDirectory).ToTask(),
+                CopyToDestination = new CopyToDestinationTask(buildDirectory, deploymentDirectory).ToTask(),
+                DeployWebsite = new DeployWebsiteTask(deploymentDirectory, configuration.Iis.SiteName, configuration.Iis.Port, configuration.Iis.Bindings).ToTask(),
                 StartSiteAfterDeployment = new StartSiteTask(configuration.Iis.SiteName).ToTask()
             };
         }

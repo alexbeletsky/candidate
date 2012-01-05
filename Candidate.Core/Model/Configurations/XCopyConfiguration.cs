@@ -15,7 +15,7 @@ namespace Candidate.Core.Model.Configurations
 
         public override string Type
         {
-            get { return "xcopy"; }
+            get { return "XCopy"; }
         }
 
         public override IDeployRunner CreateDeployRunner(Context context)

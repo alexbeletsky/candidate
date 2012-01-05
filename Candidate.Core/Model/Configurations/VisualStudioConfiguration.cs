@@ -18,7 +18,7 @@ namespace Candidate.Core.Model.Configurations
 
         public override string Type
         {
-            get { return "visualstudio"; }
+            get { return "VisualStudio"; }
         }
 
         public override IDeployRunner CreateDeployRunner(Context context)

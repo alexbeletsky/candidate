@@ -42,13 +42,13 @@ namespace Candidate.Areas.Configuration.Controllers
         [HttpGet, ActionName("batch")]
         public ActionResult ConfigurePostSection(string id)
         {
-            return View<Config.BatchConfiguration>(id, "Post", c => c.Post);
+            return View<Config.BatchConfiguration>(id, "Batch", c => c.Batch);
         }
 
         [HttpPost, ActionName("batch")]
-        public ActionResult ConfigurePostSection(string id, Post config)
+        public ActionResult ConfigurePostSection(string id, Batch config)
         {
-            return Post<Config.BatchConfiguration>(id, c => c.Post = config);
+            return Post<Config.BatchConfiguration>(id, c => c.Batch = config);
         }
     }
 }

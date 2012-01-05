@@ -12,16 +12,17 @@ namespace Candidate.Core.Model.Configurations
         {
             Github = new Github();
             Iis = new Iis();
-            Post = new Post();
+            Batch = new Batch();
         }
 
         public Github Github { get; set; }
         public Iis Iis { get; set; }
-        public Post Post { get; set; }
+        //public Post Batch { get; set; }
+        public Batch Batch { get; set; }
 
         public override string Type
         {
-            get { return "batch";  }
+            get { return "Batch";  }
         }
 
         public override IDeployRunner CreateDeployRunner(Context context)

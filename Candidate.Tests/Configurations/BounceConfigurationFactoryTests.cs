@@ -50,7 +50,7 @@ namespace Candidate.Tests.Configurations
                                 Id = "batch-build",
                                 Github = new Github { Branch = "master", Url = "git@git.com" },
                                 Iis = new Iis { Port = 9090, SiteName = "x", DeployFolder = "c:\\sites" },
-                                Post = new Post { Batch = "build.bat" }
+                                Batch = new Batch { BuildScript = "build.bat" }
                             };
 
             var bounceConfigFactory = new BounceConfigurationFactory(DirectoryProvider.Object);
@@ -73,7 +73,7 @@ namespace Candidate.Tests.Configurations
                 Id = "batch-build",
                 Github = new Github { Branch = "master", Url = "git@git.com" },
                 Iis = new Iis { Port = 9090, SiteName = "x", DeployFolder = "c:\\sites" },
-                Post = new Post { Batch = "build.bat" }
+                Batch = new Batch { BuildScript = "build.bat" }
             };
 
             var bounceConfigFactory = new BounceConfigurationFactory(DirectoryProvider.Object);
@@ -92,7 +92,26 @@ namespace Candidate.Tests.Configurations
                 Id = "batch-build",
                 Github = new Github { Branch = "master", Url = "git@git.com" },
                 Iis = new Iis { Port = 9090, SiteName = "x", DeployFolder = "c:\\sites" },
-                Post = new Post { Batch = "build.bat" }
+                Batch = new Batch { BuildScript = "build.bat", BuildFolder = "build"}
+            };
+
+            var bounceConfigFactory = new BounceConfigurationFactory(DirectoryProvider.Object);
+
+            var bounceConfig = bounceConfigFactory.CreateFor(batch);
+
+            Assert.That(bounceConfig.CopyToDestination.FromPath.Value, Is.EqualTo("\\sources\\batch-build\\build"));
+            Assert.That(bounceConfig.CopyToDestination.ToPath.Value, Is.EqualTo("c:\\sites\\batch-build"));
+        }
+
+        [Test]
+        public void should_create_bounce_configuration_copy_to_destination_build_folder_is_optional()
+        {
+            var batch = new BatchConfiguration
+            {
+                Id = "batch-build",
+                Github = new Github { Branch = "master", Url = "git@git.com" },
+                Iis = new Iis { Port = 9090, SiteName = "x", DeployFolder = "c:\\sites" },
+                Batch = new Batch { BuildScript = "build.bat" }
             };
 
             var bounceConfigFactory = new BounceConfigurationFactory(DirectoryProvider.Object);

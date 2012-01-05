@@ -43,7 +43,7 @@ namespace Candidate.Tests.Deploy
                     Id = "batch-build",
                     Github = new Github { Branch = "master", Url = "git@git.com" },
                     Iis = new Iis { Port = 9090, SiteName = "x", DeployFolder = "c:\\sites" },
-                    Post = new Post { Batch = "build.bat" }
+                    Batch = new Batch { BuildScript = "build.bat" }
                 };
 
                 var deployer = CreateFactory();

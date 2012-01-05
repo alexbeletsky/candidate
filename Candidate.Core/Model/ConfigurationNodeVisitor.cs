@@ -2,6 +2,7 @@ using Candidate.Core.Model.Configurations;
 
 namespace Candidate.Core.Model
 {
+    // TODO: ABE remove
     public abstract class ConfigurationNodeVisitor
     {
         public abstract void Visit(Pre node);

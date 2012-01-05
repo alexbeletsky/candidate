@@ -79,13 +79,13 @@
     <Compile Include="Log\Logger.cs" />
     <Compile Include="Log\FileLogOptionsFactory.cs" />
     <Compile Include="Log\LoggerFactory.cs" />
+    <Compile Include="Model\Batch.cs" />
     <Compile Include="Model\ConfigurationNodeVisitor.cs" />
     <Compile Include="Model\ConfigurationsList.cs" />
     <Compile Include="Model\Configurations\BatchConfiguration.cs" />
     <Compile Include="Model\Configurations\Configuration.cs" />
     <Compile Include="Model\Configurations\VisualStudioConfiguration.cs" />
     <Compile Include="Model\Configurations\XCopyConfiguration.cs" />
-    <Compile Include="Model\ConfigurationTypes.cs" />
     <Compile Include="Model\Github.cs" />
     <Compile Include="Model\Iis.cs" />
     <Compile Include="Model\Post.cs" />
