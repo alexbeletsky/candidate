@@ -9,7 +9,6 @@ namespace Candidate.Core.Model
         [DisplayName("Batch build")]
         public string BuildScript { get; set; }
 
-        [Required]
         [DisplayName("Build folder")]
         public string BuildFolder { get; set; }
     }
