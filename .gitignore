@@ -30,6 +30,8 @@ _ReSharper*
 *.log
 *.Cache
 *.StyleCop
+*.user
+*.local.xml
 
 TestResult.xml
 submit.xml
