@@ -97,7 +97,6 @@
     <Compile Include="Areas\Dashboard\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Dashboard\Controllers\OverviewController.cs" />
     <Compile Include="Areas\Deployment\Controllers\DeployController.cs" />
-    <Compile Include="Areas\Deployment\Controllers\DeploymentController.cs" />
     <Compile Include="Areas\Dashboard\Models\AccountSettingsModel.cs" />
     <Compile Include="Areas\Dashboard\Controllers\LogController.cs" />
     <Compile Include="Areas\Dashboard\DashboardAreaRegistration.cs" />

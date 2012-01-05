@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using Candidate.Core.Settings;
-using Candidate.Core.Utils;
 using KellermanSoftware.CompareNetObjects;
 using NUnit.Framework;
 
@@ -10,20 +9,19 @@ namespace Candidate.Tests.Settings
     [TestFixture]
     public class SettingsTests
     {
-        private static readonly string CurrentDirectory = Directory.GetCurrentDirectory();
-        private static readonly DirectoryProvider DirectoryProvider = new DirectoryProvider("SettingsTests", CurrentDirectory);
+        private static readonly string SettingsTestsDirectory = Path.Combine(Directory.GetCurrentDirectory(), "SettingsTests");
 
         [TearDown]
         public void Teardown()
         {
-            Directory.Delete(DirectoryProvider.Settings, true);
+            Directory.Delete(SettingsTestsDirectory, true);
         }
 
         [Test]
         public void SettingsManager_SaveSettings()
         {
             // arrange
-            var settingsManager = new SettingsManager(DirectoryProvider);
+            var settingsManager = new SettingsManager(SettingsTestsDirectory);
             var settings = new BuildServerSettings
             {
                 User = new User { FirstName = "Alexander", LastName = "Beletsky" },
@@ -42,7 +40,7 @@ namespace Candidate.Tests.Settings
         public void SettingManager_With_TrackableObjects()
         {
             // arrange
-            var settingsManager = new SettingsManager(DirectoryProvider);
+            var settingsManager = new SettingsManager(SettingsTestsDirectory);
             var settings = new BuildServerSettings
             {
                 User = new User { FirstName = "Alexander", LastName = "Beletsky" },
@@ -69,7 +67,7 @@ namespace Candidate.Tests.Settings
         public void ReadSettings_IfNoSettingsCreated_ReturnNewObject()
         {
             // arrange
-            var settingsManager = new SettingsManager(DirectoryProvider);
+            var settingsManager = new SettingsManager(SettingsTestsDirectory);
 
             // act
             var settings = settingsManager.ReadSettings<NoSuchSettings>();

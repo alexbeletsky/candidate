@@ -9,14 +9,20 @@ namespace Candidate.Core.Settings
         private readonly JsonSerializer _serializer;
         private readonly string _settingsFolder;
 
-        public SettingsManager(IDirectoryProvider directoryProvider)
+        public SettingsManager()
+            : this(DirectoryHelper.For().SettingsDirectory)
         {
-            _serializer = JsonSerializer.Create(new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Objects });
-            _settingsFolder = directoryProvider.Settings;
-            CreateSettingFolder();
         }
 
-        private void CreateSettingFolder()
+        public SettingsManager(string settingsDirectory)
+        {
+            _serializer = JsonSerializer.Create(new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Objects });
+            _settingsFolder = settingsDirectory;
+
+            EnsureSettingFolderExists();            
+        }
+
+        private void EnsureSettingFolderExists()
         {
             if (!Directory.Exists(_settingsFolder))
             {

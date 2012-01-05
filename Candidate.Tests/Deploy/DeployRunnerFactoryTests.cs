@@ -6,8 +6,6 @@ using Candidate.Core.Configurations;
 using Candidate.Core.Configurations.Parts;
 using Candidate.Core.Configurations.Types;
 using Candidate.Core.Deploy;
-using Candidate.Core.Utils;
-using Moq;
 using NUnit.Framework;
 
 namespace Candidate.Tests.Deploy
@@ -23,7 +21,7 @@ namespace Candidate.Tests.Deploy
                 { 
                     Id = "id", 
                     Github = new Github { Url = "git@git.com", Branch = "master" },
-                    Iis = new Iis { SiteName = "test", DeployFolder = @"c:\deploy" },
+                    Iis = new Iis { SiteName = "test", DeployDirectory = @"c:\deploy" },
                 };
 
                 var deployer = CreateFactory();
@@ -43,7 +41,7 @@ namespace Candidate.Tests.Deploy
                 {
                     Id = "batch-build",
                     Github = new Github { Branch = "master", Url = "git@git.com" },
-                    Iis = new Iis { Port = 9090, SiteName = "x", DeployFolder = "c:\\sites" },
+                    Iis = new Iis { Port = 9090, SiteName = "x", DeployDirectory = "c:\\sites" },
                     Batch = new Batch { BuildScript = "build.bat" }
                 };
 
@@ -55,12 +53,30 @@ namespace Candidate.Tests.Deploy
             }
         }
 
-        static DeployRunnerFactory CreateFactory(Mock<IDirectoryProvider> directoryProviderMock = null)
+        public class DeployForVisualStudio
         {
-            directoryProviderMock = directoryProviderMock ?? new Mock<IDirectoryProvider>();
-            directoryProviderMock.Setup(_ => _.Sources).Returns("/sources");
+            [Test]
+            public void should_create_deploy_runner()
+            {
+                var configuration = new VisualStudioConfiguration
+                {
+                    Id = "visual-studio",
+                    Github = new Github { Branch = "master", Url = "git@git.com" },
+                    Iis = new Iis { Port = 9090, SiteName = "x", DeployDirectory = "c:\\sites" },
+                    Solution = new Solution { Name = "solution.sln", SelectedConfiguration = 0, WebProject = "Web", IsRunTests = true }
+                };
 
-            return new DeployRunnerFactory(directoryProviderMock.Object);
+                var deployer = CreateFactory();
+
+                var deployRunner = deployer.ForConfiguration(configuration);
+
+                Assert.That(deployRunner, Is.Not.Null);
+            }
+        }
+
+        static DeployRunnerFactory CreateFactory()
+        {
+            return new DeployRunnerFactory();
         }
     }
 }

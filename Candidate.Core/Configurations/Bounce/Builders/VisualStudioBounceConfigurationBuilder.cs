@@ -1,45 +1,40 @@
 using System.IO;
 using Candidate.Core.Configurations.Tasks;
 using Candidate.Core.Configurations.Types;
-using Candidate.Core.Utils;
 
 namespace Candidate.Core.Configurations.Bounce.Builders
 {
-    public class VisualStudioBounceConfigurationBuilder
+    public class VisualStudioBounceConfigurationBuilder : ConfigurationBuilderBase 
     {
-        private readonly IDirectoryProvider _directoryProvider;
+        private readonly VisualStudioConfiguration _configuration;
 
-        public VisualStudioBounceConfigurationBuilder(IDirectoryProvider directoryProvider)
+        public VisualStudioBounceConfigurationBuilder(VisualStudioConfiguration configuration) :
+            base(configuration.Id, configuration.Iis.DeployDirectory, Path.Combine("build\\_PublishedWebsites", configuration.Solution.WebProject))
         {
-            _directoryProvider = directoryProvider;
+            _configuration = configuration;
         }
 
-        public VisualStudioBounceConfiguration CreateConfig(VisualStudioConfiguration configuration)
+        public VisualStudioBounceConfiguration CreateConfig()
         {
-            var deploymentFolder = Path.Combine(configuration.Iis.DeployFolder, configuration.Id);
-            var sourcesDirectory = Path.Combine(_directoryProvider.Sources, configuration.Id);
+            var checkout = new CheckoutSourcesTask(_configuration.Github.Url, _configuration.Github.Branch, SourcesDirectory).ToTask();
 
-            // TODO: ABE requires sourcesDirectory
-            var checkout = new CheckoutSourcesTask(configuration.Github.Url, configuration.Github.Branch,
-                                        sourcesDirectory).ToTask();
+            var build = new BuildSolutionTask(SourcesDirectory, _configuration.Solution.Name,
+                                        _configuration.Solution.Targets[_configuration.Solution.SelectedTarget],
+                                        _configuration.Solution.Configurations[_configuration.Solution.SelectedConfiguration],
+                                        BuildDirectory).ToTask();
 
-            var build = new BuildSolutionTask(_directoryProvider.Sources, configuration.Solution.Name,
-                                        configuration.Solution.Targets[configuration.Solution.SelectedTarget],
-                                        configuration.Solution.Configurations[configuration.Solution.SelectedConfiguration],
-                                        _directoryProvider.Build).ToTask();
-
-            var runTests = new RunTestsTask(configuration.Solution.IsRunTests, _directoryProvider.Build,
-                                        _directoryProvider.NUnitConsole, configuration.Solution.NUnitRuntimeVersions[configuration.Solution.SelectedNUnitRuntimeVersion], build).ToTask();
+            var runTests = new RunTestsTask(_configuration.Solution.IsRunTests, BuildDirectory,
+                                        NUnitConsole, _configuration.Solution.NUnitRuntimeVersions[_configuration.Solution.SelectedNUnitRuntimeVersion], build).ToTask();
 
             return new VisualStudioBounceConfiguration
                        {
                            CheckoutSources = checkout,
                            BuildSolution = build,
                            RunTests = runTests,
-                           StopSiteBeforeDeployment = new StopSiteTask(configuration.Iis.SiteName).ToTask(),
-                           CopyToDestination = new CopyToDestinationTask(_directoryProvider.Build, deploymentFolder).ToTask(),
-                           DeployWebsite = new DeployWebsiteTask(deploymentFolder, configuration.Iis.SiteName, configuration.Iis.Port, configuration.Iis.Bindings).ToTask(),
-                           StartSiteAfterDeployment = new StartSiteTask(configuration.Iis.SiteName).ToTask()
+                           StopSiteBeforeDeployment = new StopSiteTask(_configuration.Iis.SiteName).ToTask(),
+                           CopyToDestination = new CopyToDestinationTask(BuildDirectory, DeploymentDirectory).ToTask(),
+                           DeployWebsite = new DeployWebsiteTask(DeploymentDirectory, _configuration.Iis.SiteName, _configuration.Iis.Port, _configuration.Iis.Bindings).ToTask(),
+                           StartSiteAfterDeployment = new StartSiteTask(_configuration.Iis.SiteName).ToTask()
                        };
         }
     }

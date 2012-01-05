@@ -10,6 +10,6 @@ namespace Candidate.Core.Configurations.Parts
         public string BuildScript { get; set; }
 
         [DisplayName("Build folder")]
-        public string BuildFolder { get; set; }
+        public string BuildDirectory { get; set; }
     }
 }

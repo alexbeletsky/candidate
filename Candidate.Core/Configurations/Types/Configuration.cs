@@ -9,6 +9,6 @@ namespace Candidate.Core.Configurations.Types
 
         public abstract string Type { get; }
 
-        public abstract IDeployRunner CreateDeployRunner(Context context);
+        public abstract IDeployRunner CreateDeployRunner();
     }
 }

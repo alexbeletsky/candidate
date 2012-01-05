@@ -6,13 +6,14 @@ namespace Candidate.Core.Log
 {
     public class Logger : ILogger
     {
+        private readonly string _id;
         private StreamWriter _writter;
 
-        public Logger(IDirectoryProvider directoryProvider)
+        public Logger(string id)
         {
+            _id = id;
+
             LogFileName = GetUniqueLogFilename();
-            LogsDirectory = directoryProvider.Logs;
-            LogFileFullPath = LogsDirectory + "\\" + LogFileName;
 
             CreateLogsDirectory();
             CreateLogsWriter();
@@ -38,22 +39,14 @@ namespace Candidate.Core.Log
 
         public TextWriter LogWriter
         {
-            get
-            {
-                return _writter;
-            }
+            get { return _writter; }
         }
 
-        public string LogFileName
-        {
-            get;
-            private set;
-        }
+        public string LogFileName { get; private set; }
 
         public string LogFileFullPath
         {
-            get;
-            private set;
+            get { return Path.Combine(LogsDirectory, LogFileName); }
         }
 
         private string GetUniqueLogFilename()
@@ -61,6 +54,9 @@ namespace Candidate.Core.Log
             return DateTime.Now.ToString("MMddyyyy_HHmmss") + ".log";
         }
 
-        public string LogsDirectory { get; set; }
+        public string LogsDirectory
+        {
+            get { return DirectoryHelper.For(_id).LogsDirectory; }
+        }
     }
 }

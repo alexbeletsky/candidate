@@ -15,9 +15,9 @@ namespace Candidate.Core.Deploy
             _bounceTargetsBuilder = new TargetsBuilder();
         }
 
-        public DeployResults Run(ILoggerFactory loggerFactory)
+        public DeployResults Run(string id)
         {
-            using (var logger = loggerFactory.CreateLogger())
+            using (var logger = new Logger(id))
             {
                 var bounce = new BounceFactory().GetBounce(CreateLogOptions(logger, LogLevel.Debug));
                 _bounceTargetsBuilder.BuildTargets(bounce, _bounceTargets, BounceCommandFactory.GetCommandByName("build"));

@@ -21,9 +21,9 @@ namespace Candidate.Core.Configurations.Types
             get { return "VisualStudio"; }
         }
 
-        public override IDeployRunner CreateDeployRunner(Context context)
+        public override IDeployRunner CreateDeployRunner()
         {
-            return new DeployRunnerFactory(context.DirectoryProvider).ForConfiguration(this);
+            return new DeployRunnerFactory().ForConfiguration(this);
         }
     }
 }

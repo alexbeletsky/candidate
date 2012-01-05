@@ -45,16 +45,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configurations\Bounce\BounceConfigurationFactory.cs" />
     <Compile Include="Configurations\Bounce\BatchBounceConfiguration.cs" />
     <Compile Include="Configurations\Bounce\Builders\BatchBounceConfigurationBuilder.cs" />
+    <Compile Include="Configurations\Bounce\Builders\ConfigurationBuilderBase.cs" />
     <Compile Include="Configurations\Bounce\Builders\VisualStudioBounceConfigurationBuilder.cs" />
     <Compile Include="Configurations\Bounce\Builders\XCopyBounceConfigurationBuilder.cs" />
     <Compile Include="Configurations\Bounce\VisualStudioBounceConfiguration.cs" />
     <Compile Include="Configurations\Bounce\XCopyBounceConfiguration.cs" />
     <Compile Include="Configurations\ConfigurationsFactory.cs" />
     <Compile Include="Configurations\Exceptions\ConfigurationTypeNotSupported.cs" />
-    <Compile Include="Configurations\Bounce\IBounceConfigurationFactory.cs" />
     <Compile Include="Configurations\IConfigurationsFactory.cs" />
     <Compile Include="Configurations\Tasks\BuildSolutionTask.cs" />
     <Compile Include="Configurations\Tasks\CheckoutSourcesTask.cs" />
@@ -65,7 +64,6 @@
     <Compile Include="Configurations\Tasks\StartSiteTask.cs" />
     <Compile Include="Configurations\Tasks\StopSiteTask.cs" />
     <Compile Include="Deploy\ConfigurationsExtensions.cs" />
-    <Compile Include="Deploy\Context.cs" />
     <Compile Include="Deploy\DeployResults.cs" />
     <Compile Include="Deploy\DeployRunnerFactory.cs" />
     <Compile Include="Deploy\DeployRunner.cs" />
@@ -73,11 +71,9 @@
     <Compile Include="Deploy\IDeployRunner.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Helpers\BindingParser.cs" />
-    <Compile Include="Log\ILoggerFactory.cs" />
     <Compile Include="Log\ILogOptionsFactory.cs" />
     <Compile Include="Log\Logger.cs" />
     <Compile Include="Log\FileLogOptionsFactory.cs" />
-    <Compile Include="Log\LoggerFactory.cs" />
     <Compile Include="Configurations\Parts\Batch.cs" />
     <Compile Include="Configurations\ConfigurationNodeVisitor.cs" />
     <Compile Include="Configurations\ConfigurationsList.cs" />
@@ -101,8 +97,6 @@
     <Compile Include="Settings\AutoSaveSettingsManager.cs" />
     <Compile Include="Settings\Validation\IisBindingsAttribute.cs" />
     <Compile Include="Setup\ConfigObject.cs" />
-    <Compile Include="Setup\ConfigObjectBuilder.cs" />
-    <Compile Include="Setup\ConfigObjectCreatingNodeVisitor.cs" />
     <Compile Include="Setup\DefaultTargetsObjectBuilder.cs" />
     <Compile Include="Setup\DefaultSetup.cs" />
     <Compile Include="Setup\ITargetsObjectBuilder.cs" />
@@ -112,8 +106,7 @@
     <Compile Include="Setup\SetupFactory.cs" />
     <Compile Include="Log\ILogger.cs" />
     <Compile Include="Setup\SetupResult.cs" />
-    <Compile Include="Utils\DirectoryProvider.cs" />
-    <Compile Include="Utils\IDirectoryProvider.cs" />
+    <Compile Include="Utils\DirectoryHelper.cs" />
     <Compile Include="Utils\LocalAppDataFolder.cs" />
     <Compile Include="Extensions\SiteConfigurationExtentions.cs" />
   </ItemGroup>

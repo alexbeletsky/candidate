@@ -8,7 +8,6 @@ using Candidate.Core.Configurations.Parts;
 using Candidate.Core.Configurations.Types;
 using Candidate.Core.Settings;
 using Candidate.Core.Settings.Exceptions;
-using Candidate.Core.Utils;
 using NUnit.Framework;
 using KellermanSoftware.CompareNetObjects;
 
@@ -16,22 +15,19 @@ namespace Candidate.Tests.Settings
 {
     public class SettingsWithTypesTests
     {
-        private static readonly string CurrentDirectory = Directory.GetCurrentDirectory();
-
-        private static readonly DirectoryProvider DirectoryProvider = new DirectoryProvider("SettingsTests",
-                                                                                            CurrentDirectory);
+        private static readonly string SettingsTestsDirectory = Path.Combine(Directory.GetCurrentDirectory(), "SettingsTests");
 
         [TearDown]
         public void Teardown()
         {
-            Directory.Delete(DirectoryProvider.Settings, true);
+            Directory.Delete(SettingsTestsDirectory, true);
         }
 
         [Test]
         public void should_read_xcopy_settings()
         {
             // arrange
-            var settingsManager = new SettingsManager(DirectoryProvider);
+            var settingsManager = new SettingsManager(SettingsTestsDirectory);
             var jobName = "test";
             var expectedConfiguration = new XCopyConfiguration
                                             {
@@ -53,7 +49,7 @@ namespace Candidate.Tests.Settings
         public void should_update_xcopy_configuration()
         {
             // arrange
-            var settingsManager = new SettingsManager(DirectoryProvider);
+            var settingsManager = new SettingsManager(SettingsTestsDirectory);
             var jobName = "test";
             var expectedConfiguration = new XCopyConfiguration
                                             {
@@ -76,7 +72,7 @@ namespace Candidate.Tests.Settings
         public void should_read_batch_settings()
         {
             // arrange
-            var settingsManager = new SettingsManager(DirectoryProvider);
+            var settingsManager = new SettingsManager(SettingsTestsDirectory);
             var jobName = "test";
             var expectedConfiguration = new BatchConfiguration
                                             {
@@ -99,7 +95,7 @@ namespace Candidate.Tests.Settings
         public void should_update_batch_configuration()
         {
             // arrange
-            var settingsManager = new SettingsManager(DirectoryProvider);
+            var settingsManager = new SettingsManager(SettingsTestsDirectory);
             var jobName = "test";
             var expectedConfiguration = new BatchConfiguration
             {
@@ -123,7 +119,7 @@ namespace Candidate.Tests.Settings
         public void should_read_visual_studio_configuration()
         {
             // arrange
-            var settingsManager = new SettingsManager(DirectoryProvider);
+            var settingsManager = new SettingsManager(SettingsTestsDirectory);
             var jobName = "test";
             var expectedConfiguration = new VisualStudioConfiguration
                                             {
@@ -145,7 +141,7 @@ namespace Candidate.Tests.Settings
         public void should_update_visual_studio_configuration()
         {
             // arrange
-            var settingsManager = new SettingsManager(DirectoryProvider);
+            var settingsManager = new SettingsManager(SettingsTestsDirectory);
             var jobName = "test";
             var expectedConfiguration = new VisualStudioConfiguration
             {
@@ -168,7 +164,7 @@ namespace Candidate.Tests.Settings
         public void should_support_the_mix_of_configurations_in_one_configuration_list()
         {
             // arrange
-            var settingsManager = new SettingsManager(DirectoryProvider);
+            var settingsManager = new SettingsManager(SettingsTestsDirectory);
 
             settingsManager.SaveConfiguration(new BatchConfiguration { Id = "test 1" });
             settingsManager.SaveConfiguration(new VisualStudioConfiguration { Id = "test 2" });
@@ -189,7 +185,7 @@ namespace Candidate.Tests.Settings
         public void should_throw_exception_if_required_for_configuration_of_wrong_type()
         {
             // arrange
-            var settingsManager = new SettingsManager(DirectoryProvider);
+            var settingsManager = new SettingsManager(SettingsTestsDirectory);
 
             settingsManager.SaveConfiguration(new BatchConfiguration { Id = "test 1" });
             settingsManager.SaveConfiguration(new VisualStudioConfiguration { Id = "test 2" });
@@ -203,7 +199,7 @@ namespace Candidate.Tests.Settings
         public void should_throw_exception_if_configuration_does_not_exist()
         {
             // arrange
-            var settingsManager = new SettingsManager(DirectoryProvider);
+            var settingsManager = new SettingsManager(SettingsTestsDirectory);
 
             settingsManager.SaveConfiguration(new BatchConfiguration { Id = "test 1" });
 
@@ -215,7 +211,7 @@ namespace Candidate.Tests.Settings
         public void should_delete_configuration()
         {
             // arrange
-            var settingsManager = new SettingsManager(DirectoryProvider);
+            var settingsManager = new SettingsManager(SettingsTestsDirectory);
 
             settingsManager.SaveConfiguration(new BatchConfiguration { Id = "test 1" });
             settingsManager.SaveConfiguration(new VisualStudioConfiguration { Id = "test 2" });

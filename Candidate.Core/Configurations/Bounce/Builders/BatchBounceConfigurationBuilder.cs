@@ -2,38 +2,29 @@ using System.IO;
 using Bounce.Framework;
 using Candidate.Core.Configurations.Tasks;
 using Candidate.Core.Configurations.Types;
-using Candidate.Core.Utils;
 
 namespace Candidate.Core.Configurations.Bounce.Builders
 {
-    public class BatchBounceConfigurationBuilder
+    public class BatchBounceConfigurationBuilder : ConfigurationBuilderBase
     {
-        private readonly IDirectoryProvider _directoryProvider;
+        private readonly BatchConfiguration _configuration;
 
-        public BatchBounceConfigurationBuilder(IDirectoryProvider directoryProvider)
+        public BatchBounceConfigurationBuilder(BatchConfiguration configuration) 
+            : base(configuration.Id, configuration.Iis.DeployDirectory, configuration.Batch.BuildDirectory)
         {
-            _directoryProvider = directoryProvider;
+            _configuration = configuration;
         }
 
-        public BatchBounceConfiguration CreateConfig(BatchConfiguration configuration)
+        public BatchBounceConfiguration CreateConfig()
         {
-            var deploymentDirectory = Path.Combine(configuration.Iis.DeployFolder, configuration.Id);
-            var sourcesDirectory = Path.Combine(_directoryProvider.Sources, configuration.Id);
-
-            var buildDirectory = sourcesDirectory;
-            if (!string.IsNullOrEmpty(configuration.Batch.BuildFolder))
-            {
-                buildDirectory = Path.Combine(sourcesDirectory, configuration.Batch.BuildFolder);
-            }
-
             return new BatchBounceConfiguration 
             {
-                CheckoutSources = new CheckoutSourcesTask(configuration.Github.Url, configuration.Github.Branch, sourcesDirectory).ToTask(),
-                StopSiteBeforeDeployment = new StopSiteTask(configuration.Iis.SiteName).ToTask(),
-                RunBatchBuild = new ShellTask(configuration.Batch.BuildScript, sourcesDirectory).ToTask(),
-                CopyToDestination = new CopyToDestinationTask(buildDirectory, deploymentDirectory).ToTask(),
-                DeployWebsite = new DeployWebsiteTask(deploymentDirectory, configuration.Iis.SiteName, configuration.Iis.Port, configuration.Iis.Bindings).ToTask(),
-                StartSiteAfterDeployment = new StartSiteTask(configuration.Iis.SiteName).ToTask()
+                CheckoutSources = new CheckoutSourcesTask(_configuration.Github.Url, _configuration.Github.Branch, SourcesDirectory).ToTask(),
+                StopSiteBeforeDeployment = new StopSiteTask(_configuration.Iis.SiteName).ToTask(),
+                RunBatchBuild = new ShellTask(_configuration.Batch.BuildScript, SourcesDirectory).ToTask(),
+                CopyToDestination = new CopyToDestinationTask(BuildDirectory, DeploymentDirectory).ToTask(),
+                DeployWebsite = new DeployWebsiteTask(DeploymentDirectory, _configuration.Iis.SiteName, _configuration.Iis.Port, _configuration.Iis.Bindings).ToTask(),
+                StartSiteAfterDeployment = new StartSiteTask(_configuration.Iis.SiteName).ToTask()
             };
         }
     }

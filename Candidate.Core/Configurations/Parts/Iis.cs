@@ -8,7 +8,7 @@ namespace Candidate.Core.Configurations.Parts
         public Iis()
         {
             Port = 80;
-            DeployFolder = "c:\\sites";
+            DeployDirectory = "c:\\sites";
         }
 
         [Required]
@@ -23,6 +23,6 @@ namespace Candidate.Core.Configurations.Parts
 
         [Required]
         [DisplayName("Deploy folder")]
-        public string DeployFolder { get; set; }
+        public string DeployDirectory { get; set; }
     }
 }
