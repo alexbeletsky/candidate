@@ -8,7 +8,6 @@ namespace Candidate.App_Start
     using Bounce.Framework;
     using Candidate.Core.Services;
     using Candidate.Core.Settings;
-    using Candidate.Core.Setup;
     using Candidate.Infrustructure.Authentication;
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
     using Ninject;
@@ -56,11 +55,6 @@ namespace Candidate.App_Start
             // TODO: ABE get rid of this, switch to conventions..
 
             kernel.Bind<ISettingsManager>().To<SettingsManager>();
-            kernel.Bind<ISetupFactory>().To<SetupFactory>();
-            kernel.Bind<ITargetsObjectBuilder>().To<DefaultTargetsObjectBuilder>();
-            kernel.Bind<ITargetsBuilder>().To<TargetsBuilder>();
-            kernel.Bind<IBounceFactory>().To<BounceFactory>();
-            kernel.Bind<ITargetsRetriever>().To<TargetsRetriever>();
             kernel.Bind<IHashService>().To<HashService>();
             kernel.Bind<IAuthentication>().To<Authentication>();
             kernel.Bind<IConfigurationsFactory>().To<ConfigurationsFactory>();

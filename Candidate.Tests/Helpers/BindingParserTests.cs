@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Candidate.Core.Helpers;
+using Candidate.Core.Configurations.Helpers;
 using NUnit.Framework;
 using SharpTestsEx;
 

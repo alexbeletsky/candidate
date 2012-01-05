@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -63,19 +64,16 @@
     <Compile Include="Configurations\Tasks\ShellTask.cs" />
     <Compile Include="Configurations\Tasks\StartSiteTask.cs" />
     <Compile Include="Configurations\Tasks\StopSiteTask.cs" />
-    <Compile Include="Deploy\ConfigurationsExtensions.cs" />
+    <Compile Include="Extensions\ConfigurationsExtensions.cs" />
     <Compile Include="Deploy\DeployResults.cs" />
     <Compile Include="Deploy\DeployRunnerFactory.cs" />
     <Compile Include="Deploy\DeployRunner.cs" />
     <Compile Include="Deploy\IDeployable.cs" />
     <Compile Include="Deploy\IDeployRunner.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
-    <Compile Include="Helpers\BindingParser.cs" />
-    <Compile Include="Log\ILogOptionsFactory.cs" />
-    <Compile Include="Log\Logger.cs" />
-    <Compile Include="Log\FileLogOptionsFactory.cs" />
+    <Compile Include="Configurations\Helpers\BindingParser.cs" />
+    <Compile Include="Services\Logger.cs" />
     <Compile Include="Configurations\Parts\Batch.cs" />
-    <Compile Include="Configurations\ConfigurationNodeVisitor.cs" />
     <Compile Include="Configurations\ConfigurationsList.cs" />
     <Compile Include="Configurations\Types\BatchConfiguration.cs" />
     <Compile Include="Configurations\Types\Configuration.cs" />
@@ -90,22 +88,12 @@
     <Compile Include="Services\HashService.cs" />
     <Compile Include="Services\IHashService.cs" />
     <Compile Include="Settings\Exceptions\ConfigurationNotFoundException.cs" />
-    <Compile Include="Extensions\VisitorExtensions.cs" />
     <Compile Include="Settings\ISettingsManager.cs" />
     <Compile Include="Settings\SettingsManager.cs" />
-    <Compile Include="Settings\SettingsManagerExtensions.cs" />
+    <Compile Include="Extensions\SettingsManagerExtensions.cs" />
     <Compile Include="Settings\AutoSaveSettingsManager.cs" />
     <Compile Include="Settings\Validation\IisBindingsAttribute.cs" />
-    <Compile Include="Setup\ConfigObject.cs" />
-    <Compile Include="Setup\DefaultTargetsObjectBuilder.cs" />
-    <Compile Include="Setup\DefaultSetup.cs" />
-    <Compile Include="Setup\ITargetsObjectBuilder.cs" />
-    <Compile Include="Setup\IConfigObjectBuilder.cs" />
-    <Compile Include="Setup\ISetup.cs" />
-    <Compile Include="Setup\ISetupFactory.cs" />
-    <Compile Include="Setup\SetupFactory.cs" />
-    <Compile Include="Log\ILogger.cs" />
-    <Compile Include="Setup\SetupResult.cs" />
+    <Compile Include="Services\ILogger.cs" />
     <Compile Include="Utils\DirectoryHelper.cs" />
     <Compile Include="Utils\LocalAppDataFolder.cs" />
     <Compile Include="Extensions\SiteConfigurationExtentions.cs" />

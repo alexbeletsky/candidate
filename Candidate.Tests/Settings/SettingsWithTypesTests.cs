@@ -6,6 +6,7 @@ using System.Text;
 using Candidate.Core.Configurations;
 using Candidate.Core.Configurations.Parts;
 using Candidate.Core.Configurations.Types;
+using Candidate.Core.Extensions;
 using Candidate.Core.Settings;
 using Candidate.Core.Settings.Exceptions;
 using NUnit.Framework;

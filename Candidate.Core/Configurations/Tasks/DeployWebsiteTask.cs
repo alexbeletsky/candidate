@@ -37,6 +37,8 @@ namespace Candidate.Core.Configurations.Tasks
             _siteFolder = siteFolder;
             _siteName = siteName;
             _port = port;
+
+            // TODO: use binding information string
             _bindingsString = bindingsString;
         }
 

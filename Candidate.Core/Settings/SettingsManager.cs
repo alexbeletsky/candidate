@@ -57,12 +57,12 @@ namespace Candidate.Core.Settings
 
         public string GetSettingsFileName<T>()
         {
-            return _settingsFolder + "\\" + typeof(T).Name + ".json";
+            return Path.Combine(_settingsFolder, typeof(T).Name + ".json");
         }
 
         private string GetSettingsFileName(object settings)
         {
-            return _settingsFolder + "\\" + settings.GetType().Name + ".json";
+            return Path.Combine(_settingsFolder, settings.GetType().Name + ".json");
         }
     }
 }

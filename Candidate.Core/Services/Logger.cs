@@ -2,7 +2,7 @@
 using System.IO;
 using Candidate.Core.Utils;
 
-namespace Candidate.Core.Log
+namespace Candidate.Core.Services
 {
     public class Logger : ILogger
     {

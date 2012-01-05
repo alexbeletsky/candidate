@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Bounce.Framework;
 
-namespace Candidate.Core.Deploy
+namespace Candidate.Core.Extensions
 {
     internal static class ConfigurationsExtensions
     {

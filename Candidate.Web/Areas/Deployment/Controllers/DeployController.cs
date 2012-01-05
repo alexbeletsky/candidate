@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
+using Candidate.Core.Extensions;
 using Candidate.Core.Settings;
 using Candidate.Infrustructure.Error;
 

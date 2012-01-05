@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace Candidate.Core.Log
+namespace Candidate.Core.Services
 {
     public interface ILogger : IDisposable
     {

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using Bounce.Framework;
-using Candidate.Core.Log;
+using Candidate.Core.Services;
 
 namespace Candidate.Core.Deploy
 {

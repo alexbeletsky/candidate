@@ -1,5 +1,6 @@
 using System;
 using System.Web.Mvc;
+using Candidate.Core.Extensions;
 using Candidate.Core.Settings;
 
 namespace Candidate.Areas.Configuration.Controllers

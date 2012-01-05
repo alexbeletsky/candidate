@@ -4,6 +4,7 @@ using System.Text;
 using Candidate.Core.Configurations;
 using Candidate.Core.Configurations.Bounce.Builders;
 using Candidate.Core.Configurations.Types;
+using Candidate.Core.Extensions;
 
 namespace Candidate.Core.Deploy
 {

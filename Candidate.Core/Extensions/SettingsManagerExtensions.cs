@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Linq;
-using Bounce.Framework;
 using Candidate.Core.Configurations;
 using Candidate.Core.Configurations.Types;
+using Candidate.Core.Settings;
 using Candidate.Core.Settings.Exceptions;
 
-namespace Candidate.Core.Settings
+namespace Candidate.Core.Extensions
 {
     public static class SettingsManagerExtensions
     {
