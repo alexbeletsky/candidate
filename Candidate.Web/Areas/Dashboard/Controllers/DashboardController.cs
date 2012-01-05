@@ -1,5 +1,5 @@
-﻿using Candidate.Core.Model;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using Candidate.Core.Configurations;
 using Candidate.Core.Settings;
 using Candidate.Infrustructure.Authentication;
 

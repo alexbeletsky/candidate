@@ -1,6 +1,7 @@
 ﻿
+using Candidate.Core.Configurations;
+using Candidate.Core.Configurations.Types;
 using Candidate.Core.Log;
-using Candidate.Core.Model.Configurations;
 
 namespace Candidate.Core.Setup
 {

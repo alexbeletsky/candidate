@@ -1,7 +1,7 @@
 using System.IO;
 using Candidate.Core.Configurations.Exceptions;
 using Candidate.Core.Configurations.Tasks;
-using Candidate.Core.Model.Configurations;
+using Candidate.Core.Configurations.Types;
 using Candidate.Core.Utils;
 
 namespace Candidate.Core.Configurations.Bounce.Builders

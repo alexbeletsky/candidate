@@ -1,7 +1,6 @@
-using Candidate.Core.Configurations.Bounce;
-using Candidate.Core.Model.Configurations;
+using Candidate.Core.Configurations.Types;
 
-namespace Candidate.Core.Configurations
+namespace Candidate.Core.Configurations.Bounce
 {
     public interface IBounceConfigurationFactory
     {

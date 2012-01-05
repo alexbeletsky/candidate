@@ -1,6 +1,5 @@
 using System;
 using Bounce.Framework;
-using Candidate.Core.Model;
 using Candidate.Core.Utils;
 
 namespace Candidate.Core.Configurations.Tasks

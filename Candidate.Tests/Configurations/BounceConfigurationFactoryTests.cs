@@ -1,8 +1,8 @@
 using Candidate.Core.Configurations;
 using Candidate.Core.Configurations.Bounce;
 using Candidate.Core.Configurations.Bounce.Builders;
-using Candidate.Core.Model;
-using Candidate.Core.Model.Configurations;
+using Candidate.Core.Configurations.Parts;
+using Candidate.Core.Configurations.Types;
 using Candidate.Core.Utils;
 using Moq;
 using NUnit.Framework;

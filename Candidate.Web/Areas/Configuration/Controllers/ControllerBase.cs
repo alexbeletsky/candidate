@@ -13,13 +13,13 @@ namespace Candidate.Areas.Configuration.Controllers
             _settingsManager = settingsManager;
         }
 
-        protected ActionResult View<T>(string id, string viewName, Func<T, object> property) where T : Core.Model.Configurations.Configuration
+        protected ActionResult View<T>(string id, string viewName, Func<T, object> property) where T : Core.Configurations.Types.Configuration
         {
             var configuration = _settingsManager.ReadConfiguration<T>(id);
             return View(viewName, property(configuration));
         }
 
-        protected ActionResult Post<T>(string id, Action<T> update) where T : Core.Model.Configurations.Configuration, new()
+        protected ActionResult Post<T>(string id, Action<T> update) where T : Core.Configurations.Types.Configuration, new()
         {
             if (ModelState.IsValid)
             {

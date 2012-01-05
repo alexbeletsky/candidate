@@ -2,8 +2,8 @@
 using System.Web.Mvc;
 using Candidate.Areas.Dashboard.Controllers;
 using Candidate.Areas.Dashboard.Models;
-using Candidate.Core.Model;
-using Candidate.Core.Model.Configurations;
+using Candidate.Core.Configurations;
+using Candidate.Core.Configurations.Types;
 using Candidate.Core.Settings;
 using Candidate.Infrustructure.Authentication;
 using Moq;

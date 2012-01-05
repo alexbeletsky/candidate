@@ -6,8 +6,6 @@ using Candidate.Core.Configurations.Bounce;
 using Candidate.Core.Configurations.Bounce.Builders;
 using Candidate.Core.Deploy;
 using Candidate.Core.Log;
-using Candidate.Core.Model;
-using Candidate.Core.Model.Configurations;
 using Candidate.Core.Settings;
 using Candidate.Core.Setup;
 using Candidate.Core.Utils;

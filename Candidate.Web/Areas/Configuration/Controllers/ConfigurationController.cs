@@ -7,7 +7,6 @@ using Candidate.Areas.Dashboard.Models;
 using Candidate.Core.Configurations;
 using Candidate.Core.Extensions;
 using Candidate.Core.Settings;
-using Config = Candidate.Core.Model.Configurations;
 
 namespace Candidate.Areas.Configuration.Controllers
 {
@@ -50,7 +49,7 @@ namespace Candidate.Areas.Configuration.Controllers
         [HttpGet, ActionName("delete")]
         public ActionResult Delete(string id)
         {
-            var configuration = _settingsManager.ReadConfiguration<Config.Configuration>(c => c.Id == id);
+            var configuration = _settingsManager.ReadConfiguration<Core.Configurations.Types.Configuration>(c => c.Id == id);
 
             return View(configuration);
         }

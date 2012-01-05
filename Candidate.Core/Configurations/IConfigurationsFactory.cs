@@ -1,4 +1,4 @@
-﻿using Candidate.Core.Model.Configurations;
+﻿using Candidate.Core.Configurations.Types;
 
 namespace Candidate.Core.Configurations
 {

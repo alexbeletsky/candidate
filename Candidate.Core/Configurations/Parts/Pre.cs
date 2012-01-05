@@ -1,6 +1,6 @@
 using System.ComponentModel;
 
-namespace Candidate.Core.Model
+namespace Candidate.Core.Configurations.Parts
 {
     public class Pre
     {

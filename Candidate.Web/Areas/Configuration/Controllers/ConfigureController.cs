@@ -1,6 +1,5 @@
 ﻿using System.Web.Mvc;
 using Candidate.Core.Settings;
-using Config = Candidate.Core.Model.Configurations;
 using Candidate.Core.Extensions;
 
 namespace Candidate.Areas.Configuration.Controllers
@@ -18,7 +17,7 @@ namespace Candidate.Areas.Configuration.Controllers
         [HttpGet, ActionName("configure")]
         public ActionResult Configure(string id)
         {
-            var configuration = _settingsManager.ReadConfiguration<Config.Configuration>(id);
+            var configuration = _settingsManager.ReadConfiguration<Core.Configurations.Types.Configuration>(id);
             return View(configuration.Type, configuration);
         }
     }

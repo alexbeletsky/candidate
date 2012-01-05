@@ -1,6 +1,7 @@
-using Candidate.Core.Model.Configurations;
+using Candidate.Core.Configurations.Parts;
+using Candidate.Core.Configurations.Types;
 
-namespace Candidate.Core.Model
+namespace Candidate.Core.Configurations
 {
     // TODO: ABE remove
     public abstract class ConfigurationNodeVisitor

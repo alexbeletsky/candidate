@@ -1,6 +1,6 @@
 using Candidate.Core.Deploy;
 
-namespace Candidate.Core.Model.Configurations
+namespace Candidate.Core.Configurations.Types
 {
     public abstract class Configuration : IDeployable
     {

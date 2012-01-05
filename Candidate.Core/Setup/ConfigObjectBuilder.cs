@@ -1,6 +1,7 @@
 ﻿using System;
+using Candidate.Core.Configurations;
+using Candidate.Core.Configurations.Types;
 using Candidate.Core.Extensions;
-using Candidate.Core.Model.Configurations;
 using Candidate.Core.Utils;
 
 namespace Candidate.Core.Setup

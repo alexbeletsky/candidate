@@ -45,7 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configurations\BounceConfigurationFactory.cs" />
+    <Compile Include="Configurations\Bounce\BounceConfigurationFactory.cs" />
     <Compile Include="Configurations\Bounce\BatchBounceConfiguration.cs" />
     <Compile Include="Configurations\Bounce\Builders\BatchBounceConfigurationBuilder.cs" />
     <Compile Include="Configurations\Bounce\Builders\VisualStudioBounceConfigurationBuilder.cs" />
@@ -54,7 +54,7 @@
     <Compile Include="Configurations\Bounce\XCopyBounceConfiguration.cs" />
     <Compile Include="Configurations\ConfigurationsFactory.cs" />
     <Compile Include="Configurations\Exceptions\ConfigurationTypeNotSupported.cs" />
-    <Compile Include="Configurations\IBounceConfigurationFactory.cs" />
+    <Compile Include="Configurations\Bounce\IBounceConfigurationFactory.cs" />
     <Compile Include="Configurations\IConfigurationsFactory.cs" />
     <Compile Include="Configurations\Tasks\BuildSolutionTask.cs" />
     <Compile Include="Configurations\Tasks\CheckoutSourcesTask.cs" />
@@ -66,7 +66,6 @@
     <Compile Include="Configurations\Tasks\StopSiteTask.cs" />
     <Compile Include="Deploy\ConfigurationsExtensions.cs" />
     <Compile Include="Deploy\Context.cs" />
-    <Compile Include="Deploy\Deployer.cs" />
     <Compile Include="Deploy\DeployResults.cs" />
     <Compile Include="Deploy\DeployRunnerFactory.cs" />
     <Compile Include="Deploy\DeployRunner.cs" />
@@ -79,18 +78,18 @@
     <Compile Include="Log\Logger.cs" />
     <Compile Include="Log\FileLogOptionsFactory.cs" />
     <Compile Include="Log\LoggerFactory.cs" />
-    <Compile Include="Model\Batch.cs" />
-    <Compile Include="Model\ConfigurationNodeVisitor.cs" />
-    <Compile Include="Model\ConfigurationsList.cs" />
-    <Compile Include="Model\Configurations\BatchConfiguration.cs" />
-    <Compile Include="Model\Configurations\Configuration.cs" />
-    <Compile Include="Model\Configurations\VisualStudioConfiguration.cs" />
-    <Compile Include="Model\Configurations\XCopyConfiguration.cs" />
-    <Compile Include="Model\Github.cs" />
-    <Compile Include="Model\Iis.cs" />
-    <Compile Include="Model\Post.cs" />
-    <Compile Include="Model\Pre.cs" />
-    <Compile Include="Model\Solution.cs" />
+    <Compile Include="Configurations\Parts\Batch.cs" />
+    <Compile Include="Configurations\ConfigurationNodeVisitor.cs" />
+    <Compile Include="Configurations\ConfigurationsList.cs" />
+    <Compile Include="Configurations\Types\BatchConfiguration.cs" />
+    <Compile Include="Configurations\Types\Configuration.cs" />
+    <Compile Include="Configurations\Types\VisualStudioConfiguration.cs" />
+    <Compile Include="Configurations\Types\XCopyConfiguration.cs" />
+    <Compile Include="Configurations\Parts\Github.cs" />
+    <Compile Include="Configurations\Parts\Iis.cs" />
+    <Compile Include="Configurations\Parts\Post.cs" />
+    <Compile Include="Configurations\Parts\Pre.cs" />
+    <Compile Include="Configurations\Parts\Solution.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\HashService.cs" />
     <Compile Include="Services\IHashService.cs" />

@@ -9,7 +9,6 @@ using Candidate.Core.Log;
 using Candidate.Core.Settings;
 using Candidate.Core.Utils;
 using Candidate.Infrustructure.Error;
-using Config = Candidate.Core.Model.Configurations;
 
 namespace Candidate.Areas.Deployment.Controllers
 {
@@ -29,21 +28,21 @@ namespace Candidate.Areas.Deployment.Controllers
         [HttpGet, ActionName("deploy")]
         public ActionResult Deploy(string id)
         {
-            var configuration = _settingsManager.ReadConfiguration<Config.Configuration>(id);
+            var configuration = _settingsManager.ReadConfiguration<Core.Configurations.Types.Configuration>(id);
             return View(configuration);
         }
 
         [HttpPost, ActionName("deploy")]
         public ActionResult PreDeploy(string id)
         {
-            var configuration = _settingsManager.ReadConfiguration<Config.Configuration>(id);
+            var configuration = _settingsManager.ReadConfiguration<Core.Configurations.Types.Configuration>(id);
             return View("Action", configuration);
         }
 
         [HttpPost, ActionName("start")]
         public ActionResult StartDeploy(string id)
         {
-            var configuration = _settingsManager.ReadConfiguration<Config.Configuration>(id);
+            var configuration = _settingsManager.ReadConfiguration<Core.Configurations.Types.Configuration>(id);
             
             var runner = configuration.CreateDeployRunner(new Context { DirectoryProvider = _directoryProvider });
             var results = runner.Run(new LoggerFactory(_directoryProvider));

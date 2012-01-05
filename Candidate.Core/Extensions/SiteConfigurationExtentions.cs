@@ -1,6 +1,6 @@
 ﻿using System.Linq;
+using Candidate.Core.Configurations.Parts;
 using Candidate.Core.Helpers;
-using Candidate.Core.Model;
 
 namespace Candidate.Core.Extensions
 {
