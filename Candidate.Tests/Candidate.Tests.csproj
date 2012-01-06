@@ -89,12 +89,10 @@
     <Compile Include="Controllers\VisualStudioControllerTests.cs" />
     <Compile Include="Deploy\DeployRunnerFactoryTests.cs" />
     <Compile Include="Filters\AddViewNameAndHashAttributeTests.cs" />
-    <Compile Include="Foo.cs" />
     <Compile Include="Helpers\BindingParserTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings\SettingsTests.cs" />
     <Compile Include="Settings\SettingsWithTypesTests.cs" />
-    <Compile Include="Setup\ConfigObjectBuilderTests.cs" />
     <Compile Include="Utils\SiteConfigurationExtentionsTests.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -117,9 +115,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Log\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

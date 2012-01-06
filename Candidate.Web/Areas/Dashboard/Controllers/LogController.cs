@@ -4,9 +4,7 @@ using System.Web.Mvc;
 
 namespace Candidate.Areas.Dashboard.Controllers
 {
-
-    [Authorize]
-    public class LogController : Controller
+    public class LogController : SecuredController
     {
         [HttpGet]
         public ActionResult Show(string jobName, string logId)

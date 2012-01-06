@@ -12,7 +12,7 @@ using Candidate.Infrustructure.Filters;
 namespace Candidate.Areas.Configuration.Controllers
 {
     [Authorize]
-    public class VisualStudioController : ControllerBase
+    public class VisualStudioController : ConfigureControllerBase
     {
         public VisualStudioController(ISettingsManager settingsManager) : base(settingsManager)
         {

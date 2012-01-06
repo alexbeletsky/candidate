@@ -6,9 +6,7 @@ using Candidate.Areas.Dashboard.Models;
 
 namespace Candidate.Areas.Dashboard.Controllers
 {
-
-    [Authorize]
-    public class OverviewController : Controller
+    public class OverviewController : SecuredController
     {
         [HttpGet]
         public ActionResult Show(string jobName)

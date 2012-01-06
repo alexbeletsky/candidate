@@ -5,11 +5,11 @@ using Candidate.Core.Settings;
 
 namespace Candidate.Areas.Configuration.Controllers
 {
-    public class ControllerBase : Controller
+    public class ConfigureControllerBase : SecuredController
     {
         private readonly ISettingsManager _settingsManager;
 
-        public ControllerBase(ISettingsManager settingsManager)
+        public ConfigureControllerBase(ISettingsManager settingsManager)
         {
             _settingsManager = settingsManager;
         }

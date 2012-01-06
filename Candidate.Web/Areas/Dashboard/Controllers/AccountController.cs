@@ -6,10 +6,10 @@ using Candidate.Infrustructure.Authentication;
 
 namespace Candidate.Areas.Dashboard.Controllers
 {
-    public class AccountController : Controller
+    public class AccountController : SecuredController
     {
-        private ISettingsManager _settingsManager;
-        private IHashService _hashService;
+        private readonly ISettingsManager _settingsManager;
+        private readonly IHashService _hashService;
 
         public AccountController(ISettingsManager settingsManager, IHashService hashService)
         {

@@ -5,7 +5,7 @@ using Candidate.Core.Extensions;
 namespace Candidate.Areas.Configuration.Controllers
 {
     [Authorize]
-    public class ConfigureController : Controller
+    public class ConfigureController : SecuredController
     {
         private readonly ISettingsManager _settingsManager;
 

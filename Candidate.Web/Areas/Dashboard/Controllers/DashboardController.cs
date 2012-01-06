@@ -5,8 +5,7 @@ using Candidate.Infrustructure.Authentication;
 
 namespace Candidate.Areas.Dashboard.Controllers
 {
-    [Authorize]
-    public class DashboardController : Controller
+    public class DashboardController : SecuredController
     {
         private readonly ISettingsManager _settingsManager;
 

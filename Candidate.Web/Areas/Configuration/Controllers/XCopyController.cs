@@ -11,7 +11,7 @@ using Candidate.Core.Settings;
 namespace Candidate.Areas.Configuration.Controllers
 {
     [Authorize]
-    public class XCopyController : ControllerBase
+    public class XCopyController : ConfigureControllerBase
     {
         public XCopyController(ISettingsManager settingsManager) : base(settingsManager)
         {

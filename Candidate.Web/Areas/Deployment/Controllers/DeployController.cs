@@ -10,9 +10,7 @@ using Candidate.Infrustructure.Error;
 
 namespace Candidate.Areas.Deployment.Controllers
 {
-    [Authorize]
-    [HandleJsonError]
-    public class DeployController : Controller
+    public class DeployController : BaseController
     {
         private readonly ISettingsManager _settingsManager;
 
