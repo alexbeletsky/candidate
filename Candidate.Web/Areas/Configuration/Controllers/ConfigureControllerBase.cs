@@ -14,10 +14,21 @@ namespace Candidate.Areas.Configuration.Controllers
             _settingsManager = settingsManager;
         }
 
-        protected ActionResult View<T>(string id, string viewName, Func<T, object> property) where T : Core.Configurations.Types.Configuration
+        protected ActionResult View<T>(string id, string viewName, Func<T, object> property, Action<dynamic> viewBagAction) where T : Core.Configurations.Types.Configuration
         {
             var configuration = _settingsManager.ReadConfiguration<T>(id);
-            return View(viewName, property(configuration));
+
+            if (viewBagAction != null)
+            {
+                viewBagAction(ViewBag);
+            }
+
+            return View(viewName, property(configuration));                    
+        }
+
+        protected ActionResult View<T>(string id, string viewName, Func<T, object> property) where T : Core.Configurations.Types.Configuration
+        {
+            return View(id, viewName, property, null);
         }
 
         protected ActionResult Post<T>(string id, Action<T> update) where T : Core.Configurations.Types.Configuration, new()

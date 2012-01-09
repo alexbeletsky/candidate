@@ -9,7 +9,7 @@ namespace Candidate.Infrustructure.Error
     {
         public override void OnActionExecuted(ActionExecutedContext filterContext)
         {
-            if (filterContext.Exception != null)
+            if (filterContext.Exception != null && filterContext.HttpContext.Request.IsAjaxRequest())
             {
                 SetResponseStatusCode(filterContext);
                 filterContext.Result = new JsonResult()

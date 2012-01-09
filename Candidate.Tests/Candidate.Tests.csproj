@@ -88,6 +88,7 @@
     <Compile Include="Controllers\ConfigureControllerTests.cs" />
     <Compile Include="Controllers\DashboardControllerTests.cs" />
     <Compile Include="Controllers\VisualStudioControllerTests.cs" />
+    <Compile Include="Deploy\DeployerTests.cs" />
     <Compile Include="Deploy\DeployRunnerFactoryTests.cs" />
     <Compile Include="Filters\AddViewNameAndHashAttributeTests.cs" />
     <Compile Include="Helpers\BindingParserTests.cs" />

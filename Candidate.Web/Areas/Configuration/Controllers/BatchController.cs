@@ -19,7 +19,7 @@ namespace Candidate.Areas.Configuration.Controllers
         [HttpGet, ActionName("github")]
         public ActionResult ConfigureGithibSection(string id)
         {
-            return View<BatchConfiguration>(id, "Github", c => c.Github);
+            return View<BatchConfiguration>(id, "Github", c => c.Github, v => v.Id = id);
         }
 
         [HttpPost, ActionName("github")]

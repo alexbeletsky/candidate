@@ -65,6 +65,8 @@
     <Compile Include="Configurations\Tasks\ShellTask.cs" />
     <Compile Include="Configurations\Tasks\StartSiteTask.cs" />
     <Compile Include="Configurations\Tasks\StopSiteTask.cs" />
+    <Compile Include="Deploy\Deployer.cs" />
+    <Compile Include="Deploy\IDeployer.cs" />
     <Compile Include="Extensions\ConfigurationsExtensions.cs" />
     <Compile Include="Deploy\DeployResults.cs" />
     <Compile Include="Deploy\DeployRunnerFactory.cs" />

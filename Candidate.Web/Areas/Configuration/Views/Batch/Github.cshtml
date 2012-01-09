@@ -18,6 +18,10 @@
                 @Html.LabelFor(m => m.Branch)
                 @Html.TextBoxFor(m => m.Branch)
             </div>
+            <div id="github-hook">
+                @Html.LabelFor(m => m.Hook)
+                @Html.TextBoxFor(m => m.Hook, new { @readonly = true, @Value = Url.Action("Index", "Hook", new { area = "Hook", id = ViewBag.Id }, "http") })            
+            </div>
         </fieldset>
     
         <div class="right">

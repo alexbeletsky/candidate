@@ -1,4 +1,5 @@
 using Candidate.Core.Configurations;
+using Candidate.Core.Deploy;
 
 [assembly: WebActivator.PreApplicationStartMethod(typeof(Candidate.App_Start.NinjectMVC3), "Start")]
 [assembly: WebActivator.ApplicationShutdownMethodAttribute(typeof(Candidate.App_Start.NinjectMVC3), "Stop")]
@@ -53,11 +54,11 @@ namespace Candidate.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             // TODO: ABE get rid of this, switch to conventions..
-
             kernel.Bind<ISettingsManager>().To<SettingsManager>();
             kernel.Bind<IHashService>().To<HashService>();
             kernel.Bind<IAuthentication>().To<Authentication>();
             kernel.Bind<IConfigurationsFactory>().To<ConfigurationsFactory>();
+            kernel.Bind<IDeployer>().To<Deployer>();
         }
     }
 }
