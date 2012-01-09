@@ -21,7 +21,7 @@ namespace Candidate.Areas.Configuration.Controllers
         [HttpGet, AddViewNameAndHash, ActionName("github")]
         public ActionResult ConfigureGithubSection(string id)
         {
-            return View<BatchConfiguration>(id, "Github", c => c.Github, v => v.Id = id);
+            return View<VisualStudioConfiguration>(id, "Github", c => c.Github, v => v.Id = id);
         }
 
         [HttpPost, AddViewNameAndHash, ActionName("github")]

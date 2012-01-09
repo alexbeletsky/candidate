@@ -54,7 +54,7 @@
     <Compile Include="Configurations\Bounce\VisualStudioBounceConfiguration.cs" />
     <Compile Include="Configurations\Bounce\XCopyBounceConfiguration.cs" />
     <Compile Include="Configurations\ConfigurationsFactory.cs" />
-    <Compile Include="Configurations\Exceptions\ConfigurationTypeNotSupported.cs" />
+    <Compile Include="Configurations\Exceptions\ConfigurationTypeDiffersFromExpected.cs" />
     <Compile Include="Configurations\IConfigurable.cs" />
     <Compile Include="Configurations\IConfigurationsFactory.cs" />
     <Compile Include="Configurations\Tasks\BuildSolutionTask.cs" />

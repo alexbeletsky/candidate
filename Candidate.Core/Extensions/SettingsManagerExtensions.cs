@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Candidate.Core.Configurations;
+using Candidate.Core.Configurations.Exceptions;
 using Candidate.Core.Configurations.Types;
 using Candidate.Core.Settings;
 using Candidate.Core.Settings.Exceptions;
@@ -32,9 +33,14 @@ namespace Candidate.Core.Extensions
         {
             var configuration = settingsManager.ReadSettings<ConfigurationsList>().Configurations.SingleOrDefault(predicate);
 
-            if (configuration == null || !(configuration is T))
+            if (configuration == null)
             {
                 throw new ConfigurationNotFoundException();
+            }
+
+            if (!(configuration is T))
+            {
+                throw new ConfigurationTypeDiffersFromExpected(configuration.GetType(), typeof(T));
             }
 
             return (T)configuration;
