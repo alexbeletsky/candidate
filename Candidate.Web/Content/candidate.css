@@ -37,26 +37,73 @@ div#login-box
     height: auto;
 }
 
-div#login-box input 
+.sheet 
+{
+    position: relative;
+    top: 180px;
+    margin: 0 auto;
+    padding: 14px;
+    -moz-box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #A7A7A7;
+    clear: both;
+    height: auto;        
+}
+
+.center {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.form 
+{
+    margin-top: 8px;
+}
+
+.form input 
 {
     width: 340px;
 }
 
-div#login-box fieldset label
+.form fieldset label
 {
     color: #555;
-    display: block;
-    font-size: 11px;
     margin: 0 0 4px 0;
     text-shadow: 0 1px 0 #eee;
 }
 
-div#login-box fieldset
+.block {
+    display: block;    
+}
+
+.m50px {
+    margin: 50px 0px 50px 0px !important;
+}
+
+.form fieldset
 {
     margin: 16px 0px 8px 0px;
 }
 
-div#login-welcome
+.element 
+{
+    width: 80%;    
+    display: inline-block;
+    margin-bottom: 4px;
+}
+
+.element label {
+    float: left;
+}
+
+.element input {
+    float: right;
+}
+
+.welcome
 {
     font-size: 24px;
     font-weight: bold;
@@ -64,7 +111,7 @@ div#login-welcome
     margin: 0 6px 6px 0;
 }
 
-div#information
+.information
 {
     font-size: 12px;
     margin: 0 3px 3px 0;

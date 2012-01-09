@@ -87,6 +87,8 @@
     <Compile Include="App_Start\NinjectMVC3.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\ElmahController.cs" />
+    <Compile Include="Areas\FirstLaunch\Controllers\FirstLaunchController.cs" />
+    <Compile Include="Areas\FirstLaunch\FirstLaunchAreaRegistration.cs" />
     <Compile Include="Areas\Hook\Controllers\HookController.cs" />
     <Compile Include="Areas\Hook\HookAreaRegistration.cs" />
     <Compile Include="Areas\Overview\OverviewAreaRegistration.cs" />
@@ -212,6 +214,8 @@
     <Folder Include="Areas\Deployment\Models\" />
     <Folder Include="Areas\Deployment\Views\Deployment\" />
     <Folder Include="Areas\Deployment\Views\Shared\" />
+    <Folder Include="Areas\FirstLaunch\Models\" />
+    <Folder Include="Areas\FirstLaunch\Views\Shared\" />
     <Folder Include="Areas\Hook\Models\" />
     <Folder Include="Areas\Hook\Views\Shared\" />
     <Folder Include="Areas\Overview\Models\" />
@@ -329,6 +333,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Hook\Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\FirstLaunch\Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\FirstLaunch\Views\FirstLaunch\Index.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

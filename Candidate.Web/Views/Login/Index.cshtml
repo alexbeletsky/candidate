@@ -10,16 +10,16 @@
     <div id="content" class="container_24">
         <div id="container" class="grid_12 prefix_6 suffix_6">
             <div id="login-box">
-                <div id="login-welcome">
+                <div class="welcome">
                     <p>Welcome to Candidate</p>
                 </div>
-                <div id="information">
+                <div class="information">
                     <p>
                         Please enter yours login and password</p>
                 </div>
                 <div class="line">
                 </div>
-                @using (Html.BeginForm("login", "login", FormMethod.Post, new { id = "login-form", @class = "clearfix" }))
+                @using (Html.BeginForm("login", "login", FormMethod.Post, new {  @class = "form clearfix" }))
                 {            
                     @Html.ValidationSummary();
             
@@ -38,7 +38,7 @@
                         </div>
                     </fieldset>
             
-                    <button type="submit" value="Login" class="minimal right">Login</button>
+                    <button type="submit" class="minimal right">Login</button>
                 }
             </div>
         </div>

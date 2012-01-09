@@ -1,0 +1,40 @@
+﻿@model dynamic
+@{
+    ViewBag.Title = "Candidate | First Launch";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container_24 center">
+    <div class="grid_18 prefix_3 suffix_3">
+        <div class="sheet">
+            <div class="welcome">
+                <p>
+                    Prepare Candidate for first launch
+                </p>
+            </div>
+            <div class="information">
+                <p>
+                    Just before you entered the world on continuous deployment, we need to setup account for you. Please provide your credentials.
+                </p>
+            </div>
+            <form class="clearfix form">
+                <fieldset>
+                    <div id="login-container" class="element">
+                        <label for="login" class="bigger">Login: </label>
+                        <input id="login" type="text"/>
+                    </div>
+                    <div id="password-container" class="element">
+                        <label for="password" class="bigger">Password: </label>
+                        <input id="password" type="text"/>
+                    </div>
+                    <div id="confirm-password-container" class="element">
+                        <label for="confirm-password" class="bigger">Confirm Password: </label>
+                        <input id="confirm-password" type="text"/>
+                    </div>
+
+                </fieldset>
+                
+               <button type="submit" class="minimal right">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
