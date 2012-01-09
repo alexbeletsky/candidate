@@ -12,7 +12,7 @@ else
     foreach (var job in Model)
     {
         <div class="job clearfix">
-            <span class="job-name">@Html.ActionLink(@job.ReadableName, "Show", new { controller = "Overview", jobName = @job.Id })</span>
+            <span class="job-name"><a href="overview/show/@job.Id">@job.ReadableName</a></span>
             
             <span class="job-status"></span>
             <div id="buttons" class="right cleanfix">
