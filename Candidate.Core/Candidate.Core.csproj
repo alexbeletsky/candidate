@@ -55,6 +55,7 @@
     <Compile Include="Configurations\Bounce\XCopyBounceConfiguration.cs" />
     <Compile Include="Configurations\ConfigurationsFactory.cs" />
     <Compile Include="Configurations\Exceptions\ConfigurationTypeNotSupported.cs" />
+    <Compile Include="Configurations\IConfigurable.cs" />
     <Compile Include="Configurations\IConfigurationsFactory.cs" />
     <Compile Include="Configurations\Tasks\BuildSolutionTask.cs" />
     <Compile Include="Configurations\Tasks\CheckoutSourcesTask.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="Deploy\IDeployRunner.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Configurations\Helpers\BindingParser.cs" />
+    <Compile Include="Extensions\ValidatorExtensions.cs" />
     <Compile Include="Services\Logger.cs" />
     <Compile Include="Configurations\Parts\Batch.cs" />
     <Compile Include="Configurations\ConfigurationsList.cs" />

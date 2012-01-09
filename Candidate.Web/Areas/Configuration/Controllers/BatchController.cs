@@ -10,7 +10,7 @@ using Candidate.Core.Settings;
 
 namespace Candidate.Areas.Configuration.Controllers
 {
-    public class BatchController : ControllerBase
+    public class BatchController : ConfigureControllerBase
     {
         public BatchController(ISettingsManager settingsManager) : base(settingsManager)
         {

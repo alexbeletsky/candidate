@@ -21,6 +21,11 @@ namespace Candidate.Core.Configurations.Types
             get { return "Batch";  }
         }
 
+        public override bool IsConfigured()
+        {
+            return Github.IsConfigured() && Iis.IsConfigured() && Batch.IsConfigured();
+        }
+
         public override IDeployRunner CreateDeployRunner()
         {
             return new DeployRunnerFactory().ForConfiguration(this);

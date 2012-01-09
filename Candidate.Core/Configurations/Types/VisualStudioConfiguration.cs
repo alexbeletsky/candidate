@@ -21,6 +21,11 @@ namespace Candidate.Core.Configurations.Types
             get { return "VisualStudio"; }
         }
 
+        public override bool IsConfigured()
+        {
+            return Github.IsConfigured() && (Solution.IsConfigured() && Iis.IsConfigured());
+        }
+
         public override IDeployRunner CreateDeployRunner()
         {
             return new DeployRunnerFactory().ForConfiguration(this);

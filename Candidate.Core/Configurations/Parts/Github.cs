@@ -1,9 +1,10 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using Candidate.Core.Extensions;
 
 namespace Candidate.Core.Configurations.Parts
 {
-    public class Github
+    public class Github : IConfigurable
     {
         [Required]
         [DisplayName("Repository URL")]
@@ -15,5 +16,10 @@ namespace Candidate.Core.Configurations.Parts
 
         [DisplayName("Hook")]
         public string Hook { get; set; }
+
+        public bool IsConfigured()
+        {
+            return this.TryValidateObject();
+        }
     }
 }

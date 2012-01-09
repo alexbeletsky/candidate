@@ -4,7 +4,7 @@ using System.Web.Mvc;
 
 namespace Candidate.Areas.Admin.Controllers
 {
-    public class ElmahController : BaseController
+    public class ElmahController : SecuredController
     {
         public ActionResult Index()
         {

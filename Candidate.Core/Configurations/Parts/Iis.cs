@@ -1,9 +1,10 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using Candidate.Core.Extensions;
 
 namespace Candidate.Core.Configurations.Parts
 {
-    public class Iis
+    public class Iis : IConfigurable 
     {
         public Iis()
         {
@@ -24,5 +25,10 @@ namespace Candidate.Core.Configurations.Parts
         [Required]
         [DisplayName("Deploy folder")]
         public string DeployDirectory { get; set; }
+
+        public bool IsConfigured()
+        {
+            return this.TryValidateObject();
+        }
     }
 }

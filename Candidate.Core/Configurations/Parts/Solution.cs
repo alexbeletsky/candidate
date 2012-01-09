@@ -1,10 +1,11 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using Candidate.Core.Extensions;
 
 namespace Candidate.Core.Configurations.Parts
 {
-    public class Solution
+    public class Solution : IConfigurable
     {
         public Solution()
         {
@@ -51,5 +52,10 @@ namespace Candidate.Core.Configurations.Parts
 
         [DisplayName("Run tests?")]
         public bool IsRunTests { get; set; }
+
+        public bool IsConfigured()
+        {
+            return this.TryValidateObject();
+        }
     }
 }

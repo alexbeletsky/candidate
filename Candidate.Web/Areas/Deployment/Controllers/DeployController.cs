@@ -10,7 +10,7 @@ using Candidate.Infrustructure.Error;
 
 namespace Candidate.Areas.Deployment.Controllers
 {
-    public class DeployController : BaseController
+    public class DeployController : SecuredController
     {
         private readonly ISettingsManager _settingsManager;
 
@@ -23,6 +23,12 @@ namespace Candidate.Areas.Deployment.Controllers
         public ActionResult Deploy(string id)
         {
             var configuration = _settingsManager.ReadConfiguration<Core.Configurations.Types.Configuration>(id);
+            
+            if (!configuration.IsConfigured())
+            {
+                return View("NotConfigured");
+            }
+
             return View(configuration);
         }
 
@@ -30,6 +36,7 @@ namespace Candidate.Areas.Deployment.Controllers
         public ActionResult PreDeploy(string id)
         {
             var configuration = _settingsManager.ReadConfiguration<Core.Configurations.Types.Configuration>(id);
+
             return View("Action", configuration);
         }
 
