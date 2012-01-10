@@ -60,6 +60,7 @@
     <Compile Include="Configurations\Tasks\BuildSolutionTask.cs" />
     <Compile Include="Configurations\Tasks\CheckoutSourcesTask.cs" />
     <Compile Include="Configurations\Tasks\CopyToDestinationTask.cs" />
+    <Compile Include="Configurations\Tasks\DeleteTask.cs" />
     <Compile Include="Configurations\Tasks\DeployWebsiteTask.cs" />
     <Compile Include="Configurations\Tasks\RunTestsTask.cs" />
     <Compile Include="Configurations\Tasks\ShellTask.cs" />

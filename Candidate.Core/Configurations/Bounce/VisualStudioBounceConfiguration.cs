@@ -5,6 +5,7 @@ namespace Candidate.Core.Configurations.Bounce
     public class VisualStudioBounceConfiguration
     {
         public GitCheckout CheckoutSources { get; set; }
+        public CleanDirectory DeleteBuildFolder { get; set; }
         public VisualStudioSolution BuildSolution { get; set; }
         public NUnitTests RunTests { get; set; }
         public Iis7StoppedSite StopSiteBeforeDeployment { get; set; }

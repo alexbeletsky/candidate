@@ -9,7 +9,7 @@ namespace Candidate.Core.Configurations.Bounce.Builders
         private readonly VisualStudioConfiguration _configuration;
 
         public VisualStudioBounceConfigurationBuilder(VisualStudioConfiguration configuration) :
-            base(configuration.Id, configuration.Iis.DeployDirectory, Path.Combine("build\\_PublishedWebsites", configuration.Solution.WebProject))
+            base(configuration.Id, configuration.Iis.DeployDirectory, "build")
         {
             _configuration = configuration;
         }
@@ -26,13 +26,17 @@ namespace Candidate.Core.Configurations.Bounce.Builders
             var runTests = new RunTestsTask(_configuration.Solution.IsRunTests, BuildDirectory,
                                         NUnitConsole, _configuration.Solution.NUnitRuntimeVersions[_configuration.Solution.SelectedNUnitRuntimeVersion], build).ToTask();
 
+            var compliledWebsiteDirectory = Path.Combine(Path.Combine(BuildDirectory, "_PublishedWebsites"),
+                                                         _configuration.Solution.WebProject);
+
             return new VisualStudioBounceConfiguration
                        {
                            CheckoutSources = checkout,
+                           DeleteBuildFolder = new DeleteTask(BuildDirectory).ToTask(),
                            BuildSolution = build,
                            RunTests = runTests,
                            StopSiteBeforeDeployment = new StopSiteTask(_configuration.Iis.SiteName).ToTask(),
-                           CopyToDestination = new CopyToDestinationTask(BuildDirectory, DeploymentDirectory).ToTask(),
+                           CopyToDestination = new CopyToDestinationTask(compliledWebsiteDirectory, DeploymentDirectory).ToTask(),
                            DeployWebsite = new DeployWebsiteTask(DeploymentDirectory, _configuration.Iis.SiteName, _configuration.Iis.Port, _configuration.Iis.Bindings).ToTask(),
                            StartSiteAfterDeployment = new StartSiteTask(_configuration.Iis.SiteName).ToTask()
                        };
