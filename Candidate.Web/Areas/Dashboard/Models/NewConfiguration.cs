@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Candidate.Areas.Dashboard.Models
 {
-    public class NewConfigurationModel
+    public class NewConfiguration
     {
-        public NewConfigurationModel()
+        public NewConfiguration()
         {
             Types = new Dictionary<string, string>
             {

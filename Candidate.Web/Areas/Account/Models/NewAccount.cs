@@ -2,9 +2,9 @@
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 
-namespace Candidate.Areas.Dashboard.Models
+namespace Candidate.Areas.Account.Models
 {
-    public class AccountSettingsModel
+    public class NewAccount
     {
         [Required]
         [DisplayName("Login")]

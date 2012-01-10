@@ -17,7 +17,7 @@ namespace Candidate.Areas.Overview.Controllers
             if (Directory.Exists(directoryHelper.LogsDirectory))
             {
                 var logFiles = new DirectoryInfo(directoryHelper.LogsDirectory).GetFiles("*.log").OrderByDescending(f => f.CreationTime).Select(f => f.Name);
-                var overview = new OverviewModel { Id = id, LastBuildStatus = "Success", LastDeployTime = DateTime.Now, LastDeployDuration = new TimeSpan(0, 2, 30), Logs = logFiles };
+                var overview = new Dashboard.Models.Overview { Id = id, LastBuildStatus = "Success", LastDeployTime = DateTime.Now, LastDeployDuration = new TimeSpan(0, 2, 30), Logs = logFiles };
 
                 return View(overview);
             }

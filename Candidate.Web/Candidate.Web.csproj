@@ -85,10 +85,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\NinjectMVC3.cs" />
+    <Compile Include="Areas\Account\AccountAreaRegistration.cs" />
+    <Compile Include="Areas\Account\Controllers\AccountController.cs" />
+    <Compile Include="Areas\Account\Controllers\FirstLaunchController.cs" />
+    <Compile Include="Areas\Account\Models\NewAccount.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\ElmahController.cs" />
-    <Compile Include="Areas\FirstLaunch\Controllers\FirstLaunchController.cs" />
-    <Compile Include="Areas\FirstLaunch\FirstLaunchAreaRegistration.cs" />
     <Compile Include="Areas\Hook\Controllers\HookController.cs" />
     <Compile Include="Areas\Hook\HookAreaRegistration.cs" />
     <Compile Include="Areas\Overview\OverviewAreaRegistration.cs" />
@@ -99,17 +101,15 @@
     <Compile Include="Areas\Configuration\Controllers\ConfigureControllerBase.cs" />
     <Compile Include="Areas\Configuration\Controllers\VisualStudioController.cs" />
     <Compile Include="Areas\Configuration\Controllers\XCopyController.cs" />
-    <Compile Include="Areas\Dashboard\Controllers\AccountController.cs" />
     <Compile Include="Areas\Configuration\Controllers\ConfigureController.cs" />
     <Compile Include="Areas\Dashboard\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Overview\Controllers\OverviewController.cs" />
     <Compile Include="Areas\Deployment\Controllers\DeployController.cs" />
-    <Compile Include="Areas\Dashboard\Models\AccountSettingsModel.cs" />
     <Compile Include="Areas\Overview\Controllers\LogController.cs" />
     <Compile Include="Areas\Dashboard\DashboardAreaRegistration.cs" />
     <Compile Include="Areas\Dashboard\Models\GithubHookPayload.cs" />
-    <Compile Include="Areas\Dashboard\Models\NewConfigurationModel.cs" />
-    <Compile Include="Areas\Dashboard\Models\OverviewModel.cs" />
+    <Compile Include="Areas\Dashboard\Models\NewConfiguration.cs" />
+    <Compile Include="Areas\Dashboard\Models\Overview.cs" />
     <Compile Include="Areas\Deployment\DeploymentAreaRegistration.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Global.asax.cs">
@@ -210,12 +210,11 @@
     <Content Include="Views\Login\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Areas\Account\Views\Shared\" />
     <Folder Include="Areas\Configuration\Models\" />
     <Folder Include="Areas\Deployment\Models\" />
     <Folder Include="Areas\Deployment\Views\Deployment\" />
     <Folder Include="Areas\Deployment\Views\Shared\" />
-    <Folder Include="Areas\FirstLaunch\Models\" />
-    <Folder Include="Areas\FirstLaunch\Views\Shared\" />
     <Folder Include="Areas\Hook\Models\" />
     <Folder Include="Areas\Hook\Views\Shared\" />
     <Folder Include="Areas\Overview\Models\" />
@@ -264,9 +263,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Areas\Dashboard\Views\Account\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Dashboard\Views\Shared\_Unobtrusive.cshtml" />
@@ -335,10 +331,9 @@
     <Content Include="Areas\Hook\Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\FirstLaunch\Views\Web.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Areas\FirstLaunch\Views\FirstLaunch\Index.cshtml" />
+    <Content Include="Areas\Account\Views\Account\Index.cshtml" />
+    <Content Include="Areas\Account\Views\FirstLaunch\Index.cshtml" />
+    <Content Include="Areas\Account\Views\Web.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

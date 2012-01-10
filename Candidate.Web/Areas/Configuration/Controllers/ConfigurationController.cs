@@ -25,11 +25,11 @@ namespace Candidate.Areas.Configuration.Controllers
         [HttpGet, ActionName("add")]
         public ActionResult Add()
         {
-            return View(new NewConfigurationModel());
+            return View(new NewConfiguration());
         }
 
         [HttpPost, ActionName("add")]
-        public ActionResult Add(NewConfigurationModel model)
+        public ActionResult Add(NewConfiguration model)
         {
             if (ModelState.IsValid)
             {

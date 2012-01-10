@@ -54,7 +54,7 @@ namespace Candidate.Tests.Controllers
         public void should_add_post_method_create_new_configuration()
         {
             // arrange 
-            var config = new NewConfigurationModel { Name = "testApp", SelectedType = "batch" };
+            var config = new NewConfiguration { Name = "testApp", SelectedType = "batch" };
 
             // act
             Controller.Add(config);
@@ -68,7 +68,7 @@ namespace Candidate.Tests.Controllers
         public void should_add_create_configuration_based_on_type_case_for_batch()
         {
             // arrange 
-            var config = new NewConfigurationModel { Name = "testApp", SelectedType = "batch" };
+            var config = new NewConfiguration { Name = "testApp", SelectedType = "batch" };
 
             // act
             Controller.Add(config);
@@ -82,7 +82,7 @@ namespace Candidate.Tests.Controllers
         public void should_add_create_configuration_based_on_type_case_for_xcopy()
         {
             // arrange 
-            var config = new NewConfigurationModel { Name = "testApp", SelectedType = "xcopy" };
+            var config = new NewConfiguration { Name = "testApp", SelectedType = "xcopy" };
 
             // act
             Controller.Add(config);
@@ -96,7 +96,7 @@ namespace Candidate.Tests.Controllers
         public void should_add_create_configuration_based_on_type_case_for_visual_studio()
         {
             // arrange 
-            var config = new NewConfigurationModel { Name = "testApp", SelectedType = "visualstudio" };
+            var config = new NewConfiguration { Name = "testApp", SelectedType = "visualstudio" };
 
             // act
             Controller.Add(config);
@@ -110,7 +110,7 @@ namespace Candidate.Tests.Controllers
         public void should_add_post_redirect_to_dashboard()
         {
             // arrange 
-            var config = new NewConfigurationModel { Name = "testApp", SelectedType = "xcopy" };
+            var config = new NewConfiguration { Name = "testApp", SelectedType = "xcopy" };
 
             // act
             var result = Controller.Add(config) as RedirectToRouteResult;

@@ -1,10 +1,10 @@
 ﻿using System.Web.Mvc;
-using Candidate.Areas.Dashboard.Models;
+using Candidate.Areas.Account.Models;
 using Candidate.Core.Services;
 using Candidate.Core.Settings;
 using Candidate.Infrustructure.Authentication;
 
-namespace Candidate.Areas.Dashboard.Controllers
+namespace Candidate.Areas.Account.Controllers
 {
     public class AccountController : SecuredController
     {
@@ -23,7 +23,7 @@ namespace Candidate.Areas.Dashboard.Controllers
             var userSettings = _settingsManager.ReadSettings<UserSettings>();
 
             var user = userSettings.User;
-            var model = new AccountSettingsModel
+            var model = new NewAccount
             {
                 Login = user.Login
             };
@@ -32,7 +32,7 @@ namespace Candidate.Areas.Dashboard.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(AccountSettingsModel model)
+        public ActionResult Index(NewAccount model)
         {
             if (ModelState.IsValid)
             {
