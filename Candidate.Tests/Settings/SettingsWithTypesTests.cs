@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using Candidate.Core.Configurations;
+using Candidate.Core.Configurations.Exceptions;
 using Candidate.Core.Configurations.Parts;
 using Candidate.Core.Configurations.Types;
 using Candidate.Core.Extensions;
@@ -193,7 +194,7 @@ namespace Candidate.Tests.Settings
             settingsManager.SaveConfiguration(new XCopyConfiguration { Id = "test 3" });
 
             // act
-            Assert.Throws<ConfigurationNotFoundException>(() => settingsManager.ReadConfiguration<BatchConfiguration>(_ => _.Id == "test 2"));
+            Assert.Throws<ConfigurationTypeDiffersFromExpected>(() => settingsManager.ReadConfiguration<BatchConfiguration>(_ => _.Id == "test 2"));
         }
 
         [Test]
