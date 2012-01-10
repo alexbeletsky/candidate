@@ -1,7 +1,6 @@
 ﻿using System.Web.Mvc;
 using Candidate.Core.Configurations;
 using Candidate.Core.Settings;
-using Candidate.Infrustructure.Authentication;
 
 namespace Candidate.Areas.Dashboard.Controllers
 {
@@ -17,8 +16,9 @@ namespace Candidate.Areas.Dashboard.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            var userSettings = _settingsManager.ReadSettings<UserSettings>();
-            ViewBag.TemporaryPassword = userSettings.User.TemporaryPassword;
+            // TODO: disable corresponding java script
+            //var userSettings = _settingsManager.ReadSettings<UserSettings>();
+            //ViewBag.TemporaryPassword = userSettings.User.TemporaryPassword;
 
             return View();
         }

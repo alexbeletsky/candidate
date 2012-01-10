@@ -46,6 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Account\User.cs" />
+    <Compile Include="Account\UserSettings.cs" />
     <Compile Include="Configurations\Bounce\BatchBounceConfiguration.cs" />
     <Compile Include="Configurations\Bounce\Builders\BatchBounceConfigurationBuilder.cs" />
     <Compile Include="Configurations\Bounce\Builders\ConfigurationBuilderBase.cs" />
@@ -77,6 +79,7 @@
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Configurations\Helpers\BindingParser.cs" />
     <Compile Include="Extensions\ValidatorExtensions.cs" />
+    <Compile Include="Services\IUserManagement.cs" />
     <Compile Include="Services\Logger.cs" />
     <Compile Include="Configurations\Parts\Batch.cs" />
     <Compile Include="Configurations\ConfigurationsList.cs" />
@@ -92,6 +95,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\HashService.cs" />
     <Compile Include="Services\IHashService.cs" />
+    <Compile Include="Services\UserManagement.cs" />
     <Compile Include="Settings\Exceptions\ConfigurationNotFoundException.cs" />
     <Compile Include="Settings\ISettingsManager.cs" />
     <Compile Include="Settings\SettingsManager.cs" />

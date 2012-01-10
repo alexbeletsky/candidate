@@ -2,10 +2,10 @@
 using System.Web.Mvc;
 using Candidate.Areas.Dashboard.Controllers;
 using Candidate.Areas.Dashboard.Models;
+using Candidate.Core.Account;
 using Candidate.Core.Configurations;
 using Candidate.Core.Configurations.Types;
 using Candidate.Core.Settings;
-using Candidate.Infrustructure.Authentication;
 using Moq;
 using NUnit.Framework;
 using SharpTestsEx;
@@ -21,7 +21,7 @@ namespace Candidate.Tests.Controllers
             var settingsManager = new Mock<ISettingsManager>();
             var controller = new DashboardController(settingsManager.Object);
 
-            settingsManager.Setup(_ => _.ReadSettings<UserSettings>()).Returns(new UserSettings { User = new User() });
+            settingsManager.Setup(_ => _.ReadSettings<UserSettings>()).Returns(new UserSettings { CurrentUser = new User() });
 
             // act
             var result = controller.Index() as ViewResult;

@@ -1,28 +1,24 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using Candidate.Areas.Account.Models;
 using Candidate.Core.Services;
 using Candidate.Core.Settings;
-using Candidate.Infrustructure.Authentication;
 
 namespace Candidate.Areas.Account.Controllers
 {
     public class AccountController : SecuredController
     {
-        private readonly ISettingsManager _settingsManager;
-        private readonly IHashService _hashService;
+        private readonly IUserManagement _userManagement;
 
-        public AccountController(ISettingsManager settingsManager, IHashService hashService)
+        public AccountController(IUserManagement userManagement)
         {
-            _settingsManager = settingsManager;
-            _hashService = hashService;
+            _userManagement = userManagement;
         }
 
         [HttpGet]
         public ActionResult Index()
         {
-            var userSettings = _settingsManager.ReadSettings<UserSettings>();
-
-            var user = userSettings.User;
+            var user = _userManagement.Current();
             var model = new NewAccount
             {
                 Login = user.Login
@@ -36,15 +32,7 @@ namespace Candidate.Areas.Account.Controllers
         {
             if (ModelState.IsValid)
             {
-                using (var settings = new AutoSaveSettingsManager(_settingsManager))
-                {
-                    var userSettings = settings.ReadSettings<UserSettings>();
-                    var user = userSettings.User;
-
-                    user.Login = model.Login;
-                    user.PasswordHash = _hashService.CreateMD5Hash(model.NewPassword);
-                    user.TemporaryPassword = false;
-                }
+                _userManagement.Create(model.Login, model.NewPassword);
             }
 
             return View(model);

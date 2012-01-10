@@ -117,8 +117,6 @@
     </Compile>
     <Compile Include="Infrustructure\Authentication\IAuthentication.cs" />
     <Compile Include="Infrustructure\Authentication\Authentication.cs" />
-    <Compile Include="Infrustructure\Authentication\User.cs" />
-    <Compile Include="Infrustructure\Authentication\UserSettings.cs" />
     <Compile Include="Infrustructure\Error\HandleJsonError.cs" />
     <Compile Include="Infrustructure\Extensions\DropDownListForExtensions.cs" />
     <Compile Include="Infrustructure\Extensions\HtmlHelperExtensions.cs" />

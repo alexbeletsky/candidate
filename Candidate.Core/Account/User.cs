@@ -1,5 +1,5 @@
 ﻿
-namespace Candidate.Infrustructure.Authentication
+namespace Candidate.Core.Account
 {
     public class User
     {
