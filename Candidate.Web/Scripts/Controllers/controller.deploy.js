@@ -40,8 +40,7 @@ $(function () {
 
         function finish(result) {
             $('#current-step').html('<span class="success">Application successfully launched!</span>');
-            $('#current-step').append('<p><span class="small">Visit your site: <a target="_blank" href="' + result.Url + '">' + result.Url + '</a> Build logs available <a target="_blank" href="' + showLogMethod + '/' + result.Log + '">here</a></span></p>');
-
+            //$('#current-step').append('<p><span class="small">Visit your site: <a target="_blank" href="' + result.Url + '">' + result.Url + '</a> Build logs available <a target="_blank" href="' + showLogMethod + '/' + result.Log + '">here</a></span></p>');
             $('.preloader').hide();
             $.unblockUI();
         }

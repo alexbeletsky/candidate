@@ -51,6 +51,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Ninject.2.2.1.4\lib\net40-Full\Ninject.dll</HintPath>
     </Reference>
+    <Reference Include="Ninject.Extensions.Conventions">
+      <HintPath>..\packages\ninject.extensions.conventions.2.2.0.5\lib\net40-Full\Ninject.Extensions.Conventions.dll</HintPath>
+    </Reference>
     <Reference Include="Ninject.Web.Mvc">
       <HintPath>..\packages\Ninject.MVC3.2.2.2.0\lib\net40-Full\Ninject.Web.Mvc.dll</HintPath>
     </Reference>
@@ -115,8 +118,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Infrustructure\Authentication\IAuthentication.cs" />
-    <Compile Include="Infrustructure\Authentication\Authentication.cs" />
     <Compile Include="Infrustructure\Error\HandleJsonError.cs" />
     <Compile Include="Infrustructure\Extensions\DropDownListForExtensions.cs" />
     <Compile Include="Infrustructure\Extensions\HtmlHelperExtensions.cs" />
@@ -208,6 +209,7 @@
     <Content Include="Views\Login\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_LocalResources\" />
     <Folder Include="Areas\Account\Views\Shared\" />
     <Folder Include="Areas\Configuration\Models\" />
     <Folder Include="Areas\Deployment\Models\" />

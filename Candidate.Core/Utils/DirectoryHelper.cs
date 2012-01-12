@@ -59,5 +59,15 @@ namespace Candidate.Core.Utils
         {
             get { return Path.Combine(RootDirectory, "tools"); }
         }
+
+        public string NUnitToolDirectory
+        {
+            get { return Path.Combine(ToolsDirectory, "nunit"); }
+        }
+
+        public string NUnitConsole
+        {
+            get { return Path.Combine(NUnitToolDirectory, "nunit-console.exe"); }
+        }
     }
 }

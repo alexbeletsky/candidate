@@ -90,16 +90,22 @@ div#login-box
 
 .element 
 {
-    width: 70%;    
+    width: 80%;    
     display: inline-block;
-    margin-bottom: 4px;
+    margin: 0 auto;
+    padding: 0.2em 0;
 }
 
-.element label {
+.element label 
+{
+    height: 100%;
+    line-height: 100%;
+    text-align: center;
     float: left;
 }
 
-.element input {
+.element input 
+{
     float: right;
 }
 

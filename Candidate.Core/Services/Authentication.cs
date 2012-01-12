@@ -1,9 +1,8 @@
 ﻿using System.Web.Security;
 using Candidate.Core.Account;
-using Candidate.Core.Services;
 using Candidate.Core.Settings;
 
-namespace Candidate.Infrustructure.Authentication
+namespace Candidate.Core.Services
 {
     public class Authentication : IAuthentication
     {

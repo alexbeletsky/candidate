@@ -34,7 +34,7 @@ namespace Candidate.Core.Configurations.Bounce.Builders
 
         public string NUnitConsole
         {
-            get { return DirectoryHelper.For(_id).ToolsDirectory;  }
+            get { return DirectoryHelper.For(_id).NUnitConsole; }
         }
     }
 }

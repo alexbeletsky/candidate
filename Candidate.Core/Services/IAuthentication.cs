@@ -1,5 +1,5 @@
 ﻿
-namespace Candidate.Infrustructure.Authentication
+namespace Candidate.Core.Services
 {
     public interface IAuthentication
     {

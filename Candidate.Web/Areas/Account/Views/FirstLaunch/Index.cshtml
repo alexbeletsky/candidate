@@ -1,4 +1,6 @@
-﻿@model dynamic
+﻿@model Candidate.Areas.Account.Models.NewAccount 
+@using Candidate.Infrustructure.Extensions
+
 @{
     ViewBag.Title = "Candidate | First Launch";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -16,20 +18,22 @@
                     Just before you entered the world on continuous deployment, we need to setup account for you. Please provide your credentials.
                 </p>
             </div>
-            @using(Html.BeginForm("index", "firstlaunch", FormMethod.Post, new { @class = "form clearfix" }))
+            @using(Html.BeginForm("index", "firstlaunch", FormMethod.Post, new { @class = "form clearfix", autocomplete = "off" }))
             {
+                @Html.ValidationSummary()
+
                 <fieldset>
-                    <div id="login-container" class="element">
-                        <label for="login" class="bigger">Login: </label>
-                        <input id="login" name="login" type="text"/>
+                    <div id="login-container" class="element">                        
+                        @Html.LabelFor(m => m.Login, new { @class = "bigger" })
+                        @Html.TextBoxFor(m => m.Login)
                     </div>
                     <div id="password-container" class="element">
-                        <label for="password" class="bigger">Password: </label>
-                        <input id="password" name="password" type="text"/>
+                        @Html.LabelFor(m => m.NewPassword, new { @class = "bigger" })
+                        @Html.PasswordFor(m => m.NewPassword)
                     </div>
                     <div id="confirm-password-container" class="element">
-                        <label for="confirm-password" class="bigger">Confirm Password: </label>
-                        <input id="confirm-password" name="confirmPassword" type="text"/>
+                        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "bigger" })
+                        @Html.PasswordFor(m => m.ConfirmPassword)
                     </div>
 
                 </fieldset>
@@ -39,3 +43,9 @@
         </div>
     </div>
 </div>
+
+@section Scripts 
+{
+    <script src="@Url.Content("~/Scripts/jquery.validate.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+}
