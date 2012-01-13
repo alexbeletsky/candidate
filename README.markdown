@@ -1,14 +1,6 @@
 # Candidate.NET
 Simple and nice continuous delivery for .NET web applications.
 
-## What is the goal?
-
-The goal is to provide continuous delivery tool for open source .NET applications.
-
-## How to get started?
-
-Just deploy Candidate as usual IIS site, login and setup your continues delivery site.
-
 ## What does application do?
 
 Simple, you create new site. You point the application to github repostitory (like, git@github.com:alexanderbeletsky/candidate.test.net.git), configure MsBuild options (like target, configuration) and IIS properties. Once it done, the application will clone your repository, build it, run all unit tests and create new IIS site for that. All you need to do is access it by URL.
