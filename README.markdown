@@ -23,6 +23,10 @@ Yes. Say, 'master' is current production code, 'develop' is current staging code
 
 Candidate is very lightweight.. So, just nothing except Git.
 
+## How to contribute?
+
+Just fork the repository and send me a pull request. Please referer to [How to build](https://github.com/alexanderbeletsky/candidate.net/wiki/How-to-build) with build instructions.
+
 ## Credits
 
 It's using wonderful [Bounce](https://github.com/alexanderbeletsky/bounce) framework for building and big [suite](https://github.com/alexanderbeletsky/candidate.net/tree/master/packages) of cool open source tools available by NuGet.
