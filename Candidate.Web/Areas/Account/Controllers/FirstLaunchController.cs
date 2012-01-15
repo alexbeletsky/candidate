@@ -35,7 +35,7 @@ namespace Candidate.Areas.Account.Controllers
             {
                 _userManagement.Create(account.Login, account.NewPassword);
                 _authentication.AuthenticateUser(account.Login);
-                _environment.Prepare(Server.MapPath("~/App_LocalResources"));
+                _environment.Prepare(Server.MapPath("~/Content/Resources"));
 
                 return RedirectToAction("index", new { area = "dashboard", controller = "dashboard" });
             }

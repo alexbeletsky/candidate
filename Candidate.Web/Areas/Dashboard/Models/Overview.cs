@@ -9,6 +9,7 @@ namespace Candidate.Areas.Dashboard.Models
         public string LastBuildStatus { get; set; }
         public DateTime LastDeployTime { get; set; }
         public TimeSpan LastDeployDuration { get; set; }
+        public string GithubHook { get; set; }
 
         public IEnumerable<string> Logs { get; set; }
     }

@@ -122,6 +122,7 @@
     <Compile Include="Infrustructure\Extensions\DropDownListForExtensions.cs" />
     <Compile Include="Infrustructure\Extensions\HtmlHelperExtensions.cs" />
     <Compile Include="Infrustructure\Filters\AddViewNameAndHashAttribute.cs" />
+    <Compile Include="Infrustructure\Filters\AuthorizeByToken.cs" />
     <Compile Include="Infrustructure\Filters\ValidateTokenAttribute.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -334,6 +335,9 @@
     <Content Include="Areas\Account\Views\Account\Index.cshtml" />
     <Content Include="Areas\Account\Views\FirstLaunch\Index.cshtml" />
     <Content Include="Areas\Account\Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Resources\nunit.2.5.10.tools.zip" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

@@ -10,7 +10,7 @@ Bin
 obj
 _ReSharper*
 
-
+Deliveries/
 **/**/Elmah.Errors
 *.csproj.user
 *.resharper.user

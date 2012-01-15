@@ -5,25 +5,25 @@ using System.Web;
 using System.Web.Mvc;
 using Candidate.Areas.Dashboard.Models;
 using Candidate.Core.Deploy;
-using Candidate.Core.Settings;
 using Candidate.Core.Extensions;
+using Candidate.Core.Services;
+using Candidate.Infrustructure.Filters;
 using Newtonsoft.Json;
 
 namespace Candidate.Areas.Hook.Controllers
 {
-    public class HookController : SecuredController
+    [AuthorizeByToken]
+    public class HookController : Controller
     {
-        private readonly ISettingsManager _settingsManager;
         private readonly IDeployer _deployer;
 
-        public HookController(ISettingsManager settingsManager, IDeployer deployer)
+        public HookController(IDeployer deployer)
         {
-            _settingsManager = settingsManager;
             _deployer = deployer;
         }
 
         [HttpPost]
-        public ActionResult Index(string id, string payload)
+        public ActionResult Index(string id, string token, string payload)
         {
             var githubPayload = JsonConvert.DeserializeObject<GithubHookPayload>(payload);
             var results = _deployer.Deploy(id, githubPayload.Branch);
