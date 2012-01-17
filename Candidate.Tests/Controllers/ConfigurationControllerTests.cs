@@ -107,7 +107,7 @@ namespace Candidate.Tests.Controllers
         }
 
         [Test]
-        public void should_add_post_redirect_to_dashboard()
+        public void should_add_post_redirect_to_configure()
         {
             // arrange 
             var config = new NewConfiguration { Name = "testApp", SelectedType = "xcopy" };
@@ -116,9 +116,9 @@ namespace Candidate.Tests.Controllers
             var result = Controller.Add(config) as RedirectToRouteResult;
 
             // assert
-            result.RouteValues["area"].Should().Be("dashboard");
-            result.RouteValues["controller"].Should().Be("dashboard");
-            result.RouteValues["action"].Should().Be("index");
+            result.RouteValues["area"].Should().Be("configuration");
+            result.RouteValues["controller"].Should().Be("configure");
+            result.RouteValues["action"].Should().Be("configure");
         }
 
         [Test]

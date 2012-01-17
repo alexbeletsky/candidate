@@ -40,7 +40,7 @@ namespace Candidate.Areas.Configuration.Controllers
 
                 _settingsManager.SaveConfiguration(configuration);
 
-                return RedirectToAction("index", new { area = "dashboard", controller = "dashboard" });
+                return RedirectToAction("configure", new { area = "configuration", controller = "configure", id = configuration.Id });
             }
 
             return View(model);
