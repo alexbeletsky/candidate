@@ -59,7 +59,11 @@ namespace Candidate.Areas.Configuration.Controllers
         {
             if (ModelState.IsValid)
             {
-                _settingsManager.DeleteConfiguration(id);
+                var configuration = _settingsManager.ReadConfiguration<Core.Configurations.Types.Configuration>(c => c.Id == id);
+
+                configuration.Delete();
+
+                _settingsManager.DeleteConfiguration(configuration.Id);
                 return RedirectToAction("index", new { area = "dashboard", controller = "dashboard" });
             }
 

@@ -76,6 +76,7 @@
     <Compile Include="Configurations\Tasks\ShellTask.cs" />
     <Compile Include="Configurations\Tasks\StartSiteTask.cs" />
     <Compile Include="Configurations\Tasks\StopSiteTask.cs" />
+    <Compile Include="Configurations\IDeletable.cs" />
     <Compile Include="Deploy\Deployer.cs" />
     <Compile Include="Deploy\IDeployer.cs" />
     <Compile Include="Extensions\ConfigurationsExtensions.cs" />
