@@ -16,19 +16,7 @@ namespace Candidate.Core.Configurations.Types
         
         public void Delete()
         {
-            var directoryHelper = DirectoryHelper.For(Id);
-
-            try
-            {
-                if (Directory.Exists(directoryHelper.SiteDirectory))
-                {
-                    Directory.Delete(directoryHelper.SiteDirectory, true);
-                }
-            }
-            catch
-            {
-                
-            }
+            Safe.DirectoryDelete(DirectoryHelper.For(Id).SiteDirectory);
         }
     }
 }

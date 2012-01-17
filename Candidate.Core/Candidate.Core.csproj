@@ -116,6 +116,7 @@
     <Compile Include="Settings\AutoSaveSettingsManager.cs" />
     <Compile Include="Settings\Validation\IisBindingsAttribute.cs" />
     <Compile Include="Services\ILogger.cs" />
+    <Compile Include="Utils\Safe.cs" />
     <Compile Include="Utils\DirectoryHelper.cs" />
     <Compile Include="Utils\LocalAppDataFolder.cs" />
     <Compile Include="Extensions\SiteConfigurationExtentions.cs" />
