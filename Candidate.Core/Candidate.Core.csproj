@@ -87,7 +87,7 @@
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Configurations\Helpers\BindingParser.cs" />
     <Compile Include="Extensions\ValidatorExtensions.cs" />
-    <Compile Include="RegisterServices.cs" />
+    <Compile Include="CoreModule.cs" />
     <Compile Include="Services\Authentication.cs" />
     <Compile Include="Services\IAuthentication.cs" />
     <Compile Include="Services\IEnvironment.cs" />
