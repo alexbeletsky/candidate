@@ -32,6 +32,8 @@ Deliveries/
 *.StyleCop
 *.user
 *.local.xml
+*ncrunchsolution*
+*ncrunchproject*
 
 TestResult.xml
 submit.xml
