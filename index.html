@@ -183,7 +183,7 @@
     <div class="container small-padding big-margin">
         <div class="row center">
             <div class="twelve column">
-                <a href="https://github.com/downloads/alexanderbeletsky/candidate/candidate-v.0.0.1rc.zip" class="radius large green button">Download Candidate <br/><small>Current v.0.0.1rc</small></a>
+                <a href="https://github.com/downloads/alexanderbeletsky/candidate/candidate-v.0.0.1rc.zip" class="radius large green button download">Download Candidate <br/><small>Current v.0.0.1rc</small></a>
             </div>
         </div>
     </div>
@@ -197,6 +197,7 @@
 	<script src="javascripts/jquery.min.js"></script>
 	<script src="javascripts/modernizr.foundation.js"></script>
     <script src="javascripts/jquery.carosellite_1.0.1.js"></script>
+    <script src="javascripts/ga.js"></script>
 	<!-- Combine and Compress These JS Files -->
     <!--
 	<script src="javascripts/jquery.reveal.js"></script>
@@ -226,6 +227,10 @@
                     $('.pagination li').removeClass('current');
                     $('#step-' + $(li).attr('rel')).parent().addClass('current');
                 }
+            });
+
+            $('.download').click(function () {
+                gaLogDownload('.zip', $(this).attr('href'));
             });
         });
     </script>
