@@ -32,16 +32,16 @@ p
     height: 1em;
     background: black;
     
-    -webkit-box-shadow: 0px 0px 5px #5c5c5c;
-    -moz-box-shadow: 0px 0px 5px #5c5c5c;
-    box-shadow: 0px 0px 5px #5c5c5c;
+    -webkit-box-shadow: 0px 0px 5px #707070;
+    -moz-box-shadow: 0px 0px 5px #707070;
+    box-shadow: 0px 0px 5px #707070;
 }
 
 .box-shadow
 {
-    -webkit-box-shadow: 0px 0px 15px 1px #5c5c5c;
-    -moz-box-shadow: 0px 0px 15px 1px #5c5c5c;
-    box-shadow: 0px 0px 15px 1px #5c5c5c;
+    -webkit-box-shadow: 0px 0px 20px 1px #707070;
+    -moz-box-shadow: 0px 0px 20px 1px #707070;
+    box-shadow: 0px 0px 20px 1px #707070;
 }
 
 .text-shadow
