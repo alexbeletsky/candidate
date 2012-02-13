@@ -56,90 +56,80 @@
 
     <div class="container">
         <div class="row">
-            <div class="steps">
-                <ul class="twelve columns">
+            <div class="steps twelve columns hidden">
+                <ul>
                     <li rel="0">
-                        <div class="twelve columns">
-                            <div class="row">
-                                <div class="five columns">
-                                    <h2><span class="green-text">Step 1:</span> Create new site</h2>
-                                    <p>
-                                        Simply create new web site you want setup for continues deployment
-                                    </p>
-                                </div>
-                                <div class="seven columns">
-                                    <a href="images/step1.png">
-                                        <img src="images/step1.png" alt="candidate create new site" class="box-shadow" />
-                                    </a>
-                                </div>
+                        <div class="row">
+                            <div class="five columns">
+                                <h2><span class="green-text">Step 1:</span> Create new site</h2>
+                                <p>
+                                    Simply create new web site you want setup for continues deployment
+                                </p>
+                            </div>
+                            <div class="seven columns">
+                                <a href="images/step1.png">
+                                    <img src="images/step1.png" alt="candidate create new site" class="box-shadow" />
+                                </a>
                             </div>
                         </div>
                     </li>
                     <li rel="1">
-                        <div class="twelve columns">
-                            <div class="row">
-                                <div class="five columns">
-                                    <h2><span class="green-text">Step 2</span>: Configure site for deployment</h2>
-                                    <p>
-                                        Run through the configuration including Github, Visual Studio and IIS settings
-                                    </p>
-                                </div>
-                                <div class="seven columns">
-                                    <a href="images/step2.png">
-                                        <img src="images/step2.png" alt="candidate configure site" class="box-shadow" />
-                                    </a>
-                                </div>
+                        <div class="row">
+                            <div class="five columns">
+                                <h2><span class="green-text">Step 2</span>: Configure site for deployment</h2>
+                                <p>
+                                    Run through the configuration including Github, Visual Studio and IIS settings
+                                </p>
+                            </div>
+                            <div class="seven columns">
+                                <a href="images/step2.png">
+                                    <img src="images/step2.png" alt="candidate configure site" class="box-shadow" />
+                                </a>
                             </div>
                         </div>
                     </li>
                     <li rel="2">
-                        <div class="twelve columns">
-                            <div class="row">
-                                <div class="five columns">
-                                    <h2><span class="green-text">Step 3</span>: Start the deployment</h2>
-                                    <p>
-                                        Run application for initial deployment
-                                    </p>
-                                </div>
-                                <div class="seven columns">
-                                    <a href="images/step6.png">
-                                        <img src="images/step6.png" alt="candidate start deployment" class="box-shadow"/>
-                                    </a>
-                                </div>
+                        <div class="row">
+                            <div class="five columns">
+                                <h2><span class="green-text">Step 3</span>: Start the deployment</h2>
+                                <p>
+                                    Run application for initial deployment
+                                </p>
+                            </div>
+                            <div class="seven columns">
+                                <a href="images/step6.png">
+                                    <img src="images/step6.png" alt="candidate start deployment" class="box-shadow"/>
+                                </a>
                             </div>
                         </div>
                     </li>
                     <li rel="3">
-                        <div class="twelve columns">
-                            <div class="row">
-                                <div class="five columns">
-                                    <h2><span class="green-text">Step 4:</span> Application launched</h2>
-                                    <p>
-                                        As soon it's done, application is ready to be accessed
-                                    </p>
-                                </div>
-                                <div class="seven columns">
-                                    <a href="images/step7.png">
-                                        <img src="images/step7.png" alt="candidate application launched" class="box-shadow" />
-                                    </a>
-                                </div>
+                        <div class="row">
+                            <div class="five columns">
+                                <h2><span class="green-text">Step 4:</span> Application launched</h2>
+                                <p>
+                                    As soon it's done, application is ready to be accessed
+                                </p>
+                            </div>
+                            <div class="seven columns">
+                                <a href="images/step7.png">
+                                    <img src="images/step7.png" alt="candidate application launched" class="box-shadow" />
+                                </a>
                             </div>
                         </div>
                     </li>
                     <li rel="4">
-                        <div class="twelve columns">
-                            <div class="row">
-                                <div class="five columns">
-                                    <h2><span class="green-text">Step 5:</span> Setup Github hook</h2>
-                                    <p>
-                                        Setup Github post hook, so each time you "git push" to github your application automatically redeployed!
-                                    </p>
-                                </div>
-                                <div class="seven columns">
-                                    <a href="images/step8.png">
-                                        <img src="images/step8.png" alt="candidate github hook" class="box-shadow" />
-                                    </a>
-                                </div>
+                        <div class="row">
+                            <div class="five columns">
+                                <h2><span class="green-text">Step 5:</span> Setup Github hook</h2>
+                                <p>
+                                    Setup Github post hook, so each time you "git push" to github your application automatically redeployed!
+                                </p>
+                            </div>
+                            <div class="seven columns">
+                                <a href="images/step8.png">
+                                    <img src="images/step8.png" alt="candidate github hook" class="box-shadow" />
+                                </a>
                             </div>
                         </div>
                     </li>
@@ -147,8 +137,8 @@
             </div>
         </div>
         <div class="row">
-            <div class="three columns centered">
-                <ul class="pagination center">
+            <div class="four columns centered">
+                <ul class="pagination">
                   <li><a href="#" class="prev"> &laquo;</a></li>
                   <li class="current"><a href="#" id="step-0" class="step-bullet">&bull;</a></li>
                   <li><a href="#" id="step-1" class="step-bullet">&bull;</a></li>
@@ -206,19 +196,23 @@
 	<!-- Included JS Files -->
 	<script src="javascripts/jquery.min.js"></script>
 	<script src="javascripts/modernizr.foundation.js"></script>
+    <script src="javascripts/jquery.carosellite_1.0.1.js"></script>
 	<!-- Combine and Compress These JS Files -->
+    <!--
 	<script src="javascripts/jquery.reveal.js"></script>
 	<script src="javascripts/jquery.orbit-1.4.0.js"></script>
 	<script src="javascripts/jquery.customforms.js"></script>
 	<script src="javascripts/jquery.placeholder.min.js"></script>
 	<script src="javascripts/jquery.tooltips.js"></script>
-    <script src="javascripts/jquery.carosellite_1.0.1.js"></script>
+    <script src="javascripts/app.js"></script>
+    -->
+
 	<!-- End Combine and Compress These JS Files -->
-	<script src="javascripts/app.js"></script>
 
 
     <script type="text/javascript">
-        $(function () {
+        $(window).load(function () {
+            $('.steps').show();
             $('.steps').jCarouselLite({
                 btnNext: '.next',
                 btnPrev: '.prev',

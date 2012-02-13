@@ -27,6 +27,7 @@ _ReSharper*
 *.log
 *.Cache
 *.StyleCop
+*sublime*
 
 TestResult.xml
 submit.xml

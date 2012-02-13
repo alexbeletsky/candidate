@@ -40,14 +40,14 @@ p
 
 .box-shadow
 {
-    -webkit-box-shadow: 0px 0px 20px 1px #707070;
-    -moz-box-shadow: 0px 0px 20px 1px #707070;
-    box-shadow: 0px 0px 20px 1px #707070;
+    -webkit-box-shadow: 0px 0px 10px 1px #707070;
+    -moz-box-shadow: 0px 0px 10px 1px #707070;
+    box-shadow: 0px 0px 10px 1px #707070;
 }
 
 .text-shadow
 {
-    text-shadow: 0px 0px 25px #828282;
+    text-shadow: 0px 0px 25px #707070;
 }
 
 .arrow
@@ -80,14 +80,18 @@ p
     background: url('../images/arrow-right.png');
 }
 
+.steps
+{
+	display: none;	
+}
+
 .steps ul
 {
     display: block;
 }
 
-.steps ul li
+.steps ul > li
 {
-    display: inline-block;
     padding: 1em;
 }
 
