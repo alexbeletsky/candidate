@@ -17,6 +17,7 @@ p
 {
     text-align: center;
     vertical-align: baseline;
+    margin: 0 auto;
 }
 
 .top
@@ -147,10 +148,3 @@ p
 {
     font-size: 25px; font-size: 2.5rem;
 }
-
-.green.button
-{
-    background-color: #5b8737;
-}
-
-.green.button:hover, .green.button:focus		{ background-color: #699c40; }
