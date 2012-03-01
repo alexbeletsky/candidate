@@ -1,0 +1,33 @@
+﻿@model Candidate.Core.Configurations.Parts.Github
+@{
+    Layout = "~/Areas/Dashboard/Views/Shared/_Unobtrusive.cshtml";
+}
+
+<div class="dialog">
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary();
+                                   
+        <fieldset>
+            <legend>Github repository configuration</legend>
+            <div id="github-url">
+                @Html.LabelFor(m => m.Url)
+                @Html.TextBoxFor(m => m.Url)
+            </div>
+            <div id="github-branch">
+                @Html.LabelFor(m => m.Branch)
+                @Html.TextBoxFor(m => m.Branch)
+            </div>
+@*            <div id="github-hook">
+                @Html.LabelFor(m => m.Hook)
+                @Html.TextBoxFor(m => m.Hook, new { @readonly = true, @Value = Url.Action("Index", "Hook", new { area = "Hook", id = ViewBag.Id }, "http") })            
+            </div>*@
+        </fieldset>
+    
+        <div class="right">
+            <button type="submit" class="minimal">Save config</button>
+            <button id="close" type="button" class="minimal">Close</button>    
+        </div>
+
+    }
+</div>

@@ -1,0 +1,16 @@
+bin/
+obj/
+_ReSharper.*
+*.ReSharper.*
+*.sln.cache
+*.suo
+*.csproj.user
+*.resharper.user
+Bounce/
+docs/README.html
+.*.swp
+Bounce.tmp/
+Downloads/
+
+/TestResult.xml
+_ReShaper.*/

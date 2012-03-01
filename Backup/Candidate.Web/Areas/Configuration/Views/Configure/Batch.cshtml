@@ -1,0 +1,18 @@
+﻿@{
+    ViewBag.Title = "Configure | Batch";
+    Layout = "~/Areas/Configuration/Views/Shared/_Configure.cshtml";
+}
+
+<div class="configuration-line">
+    <div class="configuration-box" data-source="../@Model.Type/github/@Model.Id">
+        <p>GITHUB</p>
+    </div>
+    <div class="configuration-box" data-source="../@Model.Type/iis/@Model.Id">
+        <p>IIS</p>
+    </div>
+    <div class="configuration-box" data-source="../@Model.Type/batch/@Model.Id">
+        <p>BATCH</p>
+    </div>
+</div>
+
+

@@ -1,0 +1,12 @@
+﻿@{
+    Layout = "~/Areas/Dashboard/Views/Shared/_Page.cshtml";    
+}
+<div class="configuration">
+    @RenderBody()
+</div>
+<div class="dialog">
+</div>
+@section Scripts 
+{
+    <script src="@Url.Content("~/Scripts/Controllers/controller.configure.js")" type="text/javascript"></script>
+}

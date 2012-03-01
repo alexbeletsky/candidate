@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "Action | Deployment";
+    Layout = "~/Areas/Dashboard/Views/Shared/_Page.cshtml";    
+}
+
+
+<input id="setup" type="hidden" 
+    data-start-setup="start/@Model.Id" 
+    data-show-log="not-yet-done" 
+    />
+
+<div class="setup-progress">
+    <div id="current-step"></div>
+    <div class="preloader"></div>    
+</div>
+
+@section Scripts {
+    <script src="@Url.Content("~/Scripts/jquery.blockUI.js")" type="text/javascript"></script>    
+    <script src="@Url.Content("~/Scripts/Controllers/controller.deploy.js")" type="text/javascript"></script>
+}
+
+
+

@@ -1,0 +1,14 @@
+﻿@{
+    ViewBag.Title = "Overview | No info";
+    Layout = "~/Areas/Dashboard/Views/Shared/_Layout.cshtml";
+}
+
+<div id="internal-nagivation">
+    <h2>Build > Jobs > Overview</h2>
+    <div class="right">@Html.ActionLink("Back to dashboard", "Index", new { area = "Dashboard", controller = "Dashboard" } )</div>    
+    <div class="clear"></div>
+</div>
+
+<div id="summary">
+    No information collected so far.
+</div>

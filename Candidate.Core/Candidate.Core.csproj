@@ -32,7 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL" />
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\Bounce\References\ZipSharp\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\lib\Newtonsoft.Json.4.0.1\lib\40\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -123,7 +125,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Bounce\Bounce.Framework\Bounce.Framework.csproj">
-      <Project>{05E5A4A4-E497-4FDF-B843-8EE583F5D71E}</Project>
+      <Project>{05e5a4a4-e497-4fdf-b843-8ee583f5d71e}</Project>
       <Name>Bounce.Framework</Name>
     </ProjectReference>
   </ItemGroup>

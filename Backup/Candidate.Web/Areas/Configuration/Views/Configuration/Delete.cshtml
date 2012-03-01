@@ -1,0 +1,18 @@
+﻿@model Candidate.Core.Configurations.Types.Configuration
+
+@{
+    ViewBag.Title = "Configuration | Delete";
+    Layout = "~/Areas/Dashboard/Views/Shared/_Page.cshtml";    
+}
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary()
+    @Html.HiddenFor(m => m.Id)
+
+    <p>
+        Are you sure to delete <strong>@Model.ReadableName</strong> job?
+    </p>
+                                        
+    <button type="submit" class="minimal">Delete</button>
+} 

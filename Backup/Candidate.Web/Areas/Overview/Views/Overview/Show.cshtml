@@ -1,0 +1,27 @@
+﻿@model Candidate.Areas.Dashboard.Models.Overview
+
+@{
+    ViewBag.Title = "Overview | Details";
+    Layout = "~/Areas/Dashboard/Views/Shared/_Page.cshtml";
+}
+
+<div id="result">
+    <div class="result"><strong>Last build status:</strong> @Model.LastBuildStatus</div>
+    <div class="time"><strong>Last deployment time:</strong> @Model.LastDeployTime</div>
+    <div class="duration"><strong>Last deployment duration:</strong> @Model.LastDeployDuration</div>
+    <div><strong>Hook URL:</strong> @Model.GithubHook</div>
+</div>
+
+@if (Model.Logs != null)
+{
+    <div id="logs">
+        <ul>
+            @foreach (var log in Model.Logs)
+            {
+                <li>
+                    <a href="../log/@Model.Id/@log">@log</a>
+                </li>
+            }
+        </ul>
+    </div>
+}
