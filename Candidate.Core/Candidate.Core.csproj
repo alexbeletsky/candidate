@@ -36,12 +36,6 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\lib\Newtonsoft.Json.4.0.1\lib\40\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Ninject">
-      <HintPath>..\packages\Ninject.2.2.1.4\lib\net40-Full\Ninject.dll</HintPath>
-    </Reference>
-    <Reference Include="Ninject.Extensions.Conventions">
-      <HintPath>..\packages\ninject.extensions.conventions.2.2.0.5\lib\net40-Full\Ninject.Extensions.Conventions.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -88,7 +82,6 @@
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Configurations\Helpers\BindingParser.cs" />
     <Compile Include="Extensions\ValidatorExtensions.cs" />
-    <Compile Include="CoreModule.cs" />
     <Compile Include="Services\Authentication.cs" />
     <Compile Include="Services\IAuthentication.cs" />
     <Compile Include="Services\IEnvironment.cs" />
