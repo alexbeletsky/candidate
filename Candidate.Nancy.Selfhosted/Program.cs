@@ -1,20 +1,44 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using Nancy.Bootstrapper;
 using Nancy.Hosting.Self;
 
 namespace Candidate.Nancy.Selfhosted
 {
     class Program
     {
+        private static NancyHost _host;
+
         static void Main(string[] args)
         {
-            var host = new NancyHost(new Uri("http://localhost:1111"));
-            host.Start(); // start hosting
+//            Console.WriteLine(string.Format("Starting up Candidate Deployment server..."));
+//
+//            var directoryHelper = DirectoryHelper.For();
+//            var documentStore = new EmbeddableDocumentStore { DataDirectory = directoryHelper.DatabaseDirectory };
+//            documentStore.Initialize();
+//
+//            Console.WriteLine(string.Format("Document store has been initialized..."));
+
+            StartHost();
+        }
+
+        private static void StartHost()
+        {
+            var bootstarapper = new Bootstrapper();
+            var uri = new Uri("http://localhost:12543");
+            _host = new NancyHost(uri, (INancyBootstrapper) bootstarapper);
+            _host.Start();
+
+            Console.CancelKeyPress += StopHost;
+            Console.WriteLine(string.Format("Candidate server has been started on {0}", uri.AbsoluteUri));
+            Console.WriteLine(string.Format("Candidate Deployment server is up and running!"));
 
             Console.ReadKey();
-            host.Stop();
+        }
+
+        private static void StopHost(object sender, ConsoleCancelEventArgs e)
+        {
+            Console.WriteLine("Received CTRL+C, stopping server...");
+            _host.Stop();
         }
     }
 }

@@ -13,7 +13,6 @@ namespace Candidate.Core.Utils
             SafeOperation(() => Directory.Delete(path, true));
         }
 
-        // made public, but better do not use it..
         public static void SafeOperation(Action action)
         {
             try
