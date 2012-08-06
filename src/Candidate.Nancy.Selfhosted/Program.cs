@@ -1,5 +1,4 @@
 ﻿using System;
-using Nancy.Bootstrapper;
 using Nancy.Hosting.Self;
 
 namespace Candidate.Nancy.Selfhosted
@@ -10,32 +9,39 @@ namespace Candidate.Nancy.Selfhosted
 
         static void Main(string[] args)
         {
-//            Console.WriteLine(string.Format("Starting up Candidate Deployment server..."));
-//
-//            var directoryHelper = DirectoryHelper.For();
-//            var documentStore = new EmbeddableDocumentStore { DataDirectory = directoryHelper.DatabaseDirectory };
-//            documentStore.Initialize();
-//
-//            Console.WriteLine(string.Format("Document store has been initialized..."));
-
             StartHost();
         }
 
         private static void StartHost()
         {
-            var bootstarapper = new Bootstrapper();
+            var logger = new ConsoleLogger();
+            var bootstarapper = new Bootstrapper(logger);
             var uri = new Uri("http://localhost:12543");
+            
+            logger.Info("Staring app the server...");
+            
             _host = new NancyHost(uri, bootstarapper);
             _host.Start();
 
-            Console.CancelKeyPress += StopHost;
-            Console.ReadKey();
+            logger.Success(string.Format("Candidate has been started up on: {0}", uri.AbsoluteUri));
+            logger.Success("Press CTRL+C to stop the server.");
+
+            Console.CancelKeyPress += (s, e) => StartHost(s, e, logger);
+            while(true)
+            {
+                Console.ReadKey();
+            }
+        }
+
+        private static void StartHost(object sender, ConsoleCancelEventArgs consoleCancelEventArgs, ConsoleLogger logger)
+        {
+            _host.Stop();
+
+            logger.Success("Candidate has been stopped by user request.\n");
         }
 
         private static void StopHost(object sender, ConsoleCancelEventArgs e)
         {
-//            Console.WriteLine("Received CTRL+C, stopping server...");
-            _host.Stop();
         }
     }
 }

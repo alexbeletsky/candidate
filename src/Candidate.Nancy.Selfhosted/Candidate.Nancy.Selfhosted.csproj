@@ -137,6 +137,7 @@
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Installer.cs" />
     <Compile Include="Logger.cs" />
+    <Compile Include="Modules\AccountModule.cs" />
     <Compile Include="Modules\HomeModule.cs" />
     <Compile Include="Modules\InstallModule.cs" />
     <Compile Include="Program.cs" />
@@ -152,7 +153,12 @@
   <ItemGroup>
     <Content Include="Raven.Studio.xap" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Candidate.Core\Candidate.Core.csproj">
+      <Project>{C72F8BE6-9149-488B-B284-784469665B66}</Project>
+      <Name>Candidate.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>

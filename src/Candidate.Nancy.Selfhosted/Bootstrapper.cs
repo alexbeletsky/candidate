@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.IO;
+using Candidate.Core;
 using Nancy;
 using Nancy.Authentication.Forms;
 using Nancy.Bootstrapper;
@@ -16,89 +18,85 @@ namespace Candidate.Nancy.Selfhosted
         private readonly ILogger _logger;
         private EmbeddableDocumentStore _documentStore;
 
-        public Bootstrapper()
+        public Bootstrapper(ILogger logger)
         {
-            _logger = new ConsoleLogger();            
+            _logger = logger;
+
+            SetupApplicationDirectory();
+            SetupRavenDB();
         }
 
         protected override void RegisterInstances(IKernel container, IEnumerable<InstanceRegistration> instanceRegistrations)
         {
             base.RegisterInstances(container, instanceRegistrations);
 
-            SetupLogger(container);
-            SetupRavenDB(container);
+            RegisterLogger(container);
+            RegisterRavenDBSession(container);
+            RegisterConventions(container);
         }
 
-        private void SetupRavenDB(IKernel container)
+        private void SetupApplicationDirectory()
         {
-            _documentStore = new EmbeddableDocumentStore { DataDirectory = "" };
-            _documentStore.Initialize();
+            _logger.Info("Setting up application directories...");
 
+            var setupDirectories = new Core.Setup.ApplicationDirectories();
+            setupDirectories.Setup();
+        }
+
+        private void SetupRavenDB()
+        {
+            _logger.Info("Setting up document store...");
+
+            _documentStore = new EmbeddableDocumentStore { DataDirectory = Core.Settings.ApplicationDirectories.Database };
+            _documentStore.Initialize();
+        }
+
+        private void RegisterConventions(IKernel container)
+        {
+            container.Bind(scanner => scanner
+                .FromAssembliesMatching("Candidate.*")
+                .SelectAllClasses()
+                .BindDefaultInterface());
+        }
+
+        private void RegisterRavenDBSession(IKernel container)
+        {
             container.Bind<IDocumentStore>().ToConstant(_documentStore);
             container.Bind<IDocumentSession>().ToMethod(_ => _documentStore.OpenSession());
+        }
+
+        private void RegisterLogger(IKernel container)
+        {
+            container.Bind<ILogger>().ToConstant(_logger);
         }
 
         protected override void RequestStartup(IKernel container, IPipelines pipelines, NancyContext context)
         {
             base.RequestStartup(container, pipelines, context);
 
+            SetupRequestLogging(container, pipelines);
             SetupFormsAuthentication(container, pipelines);
-            SetupFirstLaunch(container, pipelines);
         }
 
-        private void SetupLogger(IKernel container)
+        private void SetupRequestLogging(IKernel container, IPipelines pipelines)
         {
-            container.Bind<ILogger>().ToConstant(_logger);
+            pipelines.BeforeRequest.AddItemToStartOfPipeline(c =>
+                                                                 {
+                                                                    _logger.Debug(string.Format("Request {0} {1}", c.Request.Method, c.Request.Url));
+                                                                     return c.Response;
+                                                                 });
         }
 
-        private void SetupFirstLaunch(IKernel container, IPipelines pipelines)
-        {
-            pipelines.BeforeRequest.AddItemToStartOfPipeline(context => CheckApplicationCorrectlyInstalled(container, context));
-            pipelines.AfterRequest.AddItemToEndOfPipeline(context => RedirectToInstallation(container, context));
-        }
-
-        private Response CheckApplicationCorrectlyInstalled(IKernel container, NancyContext nancyContext)
-        {
-            var installer = container.Get<Installer>();
-            nancyContext.Items["InstallerCheckResult"] = installer.Check();
-
-            return nancyContext.Response;
-        }
-
-        private void RedirectToInstallation(IKernel container, NancyContext nancyContext)
-        {
-            if (nancyContext.Request.Url.Path.Contains("/install"))
-            {
-                return;
-            }
-
-            var applicationInstalled = (bool)nancyContext.Items["InstallerCheckResult"];
-            if (!applicationInstalled)
-            {
-                nancyContext.Response = new RedirectResponse("/install");
-            }
-        }
-
-        private static void SetupFormsAuthentication(IKernel container, IPipelines pipelines)
+        private void SetupFormsAuthentication(IKernel container, IPipelines pipelines)
         {
             var formsAuthConfiguration =
                 new FormsAuthenticationConfiguration
                     {
-                        RedirectUrl = "~/account/logon",
+                        RedirectUrl = "~/account/login",
                         UserMapper = container.Get<IUserMapper>()
                     };
 
             FormsAuthentication.Enable(pipelines, formsAuthConfiguration);
-        }
-
-        protected override void ConfigureRequestContainer(IKernel container, NancyContext context)
-        {
-            base.ConfigureRequestContainer(container, context);
-
-            container.Bind(scanner => scanner
-                .FromAssembliesMatching("Candidate.*")
-                .SelectAllClasses()
-                .BindDefaultInterface());
         }
     }
 }
