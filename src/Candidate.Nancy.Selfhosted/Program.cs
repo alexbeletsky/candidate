@@ -25,19 +25,16 @@ namespace Candidate.Nancy.Selfhosted
         {
             var bootstarapper = new Bootstrapper();
             var uri = new Uri("http://localhost:12543");
-            _host = new NancyHost(uri, (INancyBootstrapper) bootstarapper);
+            _host = new NancyHost(uri, bootstarapper);
             _host.Start();
 
             Console.CancelKeyPress += StopHost;
-            Console.WriteLine(string.Format("Candidate server has been started on {0}", uri.AbsoluteUri));
-            Console.WriteLine(string.Format("Candidate Deployment server is up and running!"));
-
             Console.ReadKey();
         }
 
         private static void StopHost(object sender, ConsoleCancelEventArgs e)
         {
-            Console.WriteLine("Received CTRL+C, stopping server...");
+//            Console.WriteLine("Received CTRL+C, stopping server...");
             _host.Stop();
         }
     }

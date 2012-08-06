@@ -4,7 +4,7 @@ namespace Candidate.Nancy.Selfhosted
     {
         public bool Check()
         {
-            return false;
+            return true;
         }
     }
 }

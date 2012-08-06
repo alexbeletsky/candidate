@@ -136,6 +136,9 @@
   <ItemGroup>
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Installer.cs" />
+    <Compile Include="Logger.cs" />
+    <Compile Include="Modules\HomeModule.cs" />
+    <Compile Include="Modules\InstallModule.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserMapper.cs" />
@@ -149,9 +152,7 @@
   <ItemGroup>
     <Content Include="Raven.Studio.xap" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Modules\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>
