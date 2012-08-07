@@ -10,25 +10,23 @@ namespace Candidate.Core.Setup
     {
         public void Setup()
         {
+            var directories = new List<string>
+                                  {
+                                      Settings.ApplicationDirectories.Root,
+                                      Settings.ApplicationDirectories.Database,
+                                      Settings.ApplicationDirectories.Sites,
+                                      Settings.ApplicationDirectories.Tools
+                                  };
+
+            directories.ForEach(CreateDirectoryIfNotExist);
+        }
+
+        private static void CreateDirectoryIfNotExist(string directoryName)
+        {
             if (!Directory.Exists(Settings.ApplicationDirectories.Root))
             {
                 Directory.CreateDirectory(Settings.ApplicationDirectories.Root);
-            }
-
-            if (!Directory.Exists(Settings.ApplicationDirectories.Database))
-            {
-                Directory.CreateDirectory(Settings.ApplicationDirectories.Database);
-            }
-
-            if (!Directory.Exists(Settings.ApplicationDirectories.Sites))
-            {
-                Directory.CreateDirectory(Settings.ApplicationDirectories.Sites);
-            }
-
-            if (!Directory.Exists(Settings.ApplicationDirectories.Tools))
-            {
-                Directory.CreateDirectory(Settings.ApplicationDirectories.Tools);
-            }
+            }            
         }
     }
 }
