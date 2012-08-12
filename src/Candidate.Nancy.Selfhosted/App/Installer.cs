@@ -1,4 +1,4 @@
-namespace Candidate.Nancy.Selfhosted
+namespace Candidate.Nancy.Selfhosted.App
 {
     public class Installer
     {

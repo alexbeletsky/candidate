@@ -1,6 +1,6 @@
 using System;
 
-namespace Candidate.Nancy.Selfhosted
+namespace Candidate.Nancy.Selfhosted.App
 {
     public interface ILogger
     {

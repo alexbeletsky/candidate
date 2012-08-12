@@ -1,6 +1,6 @@
 ﻿using Nancy;
 
-namespace Candidate.Nancy.Selfhosted.Modules
+namespace Candidate.Nancy.Selfhosted.App.Modules
 {
     public class InstallModule : NancyModule
     {

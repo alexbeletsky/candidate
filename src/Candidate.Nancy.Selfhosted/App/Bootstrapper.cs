@@ -1,17 +1,15 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using Candidate.Core;
+﻿using System;
+using System.Collections.Generic;
 using Nancy;
 using Nancy.Authentication.Forms;
 using Nancy.Bootstrapper;
 using Nancy.Bootstrappers.Ninject;
-using Nancy.Responses;
 using Ninject;
 using Ninject.Extensions.Conventions;
 using Raven.Client;
 using Raven.Client.Embedded;
 
-namespace Candidate.Nancy.Selfhosted
+namespace Candidate.Nancy.Selfhosted.App
 {
     public class Bootstrapper : NinjectNancyBootstrapper
     {
@@ -25,6 +23,36 @@ namespace Candidate.Nancy.Selfhosted
             SetupApplicationDirectory();
             SetupRavenDB();
         }
+
+        protected override void ApplicationStartup(IKernel container, IPipelines pipelines)
+        {
+            base.ApplicationStartup(container, pipelines);
+
+            Conventions.ViewLocationConventions.Clear();
+            Conventions.ViewLocationConventions.Add((viewName, model, contex) => string.Concat("Client/views/", viewName));
+            Conventions.ViewLocationConventions.Add((viewName, model, contex) => string.Concat("Client/views/", contex.ModuleName, "/", viewName));
+        }
+
+        protected override Type RootPathProvider
+        {
+            get
+            {
+                return typeof(PathProvider);
+            }
+        }
+
+//        protected override void ConfigureApplicationContainer(IKernel existingContainer)
+//        {
+//            base.ConfigureApplicationContainer(existingContainer);
+//
+//            var currentAssembly = GetType().Assembly;
+//            ResourceViewLocationProvider.RootNamespaces.Add(currentAssembly, "Candidate.Nancy.SelfHosted.Views");
+//        }
+//
+//        protected override NancyInternalConfiguration InternalConfiguration
+//        {
+//            get { return NancyInternalConfiguration.WithOverrides(x => x.ViewLocationProvider = typeof(ResourceViewLocationProvider)); }
+//        }
 
         protected override void RegisterInstances(IKernel container, IEnumerable<InstanceRegistration> instanceRegistrations)
         {

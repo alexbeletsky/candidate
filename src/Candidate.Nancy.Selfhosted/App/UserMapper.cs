@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Nancy;
 using Nancy.Authentication.Forms;
 using Nancy.Security;
 
-namespace Candidate.Nancy.Selfhosted
+namespace Candidate.Nancy.Selfhosted.App
 {
     public class UserMapper : IUserMapper
     {

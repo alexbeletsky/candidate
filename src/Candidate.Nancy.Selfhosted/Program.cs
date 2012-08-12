@@ -1,4 +1,5 @@
 ﻿using System;
+using Candidate.Nancy.Selfhosted.App;
 using Nancy.Hosting.Self;
 
 namespace Candidate.Nancy.Selfhosted
