@@ -4,6 +4,7 @@ using Nancy;
 using Nancy.Authentication.Forms;
 using Nancy.Bootstrapper;
 using Nancy.Bootstrappers.Ninject;
+using Nancy.Conventions;
 using Ninject;
 using Ninject.Extensions.Conventions;
 using Raven.Client;
@@ -24,13 +25,18 @@ namespace Candidate.Nancy.Selfhosted.App
             SetupRavenDB();
         }
 
-        protected override void ApplicationStartup(IKernel container, IPipelines pipelines)
+        protected override void ConfigureConventions(NancyConventions nancyConventions)
         {
-            base.ApplicationStartup(container, pipelines);
-
-            Conventions.ViewLocationConventions.Clear();
-            Conventions.ViewLocationConventions.Add((viewName, model, contex) => string.Concat("Client/views/", viewName));
-            Conventions.ViewLocationConventions.Add((viewName, model, contex) => string.Concat("Client/views/", contex.ModuleName, "/", viewName));
+            // static content
+            nancyConventions.StaticContentsConventions.Clear();
+            nancyConventions.StaticContentsConventions.Add(StaticContentConventionBuilder.AddDirectory("scripts",
+                                                                                                       "Client/scripts"));
+            nancyConventions.StaticContentsConventions.Add(StaticContentConventionBuilder.AddDirectory("content",
+                                                                                                       "Client/content"));
+            // view location
+            nancyConventions.ViewLocationConventions.Clear();
+            nancyConventions.ViewLocationConventions.Add((viewName, model, contex) => string.Concat("Client/views/", viewName));
+            nancyConventions.ViewLocationConventions.Add((viewName, model, contex) => string.Concat("Client/views/", contex.ModuleName, "/", viewName));
         }
 
         protected override Type RootPathProvider
@@ -110,9 +116,12 @@ namespace Candidate.Nancy.Selfhosted.App
         {
             pipelines.BeforeRequest.AddItemToStartOfPipeline(c =>
                                                                  {
-                                                                    _logger.Debug(string.Format("Request {0} {1}", c.Request.Method, c.Request.Url));
+                                                                    _logger.Debug(string.Format("Request {0} {1} {2}", c.Request.Method, c.Request.Url, c.Request.Path));
                                                                      return c.Response;
                                                                  });
+            pipelines.AfterRequest.AddItemToEndOfPipeline(c => _logger.Debug(string.Format("Response {0} {1}",
+                                                                                           c.Response.StatusCode,
+                                                                                           c.Response.ContentType)));
         }
 
         private void SetupFormsAuthentication(IKernel container, IPipelines pipelines)

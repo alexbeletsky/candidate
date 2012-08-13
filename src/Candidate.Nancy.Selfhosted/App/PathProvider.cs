@@ -8,7 +8,7 @@ namespace Candidate.Nancy.Selfhosted.App
     {
         public string GetRootPath()
         {
-            return Path.Combine(Environment.CurrentDirectory, @"..\");
+            return Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, @"..\"));
         }
     }
 }
