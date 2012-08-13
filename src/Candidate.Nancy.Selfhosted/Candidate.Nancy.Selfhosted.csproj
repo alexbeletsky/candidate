@@ -219,8 +219,18 @@
     <Content Include="Client\content\bootstrap.min.css" />
     <Content Include="Client\content\images\glyphicons-halflings-white.png" />
     <Content Include="Client\content\images\glyphicons-halflings.png" />
-    <Content Include="Client\scripts\bootstrap.js" />
-    <Content Include="Client\scripts\bootstrap.min.js" />
+    <Content Include="Client\content\style.css" />
+    <Content Include="Client\scripts\apps\home_app.js" />
+    <Content Include="Client\scripts\libs\backbone.js" />
+    <Content Include="Client\scripts\libs\backbone.min.js" />
+    <Content Include="Client\scripts\libs\bootstrap.js" />
+    <Content Include="Client\scripts\libs\bootstrap.min.js" />
+    <Content Include="Client\scripts\libs\jquery-1.7.2-vsdoc.js" />
+    <Content Include="Client\scripts\libs\jquery-1.7.2.js" />
+    <Content Include="Client\scripts\libs\jquery-1.7.2.min.js" />
+    <Content Include="Client\scripts\libs\modernizr-2.5.3.min.js" />
+    <Content Include="Client\scripts\libs\underscore.js" />
+    <Content Include="Client\scripts\libs\underscore.min.js" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Candidate.Core\Candidate.Core.csproj">
@@ -249,6 +259,10 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Client\scripts\models\" />
+    <Folder Include="Client\scripts\views\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

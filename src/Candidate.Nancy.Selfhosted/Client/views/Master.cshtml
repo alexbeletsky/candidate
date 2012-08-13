@@ -12,10 +12,42 @@
     <title></title>
     <meta name="candidate - continuos deployment system" content="">
     <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="/content/bootstrap.css">
+    <link href="content/bootstrap.css" rel="stylesheet">
+    <link href="content/bootstrap-responsive.css" rel="stylesheet">
+    <link href="content/style.css" rel="stylesheet">
     <script src="/scripts/libs/modernizr-2.5.3.min.js"></script>
 </head>
 <body>
+    <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+            <a href="/" class="brand">Candidate</a>
+                <div class="nav-collapse collapse">
+                    <ul class="nav pull-right">
+                        <li><a href="">Faq</a></li>
+                        <li><a href="">Account</a></li>
+                        <li><a href="">Support</a></li>
+                        <li><a href="">Blog</a></li>
+                        <li><a href="">Sign out</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div id="app" class="container"></div>
+        
+        <hr/>
+        <footer>
+            <p>
+                Sources of this application is available on <a href="https://github.com/alexanderbeletsky/candidate">github</a>. Please report any problem <a href="https://github.com/alexanderbeletsky/candidate/issues">here</a>.
+            </p>
+            <p>
+                <span>Copyright © 2011-@DateTime.Now.Year all rights reserved</span>
+            <p>
+        </footer>
+    </div>
     <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script>        window.jQuery || document.write('<script src="scripts/libs/jquery-1.7.1.min.js"><\/script>')</script>
