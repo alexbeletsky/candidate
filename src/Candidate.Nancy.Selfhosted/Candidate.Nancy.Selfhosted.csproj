@@ -225,12 +225,21 @@
     <Content Include="Client\scripts\libs\backbone.min.js" />
     <Content Include="Client\scripts\libs\bootstrap.js" />
     <Content Include="Client\scripts\libs\bootstrap.min.js" />
+    <Content Include="Client\scripts\libs\cs.js" />
+    <Content Include="Client\scripts\libs\domReady.js" />
+    <Content Include="Client\scripts\libs\i18n.js" />
     <Content Include="Client\scripts\libs\jquery-1.7.2-vsdoc.js" />
     <Content Include="Client\scripts\libs\jquery-1.7.2.js" />
     <Content Include="Client\scripts\libs\jquery-1.7.2.min.js" />
     <Content Include="Client\scripts\libs\modernizr-2.5.3.min.js" />
+    <Content Include="Client\scripts\libs\r.js" />
+    <Content Include="Client\scripts\libs\require.js" />
+    <Content Include="Client\scripts\libs\require.min.js" />
+    <Content Include="Client\scripts\libs\text.js" />
     <Content Include="Client\scripts\libs\underscore.js" />
     <Content Include="Client\scripts\libs\underscore.min.js" />
+    <Content Include="Client\scripts\main.js" />
+    <Content Include="Require.JS - LICENSE.txt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Candidate.Core\Candidate.Core.csproj">
