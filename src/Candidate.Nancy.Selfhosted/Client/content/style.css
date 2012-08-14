@@ -1,3 +1,46 @@
-﻿#app {
-    height: 500px;
+﻿body {
+    padding-top: 90px;
 }
+
+#app 
+{
+    padding: 10px 0px 10px 0px;
+    min-height: 320px;
+}
+
+.rcs {
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.candidate-sites-header {
+    height: 26px;
+    background-color: #2C2C2C;
+    color: white;
+    font-weight: bold !important;
+}
+
+.candidate-sites-cell {
+    line-height: 26px;
+    display: inline-block;
+    vertical-align: top;
+    box-sizing: border-box;
+}
+
+.candidate-sites-cell.sort {
+    width: 40px;
+}
+
+.candidate-sites-cell.name {
+    width: 530px;
+}
+
+.candidate-sites-cell.status {
+    width: 380px;
+}
+
+.candidate-sites-cell.configure, .candidate-sites-cell.deploy, .candidate-sites-cell.delete {
+    text-align: right;
+    width: 60px;
+}
+

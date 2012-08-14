@@ -8,7 +8,7 @@ namespace Candidate.Nancy.Selfhosted.App.Modules
         {
             //this.RequiresAuthentication();
 
-            Get["/"] = o => View["Master", new { Application = "home_app.js" }];
+            Get["/"] = o => View["Master"];
         }
     }
 }

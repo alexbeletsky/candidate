@@ -11,6 +11,7 @@
     },
 
     paths: {
+        text: 'libs/text',
         Backbone: 'libs/backbone',
         jQuery: 'libs/jquery-1.7.2',
         Underscore: 'libs/underscore'

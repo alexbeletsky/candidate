@@ -1,9 +1,16 @@
 ﻿define(function (require) {
 
     var Backbone = require('Backbone');
-    var ApplicationRouter = Backbone.Router.extend({
-        initialize: function () {
+    var ViewManager = require('viewManager');
+    var Applications = {
+        'home': require('./apps/homeApp')
+    };
 
+    var ApplicationRouter = Backbone.Router.extend({
+
+        initialize: function () {
+            this.viewManager = new ViewManager();
+            this.currentApplication = null;
         },
 
         routes: {
@@ -12,7 +19,7 @@
         },
 
         home: function () {
-            alert('home');
+            this.currentApplication = Applications['home'].run(this.viewManager);
         },
 
         account: function () {
@@ -24,7 +31,7 @@
     return {
         start: function () {
             new ApplicationRouter();
-            Backbone.history.start({pushState: true});
+            Backbone.history.start({ pushState: true });
         }
-    }
+    };
 });

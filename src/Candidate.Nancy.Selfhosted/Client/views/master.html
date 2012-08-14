@@ -1,5 +1,4 @@
-﻿﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<dynamic>
-<!doctype html>
+﻿<!doctype html>
 <!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
 <!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
@@ -14,12 +13,14 @@
     <meta name="viewport" content="width=device-width">
     <link href="content/bootstrap.css" rel="stylesheet">
     <link href="content/bootstrap-responsive.css" rel="stylesheet">
+    <link href="content/spacing.css" rel="stylesheet">    
     <link href="content/style.css" rel="stylesheet">
+
     <script src="scripts/libs/modernizr-2.5.3.min.js"></script>
     <script data-main="scripts/main" src="scripts/libs/require.min.js"></script>
 </head>
 <body>
-    <div class="navbar navbar-fixed-top">
+    <div class="navbar navbar-fixed-top clearfix">
         <div class="navbar-inner">
             <div class="container">
             <a href="/" class="brand">Candidate</a>
@@ -45,7 +46,7 @@
                 Sources of this application is available on <a href="https://github.com/alexanderbeletsky/candidate">github</a>. Please report any problem <a href="https://github.com/alexanderbeletsky/candidate/issues">here</a>.
             </p>
             <p>
-                <span>Copyright © 2011-@DateTime.Now.Year all rights reserved</span>
+                <span>Copyright © 2011-2012 All rights reserved</span>
             <p>
         </footer>
     </div>
@@ -53,6 +54,5 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script>        window.jQuery || document.write('<script src="scripts/libs/jquery-1.7.1.min.js"><\/script>')</script>
     
-    <script src="/scripts/apps/@Model.Application"></script>
 </body>
 </html>
