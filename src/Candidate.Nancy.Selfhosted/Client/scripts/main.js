@@ -14,7 +14,9 @@
         text: 'libs/text',
         Backbone: 'libs/backbone',
         jQuery: 'libs/jquery-1.7.2',
-        Underscore: 'libs/underscore'
+        Underscore: 'libs/underscore',
+        Mustache: 'libs/mustache',
+        Hogan: 'libs/hogan-1.0.5.amd'
     }
 });
 

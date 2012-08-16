@@ -187,6 +187,8 @@
   <ItemGroup>
     <Compile Include="App\Bootstrapper.cs" />
     <Content Include="Client\content\spacing.css" />
+    <Content Include="Client\scripts\models\Site.js" />
+    <Content Include="Client\scripts\models\sites.js" />
     <Content Include="Client\scripts\viewManager.js" />
     <Content Include="Client\scripts\views\homeView.js" />
     <Content Include="Client\views\home\home.html" />
@@ -194,12 +196,15 @@
     <Compile Include="App\Installer.cs" />
     <Compile Include="App\Logger.cs" />
     <Compile Include="App\Modules\AccountModule.cs" />
+    <Compile Include="App\Modules\Api\SitesModule.cs" />
     <Compile Include="App\Modules\HomeModule.cs" />
     <Compile Include="App\Modules\InstallModule.cs" />
+    <Compile Include="Infrastructure\Serializers\JsonNetSerializer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="App\PathProvider.cs" />
     <Compile Include="App\UserMapper.cs" />
+    <Content Include="Scripts\mustache.js" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -266,9 +271,7 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Client\scripts\models\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>

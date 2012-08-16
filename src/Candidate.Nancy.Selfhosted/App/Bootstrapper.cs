@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Candidate.Nancy.Selfhosted.Infrastructure.Serializers;
 using Nancy;
 using Nancy.Authentication.Forms;
 using Nancy.Bootstrapper;
@@ -23,6 +24,14 @@ namespace Candidate.Nancy.Selfhosted.App
 
             SetupApplicationDirectory();
             SetupRavenDB();
+        }
+
+        protected override NancyInternalConfiguration InternalConfiguration
+        {
+            get
+            {
+                return NancyInternalConfiguration.WithOverrides(c => c.Serializers.Insert(0, typeof(JsonNetSerializer)));
+            }
         }
 
         protected override void ConfigureConventions(NancyConventions nancyConventions)

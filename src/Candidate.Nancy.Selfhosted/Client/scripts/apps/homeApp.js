@@ -1,10 +1,17 @@
 ﻿define(function (require) {
-    
+
+    debugger;
     var HomeView = require('../views/homeView');
+    var Sites = require('../models/sites');
 
     var HomeApp = {
         run: function (viewManager) {
-            viewManager.show(new HomeView());
+            var sites = new Sites();
+            sites.fetch({
+                success: function () {
+                    viewManager.show(new HomeView({ model: sites }));
+                }
+            });
         }
     }
 
