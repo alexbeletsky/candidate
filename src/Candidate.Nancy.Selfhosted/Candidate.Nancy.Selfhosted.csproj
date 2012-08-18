@@ -191,8 +191,10 @@
     <Content Include="Client\scripts\models\Site.js" />
     <Content Include="Client\scripts\models\Sites.js" />
     <Content Include="Client\scripts\shared\BaseView.js" />
+    <Content Include="Client\scripts\templates\dashboard\sitesList.html" />
     <Content Include="Client\scripts\templates\dashboard\topButtons.html" />
     <Content Include="Client\scripts\ViewManager.js" />
+    <Content Include="Client\scripts\views\dashboard\DashboardSitesListView.js" />
     <Content Include="Client\scripts\views\dashboard\DashboardTopButtonsView.js" />
     <Content Include="Client\scripts\views\HomeView.js" />
     <Content Include="Client\scripts\views\DashboardView.js" />
