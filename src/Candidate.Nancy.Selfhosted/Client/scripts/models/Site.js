@@ -5,7 +5,8 @@
 
         defaults: {
             'name': null,
-            'status': null
+            'status': null,
+            'description': null
         }
     });
 
