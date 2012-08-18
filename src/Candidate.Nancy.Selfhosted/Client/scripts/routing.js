@@ -2,8 +2,10 @@
 
     var Backbone = require('Backbone');
     var ViewManager = require('ViewManager');
+    
+    // applications
     var Applications = {
-        'home': require('./apps/HomeApp')
+        'dashboard': require('./apps/DashboardApp')
     };
 
     var ApplicationRouter = Backbone.Router.extend({
@@ -14,12 +16,12 @@
         },
 
         routes: {
-            '': 'home',
+            '': 'dashboard',
             'account': 'account'
         },
 
-        home: function () {
-            this.currentApplication = Applications['home'].run(this.viewManager);
+        dashboard: function () {
+            this.currentApplication = Applications['dashboard'].run(this.viewManager);
         },
 
         account: function () {

@@ -42,9 +42,6 @@ namespace Candidate.Nancy.Selfhosted.App
                                                                                                        "Client/scripts"));
             nancyConventions.StaticContentsConventions.Add(StaticContentConventionBuilder.AddDirectory("content",
                                                                                                        "Client/content"));
-            nancyConventions.StaticContentsConventions.Add(StaticContentConventionBuilder.AddDirectory("views",
-                                                                                           "Client/views"));
-
             // view location
             nancyConventions.ViewLocationConventions.Clear();
             nancyConventions.ViewLocationConventions.Add((viewName, model, contex) => string.Concat("Client/views/", viewName));
