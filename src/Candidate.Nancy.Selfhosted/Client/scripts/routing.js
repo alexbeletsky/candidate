@@ -1,6 +1,5 @@
 ﻿define(function (require) {
 
-    var Backbone = require('Backbone');
     var ViewManager = require('ViewManager');
     
     // applications

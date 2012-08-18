@@ -7,6 +7,10 @@
         'Backbone': {
             deps: ['Underscore', 'jQuery'],
             exports: 'Backbone'
+        },
+
+        'BootstrapModal': {
+            deps: ['jQuery']
         }
     },
 
@@ -16,10 +20,11 @@
         jQuery: 'libs/jquery-1.7.2',
         Underscore: 'libs/underscore',
         Mustache: 'libs/mustache',
-        Hogan: 'libs/hogan-1.0.5.amd'
+        Hogan: 'libs/hogan-1.0.5.amd',
+        BootstrapModal: 'libs/bootsrap-modal'
     }
 });
 
-require(['Routing'], function (routing) {
+require(['jQuery', 'Routing', 'Underscore', 'Backbone', 'BootstrapModal'], function ($, routing) {
     routing.start();
 });

@@ -1,5 +1,4 @@
 ﻿define(function (require) {
-    var Backbone = require('Backbone');
 
     var Site = Backbone.Model.extend({
         urlRoot: '/api/site',

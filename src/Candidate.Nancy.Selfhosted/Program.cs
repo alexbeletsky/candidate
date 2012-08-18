@@ -27,22 +27,18 @@ namespace Candidate.Nancy.Selfhosted
             logger.Success(string.Format("Candidate has been started up on: {0}", uri.AbsoluteUri));
             logger.Success("Press CTRL+C to stop the server.");
 
-            Console.CancelKeyPress += (s, e) => StartHost(s, e, logger);
+            Console.CancelKeyPress += (s, e) => StopHost(s, e, logger);
             while(true)
             {
                 Console.ReadKey();
             }
         }
 
-        private static void StartHost(object sender, ConsoleCancelEventArgs consoleCancelEventArgs, ConsoleLogger logger)
+        private static void StopHost(object sender, ConsoleCancelEventArgs consoleCancelEventArgs, ConsoleLogger logger)
         {
-            _host.Stop();
-
             logger.Success("Candidate has been stopped by user request.\n");
+            _host.Stop();
         }
 
-        private static void StopHost(object sender, ConsoleCancelEventArgs e)
-        {
-        }
     }
 }

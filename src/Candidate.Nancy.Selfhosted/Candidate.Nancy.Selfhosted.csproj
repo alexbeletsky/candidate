@@ -191,14 +191,14 @@
     <Content Include="Client\scripts\models\Site.js" />
     <Content Include="Client\scripts\models\Sites.js" />
     <Content Include="Client\scripts\shared\BaseView.js" />
+    <Content Include="Client\scripts\templates\dashboard\addNewSiteModalView.html" />
     <Content Include="Client\scripts\templates\dashboard\sitesList.html" />
     <Content Include="Client\scripts\templates\dashboard\topButtons.html" />
     <Content Include="Client\scripts\ViewManager.js" />
+    <Content Include="Client\scripts\views\dashboard\AddNewSiteModalView.js" />
     <Content Include="Client\scripts\views\dashboard\DashboardSitesListView.js" />
     <Content Include="Client\scripts\views\dashboard\DashboardTopButtonsView.js" />
-    <Content Include="Client\scripts\views\HomeView.js" />
     <Content Include="Client\scripts\views\DashboardView.js" />
-    <Content Include="Client\views\home\home.html" />
     <Content Include="Client\views\master.html" />
     <Compile Include="App\Installer.cs" />
     <Compile Include="App\Logger.cs" />
