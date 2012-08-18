@@ -1,9 +1,9 @@
 ﻿define(function (require) {
 
     var Backbone = require('Backbone');
-    var ViewManager = require('viewManager');
+    var ViewManager = require('ViewManager');
     var Applications = {
-        'home': require('./apps/homeApp')
+        'home': require('./apps/HomeApp')
     };
 
     var ApplicationRouter = Backbone.Router.extend({

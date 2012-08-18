@@ -5,7 +5,7 @@
             show: _showView
         };
     }
-
+    
     function _showView(view) {
         if (this.currentView) {
             this.currentView.dispose();

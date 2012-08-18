@@ -20,6 +20,6 @@
     }
 });
 
-require(['routing'], function (routing) {
+require(['Routing'], function (routing) {
     routing.start();
 });

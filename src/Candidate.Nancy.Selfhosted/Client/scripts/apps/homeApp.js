@@ -1,7 +1,7 @@
 ﻿define(function (require) {
 
-    var HomeView = require('../views/homeView');
-    var Sites = require('../models/sites');
+    var HomeView = require('../views/HomeView');
+    var Sites = require('../models/Sites');
 
     var HomeApp = {
         run: function (viewManager) {

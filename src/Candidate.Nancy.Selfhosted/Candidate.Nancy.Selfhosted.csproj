@@ -188,9 +188,9 @@
     <Compile Include="App\Bootstrapper.cs" />
     <Content Include="Client\content\spacing.css" />
     <Content Include="Client\scripts\models\Site.js" />
-    <Content Include="Client\scripts\models\sites.js" />
-    <Content Include="Client\scripts\viewManager.js" />
-    <Content Include="Client\scripts\views\homeView.js" />
+    <Content Include="Client\scripts\models\Sites.js" />
+    <Content Include="Client\scripts\ViewManager.js" />
+    <Content Include="Client\scripts\views\HomeView.js" />
     <Content Include="Client\views\home\home.html" />
     <Content Include="Client\views\master.html" />
     <Compile Include="App\Installer.cs" />
@@ -221,7 +221,7 @@
     <Content Include="Client\content\images\glyphicons-halflings-white.png" />
     <Content Include="Client\content\images\glyphicons-halflings.png" />
     <Content Include="Client\content\style.css" />
-    <Content Include="Client\scripts\apps\homeApp.js" />
+    <Content Include="Client\scripts\apps\HomeApp.js" />
     <Content Include="Client\scripts\libs\backbone.js" />
     <Content Include="Client\scripts\libs\backbone.min.js" />
     <Content Include="Client\scripts\libs\bootstrap.js" />
@@ -239,8 +239,8 @@
     <Content Include="Client\scripts\libs\text.js" />
     <Content Include="Client\scripts\libs\underscore.js" />
     <Content Include="Client\scripts\libs\underscore.min.js" />
-    <Content Include="Client\scripts\main.js" />
-    <Content Include="Client\scripts\routing.js" />
+    <Content Include="Client\scripts\Main.js" />
+    <Content Include="Client\scripts\Routing.js" />
     <Content Include="Require.JS - LICENSE.txt" />
   </ItemGroup>
   <ItemGroup>
