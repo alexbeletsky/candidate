@@ -1,6 +1,5 @@
 ﻿define(function (require) {
 
-    debugger;
     var HomeView = require('../views/homeView');
     var Sites = require('../models/sites');
 
@@ -16,5 +15,4 @@
     }
 
     return HomeApp;
-
 });
