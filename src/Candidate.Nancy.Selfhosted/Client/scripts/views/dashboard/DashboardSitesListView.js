@@ -11,6 +11,6 @@
             return _compiled.render(context);
         }
     });
-
+    
     return DashboardSitesListView;
 });
