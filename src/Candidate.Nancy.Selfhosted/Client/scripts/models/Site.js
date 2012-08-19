@@ -12,6 +12,7 @@
         validate: function (attributes) {
             attributes = attributes || this.attributes;
 
+            var name = attributes.name;
             if (!_.isString(name) || name.length <= 0) {
                 return { field: 'name', message: 'Site name is required field' };
             }

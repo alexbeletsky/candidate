@@ -7,10 +7,12 @@ namespace Candidate.Nancy.Selfhosted.App.Modules.Api
 {
     public class SitesModule : NancyModule
     {
+        private readonly ILogger _logger;
         private readonly IDocumentStore _documentStore;
 
-        public SitesModule(IDocumentStore documentStore) : base("/api/sites")
+        public SitesModule(ILogger logger, IDocumentStore documentStore) : base("/api/sites")
         {
+            _logger = logger;
             _documentStore = documentStore;
 
             Get["/"] = parameters =>

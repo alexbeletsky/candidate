@@ -38,9 +38,6 @@
                 success: function (saved) {
                     me.collection.add(saved);
                     me.onClose();
-                },
-                error: function () {
-                    me.onClose();
                 }
             });
         },

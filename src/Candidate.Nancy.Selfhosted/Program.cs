@@ -16,11 +16,13 @@ namespace Candidate.Nancy.Selfhosted
         private static void StartHost()
         {
             var logger = new ConsoleLogger();
+
+            logger.Info("Candidate - Deployment Automation Server v.0.2.0\n");
+            logger.Info("Initializing, please wait unit server ready (up to 5 seconds)...");
+            
             var bootstarapper = new Bootstrapper(logger);
             var uri = new Uri("http://localhost:12543");
 
-            logger.Info("Initializing the server, please wait (up to 5 seconds)...");
-            
             _host = new NancyHost(uri, bootstarapper);
             _host.Start();
 

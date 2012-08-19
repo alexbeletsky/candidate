@@ -131,6 +131,13 @@ namespace Candidate.Nancy.Selfhosted.App
             pipelines.AfterRequest.AddItemToEndOfPipeline(c => _logger.Debug(string.Format("Response {0} {1}",
                                                                                            c.Response.StatusCode,
                                                                                            c.Response.ContentType)));
+            pipelines.AfterRequest.AddItemToEndOfPipeline(c =>
+                                                              {
+                                                                  if (c.Response.StatusCode != HttpStatusCode.OK)
+                                                                  {
+                                                                      _logger.Debug(c.Trace.ToString());
+                                                                  }
+                                                              });
         }
 
         private void SetupFormsAuthentication(IKernel container, IPipelines pipelines)
