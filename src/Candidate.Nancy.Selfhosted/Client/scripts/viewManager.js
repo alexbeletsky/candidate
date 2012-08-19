@@ -4,11 +4,11 @@
         return {
             show: _showView
         };
-    }
+    };
     
     function _showView(view) {
         if (this.currentView) {
-            this.currentView.dispose();
+            this.currentView.close();
         }
 
         this.currentView = view;

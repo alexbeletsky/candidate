@@ -4,9 +4,11 @@
     
     // applications
     var Applications = {
-        'dashboard': require('./apps/DashboardApp')
+        'dashboard': require('./apps/DashboardApp'),
+        'configure': require('./apps/ConfigureApp')
     };
 
+    // router
     var ApplicationRouter = Backbone.Router.extend({
 
         initialize: function () {
@@ -16,15 +18,15 @@
 
         routes: {
             '': 'dashboard',
-            'account': 'account'
+            'configure/sites/:id': 'configure'
         },
 
         dashboard: function () {
-            this.currentApplication = Applications['dashboard'].run(this.viewManager);
+            Applications['dashboard'].run(this.viewManager);
         },
 
-        account: function () {
-            alert('account');
+        configure: function () {
+            Applications['configure'].run(this.viewManager);
         }
 
     });
@@ -32,7 +34,7 @@
     return {
         start: function () {
             new ApplicationRouter();
-            Backbone.history.start({ pushState: true });
+            Backbone.history.start();
         }
     };
 });

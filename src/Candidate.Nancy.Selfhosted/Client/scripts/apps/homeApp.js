@@ -1,4 +1,4 @@
-﻿define(function (require) {
+﻿efine(function (require) {
 
     var HomeView = require('../views/HomeView');
     var Sites = require('../models/Sites');
@@ -12,7 +12,7 @@
                 }
             });
         }
-    }
+    };
 
     return HomeApp;
 });
