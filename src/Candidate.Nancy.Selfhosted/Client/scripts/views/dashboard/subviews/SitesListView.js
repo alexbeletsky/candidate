@@ -6,10 +6,6 @@
     var BaseView = require('../../../shared/BaseView');
     var SiteRowView = require('./SiteRowView');
 
-    // templates
-    var _template = require('text!/scripts/templates/dashboard/sitesList.html');
-    var _compiled = Hogan.compile(_template);
-
     var SitesListView = BaseView.extend({
         initialize: function (options) {
             _.bindAll(this);
@@ -25,6 +21,9 @@
         },
 
         template: function (context) {
+            var _template = require('text!/scripts/templates/dashboard/sitesList.html');
+            var _compiled = Hogan.compile(_template);
+
             return _compiled.render(context);
         },
 

@@ -7,9 +7,6 @@
     // models
     var Site = require('../../../models/Site');
 
-    // templates
-    var _template = require('text!/scripts/templates/dashboard/topButtons.html');
-
     var TopButtonsView = BaseView.extend({
         initialize: function (options) {
             if (!(options && options.collection)) {
@@ -20,6 +17,7 @@
         },
 
         template: function () {
+            var _template = require('text!/scripts/templates/dashboard/topButtons.html');
             return _template;
         },
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Candidate.Core.Model;
 using Nancy;
 using Nancy.ModelBinding;
@@ -17,6 +18,29 @@ namespace Candidate.Nancy.Selfhosted.App.Modules.Api
         {
             _logger = logger;
             _documentStore = documentStore;
+
+            Get["/{id}"] = parameters =>
+                               {
+                                   var id = parameters.id;
+
+                                   if (string.IsNullOrEmpty(id))
+                                   {
+                                       _logger.Debug(string.Format("Invalid Id passed to /api/site DELETE method"));
+                                       return HttpStatusCode.PreconditionFailed;
+                                   }
+
+                                   using (var session = _documentStore.OpenSession())
+                                   {
+                                       string entityId = string.Format("sites/{0}", id);
+                                       var site = session.Query<Site>().Single(s => s.Id == entityId);
+                                       if (site == null)
+                                       {
+                                           return HttpStatusCode.NotFound;
+                                       }
+
+                                       return Response.AsJson(site);
+                                   }
+                               };
 
             Post["/"] = parameters =>
                             {

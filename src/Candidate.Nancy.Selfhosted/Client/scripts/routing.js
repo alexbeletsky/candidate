@@ -2,18 +2,17 @@
 
     var ViewManager = require('ViewManager');
     
-    // applications
-    var Applications = {
-        'dashboard': require('./apps/DashboardApp'),
-        'configure': require('./apps/ConfigureApp')
-    };
+    // // applications
+    // var Applications = {
+    //     'dashboard': require('./apps/DashboardApp'),
+    //     'configure': require('./apps/ConfigureApp')
+    // };
 
     // router
     var ApplicationRouter = Backbone.Router.extend({
 
         initialize: function () {
             this.viewManager = new ViewManager();
-            this.currentApplication = null;
         },
 
         routes: {
@@ -22,11 +21,13 @@
         },
 
         dashboard: function () {
-            Applications['dashboard'].run(this.viewManager);
+            var app = require('./apps/DashboardApp');
+            app.run(this.viewManager);
         },
 
-        configure: function () {
-            Applications['configure'].run(this.viewManager);
+        configure: function (id) {
+            var app = require('./apps/ConfigureApp');
+            app.run(id, this.viewManager);
         }
 
     });
