@@ -18,8 +18,8 @@ namespace Candidate.Nancy.Selfhosted
             var logger = new ConsoleLogger();
             var bootstarapper = new Bootstrapper(logger);
             var uri = new Uri("http://localhost:12543");
-            
-            logger.Info("Staring app the server...");
+
+            logger.Info("Initializing the server, please wait (up to 5 seconds)...");
             
             _host = new NancyHost(uri, bootstarapper);
             _host.Start();

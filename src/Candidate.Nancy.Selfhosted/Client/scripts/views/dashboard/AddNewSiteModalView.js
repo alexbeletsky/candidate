@@ -12,6 +12,8 @@
             }
 
             _.bindAll(this);
+
+            this.bindTo(this.model, 'error', this.onModelError);
         },
 
         events: {
@@ -32,15 +34,24 @@
             var name = this.$('#name').val();
             var description = this.$('#description').val();
 
-            this.model.set({ name: name, description: description});
-            this.model.save(null, { success: function (saved) {
-                me.collection.add(saved);
-                me.onClose();
-            }});
+            this.model.save({ name: name, description: description}, {
+                success: function (saved) {
+                    me.collection.add(saved);
+                    me.onClose();
+                },
+                error: function () {
+                    me.onClose();
+                }
+            });
         },
 
         onClose: function () {
             this.$el.modal('hide');
+        },
+
+        onModelError: function(model, error) {
+            this.$('#' + error.field).closest('.control-group').addClass('error');
+            this.$('#' + error.field).closest('.help-block').text(error.message);
         }
 
     });

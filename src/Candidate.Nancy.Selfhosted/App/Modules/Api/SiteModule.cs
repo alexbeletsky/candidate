@@ -2,6 +2,7 @@
 using Candidate.Core.Model;
 using Nancy;
 using Nancy.ModelBinding;
+using Nancy.Validation;
 using Raven.Client;
 
 namespace Candidate.Nancy.Selfhosted.App.Modules.Api
@@ -18,6 +19,12 @@ namespace Candidate.Nancy.Selfhosted.App.Modules.Api
             Post["/"] = parameters =>
                             {
                                 var site = this.Bind<Site>("name", "description");
+
+                                var result = this.Validate(site);
+                                if (!result.IsValid)
+                                {
+                                    return HttpStatusCode.PreconditionFailed;
+                                }
 
                                 site.Created = DateTime.UtcNow;
                                 site.Status = "Created";
