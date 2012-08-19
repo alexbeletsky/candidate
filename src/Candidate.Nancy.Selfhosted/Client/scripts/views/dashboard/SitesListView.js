@@ -11,11 +11,15 @@
 
     var SitesListView = BaseView.extend({
         initialize: function (options) {
+            _.bindAll(this);
+
             if (!(options && options.collection)) {
                 throw 'SitesListView: collection is required';
             }
 
             this.collection = options.collection;
+
+            this.bindTo(this.collection, 'add', this.onSiteAdded);
         },
 
         template: function (context) {
@@ -27,6 +31,11 @@
                 var siteRowView = new SiteRowView ({ model: site });
                 this.appendSubview(siteRowView.render(), this.$('.candidate-sites'));
             }, this);
+        },
+
+        onSiteAdded: function (site) {
+            var siteRowView = new SiteRowView ({ model: site });
+            this.appendSubview(siteRowView.render(), this.$('.candidate-sites'));
         }
     });
     

@@ -11,6 +11,14 @@
     var _template = require('text!/scripts/templates/dashboard/topButtons.html');
 
     var TopButtonsView = BaseView.extend({
+        initialize: function (options) {
+            if (!(options && options.collection)) {
+                throw 'TopButtonsView: collection is required';
+            }
+
+            this.collection = options.collection;
+        },
+
         template: function () {
             return _template;
         },
@@ -21,7 +29,7 @@
 
         onAddSiteClick: function () {
             var model = new Site();
-            var addNewSiteModalView = new AddNewSiteModalView( { model: model });
+            var addNewSiteModalView = new AddNewSiteModalView( { model: model, collection: this.collection });
             addNewSiteModalView.render();
         }
     });

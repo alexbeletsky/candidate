@@ -6,7 +6,11 @@
 
     var AddNewSiteModalView = BaseView.extend({
 
-        initialize: function () {
+        initialize: function (options) {
+            if (!(options && options.collection)) {
+                throw 'AddNewSiteModalView: collection is required';
+            }
+
             _.bindAll(this);
         },
 
@@ -29,7 +33,8 @@
             var description = this.$('#description').val();
 
             this.model.set({ name: name, description: description});
-            this.model.save({ success: function () {
+            this.model.save(null, { success: function (saved) {
+                me.collection.add(saved);
                 me.onClose();
             }});
         },
