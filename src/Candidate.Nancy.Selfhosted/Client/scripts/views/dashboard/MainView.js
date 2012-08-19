@@ -1,10 +1,10 @@
 ﻿define(function (require) {
 
-    var BaseView = require('../shared/BaseView');
+    var BaseView = require('../../shared/BaseView');
 
     // sub-views
-    var TopButtonsView = require('../views/dashboard/TopButtonsView');
-    var SitesListView = require('../views/dashboard/SitesListView');
+    var TopButtonsView = require('./subviews/TopButtonsView');
+    var SitesListView = require('./subviews/SitesListView');
 
     var DashboardView = BaseView.extend({
         initialize: function (options) {

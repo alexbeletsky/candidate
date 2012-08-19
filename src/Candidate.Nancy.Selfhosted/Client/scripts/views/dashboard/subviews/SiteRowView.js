@@ -3,7 +3,7 @@ define(function (require) {
     var Hogan = require('Hogan');
 
     // views
-    var BaseView = require('../../shared/BaseView');
+    var BaseView = require('../../../shared/BaseView');
 
     // templates
     var _template = require('text!/scripts/templates/dashboard/site.html');

@@ -1,6 +1,6 @@
 ﻿define(function (require) {
 
-    var BaseView = require('../../shared/BaseView');
+    var BaseView = require('../../../shared/BaseView');
 
     var _template = require('text!/scripts/templates/dashboard/addNewSiteModalView.html');
 

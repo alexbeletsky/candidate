@@ -1,11 +1,11 @@
 ﻿define(function (require) {
 
     // views
-    var BaseView = require('../../shared/BaseView');
+    var BaseView = require('../../../shared/BaseView');
     var AddNewSiteModalView = require('./AddNewSiteModalView');
 
     // models
-    var Site = require('../../models/Site');
+    var Site = require('../../../models/Site');
 
     // templates
     var _template = require('text!/scripts/templates/dashboard/topButtons.html');

@@ -3,9 +3,10 @@
     var Hogan = require('Hogan');
 
     // views
-    var BaseView = require('../../shared/BaseView');
+    var BaseView = require('../../../shared/BaseView');
     var SiteRowView = require('./SiteRowView');
 
+    // templates
     var _template = require('text!/scripts/templates/dashboard/sitesList.html');
     var _compiled = Hogan.compile(_template);
 

@@ -1,7 +1,7 @@
 ﻿define(function (require) {
 
     // views
-    var DashboardView = require('../views/DashboardView');
+    var DashboardView = require('../views/dashboard/MainView');
 
     // models
     var Sites = require('../models/Sites');
