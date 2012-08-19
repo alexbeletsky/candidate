@@ -27,10 +27,12 @@
             'click a.addSite': 'onAddSiteClick'
         },
 
-        onAddSiteClick: function () {
+        onAddSiteClick: function (e) {
             var model = new Site();
             var addNewSiteModalView = new AddNewSiteModalView( { model: model, collection: this.collection });
             addNewSiteModalView.render();
+
+            e.preventDefault();
         }
     });
 

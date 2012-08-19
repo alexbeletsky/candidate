@@ -28,7 +28,7 @@
             this.$el.modal({ backdrop: 'static' });
         },
 
-        onSave: function () {
+        onSave: function (e) {
             var me = this;
 
             var name = this.$('#name').val();
@@ -40,6 +40,8 @@
                     me.onClose();
                 }
             });
+
+            e.preventDefault();
         },
 
         onClose: function () {

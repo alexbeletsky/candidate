@@ -15,7 +15,7 @@ define(function (require) {
         },
 
         events: {
-            'click span.delete a': 'onSiteDelete'
+            'click span.delete a': 'onDelete'
         },
 
         template: function (context) {
@@ -26,9 +26,12 @@ define(function (require) {
             return this.model.toJSON();
         },
 
-        onSiteDelete: function() {
+        onDelete: function(e) {
+            e.preventDefault();
+            
             this.model.destroy();
         }
+
     });
 
     return SiteRowView;
