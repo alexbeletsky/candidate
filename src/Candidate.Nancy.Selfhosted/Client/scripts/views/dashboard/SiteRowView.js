@@ -10,12 +10,24 @@ define(function (require) {
     var _compiled = Hogan.compile(_template);
 
     var SiteRowView = BaseView.extend({
+        initialize: function () {
+            _.bindAll(this);
+        },
+
+        events: {
+            'click span.delete a': 'onSiteDelete'
+        },
+
         template: function (context) {
             return _compiled.render(context);
         },
 
         templateContext: function () {
             return this.model.toJSON();
+        },
+
+        onSiteDelete: function() {
+            this.model.destroy();
         }
     });
 

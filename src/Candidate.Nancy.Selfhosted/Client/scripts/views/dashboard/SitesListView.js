@@ -20,6 +20,7 @@
             this.collection = options.collection;
 
             this.bindTo(this.collection, 'add', this.onSiteAdded);
+            this.bindTo(this.collection, 'remove', this.onSiteRemoved);
         },
 
         template: function (context) {
@@ -36,6 +37,14 @@
         onSiteAdded: function (site) {
             var siteRowView = new SiteRowView ({ model: site });
             this.appendSubview(siteRowView.render(), this.$('.candidate-sites'));
+        },
+
+        onSiteRemoved: function (site, collection, options) {
+            var siteRowView = _.find(this.subviews, function (view) {
+                return view.model.cid === site.cid;
+            });
+            siteRowView.close();
+            this.detachSubview(siteRowView);
         }
     });
     

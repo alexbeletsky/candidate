@@ -30,6 +30,18 @@ namespace Candidate.Nancy.Selfhosted.App.Modules.Api
 
                                 return Response.AsJson(site);
                             };
+
+            Delete["/{id}"] = parameters =>
+                                  {
+                                      var id = parameters.id;
+
+                                      using (var session = _documentStore.OpenSession())
+                                      {
+                                          session.Advanced.DatabaseCommands.Delete(id, null);
+                                      }
+
+                                      return HttpStatusCode.NoContent;
+                                  };
         }
     }
 }

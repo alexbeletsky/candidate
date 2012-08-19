@@ -41,7 +41,6 @@
 
         onClose: function () {
             this.$el.modal('hide');
-            this.close();
         }
 
     });
