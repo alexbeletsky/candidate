@@ -206,7 +206,7 @@
     <Compile Include="App\Modules\Api\SitesModule.cs" />
     <Compile Include="App\Modules\HomeModule.cs" />
     <Compile Include="App\Modules\InstallModule.cs" />
-    <Compile Include="Infrastructure\Serializers\JsonNetSerializer.cs" />
+    <Compile Include="App\Infrastructure\Serializers\JsonNetSerializer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="App\PathProvider.cs" />

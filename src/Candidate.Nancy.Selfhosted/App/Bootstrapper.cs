@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Candidate.Nancy.Selfhosted.Infrastructure.Serializers;
+using Candidate.Nancy.Selfhosted.App.Infrastructure.Serializers;
 using Nancy;
 using Nancy.Authentication.Forms;
 using Nancy.Bootstrapper;

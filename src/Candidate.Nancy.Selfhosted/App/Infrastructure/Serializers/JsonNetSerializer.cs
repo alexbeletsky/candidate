@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
+﻿using System.IO;
 using Nancy;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
-namespace Candidate.Nancy.Selfhosted.Infrastructure.Serializers
+namespace Candidate.Nancy.Selfhosted.App.Infrastructure.Serializers
 {
     public class JsonNetSerializer : ISerializer
     {
