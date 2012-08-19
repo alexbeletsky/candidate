@@ -7,12 +7,20 @@
     var SitesListView = require('../views/dashboard/SitesListView');
 
     var DashboardView = BaseView.extend({
+        initialize: function (options) {
+            if ((!options && options.collection)) {
+                throw 'DashboardView: collection is required';
+            }
+
+            this.collection = options.collection;
+        },
+
         onRender: function () {
 
-            var addSiteButtonView = new TopButtonsView();
+            var addSiteButtonView = new TopButtonsView({ collection: this.collection });
             this.appendSubview(addSiteButtonView.render());
 
-            var sitesListView = new SitesListView();
+            var sitesListView = new SitesListView({ collection: this.collection });
             this.appendSubview(sitesListView.render());
         }
     });

@@ -25,7 +25,7 @@
         onSave: function () {
             var me = this;
 
-            var name = this.$('#site-name').val();
+            var name = this.$('#name').val();
             var description = this.$('#description').val();
 
             this.model.set({ name: name, description: description});

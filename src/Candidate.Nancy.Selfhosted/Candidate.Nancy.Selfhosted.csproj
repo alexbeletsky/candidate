@@ -203,6 +203,7 @@
     <Compile Include="App\Installer.cs" />
     <Compile Include="App\Logger.cs" />
     <Compile Include="App\Modules\AccountModule.cs" />
+    <Compile Include="App\Modules\Api\SiteModule.cs" />
     <Compile Include="App\Modules\Api\SitesModule.cs" />
     <Compile Include="App\Modules\HomeModule.cs" />
     <Compile Include="App\Modules\InstallModule.cs" />

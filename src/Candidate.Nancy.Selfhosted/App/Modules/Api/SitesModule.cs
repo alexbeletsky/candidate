@@ -1,16 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
+using Candidate.Core.Model;
 using Nancy;
+using Raven.Client;
 
 namespace Candidate.Nancy.Selfhosted.App.Modules.Api
 {
     public class SitesModule : NancyModule
     {
-        public SitesModule() : base("/api/sites")
+        private readonly IDocumentStore _documentStore;
+
+        public SitesModule(IDocumentStore documentStore) : base("/api/sites")
         {
-            Get["/"] = parameters => Response.AsJson(new[] {new {Name = "Site 1"}});
+            _documentStore = documentStore;
+
+            Get["/"] = parameters =>
+                           {
+                               using (var session = _documentStore.OpenSession())
+                               {
+                                   var sites = session.Query<Site>().OrderBy(s => s.Created);
+                                   return Response.AsJson(sites.ToArray());
+                               }
+                           };
         }
     }
 }
