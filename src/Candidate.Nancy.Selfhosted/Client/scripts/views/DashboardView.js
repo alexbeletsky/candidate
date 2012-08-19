@@ -3,16 +3,16 @@
     var BaseView = require('../shared/BaseView');
 
     // sub-views
-    var DashboardTopButtonsView = require('../views/dashboard/DashboardTopButtonsView');
-    var DashboardSitesListView = require('../views/dashboard/DashboardSitesListView');
+    var TopButtonsView = require('../views/dashboard/TopButtonsView');
+    var SitesListView = require('../views/dashboard/SitesListView');
 
     var DashboardView = BaseView.extend({
         onRender: function () {
 
-            var addSiteButtonView = new DashboardTopButtonsView();
+            var addSiteButtonView = new TopButtonsView();
             this.appendSubview(addSiteButtonView.render());
 
-            var sitesListView = new DashboardSitesListView();
+            var sitesListView = new SitesListView();
             this.appendSubview(sitesListView.render());
         }
     });

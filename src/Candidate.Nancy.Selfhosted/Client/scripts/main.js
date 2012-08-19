@@ -11,6 +11,10 @@
 
         'BootstrapModal': {
             deps: ['jQuery']
+        },
+
+        'Routing': {
+            deps: ['jQuery', 'Underscore', 'Backbone', 'BootstrapModal']
         }
     },
 
@@ -25,6 +29,6 @@
     }
 });
 
-require(['jQuery', 'Routing', 'Underscore', 'Backbone', 'BootstrapModal'], function ($, routing) {
-    routing.start();
+require(['Routing'], function (Routing) {
+    Routing.start();
 });

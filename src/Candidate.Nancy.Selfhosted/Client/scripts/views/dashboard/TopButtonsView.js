@@ -10,7 +10,7 @@
     // templates
     var _template = require('text!/scripts/templates/dashboard/topButtons.html');
 
-    var DashboardTopButtonsView = BaseView.extend({
+    var TopButtonsView = BaseView.extend({
         template: function () {
             return _template;
         },
@@ -20,11 +20,12 @@
         },
 
         onAddSiteClick: function () {
-            var addNewSiteModalView = new AddNewSiteModalView( { model: new Site() });
+            var model = new Site();
+            var addNewSiteModalView = new AddNewSiteModalView( { model: model });
             addNewSiteModalView.render();
         }
     });
 
-    return DashboardTopButtonsView;
+    return TopButtonsView;
 
 });
