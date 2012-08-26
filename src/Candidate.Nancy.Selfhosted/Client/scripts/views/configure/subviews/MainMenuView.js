@@ -35,23 +35,27 @@ define(function (require) {
         },
 
         onOverview: function (e) {
-            e && e.preventDefault();
-            this.mediator.trigger('configure:switchView:overview');
+            this.preventAndTrigger(e, 'configure:switchView:overview');
         },
 
         onConfiguration: function (e) {
-            e && e.preventDefault();
-            this.mediator.trigger('configure:switchView:configuration');
+            this.preventAndTrigger(e, 'configure:switchView:configuration');
         },
 
         onDeployments: function (e) {
-            e && e.preventDefault();
-            this.mediator.trigger('configure:switchView:deployments');
+            this.preventAndTrigger(e, 'configure:switchView:deployments');
         },
 
         onHistory: function (e) {
-            e && e.preventDefault();
-            this.mediator.trigger('configure:switchView:history');
+            this.preventAndTrigger(e, 'configure:switchView:history');
+        },
+
+        preventAndTrigger: function (e, eventName) {
+            if (e) {
+                e.preventDefault();
+            }
+            
+            this.mediator.trigger(eventName);
         }
 
     });

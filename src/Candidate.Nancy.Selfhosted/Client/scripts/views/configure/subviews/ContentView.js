@@ -29,31 +29,28 @@ define(function (require) {
         },
 
         switchToOverview: function () {
-            this.closeSubviews();
-            var view = new OverviewView();
-            this.appendSubview(view.render());
+            this.switchToView(new OverviewView());
         },
 
         switchToConfiguration: function() {
-            this.closeSubviews();
-            var view = new ConfigurationView();
-            this.appendSubview(view.render());
+            this.switchToView(new ConfigurationView());
         },
 
         switchToDeployments: function () {
-            this.closeSubviews();
-            var view = new DeploymentsView();
-            this.appendSubview(view.render());
+            this.switchToView(new DeploymentsView());
         },
 
         switchToHistory: function () {
-            this.closeSubviews();
-            var view = new HistoryView();
-            this.appendSubview(view.render());
+            this.switchToView(new HistoryView());
         },
 
         onRender: function () {
             this.mediator.trigger('configure:content:ready');
+        },
+
+        switchToView: function(view) {
+            this.closeSubviews();
+            this.appendSubview(view.render());
         }
 
     });
