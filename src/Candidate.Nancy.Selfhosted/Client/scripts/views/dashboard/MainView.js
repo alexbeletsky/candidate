@@ -7,6 +7,8 @@
     var SitesListView = require('./subviews/SitesListView');
 
     var DashboardView = BaseView.extend({
+        className: 'row',
+
         initialize: function (options) {
             if ((!options && options.collection)) {
                 throw 'DashboardView: collection is required';

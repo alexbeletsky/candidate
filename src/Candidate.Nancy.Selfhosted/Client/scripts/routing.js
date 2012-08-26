@@ -2,12 +2,6 @@
 
     var ViewManager = require('ViewManager');
     
-    // // applications
-    // var Applications = {
-    //     'dashboard': require('./apps/DashboardApp'),
-    //     'configure': require('./apps/ConfigureApp')
-    // };
-
     // router
     var ApplicationRouter = Backbone.Router.extend({
 

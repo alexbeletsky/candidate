@@ -16,7 +16,6 @@ namespace Candidate.Core.Setup
             _logger = logger;
         }
 
-
         public void Setup(ILogger logger)
         {
             _logger.Info(string.Format("Application root folder at {0}", Settings.ApplicationDirectories.Root));

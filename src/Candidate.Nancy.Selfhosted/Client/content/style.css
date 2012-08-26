@@ -44,3 +44,6 @@
     width: 60px;
 }
 
+ul.configure-nav li {
+    margin-top: 8px;
+}
