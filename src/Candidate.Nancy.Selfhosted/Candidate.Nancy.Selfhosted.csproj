@@ -215,9 +215,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="App\PathProvider.cs" />
     <Compile Include="App\UserMapper.cs" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\mustache.js" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
