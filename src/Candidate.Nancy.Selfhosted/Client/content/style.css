@@ -45,5 +45,9 @@
 }
 
 ul.configure-nav li {
-    margin-top: 8px;
+    margin-top: 4px;
+}
+
+ul.configure-nav .back {
+    margin-top: 52px;
 }
