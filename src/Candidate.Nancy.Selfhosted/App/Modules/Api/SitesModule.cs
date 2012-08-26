@@ -2,6 +2,7 @@
 using Candidate.Core.Model;
 using Nancy;
 using Raven.Client;
+using Candidate.Core.Logger;
 
 namespace Candidate.Nancy.Selfhosted.App.Modules.Api
 {

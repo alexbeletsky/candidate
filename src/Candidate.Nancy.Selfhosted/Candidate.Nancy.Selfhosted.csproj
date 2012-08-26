@@ -205,7 +205,6 @@
     <Content Include="Client\scripts\views\DashboardView.js" />
     <Content Include="Client\views\master.html" />
     <Compile Include="App\Installer.cs" />
-    <Compile Include="App\Logger.cs" />
     <Compile Include="App\Modules\AccountModule.cs" />
     <Compile Include="App\Modules\Api\SiteModule.cs" />
     <Compile Include="App\Modules\Api\SitesModule.cs" />

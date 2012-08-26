@@ -1,6 +1,6 @@
 using System;
 
-namespace Candidate.Nancy.Selfhosted.App
+namespace Candidate.Core.Logger
 {
     public interface ILogger
     {
@@ -27,7 +27,7 @@ namespace Candidate.Nancy.Selfhosted.App
         {
             Console.ForegroundColor = ConsoleColor.DarkGreen;
             Console.WriteLine(message);
-            Console.ResetColor();            
+            Console.ResetColor();
         }
     }
 }

@@ -10,6 +10,7 @@ using Ninject;
 using Ninject.Extensions.Conventions;
 using Raven.Client;
 using Raven.Client.Embedded;
+using Candidate.Core.Logger;
 
 namespace Candidate.Nancy.Selfhosted.App
 {
@@ -82,8 +83,8 @@ namespace Candidate.Nancy.Selfhosted.App
         {
             _logger.Info("Setting up application directories...");
 
-            var setupDirectories = new Core.Setup.ApplicationDirectories();
-            setupDirectories.Setup();
+            var setupDirectories = new Core.Setup.ApplicationDirectories(_logger);
+            setupDirectories.Setup(_logger);
         }
 
         private void SetupRavenDB()

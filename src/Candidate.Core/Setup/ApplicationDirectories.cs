@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Candidate.Core.Logger;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -8,8 +9,18 @@ namespace Candidate.Core.Setup
 {
     public class ApplicationDirectories
     {
-        public void Setup()
+        private readonly ILogger _logger;
+
+        public ApplicationDirectories(ILogger logger)
         {
+            _logger = logger;
+        }
+
+
+        public void Setup(ILogger logger)
+        {
+            _logger.Info(string.Format("Application root folder at {0}", Settings.ApplicationDirectories.Root));
+
             var directories = new List<string>
                                   {
                                       Settings.ApplicationDirectories.Root,
@@ -21,12 +32,14 @@ namespace Candidate.Core.Setup
             directories.ForEach(CreateDirectoryIfNotExist);
         }
 
-        private static void CreateDirectoryIfNotExist(string directoryName)
+        private void CreateDirectoryIfNotExist(string directoryName)
         {
-            if (!Directory.Exists(Settings.ApplicationDirectories.Root))
+            if (!Directory.Exists(directoryName))
             {
-                Directory.CreateDirectory(Settings.ApplicationDirectories.Root);
-            }            
+                _logger.Info(string.Format("  Creating directory {0}", directoryName));
+
+                Directory.CreateDirectory(directoryName);
+            }
         }
     }
 }

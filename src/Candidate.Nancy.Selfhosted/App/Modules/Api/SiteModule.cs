@@ -5,6 +5,7 @@ using Nancy;
 using Nancy.ModelBinding;
 using Nancy.Validation;
 using Raven.Client;
+using Candidate.Core.Logger;
 
 namespace Candidate.Nancy.Selfhosted.App.Modules.Api
 {

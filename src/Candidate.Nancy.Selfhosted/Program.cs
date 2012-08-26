@@ -1,6 +1,7 @@
 ﻿using System;
 using Candidate.Nancy.Selfhosted.App;
 using Nancy.Hosting.Self;
+using Candidate.Core.Logger;
 
 namespace Candidate.Nancy.Selfhosted
 {
