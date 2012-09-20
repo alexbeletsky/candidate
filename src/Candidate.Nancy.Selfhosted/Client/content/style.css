@@ -1,4 +1,4 @@
-﻿body {
+body {
     padding-top: 90px;
 }
 
@@ -7,7 +7,6 @@
     padding: 10px 0px 10px 0px;
     min-height: 320px;
 }
-
 .rcs {
     -webkit-border-radius: 5px;
     border-radius: 5px;
@@ -17,31 +16,29 @@
     height: 26px;
     background-color: #2C2C2C;
     color: white;
-    font-weight: bold !important;
 }
 
 .candidate-sites-cell {
     line-height: 26px;
     display: inline-block;
     vertical-align: top;
-    box-sizing: border-box;
 }
 
 .candidate-sites-cell.sort {
-    width: 40px;
+    width: 3.333333%;
 }
 
 .candidate-sites-cell.name {
-    width: 530px;
+    width: 44.166666%;
 }
 
 .candidate-sites-cell.status {
-    width: 380px;
+    width: 31.666666%;
 }
 
 .candidate-sites-cell.configure, .candidate-sites-cell.deploy, .candidate-sites-cell.delete {
     text-align: right;
-    width: 60px;
+    min-width: 5%;
 }
 
 ul.configure-nav li {

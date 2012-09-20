@@ -42,6 +42,5 @@ namespace Candidate.Nancy.Selfhosted
             logger.Success("Candidate has been stopped by user request.\n");
             _host.Stop();
         }
-
     }
 }

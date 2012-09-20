@@ -57,19 +57,6 @@ namespace Candidate.Nancy.Selfhosted.App
             }
         }
 
-//        protected override void ConfigureApplicationContainer(IKernel existingContainer)
-//        {
-//            base.ConfigureApplicationContainer(existingContainer);
-//
-//            var currentAssembly = GetType().Assembly;
-//            ResourceViewLocationProvider.RootNamespaces.Add(currentAssembly, "Candidate.Nancy.SelfHosted.Views");
-//        }
-//
-//        protected override NancyInternalConfiguration InternalConfiguration
-//        {
-//            get { return NancyInternalConfiguration.WithOverrides(x => x.ViewLocationProvider = typeof(ResourceViewLocationProvider)); }
-//        }
-
         protected override void RegisterInstances(IKernel container, IEnumerable<InstanceRegistration> instanceRegistrations)
         {
             base.RegisterInstances(container, instanceRegistrations);

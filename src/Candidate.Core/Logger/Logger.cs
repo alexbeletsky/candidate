@@ -7,6 +7,7 @@ namespace Candidate.Core.Logger
         void Info(string message);
         void Debug(string message);
         void Success(string message);
+        void Warning(string message);
     }
 
     public class ConsoleLogger : ILogger
@@ -26,6 +27,13 @@ namespace Candidate.Core.Logger
         public void Success(string message)
         {
             Console.ForegroundColor = ConsoleColor.DarkGreen;
+            Console.WriteLine(message);
+            Console.ResetColor();
+        }
+
+        public void Warning(string message)
+        {
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.WriteLine(message);
             Console.ResetColor();
         }
