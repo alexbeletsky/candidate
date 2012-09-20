@@ -2,11 +2,11 @@ body {
     padding-top: 90px;
 }
 
-#app 
-{
-    padding: 10px 0px 10px 0px;
+#app {
+    padding: 10px 0 10px 0;
     min-height: 320px;
 }
+
 .rcs {
     -webkit-border-radius: 5px;
     border-radius: 5px;
