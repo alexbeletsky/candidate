@@ -1,7 +1,7 @@
 define(function (require) {
 
     // views
-    var ConfigureView = require('../views/configure/MainView');
+    var MainView = require('../views/configure/MainView');
 
     // models
     var Site = require('../models/Site');
@@ -17,9 +17,9 @@ define(function (require) {
     };
 
     var ConfigureApp = {
-        run: function (id, viewManager) {
-            bootsrapper(id, function (site) {
-                var view = new ConfigureView({ model: site });
+        run: function (context, viewManager) {
+            bootsrapper(context.id, function (site) {
+                var view = new MainView({ model: site, section: context.section || 'overview' });
                 viewManager.show(view);
             });
         }

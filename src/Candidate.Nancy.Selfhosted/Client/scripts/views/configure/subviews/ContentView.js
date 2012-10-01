@@ -9,47 +9,28 @@ define(function (require) {
     var DeploymentsView = require('./DeploymentsView');
     var HistoryView = require('./HistoryView');
 
+    var Views = {
+        'overview': OverviewView,
+        'configuration': ConfigurationView,
+        'deployments': DeploymentsView,
+        'history': HistoryView
+    };
+
     var ContentView = BaseView.extend({
         className: 'span9',
 
         initialize: function (options) {
-            if (!(options && options.mediator)) {
-                throw 'ContentView: mediator is required';
+            if (!(options && options.section)) {
+                throw 'Configuration.ContentView: section is required';
             }
 
             _.bindAll(this);
 
-            this.mediator = options.mediator;
-
-            // events
-            this.bindTo(this.mediator, 'configure:switchView:overview', this.switchToOverview);
-            this.bindTo(this.mediator, 'configure:switchView:configuration', this.switchToConfiguration);
-            this.bindTo(this.mediator, 'configure:switchView:deployments', this.switchToDeployments);
-            this.bindTo(this.mediator, 'configure:switchView:history', this.switchToHistory);
-        },
-
-        switchToOverview: function () {
-            this.switchToView(new OverviewView());
-        },
-
-        switchToConfiguration: function() {
-            this.switchToView(new ConfigurationView());
-        },
-
-        switchToDeployments: function () {
-            this.switchToView(new DeploymentsView());
-        },
-
-        switchToHistory: function () {
-            this.switchToView(new HistoryView());
+            this.section = options.section;
         },
 
         onRender: function () {
-            this.mediator.trigger('configure:content:ready');
-        },
-
-        switchToView: function(view) {
-            this.closeSubviews();
+            var view = new Views[this.section]();
             this.appendSubview(view.render());
         }
 

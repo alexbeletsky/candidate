@@ -11,7 +11,8 @@
 
         routes: {
             '': 'dashboard',
-            'configure/sites/:id': 'configure'
+            'configure/sites/:id': 'configure',
+            'configure/sites/:id/:section': 'configureSection'
         },
 
         dashboard: function () {
@@ -21,15 +22,15 @@
 
         configure: function (id) {
             var app = require('./apps/ConfigureApp');
-            app.run(id, this.viewManager);
+            app.run({ id: id}, this.viewManager);
+        },
+
+        configureSection: function (id, section) {
+            var app = require('./apps/ConfigureApp');
+            app.run({ id: id, section: section }, section, this.viewManager);
         }
 
     });
 
-    return {
-        start: function () {
-            new ApplicationRouter();
-            Backbone.history.start();
-        }
-    };
+    return ApplicationRouter;
 });
