@@ -1,17 +1,12 @@
-﻿define(function (require) {
+﻿define(['../../shared/BaseView', './subviews/TopButtonsView', './subviews/SitesListView'],
+    function (BaseView, TopButtonsView, SitesListView) {
 
-    var BaseView = require('../../shared/BaseView');
-
-    // sub-views
-    var TopButtonsView = require('./subviews/TopButtonsView');
-    var SitesListView = require('./subviews/SitesListView');
-
-    var DashboardView = BaseView.extend({
+    var MainView = BaseView.extend({
         className: 'row',
 
         initialize: function (options) {
             if ((!options && options.collection)) {
-                throw 'DashboardView: collection is required';
+                throw 'MainView: collection is required';
             }
 
             this.collection = options.collection;
@@ -27,5 +22,5 @@
         }
     });
 
-    return DashboardView;
+    return MainView;
 });
