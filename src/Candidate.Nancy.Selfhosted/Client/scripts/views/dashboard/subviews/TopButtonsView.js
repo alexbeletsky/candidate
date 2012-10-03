@@ -1,11 +1,5 @@
-﻿define(function (require) {
-
-    // views
-    var BaseView = require('../../../shared/BaseView');
-    var AddNewSiteModalView = require('./AddNewSiteModalView');
-
-    // models
-    var Site = require('../../../models/Site');
+﻿define(['../../../shared/BaseView', './AddNewSiteModalView', '../../../models/Site', 'text!/scripts/templates/dashboard/topButtons.html'],
+    function (BaseView, AddNewSiteModalView, Site, template) {
 
     var TopButtonsView = BaseView.extend({
         initialize: function (options) {
@@ -17,8 +11,7 @@
         },
 
         template: function () {
-            var _template = require('text!/scripts/templates/dashboard/topButtons.html');
-            return _template;
+            return template;
         },
 
         events: {
@@ -26,11 +19,11 @@
         },
 
         onAddSiteClick: function (e) {
+            e.preventDefault();
+
             var model = new Site();
             var addNewSiteModalView = new AddNewSiteModalView( { model: model, collection: this.collection });
             addNewSiteModalView.render();
-
-            e.preventDefault();
         }
     });
 
