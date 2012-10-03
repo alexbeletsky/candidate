@@ -1,7 +1,6 @@
-﻿define('ApplicationRouter',
-    ['ViewManager', './apps/DashboardApp', './apps/ConfigureApp'],
+﻿define(['ViewManager', './apps/DashboardApp', './apps/ConfigureApp'],
     function (ViewManager, DashboardApp, ConfigureApp) {
-    
+
     // router
     var ApplicationRouter = Backbone.Router.extend({
 

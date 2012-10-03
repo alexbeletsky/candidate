@@ -1,10 +1,5 @@
-﻿define(function (require) {
-
-    // views
-    var DashboardView = require('../views/dashboard/MainView');
-
-    // models
-    var Sites = require('../models/Sites');
+﻿define(['../views/dashboard/MainView', '../models/Sites'],
+    function (MainView, Sites) {
 
     // boostsrapper
     var bootstrap = function (callback) {
@@ -17,7 +12,7 @@
     var DashboardApp = {
         run: function (viewManager) {
             bootstrap(function (sites) {
-                var view = new DashboardView({ collection: sites });
+                var view = new MainView({ collection: sites });
                 viewManager.show(view);
             });
         }
