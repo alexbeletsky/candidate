@@ -1,6 +1,6 @@
-﻿define(function (require) {
-
-    var ViewManager = require('ViewManager');
+﻿define('ApplicationRouter',
+    ['ViewManager', './apps/DashboardApp', './apps/ConfigureApp'],
+    function (ViewManager, DashboardApp, ConfigureApp) {
     
     // router
     var ApplicationRouter = Backbone.Router.extend({
@@ -16,18 +16,15 @@
         },
 
         dashboard: function () {
-            var app = require('./apps/DashboardApp');
-            app.run(this.viewManager);
+            DashboardApp.run(this.viewManager);
         },
 
         configure: function (id) {
-            var app = require('./apps/ConfigureApp');
-            app.run({ id: id}, this.viewManager);
+            ConfigureApp.run({ id: id}, this.viewManager);
         },
 
         configureSection: function (id, section) {
-            var app = require('./apps/ConfigureApp');
-            app.run({ id: id, section: section }, section, this.viewManager);
+            ConfigureApp.run({ id: id, section: section }, section, this.viewManager);
         }
 
     });

@@ -13,7 +13,7 @@
             deps: ['jQuery']
         },
 
-        'Routing': {
+        'ApplicationRouter': {
             deps: ['jQuery', 'Underscore', 'Backbone', 'BootstrapModal']
         }
     },
@@ -29,7 +29,7 @@
     }
 });
 
-require(['Routing'], function (ApplicationRouter) {
+require(['ApplicationRouter'], function (ApplicationRouter) {
     var app = {
         root: '/'
     };
