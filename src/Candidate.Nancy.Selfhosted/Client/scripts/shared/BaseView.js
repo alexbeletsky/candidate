@@ -1,5 +1,4 @@
-﻿define(function (require) {
-    var Backbone = require('Backbone');
+﻿define(function () {
 
     // https://gist.github.com/2637323
     var BaseView = Backbone.View.extend({
