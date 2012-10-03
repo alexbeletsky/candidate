@@ -1,13 +1,5 @@
-define(function (require) {
-
-    // base view
-    var BaseView = require('../../../shared/BaseView');
-
-    // subviews
-    var OverviewView = require('./OverviewView');
-    var ConfigurationView = require('./ConfigurationView');
-    var DeploymentsView = require('./DeploymentsView');
-    var HistoryView = require('./HistoryView');
+define(['../../../shared/BaseView', './OverviewView', './ConfigurationView', './DeploymentsView', './HistoryView' ],
+    function (BaseView, OverviewView, ConfigurationView, DeploymentsView, HistoryView) {
 
     var Views = {
         'overview': OverviewView,

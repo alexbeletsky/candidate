@@ -19,11 +19,13 @@
         },
 
         configure: function (id) {
-            ConfigureApp.run({ id: id}, this.viewManager);
+            debugger;
+            ConfigureApp.run({ id: id }, this.viewManager);
         },
 
         configureSection: function (id, section) {
-            ConfigureApp.run({ id: id, section: section }, section, this.viewManager);
+            debugger;
+            ConfigureApp.run({ id: id, section: section }, this.viewManager);
         }
 
     });

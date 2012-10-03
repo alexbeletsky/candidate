@@ -1,7 +1,5 @@
-define(function (require) {
-
-    // base view
-    var BaseView = require('../../../shared/BaseView');
+define(['../../../shared/BaseView'],
+    function (BaseView) {
 
     var OverviewView = BaseView.extend({
 
