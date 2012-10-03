@@ -1,4 +1,4 @@
-﻿define(function (require) {
+﻿define(function () {
 
     var Site = Backbone.Model.extend({
         urlRoot: '/api/site',

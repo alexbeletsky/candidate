@@ -1,6 +1,6 @@
-﻿define(function (require) {
-    var Site = require('./Site');
-
+﻿define(['./Site'],
+    function (Site) {
+    
     var SitesCollection = Backbone.Collection.extend({
         url: '/api/sites',
 
