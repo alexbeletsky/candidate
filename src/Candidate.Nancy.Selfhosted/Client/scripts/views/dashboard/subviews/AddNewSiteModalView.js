@@ -1,6 +1,5 @@
-﻿define(function (require) {
-
-    var BaseView = require('../../../shared/BaseView');
+﻿define(['../../../shared/BaseView', 'text!/scripts/templates/dashboard/addNewSiteModalView.html'],
+    function (BaseView, template) {
     
     var AddNewSiteModalView = BaseView.extend({
 
@@ -19,8 +18,7 @@
         },
 
         template: function () {
-            var _template = require('text!/scripts/templates/dashboard/addNewSiteModalView.html');
-            return _template;
+            return template;
         },
 
         onRender: function () {
